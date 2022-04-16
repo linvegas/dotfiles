@@ -10,12 +10,14 @@ It's supposed to be used with [GNU/stow](https://www.gnu.org/software/stow/).
 #### Terminal Apps
 * bashtop
 * htop
+* ntfs-3g
 * tree
 * bat
 * lf
 * figlet
 * stow
 * fzf
+* dmenu
 * ncmpcpp
 * alsa-utils(alsamixer)
 
@@ -44,6 +46,8 @@ It's supposed to be used with [GNU/stow](https://www.gnu.org/software/stow/).
 #### Media Apps
 * mpv
 * yt-dlp
+* ffmpeg
+* v4l-utils
 * sxiv
 * cadence(jack)
 * pavucontrol(pulse)
