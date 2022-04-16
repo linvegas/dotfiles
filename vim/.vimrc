@@ -1,4 +1,6 @@
-" Basics
+""""""""""""""""
+"    Basics    "
+"""""""""""""""" 
 set encoding=utf-8
 set fileencoding=utf-8
 set nocompatible
@@ -9,7 +11,9 @@ syntax on
 set number
 set cursorline
 
-" Editing
+"""""""""""""""
+"   Editing   "
+"""""""""""""""
 set shiftwidth=2
 set tabstop=2
 set expandtab
@@ -22,26 +26,40 @@ set showmatch
 set hlsearch
 set history=1000
 
-" Menu
+""""""""""""""
+"    Menu    "
+""""""""""""""
 set splitbelow splitright
 set wildmenu
 set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
-" Plugins
+"""""""""""""""""
+"    Plugins    "
+"""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
 
 
 call plug#end()
 
-" Keybind
+"""""""""""""""""
+"    Keybind    "
+"""""""""""""""""
+"autocmd! BufWritePost .vimrc source %
 
+" Tab Switching
+nnoremap <C-j> :tabp<CR>
+nnoremap <C-k> :tabn<CR>
 
-" Vimscript
+"""""""""""""""""""
+"    Vimscript    "
+"""""""""""""""""""
 colorscheme onedark
 
-" Status Line
+"""""""""""""""""""""
+"    Status Line    "
+"""""""""""""""""""""
 
 function! StatuslineMode() abort
   let l:currentmode = {
@@ -55,7 +73,7 @@ function! StatuslineMode() abort
     \ 'i': 'INSERT',
     \ 'R': 'REPLACE',
     \ 'c': 'COMMAND',
-    \ 't':  'T'}
+    \ 't':  'TERMINAL'}
 
   let l:modecurrent = mode()
   let l:modelist = toupper(get(l:currentmode, l:modecurrent, 'VB'))
