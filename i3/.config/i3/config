@@ -2,7 +2,7 @@
 
 set $mod Mod4
 
-font pango:DejaVu Sans Mono 12
+font pango:DejaVu Sans Mono 10
 
 #Gasp
 gaps inner 14
@@ -32,6 +32,11 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym $mod+F9 exec --no-startup-id xbacklight -inc 5
 bindsym $mod+F8 exec --no-startup-id xbacklight -dec 5
 
+# Colorscheme
+client.focused          #344451 #344451 #ffffff #eaf42e   #e8ec98
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -46,7 +51,8 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 
 # Default border
 default_border pixel 2
-default_floating_border normal
+default_floating_border pixel 3
+hide_edge_borders none
 
 # change focus
 bindsym $mod+h focus left
@@ -96,10 +102,13 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # specific windows on floating mode
-for_window [class="Nitrogen"] floating enable border normal
-for_window [class="Cadence"] floating enable border normal
-for_window [title="(?i)KeePassXc"] floating enable border normal
-for_window [class="(?i)Pd"] floating enable border normal
+for_window [class="Nitrogen"] floating enable 
+for_window [class="Cadence"] floating enable 
+for_window [title="(?i)KeePassXc"] floating 
+for_window [class="(?i)Pd"] floating enable
+for_window [title="Bluetooth Devices"] floating enable 
+for_window [title="(?i)Duckstation"] floating enable 
+for_window [class="PCSX2"] floating enable 
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -188,6 +197,7 @@ bar {
   status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf 
         
   position top
+  tray_output primary
 
   colors {
     background  #132027
