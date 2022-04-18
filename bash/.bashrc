@@ -27,6 +27,6 @@ alias sxiv="sxiv -b"
 
 # Prompt
 if [ "$EUID" -ne 0 ] 
-	then export PS1='🌀 \e[1;32m\W\e[m \$ '
+	then export PS1='🌀 \[\e[1;32m\]\W\[\e[m\] \$ '
 	else export PS1='[Root]\h \W \$ '
 fi
