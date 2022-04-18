@@ -2,14 +2,14 @@
 
 set $mod Mod4
 
-font pango:DejaVu Sans Mono 10
+font pango:DejaVu Sans Mono 12
 
 #Gasp
 gaps inner 14
 gaps outer -2
 
 # Monitor setup
-exec xrandr --output HDMI-1-0 --auto --rate 75 --primary --left-of eDP1
+exec xrandr --output HDMI-0 --auto --rate 75 --primary --left-of eDP-1-1
 
 # Start XDG autostart .desktop files using dex. See also
 exec --no-startup-id dex --autostart --environment i3
@@ -19,6 +19,7 @@ exec --no-startup-id nm-applet
 # Auto start apps
 exec --no-startup-id nitrogen --restore 
 exec --no-startup-id picom -b 
+exec --no-startup-id dunst 
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -26,6 +27,10 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# Screen brightness
+bindsym $mod+F9 exec --no-startup-id xbacklight -inc 5
+bindsym $mod+F8 exec --no-startup-id xbacklight -dec 5
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -111,7 +116,7 @@ set $ws10 "10"
 
 # output workspace
 workspace 1 output primary
-workspace 5 output eDP1
+workspace 5 output eDP-1-1
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
