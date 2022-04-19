@@ -48,9 +48,16 @@ call plug#end()
 """""""""""""""""
 "autocmd! BufWritePost .vimrc source %
 
-" Tab Switching
-nnoremap <C-j> :tabp<CR>
-nnoremap <C-k> :tabn<CR>
+" Buffer Switching
+nnoremap <C-j> :bp<CR>
+nnoremap <C-k> :bn<CR>
+
+" Autocomplete
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
 
 """""""""""""""""""
 "    Vimscript    "

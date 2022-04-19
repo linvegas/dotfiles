@@ -44,6 +44,6 @@ source /usr/share/git/completion/git-prompt.sh
 
 # Prompt
 if [ "$EUID" -ne 0 ] 
-  then export PS1='\[\e[1;34m\]$(__git_ps1 "(%s)")\[\e[m\] 🌀 \[\e[1;32m\]\W\[\e[m\] \$ '
+  then export PS1='\[\e[1;34m\]$(__git_ps1 "(%s) ")\[\e[m\]🌀 \[\e[1;32m\]\W\[\e[m\] \$ '
 	else export PS1='[Root]\h \W \$ '
 fi
