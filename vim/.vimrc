@@ -1,6 +1,6 @@
 """"""""""""""""
 "    Basics    "
-"""""""""""""""" 
+""""""""""""""""
 set encoding=utf-8
 set fileencoding=utf-8
 set nocompatible
@@ -10,6 +10,7 @@ filetype indent on
 syntax on
 set number
 set cursorline
+set nobackup
 
 """""""""""""""
 "   Editing   "
@@ -25,14 +26,25 @@ set smartcase
 set showmatch
 set hlsearch
 set history=1000
+set autoindent
+set smartindent
+set splitbelow splitright
 
 """"""""""""""
 "    Menu    "
 """"""""""""""
-set splitbelow splitright
+set path+=**
 set wildmenu
-set wildmode=list:longest
+"set wildmode=longest:full,full
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+
+"""""""""""""""""""""
+"    File Browse    "
+"""""""""""""""""""""
+
+let g:netrw_banner=0
+let g:netrw_altv=1
+let g:netrw_liststyle=3
 
 """""""""""""""""
 "    Plugins    "
@@ -64,6 +76,8 @@ inoremap { {}<left>
 """""""""""""""""""
 colorscheme onedark
 
+" Deletes all white spaces on save
+autocmd BufWritePre * %s/\s\+$//e
 """""""""""""""""""""
 "    Status Line    "
 """""""""""""""""""""
@@ -88,14 +102,14 @@ function! StatuslineMode() abort
   return l:current_status_mode
 endfunction
 
-highlight fileType term=bold ctermfg=235 ctermbg=114 guifg=#282C34 guibg=#98C379    
+highlight fileType term=bold ctermfg=235 ctermbg=114 guifg=#282C34 guibg=#98C379
 highlight fileLine term=reverse ctermfg=180 ctermbg=59 guifg=#E5C07B guibg=#5C6370
 highlight viMode ctermfg=15 ctermbg=242 gui=bold guifg=White guibg=Grey40
-highlight Conceal term=standout 
+highlight Conceal term=standout
 
 set laststatus=2
 set statusline+=\ %#viMode#
-set statusline+=\ %{StatuslineMode()} 
+set statusline+=\ %{StatuslineMode()}
 set statusline+=\ %#Conceal#
 set statusline+=\ %f
 set statusline+=%=
