@@ -16,4 +16,6 @@ export MUSIC_DIR="$HOME/media/music"
 export VDPAU_DRIVER="nvidia"
 
 # Starts xorg
-startx
+if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+  exec startx
+fi
