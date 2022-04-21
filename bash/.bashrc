@@ -12,6 +12,7 @@ export HISTFILESIZE=2000
 
 # Auto cd into directories
 shopt -s autocd
+shopt -s histappend
 set -o vi
 
 # System aliases
@@ -40,10 +41,15 @@ alias mplay="ncmpcpp"
 alias mpv="mpv --hwdec=auto --autofit=60%x60%"
 
 # Git prompt
-source /usr/share/git/completion/git-prompt.sh
+
+gitarch="/usr/share/git/completion/git-prompt.sh"
+[[ -f "$gitarch" ]] && source $gitarch
+
+gitubuntu="/usr/lib/git-core/git-sh-prompt"
+[[ -f "$gitubuntu" ]] && source $gitubuntu
 
 # Prompt
-if [ "$EUID" -ne 0 ] 
+if [ "$EUID" -ne 0 ]
   then export PS1='\[\e[1;34m\]$(__git_ps1 "(%s) ")\[\e[m\]🌀 \[\e[1;32m\]\W\[\e[m\] \$ '
 	else export PS1='[Root]\h \W \$ '
 fi
