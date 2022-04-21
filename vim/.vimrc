@@ -51,7 +51,7 @@ let g:netrw_liststyle=3
 """""""""""""""""
 call plug#begin('~/.vim/plugged')
 
-
+  Plug 'mattn/emmet-vim'
 
 call plug#end()
 
@@ -70,6 +70,12 @@ inoremap ' ''<left>
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
+
+" Emmet plugin
+let g:user_emmet_mode='n'
+let g:user_emmet_leader_key=','
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
 
 """""""""""""""""""
 "    Vimscript    "
