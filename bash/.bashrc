@@ -5,10 +5,12 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# History stuff
+# Variables
 export HISTCONTROL=ignoredpus
 export HISTSIZE=1000
 export HISTFILESIZE=2000
+export EDITOR="vim"
+export PATH="$PATH:$HOME/.scripts"
 
 # Auto cd into directories
 shopt -s autocd
