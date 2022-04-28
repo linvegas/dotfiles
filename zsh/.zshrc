@@ -15,7 +15,7 @@ zstyle ':vcs_info:git:*' formats '%F{14}(%b)%f '
 zstyle ':vcs_info:*' enable git
 setopt prompt_subst
 
-PROMPT='${vcs_info_msg_0_}🌀 %F{11}%B%1~%b%f %(!.#.>) '
+PROMPT='${vcs_info_msg_0_}💠 %F{11}%B%1~%b%f %(!.#.>) '
 
 # History configuration
 setopt histignorealldups sharehistory
