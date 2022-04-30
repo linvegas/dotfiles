@@ -39,6 +39,7 @@ alias rm="rm -I"
 alias du="du -h"
 alias bat="bat --color=auto"
 alias mkdir="mkdir -p -v"
+alias history="fc -l 1"
 
 # Git aliases
 alias gs="git status"
