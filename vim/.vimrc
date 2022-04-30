@@ -11,6 +11,8 @@ syntax on
 set number
 set cursorline
 set nobackup
+set t_Co=256
+set background=dark
 
 """""""""""""""
 "   Editing   "
@@ -52,13 +54,15 @@ let g:netrw_liststyle=3
 call plug#begin('~/.vim/plugged')
 
   Plug 'mattn/emmet-vim'
+  Plug 'flazz/vim-colorschemes'
 
 call plug#end()
+
+colorscheme gruvbox
 
 """""""""""""""""
 "    Keybind    "
 """""""""""""""""
-"autocmd! BufWritePost .vimrc source %
 
 " Buffer Switching
 nnoremap <C-j> :bp<CR>
@@ -77,18 +81,19 @@ let g:user_emmet_leader_key=','
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 
+
+"""""""""""""""""""
+"    Vimscript    "
+"""""""""""""""""""
+
 " Remember last position
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-"""""""""""""""""""
-"    Vimscript    "
-"""""""""""""""""""
-colorscheme onedark
-
 " Deletes all white spaces on save
 autocmd BufWritePre * %s/\s\+$//e
+
 """""""""""""""""""""
 "    Status Line    "
 """""""""""""""""""""
