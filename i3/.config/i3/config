@@ -2,7 +2,7 @@
 
 set $mod Mod4
 
-font pango:DejaVu Sans Mono 10
+font pango:DejaVu Sans Mono 12
 
 #Gasp
 gaps inner 14
@@ -17,9 +17,10 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # Auto start apps
-exec --no-startup-id nitrogen --restore 
-exec --no-startup-id picom -b 
-exec --no-startup-id dunst 
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id picom -b
+exec --no-startup-id dunst
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -47,11 +48,12 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+#bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id rofi -modi drun -show-icons -font "noto 14" -columns 3 -width 40 -drun-display-format {name} -show
 
 # Default border
 default_border pixel 1
-default_floating_border pixel 1
+default_floating_border pixel 2
 hide_edge_borders none
 
 # change focus
@@ -102,13 +104,15 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # specific windows on floating mode
-for_window [class="Nitrogen"] floating enable 
-for_window [class="Cadence"] floating enable 
-for_window [title="KeePassXc"] floating enable 
-for_window [class="(?i)Pd"] floating enable
-for_window [title="Bluetooth Devices"] floating enable 
-for_window [title="(?i)Duckstation"] floating enable 
-for_window [class="PCSX2"] floating enable 
+for_window [class="Nitrogen"] floating enable
+for_window [class="Cadence"] floating enable
+for_window [title="NVIDIA X Server Settings"] floating enable
+for_window [class="KeePassXC"] floating enable
+for_window [class="PdWindow"] floating enable
+for_window [class="PatchWindow"] floating enable
+for_window [title="Bluetooth Devices"] floating enable
+for_window [title="(?i)Duckstation"] floating enable
+for_window [class="Pcsx2"] floating enable
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -194,17 +198,12 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf 
-        
-  position top
-  tray_output primary
-
-  colors {
-    background  #132027
-    
-    focused_workspace   #FFFFFF  #132027  #FFFFFF
-  }
-
+  #position top
+  #tray_output primary
+  #colors {
+    #background  #132027
+    #focused_workspace   #FFFFFF  #132027  #FFFFFF
+  #}
 }
 
 bindsym $mod+F2 bar mode toggle
