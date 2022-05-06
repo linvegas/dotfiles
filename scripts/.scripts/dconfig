@@ -16,8 +16,11 @@ declare -a options=(
 "mpd $HOME/.config/mpd/mpd.conf"
 "ncmpcpp $HOME/.config/ncmpcpp/config"
 "picom $HOME/.config/picom/picom.conf"
+"polybar $HOME/.config/polybar/config.ini"
 "vim $HOME/.vimrc"
 "xinitrc $HOME/.xinitrc"
+"zshrc $HOME/.zshrc"
+"zsh_profile $HOME/.zprofile"
 "quit"
 )
 

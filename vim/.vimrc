@@ -59,6 +59,8 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 colorscheme gruvbox
+highlight Normal ctermbg=Black
+highlight NonText ctermbg=Black
 
 """""""""""""""""
 "    Keybind    "
