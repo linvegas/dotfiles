@@ -9,7 +9,8 @@ gaps inner 14
 gaps outer -2
 
 # Monitor setup
-exec xrandr --output HDMI-0 --auto --rate 75 --primary --left-of eDP-1-1
+#exec xrandr --output HDMI-0 --auto --rate 75 --primary --left-of eDP-1-1
+exec_always --no-startup-id $HOME/.config/i3/display.sh
 
 # Start XDG autostart .desktop files using dex. See also
 exec --no-startup-id dex --autostart --environment i3
@@ -128,8 +129,8 @@ set $ws9 "9"
 set $ws10 "10"
 
 # output workspace
-workspace 1 output primary
-workspace 5 output eDP-1-1
+#workspace 1 output primary
+#workspace 5 output eDP-1-1
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
