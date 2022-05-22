@@ -32,7 +32,7 @@ _comp_options+=(globdots)
 export PATH="$PATH:$HOME/.scripts"
 
 # General aliases
-alias ls='ls -aA -h -G -X --color=auto --group-directories-first'
+alias ls='ls -aA -h -G -v -X --color=auto --group-directories-first'
 alias grep="grep --color=auto"
 alias tree="tree -a -C"
 alias rm="rm -I"
@@ -55,8 +55,11 @@ alias mpv="mpv --hwdec=auto --autofit=60%x60%"
 
 # Functions
 function webcam() {
-  mpv av://v4l2:/dev/video${1:-0} --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set=input_format=mjpeg
+  mpv --really-quiet av://v4l2:/dev/video${1:-0} --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set=input_format=mjpeg
 }
+
+# Dircolors
+[[ -x /usr/bin/dircolors ]] && test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 
 # Zsh highlight
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
