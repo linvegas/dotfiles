@@ -3,6 +3,7 @@ setopt autocd
 setopt rcquotes
 bindkey -v # vi mode
 export KEYTIMEOUT=1
+compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 
 # Set up the prompt
 autoload -Uz colors && colors
@@ -19,9 +20,9 @@ PROMPT='${vcs_info_msg_0_}💠 %F{11}%B%1~%b%f %(!.#.>) '
 
 # History configuration
 setopt histignorealldups sharehistory
-HISTSIZE=1000
-SAVEHIST=1000
-HISTFILE=~/.zsh_history
+export HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zsh_history"
+export HISTSIZE=1000
+export SAVEHIST=1000
 
 # Use modern completion system
 autoload -Uz compinit && compinit
