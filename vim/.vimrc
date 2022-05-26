@@ -54,9 +54,9 @@ let g:netrw_liststyle=3
 call plug#begin('~/.vim/plugged')
 
   Plug 'mattn/emmet-vim'
-"  Plug 'flazz/vim-colorschemes'
   Plug 'joshdick/onedark.vim'
   Plug 'itchyny/lightline.vim'
+  "Plug 'SirVer/ultisnips'
 
 call plug#end()
 
@@ -86,6 +86,10 @@ let g:user_emmet_leader_key=','
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 
+" Ultil Snips
+"let g:UltiSnipsExpandTrigger="<c-tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 """""""""""""""""""
 "    Vimscript    "
