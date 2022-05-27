@@ -17,7 +17,7 @@ declare -a options=(
 "ncmpcpp $HOME/.config/ncmpcpp/config"
 "picom $HOME/.config/picom/picom.conf"
 "polybar $HOME/.config/polybar/config.ini"
-"vim $HOME/.vimrc"
+"vim $HOME/.vim/vimrc"
 "xinitrc $HOME/.xinitrc"
 "zshrc $HOME/.config/zsh/.zshrc"
 "zsh_profile $HOME/.zprofile"

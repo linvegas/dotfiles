@@ -13,6 +13,7 @@ set cursorline
 set nobackup
 set t_Co=256
 set background=dark
+set viminfo=%,<800,'10,/50,:100,h,f0,n~/.cache/viminfo
 
 """""""""""""""
 "   Editing   "

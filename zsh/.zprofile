@@ -1,6 +1,7 @@
 export EDITOR="vim"
 export BROWSER="firefox"
 export PATH="$PATH:$HOME/.scripts"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
