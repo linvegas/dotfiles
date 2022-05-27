@@ -3,7 +3,7 @@ setopt autocd
 setopt rcquotes
 bindkey -v # vi mode
 export KEYTIMEOUT=1
-compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
+compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
 # Set up the prompt
 autoload -Uz colors && colors
@@ -53,6 +53,7 @@ alias gp="git push"
 # Terminal Apps aliases
 alias mplay="ncmpcpp"
 alias mpv="mpv --hwdec=auto --autofit=60%x60%"
+alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
 
 # Functions
 function webcam() {
