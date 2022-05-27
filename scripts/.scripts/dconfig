@@ -19,7 +19,7 @@ declare -a options=(
 "polybar $HOME/.config/polybar/config.ini"
 "vim $HOME/.vimrc"
 "xinitrc $HOME/.xinitrc"
-"zshrc $HOME/.zshrc"
+"zshrc $HOME/.config/zsh/.zshrc"
 "zsh_profile $HOME/.zprofile"
 "quit"
 )

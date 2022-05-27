@@ -61,7 +61,7 @@ function webcam() {
 }
 
 # Dircolors
-[[ -x /usr/bin/dircolors ]] && test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+[[ -x /usr/bin/dircolors ]] && test -r ~/.config/dircolors && eval "$(dircolors -b ~/.config/dircolors)" || eval "$(dircolors -b)"
 
 # Zsh highlight
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
