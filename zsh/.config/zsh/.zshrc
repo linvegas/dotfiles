@@ -7,7 +7,7 @@ compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
 # Set up the prompt
 autoload -Uz colors && colors
-autoload -Uz promptinit %% promptinit
+autoload -Uz promptinit && promptinit
 
 autoload -Uz vcs_info # Git setup
 precmd_vcs_info() { vcs_info }
