@@ -2,6 +2,12 @@
 
 It's supposed to be used with [GNU/stow](https://www.gnu.org/software/stow/).
 
+```sh
+git clone https://github.com/MisterConscio/dotfiles.git
+cd dotfiles
+stow zsh
+```
+
 ## List of useful packages (pacman/aur)
 #### Wallpapers
 * archlinux-wallpaper
@@ -14,6 +20,7 @@ It's supposed to be used with [GNU/stow](https://www.gnu.org/software/stow/).
 * tree
 * bat
 * lf
+* gdu
 * figlet
 * stow
 * fzf
@@ -27,12 +34,9 @@ It's supposed to be used with [GNU/stow](https://www.gnu.org/software/stow/).
 * asciiquarium
 
 #### Fonts
-* ttf-dejavu
 * ttf-font-awesome
-* ttf-cascadia-code
 * noto-fonts-cjk
 * noto-fonts-emoji
-* adobe-source-code-pro-fonts
 
 #### Themes
 * papirus-icon-theme
@@ -41,6 +45,7 @@ It's supposed to be used with [GNU/stow](https://www.gnu.org/software/stow/).
 
 #### Window Managers
 * nitrogen
+* xwallpaper
 * picom
 
 #### Media Apps
@@ -57,12 +62,12 @@ It's supposed to be used with [GNU/stow](https://www.gnu.org/software/stow/).
 * nvidia-settings
 * nvidia-utils
 * lib32-nividia-utils
-* nvidia-prime(hybrid cards)
+* nvidia-prime(for hybrid cards)
 
 #### Intel
 * intel-ucode
 * vulkan-intel
-* xf86-video-intel(graphics card)
+* xf86-video-intel(for intel graphics card)
 * intel-gpu-tools
 
 #### OpenGl
