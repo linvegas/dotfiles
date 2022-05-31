@@ -19,5 +19,5 @@ for display in $connected; do
 done
 
 # Xrandr the primary e secundary monitor
-xrandr --output $secundary --auto --output $primary --auto --primary --left-of $secundary
+xrandr --output $secundary --auto --output $primary --mode 2560x1080 --rate 74.99 --primary --left-of $secundary
 exit

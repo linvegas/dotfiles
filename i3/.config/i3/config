@@ -5,8 +5,9 @@ set $mod Mod4
 font pango:DejaVu Sans Mono 12
 
 #Gasp
-gaps inner 14
+gaps inner 10
 gaps outer -2
+smart_gaps on
 
 # Monitor setup
 #exec xrandr --output HDMI-0 --auto --rate 75 --primary --left-of eDP-1-1
@@ -18,7 +19,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # Auto start apps
-exec --no-startup-id nitrogen --restore
+exec --no-startup-id xwallpaper --output HDMI-0 --stretch media/img/wallpaper/wp-01.jpg --output eDP-1-1 --stretch media/img/wallpaper/wp-01.jpg
+#exec --no-startup-id nitrogen --restore
 exec --no-startup-id picom -b
 exec --no-startup-id dunst
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
@@ -35,22 +37,22 @@ bindsym $mod+F9 exec --no-startup-id xbacklight -inc 5
 bindsym $mod+F8 exec --no-startup-id xbacklight -dec 5
 
 # Colorscheme
-client.focused          #344451 #344451 #ffffff #61f572   #92dd9a
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+#client.focused          #344451 #344451 #ffffff #61f572   #92dd9a
+#client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+#client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec --no-startup-id dmenu_run
-bindsym $mod+d exec --no-startup-id rofi -modi drun -show-icons -font "noto 14" -columns 3 -width 40 -drun-display-format {name} -show
+bindsym $mod+d exec --no-startup-id rofi -show
 
 # Default border
 default_border pixel 1
