@@ -1,33 +1,23 @@
 #!/usr/bin/env bash
 
-# Initialize monitor list
-declare -A monitors
-i=0
-
-# Check for connected monitors and add to list
-for d in $(xrandr -q | grep "\sconnected" | awk '{print $1}'); do
-  monitors[i]=$d
-  i=$((i+1))
-done
+# Get monitors connected
+connected=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1)
 
 # If there is only one monitor connected
-if [[ ${#monitors[@]} -lt 2 ]]; then
-  xrandr --output "${monitors[@]}" --auto
-  echo "Um monitor encontrado"
-  exit
-fi
+[[ $(echo $connected | wc -w ) -lt 2 ]] && xrandr --output "${connected}" --auto && exit
 
 # Dual monitor setup
-for j in "${monitors[@]}"; do
-  if [[ $j =~ "DP" ]]; then
-    secundary=$j
-    xrandr --output $secundary --auto
-  elif [[ $j =~ "HDMI" ]]; then
-    primary=$j
-    xrandr --output $primary --auto --primary --left-of $secundary
+for display in $connected; do
+  if [[ $display =~ "DP" ]]; then
+    secundary=$display
+  elif [[ $display =~ "HDMI" ]]; then
+    primary=$display
   else
-    echo "No monitor founded"
+    echo "Nenhum monitor correspondente"
     exit
   fi
 done
-echo "Dois monitores encontrados"
+
+# Xrandr the primary e secundary monitor
+xrandr --output $secundary --auto --output $primary --auto --primary --left-of $secundary
+exit
