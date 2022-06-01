@@ -36,6 +36,10 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym $mod+F9 exec --no-startup-id xbacklight -inc 5
 bindsym $mod+F8 exec --no-startup-id xbacklight -dec 5
 
+# Printscreen
+bindsym Print exec --no-startup-id maim --select "$HOME/media/img/screenshot/$(date +%s).png"
+bindsym Shift+Print exec --no-startup-id maim "$HOME/media/img/screenshot/$(date +%s).png"
+
 # Colorscheme
 #client.focused          #344451 #344451 #ffffff #61f572   #92dd9a
 #client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a

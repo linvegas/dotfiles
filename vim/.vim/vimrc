@@ -58,8 +58,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'joshdick/onedark.vim'
   Plug 'itchyny/lightline.vim'
   Plug 'jiangmiao/auto-pairs'
-  Plug 'pangloss/vim-javascript'
-  "Plug 'SirVer/ultisnips'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
