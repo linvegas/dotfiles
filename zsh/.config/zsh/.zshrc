@@ -34,6 +34,7 @@ export PATH="$PATH:$HOME/.local/bin"
 
 # General aliases
 alias ls='ls -aA -h -G -v -X --color=auto --group-directories-first'
+alias lsd='lsd -A -X --group-dirs first'
 alias grep="grep --color=auto"
 alias tree="tree -a -C"
 alias rm="rm -I"
@@ -58,6 +59,22 @@ alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settin
 # Functions
 function webcam() {
   mpv --really-quiet av://v4l2:/dev/video${1:-0} --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set=input_format=mjpeg
+}
+
+goto() {
+  case $1 in
+    "img") cd ~/media/img;;
+    "vid") cd ~/media/vid;;
+    "mus") cd ~/media/music;;
+    "emu") cd ~/media/emul;;
+    "smp") cd ~/media/samps;;
+    "bin") cd ~/.local/bin;;
+    "rep") cd ~/git/;;
+    "ext") cd /media/conscio/EXTERNO;;
+    "ani") cd /media/conscio/EXTERNO/Nippon/Anime;;
+    "ssd") cd /mnt/SSD-2;;
+    *) echo "Argumento inválido";;
+  esac
 }
 
 # Dircolors
