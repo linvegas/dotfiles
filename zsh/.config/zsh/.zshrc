@@ -57,7 +57,7 @@ alias mpv="mpv --hwdec=auto --autofit=60%x60%"
 alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
 
 # Functions
-function webcam() {
+webcam() {
   mpv --really-quiet av://v4l2:/dev/video${1:-0} --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set=input_format=mjpeg
 }
 
@@ -71,8 +71,9 @@ goto() {
     "bin") cd ~/.local/bin;;
     "rep") cd ~/git/;;
     "ext") cd /media/conscio/EXTERNO;;
-    "ani") cd /media/conscio/EXTERNO/Nippon/Anime;;
     "ssd") cd /mnt/SSD-2;;
+    "ani") cd /mnt/SSD-2/anime;;
+    "mor") cd /mnt/SSD-2/morbus;;
     *) echo "Argumento inválido";;
   esac
 }
