@@ -60,27 +60,22 @@ call plug#begin('~/.vim/plugged')
   Plug 'jiangmiao/auto-pairs'
   Plug 'sheerun/vim-polyglot'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'vimwiki/vimwiki'
+  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 call plug#end()
 
 colorscheme onedark
-"highlight Normal ctermbg=Black
-"highlight NonText ctermbg=Black
 
 """""""""""""""""
 "    Keybind    "
 """""""""""""""""
+" Leader key
+let mapleader = " "
 
 " Buffer Switching
 nnoremap <C-h> :bp<CR>
 nnoremap <C-l> :bn<CR>
-
-" Autocomplete
-"inoremap "<left>
-"inoremap ' ''<left>
-"inoremap ( ()<left>
-"inoremap [ []<left>
-"inoremap { {}<left>
 
 " Emmet plugin
 let g:user_emmet_mode='n'
@@ -88,7 +83,18 @@ let g:user_emmet_leader_key=','
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 
-"""""""""""""""""""
+" Vimwiki plugin
+let g:vimwiki_list = [{'path': '~/docx/notes/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_ext2syntax = {'.md': 'markdown',
+                      \ '.mkd': 'markdown'}
+
+" MakrdownPreview plugin
+let g:mkdp_theme = 'light'
+nmap <leader>mdp <Plug>MarkdownPreview
+nmap <leader>mds <Plug>MarkdownPreviewStop
+
+""""""""""""""""""""
 "    Vimscript    "
 """""""""""""""""""
 
@@ -109,39 +115,4 @@ let g:lightline = {
   \ 'colorscheme': 'onedark',
   \ }
 
-"function! StatuslineMode() abort
-"  let l:currentmode = {
-"    \ 'n': 'NOMRAL',
-"    \ 'v': 'VISUAL',
-"    \ 'V': 'V-LINE',
-"    \ '^V': 'V-BLOCK',
-"    \ 's':  'SUBST.',
-"    \ 'S': 'S-LINE',
-"    \ '^S': 'S-BLOCK',
-"    \ 'i': 'INSERT',
-"    \ 'R': 'REPLACE',
-"    \ 'c': 'COMMAND',
-"    \ 't':  'TERMINAL'}
-"
-"  let l:modecurrent = mode()
-"  let l:modelist = toupper(get(l:currentmode, l:modecurrent, 'VB'))
-"  let l:current_status_mode = l:modelist
-"  return l:current_status_mode
-"endfunction
-"
-"highlight fileType term=bold ctermfg=235 ctermbg=114 guifg=#282C34 guibg=#98C379
-"highlight fileLine term=reverse ctermfg=180 ctermbg=59 guifg=#E5C07B guibg=#5C6370
-"highlight viMode ctermfg=15 ctermbg=242 gui=bold guifg=White guibg=Grey40
-"highlight Conceal term=standout
-"
-"set statusline+=\ %#viMode#
-"set statusline+=\ %{StatuslineMode()}
-"set statusline+=\ %#Conceal#
-"set statusline+=\ %f
-"set statusline+=%=
-"set statusline+=\ %#fileType#
-"set statusline+=\ %Y
-"set statusline+=\ %#fileLine#
-"set statusline+=\ %l:%c
-"set statusline+=\ %P
-
+" The end

@@ -42,6 +42,7 @@ alias du="du -h"
 alias bat="bat --color=auto"
 alias mkdir="mkdir -p -v"
 alias history="fc -l 1"
+alias so="source ~/.config/zsh/.zshrc"
 
 # Git aliases
 alias gs="git status"
@@ -54,7 +55,10 @@ alias gp="git push"
 # Terminal Apps aliases
 alias mplay="ncmpcpp"
 alias mpv="mpv --hwdec=auto --autofit=60%x60%"
+
+# Clean home aliases
 alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
+alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
 
 # Functions
 webcam() {
