@@ -3,7 +3,7 @@
 # A scrpit for editing config files
 
 # Text editor of preference
-#EDITOR="vim"
+EDITOR="vim"
 
 # Array with config files location
 declare -a options=(
