@@ -43,7 +43,12 @@ alias bat="bat --color=auto"
 alias mkdir="mkdir -p -v"
 alias history="fc -l 1"
 alias so="source ~/.config/zsh/.zshrc"
+alias py="python3"
 alias pyon="source env/bin/activate"
+
+# Ubuntu aliases
+alias apt="nala"
+alias aptup="sudo nala update && sudo nala upgrade"
 
 # Git aliases
 alias gs="git status"
