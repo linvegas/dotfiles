@@ -82,7 +82,7 @@ goto() {
     "bin") cd ~/.local/bin;;
     "dev") cd ~/dev/test-zone/bash-script;;
     "rep") cd ~/git/;;
-    "ext") cd /media/conscio/EXTERNO;;
+    "ext") cd /media/$USER/EXTERNO;;
     "ssd") cd /mnt/SSD-2;;
     "ani") cd /mnt/SSD-2/anime;;
     "mor") cd /mnt/SSD-2/morbus;;
