@@ -3,7 +3,6 @@ setopt autocd
 setopt rcquotes
 bindkey -v # vi mode
 export KEYTIMEOUT=1
-compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
 # Set up the prompt
 autoload -Uz colors && colors
@@ -27,6 +26,7 @@ export SAVEHIST=1000
 # Use modern completion system
 autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
+compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 _comp_options+=(globdots)
 
 # Scripts
@@ -58,9 +58,10 @@ alias gl="git log"
 alias gd="git diff"
 alias gp="git push"
 
-# Terminal Apps aliases
-alias mplay="ncmpcpp"
-alias mpv="mpv --hwdec=auto --autofit=60%x60%"
+# Media app aliases
+alias mpv="mpv --hwdec=auto --fs --autofit=60%x60%"
+alias sxiv="sxiv -f"
+alias zathura="zathura --mode=fullscreen"
 
 # Clean home aliases
 alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
@@ -88,6 +89,12 @@ goto() {
     "mor") cd /mnt/SSD-2/morbus;;
     *) echo "Argumento inválido";;
   esac
+}
+
+share() {
+  curl -s -F "file=@$1" https://0x0.st |\
+  tee >(xclip -selection c) &&\
+  echo "📋Seu link foi copiado!"
 }
 
 # Dircolors
