@@ -1,15 +1,13 @@
-# PROFILES
-
 # Basic Variables
 export EDITOR="vim"
 export BROWSER="firefox"
-export ZISWORKING="true"
 
 # Clean up ~/
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_STATE_HOME="$HOME/.local/state"
+
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"

@@ -1,13 +1,13 @@
 # Set options
 setopt autocd
-setopt rcquotes
 bindkey -v # vi mode
 export KEYTIMEOUT=1
 
-# Set up the prompt
+# Autoload
 autoload -Uz colors && colors
 autoload -Uz promptinit && promptinit
 
+# Prompt
 autoload -Uz vcs_info # Git setup
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
@@ -27,22 +27,21 @@ export SAVEHIST=1000
 autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
 compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
-_comp_options+=(globdots)
 
-# Scripts
+# Local scripts
 export PATH="$PATH:$HOME/.local/bin"
 
 # General aliases
-alias ls='ls -aA -h -G -v -X --color=auto --group-directories-first'
-alias lsd='lsd -A -X --group-dirs first'
+alias ls='ls -A -X --color=auto --group-directories-first'
 alias grep="grep --color=auto"
 alias tree="tree -a -C"
 alias rm="rm -I"
 alias du="du -h"
-alias bat="bat --color=auto"
 alias mkdir="mkdir -p -v"
 alias history="fc -l 1"
 alias so="source ~/.config/zsh/.zshrc"
+
+# Python
 alias py="python3"
 alias pyon="source env/bin/activate"
 
@@ -59,18 +58,16 @@ alias gd="git diff"
 alias gp="git push"
 
 # Media app aliases
-alias mpv="mpv --hwdec=auto --fs --autofit=60%x60%"
+alias mpv="mpv --autofit=60%x60% --fs"
 alias sxiv="sxiv -f"
 alias zathura="zathura --mode=fullscreen"
 
 # Clean home aliases
-alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
+alias nvidia_settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
 alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
 
 # Functions
-webcam() {
-  mpv --really-quiet av://v4l2:/dev/video${1:-0} --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set=input_format=mjpeg
-}
+webcam() { mpv --really-quiet av://v4l2:/dev/video${1:-0} --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set=input_format=mjpeg }
 
 goto() {
   case $1 in
@@ -87,7 +84,7 @@ goto() {
     "ssd") cd /mnt/SSD-2;;
     "ani") cd /mnt/SSD-2/anime;;
     "mor") cd /mnt/SSD-2/morbus;;
-    *) echo "Argumento inválido";;
+    *) echo "goto img|vid|mus|emu|smp|pro|bin|dev|rep|ext|ssd|ani|mor";;
   esac
 }
 
