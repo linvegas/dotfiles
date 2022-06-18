@@ -15,6 +15,7 @@ declare -a options=(
 "polybar $HOME/.config/polybar/config.ini"
 "vim $HOME/.vim/vimrc"
 "xinitrc $HOME/.config/X11/xinitrc"
+"xresources $HOME/.config/X11/xresources"
 "zshrc $HOME/.config/zsh/.zshrc"
 "zsh_profile $HOME/.zprofile"
 "quit"

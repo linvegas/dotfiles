@@ -61,7 +61,7 @@ alias gp="git push"
 
 # Media app aliases
 alias mpv="mpv --autofit=60%x60% --fs"
-alias sxiv="sxiv -f"
+alias sxiv="sxiv -f -b"
 alias zathura="zathura --mode=fullscreen"
 
 # Clean home aliases
@@ -83,9 +83,9 @@ goto() {
     "dev") cd ~/dev/test-zone/bash-script;;
     "rep") cd ~/git/;;
     "ext") cd /mnt/usb1;;
-    "ssd") cd /mnt/SSD-2;;
-    "ani") cd /mnt/SSD-2/anime;;
-    "mor") cd /mnt/SSD-2/morbus;;
+    "ssd") cd /mnt/SSD;;
+    "ani") cd /mnt/SSD/anime;;
+    "mor") cd /mnt/SSD/morbus;;
     *) echo "goto pic|vid|mus|emu|smp|pro|bin|dev|rep|ext|ssd|ani|mor";;
   esac
 }
