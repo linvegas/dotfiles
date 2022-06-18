@@ -20,6 +20,9 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export LESSHISTFILE="-"
 
+# Local scripts
+export PATH="$PATH:$HOME/.local/bin"
+
 # Starts xorg
  if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
    exec startx "$XDG_CONFIG_HOME/X11/xinitrc" --

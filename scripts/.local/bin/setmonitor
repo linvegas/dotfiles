@@ -13,11 +13,9 @@ for display in $connected; do
   elif [[ $display =~ "HDMI" ]]; then
     primary=$display
   else
-    echo "Nenhum monitor correspondente"
+    echo "Nenhum monitor encontrado"
     exit
   fi
 done
 
-# Xrandr the primary e secundary monitor
-xrandr --output $secundary --auto --output $primary --mode 2560x1080 --rate 75 --primary --left-of $secundary
-exit
+xrandr --output $secundary --auto --output $primary --mode 2560x1080 --rate 75 --primary --left-of $secundary && exit
