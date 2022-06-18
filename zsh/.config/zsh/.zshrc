@@ -15,7 +15,7 @@ zstyle ':vcs_info:git:*' formats '%F{14}(%b)%f '
 zstyle ':vcs_info:*' enable git
 setopt prompt_subst
 
-PROMPT='${vcs_info_msg_0_}✳️  %F{blue}%B%1~%b%f %(!.#.>) '
+PROMPT='${vcs_info_msg_0_}%F{blue}%B%1~%b%f %(!.#.>>) '
 
 # History configuration
 setopt histignorealldups sharehistory
@@ -40,6 +40,8 @@ alias du="du -h"
 alias mkdir="mkdir -p -v"
 alias history="fc -l 1"
 alias so="source ~/.config/zsh/.zshrc"
+alias off="sudo shutdown now"
+alias reboot="sudo reboot"
 
 # Python
 alias py="python3"
@@ -71,20 +73,20 @@ webcam() { mpv --really-quiet av://v4l2:/dev/video${1:-0} --demuxer-lavf-format=
 
 goto() {
   case $1 in
-    "img") cd ~/media/img;;
+    "pic") cd ~/media/pic;;
     "vid") cd ~/media/vid;;
-    "mus") cd ~/media/music;;
-    "emu") cd ~/media/emul;;
+    "mus") cd ~/media/mus;;
+    "emu") cd ~/media/emu;;
     "smp") cd ~/media/samps;;
     "pro") cd ~/media/proj;;
     "bin") cd ~/.local/bin;;
     "dev") cd ~/dev/test-zone/bash-script;;
     "rep") cd ~/git/;;
-    "ext") cd /media/$USER/EXTERNO;;
+    "ext") cd /mnt/usb1;;
     "ssd") cd /mnt/SSD-2;;
     "ani") cd /mnt/SSD-2/anime;;
     "mor") cd /mnt/SSD-2/morbus;;
-    *) echo "goto img|vid|mus|emu|smp|pro|bin|dev|rep|ext|ssd|ani|mor";;
+    *) echo "goto pic|vid|mus|emu|smp|pro|bin|dev|rep|ext|ssd|ani|mor";;
   esac
 }
 
@@ -98,4 +100,4 @@ share() {
 [[ -x /usr/bin/dircolors ]] && test -r ~/.config/dircolors && eval "$(dircolors -b ~/.config/dircolors)" || eval "$(dircolors -b)"
 
 # Zsh highlight
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -18,3 +18,8 @@ export HISTFILE="${XDG_STATE_HOME}/bash/history"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export LESSHISTFILE="-"
+
+# Starts xorg
+ if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+   exec startx "$XDG_CONFIG_HOME/X11/xinitrc" --
+ fi

@@ -23,6 +23,7 @@ alias tree="tree -a -C"
 alias rm="rm -I"
 alias du="du -h"
 alias mkdir="mkdir -p -v"
+alias so="source ~/.bashrc"
 
 # Git aliases
 alias gs="git status"
@@ -46,6 +47,6 @@ gitubuntu="/usr/lib/git-core/git-sh-prompt"
 
 # Prompt
 if [ "$EUID" -ne 0 ]
-  then export PS1='\[\e[1;34m\]$(__git_ps1 "(%s) ")\[\e[m\]🌀 \[\e[1;32m\]\W\[\e[m\] \$ '
+  then export PS1='\[\e[1;34m\]$(__git_ps1 "(%s) ")\[\e[m\]\[\e[1;32m\]\W\[\e[m\] \$ '
 	else export PS1='[Root]\h \W \$ '
 fi

@@ -9,10 +9,10 @@ window:
 
 font:
   normal:
-    family: Noto Mono
+    family: Noto Sans Mono
     style: Regular
 
-  size: 14.0
+  size: 16.0
 
 # One Dark
 colors:
@@ -41,8 +41,11 @@ colors:
     white:   '0xffffff'
 
 cursor:
-  shape: Block
-  blinking: Always
+  style:
+    shape: Block
+    blinking: Always
+
+  blink_interval: 500
 
 key_bindings:
   - { key: K,   mods: Alt,   action: ScrollPageUp                 }
