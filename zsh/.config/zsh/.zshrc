@@ -80,7 +80,8 @@ goto() {
     "bin") cd ~/.local/bin;;
     "dev") cd ~/dev/test-zone/bash-script;;
     "rep") cd ~/git/;;
-    "ext") cd /mnt/usb1;;
+    "usb") cd /mtn/usb1;;
+    "ext") cd /mnt/EXTERNO;;
     "ssd") cd /mnt/SSD;;
     "ani") cd /mnt/SSD/anime;;
     "mor") cd /mnt/SSD/morbus;;
