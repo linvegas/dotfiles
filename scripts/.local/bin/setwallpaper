@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Depends on: xwallpaper, xorg-xrandr
+
+# Wallpapers directorie
+wp_dir="$HOME/media/pic/wallpaper"
+
+# Picking a random wallpaper
+image=$(find $wp_dir -name "*landscape*" | shuf -n 1)
+
+# Get monitors connected
+connected=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1)
+
+# If there is only one monitor connected
+[[ $(echo $connected | wc -w ) -lt 2 ]] && xwallpaper --output $connected --stretch $image && exit
+
+# Dual monitor setup
+for display in $connected; do
+  if [[ $display =~ "DP" ]]; then
+    xwallpaper --output $display --zoom $image
+  elif [[ $display =~ "HDMI" ]]; then
+    xwallpaper --output $display --stretch $image
+  else
+    echo "Nenhum monitor encontrado"
+    exit
+  fi
+done
