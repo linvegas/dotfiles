@@ -71,6 +71,7 @@ webcam() { mpv --really-quiet av://v4l2:/dev/video${1:-0} --demuxer-lavf-format=
 goto() {
   case $1 in
     "dot") cd ~/dotfiles;;
+    "dow") cd ~/docx/downloads;;
     "pic") cd ~/media/pic;;
     "vid") cd ~/media/vid;;
     "mus") cd ~/media/mus;;

@@ -48,10 +48,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'joshdick/onedark.vim'
   Plug 'itchyny/lightline.vim'
   Plug 'jiangmiao/auto-pairs'
-  "Plug 'sheerun/vim-polyglot'
-  "Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'sheerun/vim-polyglot'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   "Plug 'vimwiki/vimwiki'
-  "Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 call plug#end()
 
@@ -89,6 +89,9 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown',
 let g:mkdp_theme = 'light'
 nmap <leader>mdp <Plug>MarkdownPreview
 nmap <leader>mds <Plug>MarkdownPreviewStop
+
+" Coc plugin
+inoremap <silent><expr> <c-@> coc#refresh()
 
 """"""""""""""""""""
 "    Vimscript    "
