@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+SYS_SOUND_DIR="$XDG_DATA_HOME/sys-sounds"
+
+case $1 in
+  -n|notification) aplay -q $SYS_SOUND_DIR/notify.wav;;
+  -s|startup) aplay -q $SYS_SOUND_DIR/startup.wav;;
+  *) echo "Argumento inválido" && exit 1;;
+esac

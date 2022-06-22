@@ -1,20 +1,19 @@
 #!/usr/bin/env sh
 
 CARD_DIR="/sys/class/backlight/intel_backlight"
+actual_value=$(cat $CARD_DIR/actual_brightness)
 
 case $1 in
   inc)
-    actual_value=$(cat $CARD_DIR/actual_brightness)
     increment=$(( $actual_value+$2 ))
-    echo $increment > /sys/class/backlight/intel_backlight/brightness;;
+    echo $increment > $CARD_DIR/brightness;;
 
   dec)
-    actual_value=$(cat $CARD_DIR/actual_brightness)
     decrement=$(( $actual_value-$2 ))
-    echo $decrement > /sys/class/backlight/intel_backlight/brightness;;
+    echo $decrement > $CARD_DIR/brightness;;
 
   set)
-    echo $2 > /sys/class/backlight/intel_backlight/brightness;;
+    echo $2 > $CARD_DIR/brightness;;
 
   *) echo "Argumento inválido" && exit 1;;
 esac
