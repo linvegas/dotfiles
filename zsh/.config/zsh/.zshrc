@@ -29,7 +29,7 @@ zstyle ':completion:*' menu select
 compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
 # General aliases
-alias ls='ls -A -X --color=auto --group-directories-first'
+alias ls='ls -X --color=auto --group-directories-first'
 alias grep="grep --color=auto"
 alias tree="tree -a -C"
 alias rm="rm -I"

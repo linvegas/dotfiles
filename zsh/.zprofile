@@ -25,5 +25,5 @@ export PATH="$PATH:$HOME/.local/bin"
 
 # Starts xorg
  if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-   exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" --
+   exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" -- &> ~/.cache/startx-log
  fi
