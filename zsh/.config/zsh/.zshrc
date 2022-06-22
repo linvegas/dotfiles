@@ -76,12 +76,12 @@ goto() {
     "vid") cd ~/media/vid;;
     "mus") cd ~/media/mus;;
     "emu") cd ~/media/emu;;
-    "smp") cd ~/media/samps;;
+    "smp") cd ~/media/samp;;
     "pro") cd ~/media/proj;;
     "bin") cd ~/.local/bin;;
     "dev") cd ~/dev/test-zone/bash-script;;
     "rep") cd ~/git/;;
-    "usb") cd /mtn/usb1;;
+    "usb") cd /mnt/usb1;;
     "ext") cd /mnt/EXTERNO;;
     "ssd") cd /mnt/SSD;;
     "ani") cd /mnt/SSD/anime;;

@@ -67,7 +67,7 @@ let mapleader = " "
 nmap <leader>web :!firefox -private-window %<CR>
 
 " Open vertical terminal
-nmap <leader>term :vert term<CR>
+nmap <leader>t :vert term<CR>
 
 " Buffer Switching
 nnoremap <C-h> :bp<CR>

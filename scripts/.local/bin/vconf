@@ -10,6 +10,7 @@ declare -a options=(
 "alacritty $HOME/.config/alacritty/alacritty.yml"
 "bashrc $HOME/.bashrc"
 "bash_profile $HOME/.bash_profile"
+"dunst $HOME/.config/dunst/dunstrc"
 "i3 $HOME/.config/i3/config"
 "picom $HOME/.config/picom/picom.conf"
 "polybar $HOME/.config/polybar/config.ini"
