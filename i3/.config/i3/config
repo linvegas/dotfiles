@@ -1,7 +1,6 @@
 # MisterConscio's i3 config
 
 set $mod Mod4
-
 font pango:Noto Sans Mono 12
 
 # Include
@@ -11,21 +10,20 @@ font pango:Noto Sans Mono 12
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
-exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
 exec --no-startup-id dunst
-exec --no-startup-id sleep 1; sysound -s
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id sleep 4 && sysound -s
+exec --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute     exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Handle backlight.
-bindsym XF86MonBrightnessUp exec screen-bright inc 20
-bindsym XF86MonBrightnessDown exec screen-bright dec 20
+bindsym XF86MonBrightnessUp   exec --no-startup-id screen-bright inc 50
+bindsym XF86MonBrightnessDown exec --no-startup-id screen-bright dec 50
 
 
 # Program launcher keybinds
@@ -33,24 +31,26 @@ bindsym $mod+Return  exec alacritty
 bindsym $mod+w       exec firefox
 bindsym $mod+Shift+w exec firefox -private-window
 bindsym $mod+d       exec --no-startup-id dmenu_run
+bindsym $mod+p       exec --no-startup-id sfx
 bindsym Print        exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 #bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 
 # borders
-default_border pixel 2
+default_border pixel 1
 default_floating_border pixel 2
+hide_edge_borders vertical
 smart_borders on
 
 # specific windows on floating mode
-for_window [class="Nitrogen"] floating enable
-for_window [class="Cadence"] floating enable
-for_window [class="Nvidia-settings"] floating enable
-for_window [class="KeePassXC"] floating enable
-for_window [class="PdWindow"] floating enable
-for_window [class="PatchWindow"] floating enable
+for_window [class="Nitrogen"]          floating enable
+for_window [class="Cadence"]           floating enable
+for_window [class="Nvidia-settings"]   floating enable
+for_window [class="KeePassXC"]         floating enable
+for_window [class="PdWindow"]          floating enable
+for_window [class="PatchWindow"]       floating enable
 for_window [title="Bluetooth Devices"] floating enable
-for_window [title="(?i)Duckstation"] floating enable
-for_window [class="Pcsx2"] floating enable
+for_window [title="(?i)Duckstation"]   floating enable
+for_window [class="Pcsx2"]             floating enable
 
 # kill focused window
 bindsym $mod+q kill
@@ -64,9 +64,9 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
 bindsym $mod+Right focus right
 
 # move focused window
@@ -75,32 +75,22 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
 bindsym $mod+Shift+Right move right
 
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+e split toggle
-
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
+bindsym $mod+f            fullscreen toggle
+bindsym $mod+e            split toggle
+bindsym $mod+Shift+space  floating toggle
+bindsym $mod+space        focus mode_toggle
+bindsym $mod+a            focus parent
 
 # Scratchpad
 bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
+bindsym $mod+minus       scratchpad show
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
+# Workspaces
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -113,9 +103,9 @@ set $ws9 "9"
 set $ws10 "10"
 
 # Next/prev workspace
-bindsym $mod+Ctrl+h workspace prev
-bindsym $mod+Ctrl+Left workspace prev
-bindsym $mod+Ctrl+l workspace next
+bindsym $mod+Ctrl+h     workspace prev
+bindsym $mod+Ctrl+Left  workspace prev
+bindsym $mod+Ctrl+l     workspace next
 bindsym $mod+Ctrl+Right workspace next
 
 # switch to workspace
@@ -151,15 +141,15 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        bindsym h resize shrink width 5 px or 5 ppt
-        bindsym j resize grow height 5 px or 5 ppt
+        bindsym h resize shrink width  5 px or 5 ppt
+        bindsym j resize grow   height 5 px or 5 ppt
         bindsym k resize shrink height 5 px or 5 ppt
-        bindsym l resize grow width 5 px or 5 ppt
+        bindsym l resize grow   width  5 px or 5 ppt
 
-        bindsym Left resize shrink width 5 px or 5 ppt
-        bindsym Down resize grow height 5 px or 5 ppt
-        bindsym Up resize shrink height 5 px or 5 ppt
-        bindsym Right resize grow width 5 px or 5 ppt
+        bindsym Left  resize shrink width  5 px or 5 ppt
+        bindsym Down  resize grow   height 5 px or 5 ppt
+        bindsym Up    resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow   width  5 px or 5 ppt
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
