@@ -24,3 +24,6 @@ for display in $connected; do
     exit
   fi
 done
+
+# pywall
+[[ -e $(which wal) ]] && wal -i "$image" -n -s -q

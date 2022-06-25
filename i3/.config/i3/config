@@ -27,7 +27,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id screen-bright dec 50
 
 
 # Program launcher keybinds
-bindsym $mod+Return  exec alacritty
+bindsym $mod+Return  exec --no-startup-id alacritty
 bindsym $mod+w       exec firefox
 bindsym $mod+Shift+w exec firefox -private-window
 bindsym $mod+d       exec --no-startup-id dmenu_run
@@ -40,6 +40,9 @@ default_border pixel 1
 default_floating_border pixel 2
 hide_edge_borders vertical
 smart_borders on
+gaps inner 10
+gaps outer 3
+smart_gaps on
 
 # specific windows on floating mode
 for_window [class="Nitrogen"]          floating enable
