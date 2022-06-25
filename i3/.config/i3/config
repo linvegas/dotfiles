@@ -25,7 +25,6 @@ bindsym XF86AudioMicMute     exec --no-startup-id pactl set-source-mute @DEFAULT
 bindsym XF86MonBrightnessUp   exec --no-startup-id screen-bright inc 50
 bindsym XF86MonBrightnessDown exec --no-startup-id screen-bright dec 50
 
-
 # Program launcher keybinds
 bindsym $mod+Return  exec --no-startup-id alacritty
 bindsym $mod+w       exec firefox
@@ -33,9 +32,10 @@ bindsym $mod+Shift+w exec firefox -private-window
 bindsym $mod+d       exec --no-startup-id dmenu_run
 bindsym $mod+p       exec --no-startup-id sfx
 bindsym Print        exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+bindsym Shift+Print  exec --no-startup-id maim "/home/$USER/media/pic/screenshot/$(date +%d-%m-%Y--%H-%M-%S).png"
 #bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 
-# borders
+# Visual
 default_border pixel 1
 default_floating_border pixel 2
 hide_edge_borders vertical
@@ -43,6 +43,7 @@ smart_borders on
 gaps inner 10
 gaps outer 3
 smart_gaps on
+border_radius 10
 
 # specific windows on floating mode
 for_window [class="Nitrogen"]          floating enable
