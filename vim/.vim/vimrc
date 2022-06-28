@@ -63,8 +63,11 @@ colorscheme onedark
 " Leader key
 let mapleader = " "
 
+" Open vimrc on new split window
+nmap <leader>rc :vsp $MYVIMRC<CR>
+
 " Open current file on firefox
-nmap <leader>web :!firefox -private-window %<CR>
+nmap <leader>w :!firefox -private-window %<CR>
 
 " Open vertical terminal
 nmap <leader>t :vert term<CR>
@@ -104,6 +107,9 @@ endif
 
 " Deletes all white spaces on save
 autocmd BufWritePre * %s/\s\+$//e
+
+" Autocompile c files on save
+autocmd BufWritePost *.c make
 
 """""""""""""""""""""
 "    Status Line    "

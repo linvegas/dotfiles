@@ -11,8 +11,9 @@ exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id dunst
-exec --no-startup-id sleep 4 && sysound -s
-exec --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id $HOME/.local/bin/setwallpaper
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+#exec --no-startup-id sysound -s
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -26,13 +27,13 @@ bindsym XF86MonBrightnessUp   exec --no-startup-id screen-bright inc 50
 bindsym XF86MonBrightnessDown exec --no-startup-id screen-bright dec 50
 
 # Program launcher keybinds
-bindsym $mod+Return  exec --no-startup-id alacritty
-bindsym $mod+w       exec firefox
-bindsym $mod+Shift+w exec firefox -private-window
-bindsym $mod+d       exec --no-startup-id dmenu_run
-bindsym $mod+p       exec --no-startup-id sfx
-bindsym Print        exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
-bindsym Shift+Print  exec --no-startup-id maim "/home/$USER/media/pic/screenshot/$(date +%d-%m-%Y--%H-%M-%S).png"
+bindsym $mod+Return        exec --no-startup-id alacritty
+bindsym $mod+w             exec firefox
+bindsym $mod+Shift+w       exec firefox -private-window
+bindsym $mod+d             exec --no-startup-id dmenu_run
+bindsym $mod+p             exec --no-startup-id sfx
+bindsym Print              exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+bindsym Shift+Print        exec --no-startup-id maim "/home/$USER/media/pic/screenshot/$(date +%d-%m-%Y--%H-%M-%S).png"
 #bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 
 # Visual
@@ -55,6 +56,8 @@ for_window [class="PatchWindow"]       floating enable
 for_window [title="Bluetooth Devices"] floating enable
 for_window [title="(?i)Duckstation"]   floating enable
 for_window [class="Pcsx2"]             floating enable
+for_window [class="Gcolor3"]           floating enable
+for_window [class="Gpick"]             floating enable
 
 # kill focused window
 bindsym $mod+q kill

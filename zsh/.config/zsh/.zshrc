@@ -73,7 +73,6 @@ goto() {
   case $1 in
     "dot") cd ~/dotfiles;;
     "dow") cd ~/docx/downloads;;
-    "rep") cd ~/docx/repo;;
     "pic") cd ~/media/pic;;
     "vid") cd ~/media/vid;;
     "mus") cd ~/media/mus;;
@@ -82,6 +81,7 @@ goto() {
     "pro") cd ~/media/proj;;
     "bin") cd ~/.local/bin;;
     "dev") cd ~/dev/test-zone/bash-script;;
+    "rep") cd ~/dev/repo;;
     "usb") cd /mnt/usb1;;
     "ext") cd /mnt/EXTERNO;;
     "ssd") cd /mnt/SSD;;
