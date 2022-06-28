@@ -1,12 +1,22 @@
-# MisterConscio's i3 config
+# MisterConscio's i3 config (i3gaps)
 
-set $mod Mod4
-font pango:Noto Sans Mono 12
+## Basics
+set $mod                    Mod4
+font pango:Noto Sans Mono   12
+default_border              pixel 1
+default_floating_border     pixel 2
+hide_edge_borders           vertical
+smart_borders               on
+gaps inner                  10
+gaps outer                  8
+smart_gaps                  on
+border_radius               0
+floating_modifier           $mod
 
-# Include
-#include ~/.config/i3/i3volume-alsa.conf
+set $term        alacritty
+set $browser     firefox
 
-# Startup
+## Startup
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
@@ -15,37 +25,68 @@ exec --no-startup-id $HOME/.local/bin/setwallpaper
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 #exec --no-startup-id sysound -s
 
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute     exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+## Keybinds
+bindsym $mod+Return        exec --no-startup-id $term
 
-# Handle backlight.
-bindsym XF86MonBrightnessUp   exec --no-startup-id screen-bright inc 50
-bindsym XF86MonBrightnessDown exec --no-startup-id screen-bright dec 50
+bindsym $mod+q             kill
 
-# Program launcher keybinds
-bindsym $mod+Return        exec --no-startup-id alacritty
-bindsym $mod+w             exec firefox
-bindsym $mod+Shift+w       exec firefox -private-window
-bindsym $mod+d             exec --no-startup-id dmenu_run
+bindsym $mod+w             exec $browser
+bindsym $mod+Shift+w       exec $browser -private-window
+
+bindsym $mod+e             split toggle
+bindsym $mod+Shift+e       exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym $mod+r             mode "resize"
+bindsym $mod+Shift+r       restart
+
 bindsym $mod+p             exec --no-startup-id sfx
+
+bindsym $mod+a             focus parent
+
+bindsym $mod+d             exec --no-startup-id dmenu_run
+
+bindsym $mod+f             fullscreen toggle
+
+bindsym $mod+g             gaps inner current set 10; gaps outer current set 8
+bindsym $mod+Shift+g       gaps inner current set 0; gaps outer current set 0
+
+bindsym $mod+h             focus left
+bindsym $mod+Shift+h       move left
+
+bindsym $mod+j             focus down
+bindsym $mod+Shift+j       move down
+
+bindsym $mod+k             focus up
+bindsym $mod+Shift+k       move up
+
+bindsym $mod+l             focus right
+bindsym $mod+Shift+l       move right
+
+bindsym $mod+Shift+c       reload
+
+bindsym $mod+Shift+b       exec --no-startup-id polybar-msg cmd toggle
+
+bindsym $mod+Shift+space   floating toggle
+bindsym $mod+space         focus mode_toggle
+
+bindsym $mod+Shift+minus   move scratchpad
+bindsym $mod+minus         scratchpad show; move position center
+
 bindsym Print              exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 bindsym Shift+Print        exec --no-startup-id maim "/home/$USER/media/pic/screenshot/$(date +%d-%m-%Y--%H-%M-%S).png"
-#bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 
-# Visual
-default_border pixel 1
-default_floating_border pixel 2
-hide_edge_borders vertical
-smart_borders on
-gaps inner 10
-gaps outer 3
-smart_gaps on
-border_radius 10
+## XF86 Keybinds
+set $refresh_i3status           killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume    exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume    exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioMute           exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute        exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# Backlight script
+bindsym XF86MonBrightnessUp     exec --no-startup-id screen-bright inc 50
+bindsym XF86MonBrightnessDown   exec --no-startup-id screen-bright dec 50
+
+## Windows rules
 # specific windows on floating mode
 for_window [class="Nitrogen"]          floating enable
 for_window [class="Cadence"]           floating enable
@@ -59,45 +100,7 @@ for_window [class="Pcsx2"]             floating enable
 for_window [class="Gcolor3"]           floating enable
 for_window [class="Gpick"]             floating enable
 
-# kill focused window
-bindsym $mod+q kill
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
-# change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-bindsym $mod+Left  focus left
-bindsym $mod+Down  focus down
-bindsym $mod+Up    focus up
-bindsym $mod+Right focus right
-
-# move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
-bindsym $mod+Shift+Left  move left
-bindsym $mod+Shift+Down  move down
-bindsym $mod+Shift+Up    move up
-bindsym $mod+Shift+Right move right
-
-bindsym $mod+f            fullscreen toggle
-bindsym $mod+e            split toggle
-bindsym $mod+Shift+space  floating toggle
-bindsym $mod+space        focus mode_toggle
-bindsym $mod+a            focus parent
-
-# Scratchpad
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus       scratchpad show
-
-# Workspaces
+## Workspaces
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -111,9 +114,7 @@ set $ws10 "10"
 
 # Next/prev workspace
 bindsym $mod+Ctrl+h     workspace prev
-bindsym $mod+Ctrl+Left  workspace prev
 bindsym $mod+Ctrl+l     workspace next
-bindsym $mod+Ctrl+Right workspace next
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -141,36 +142,21 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 workspace 6 output eDP-1-1
 
-# Reload, restart e exit i3
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-
-# resize window (you can also use the mouse for that)
+## Modes
 mode "resize" {
         bindsym h resize shrink width  5 px or 5 ppt
         bindsym j resize grow   height 5 px or 5 ppt
         bindsym k resize shrink height 5 px or 5 ppt
         bindsym l resize grow   width  5 px or 5 ppt
 
-        bindsym Left  resize shrink width  5 px or 5 ppt
-        bindsym Down  resize grow   height 5 px or 5 ppt
-        bindsym Up    resize shrink height 5 px or 5 ppt
-        bindsym Right resize grow   width  5 px or 5 ppt
-
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+## i3 bar
 #bar {
 #        status_command i3status
 #        position top
 #        tray_output primary
 #}
-
-bindsym $mod+Shift+b exec --no-startup-id polybar-msg cmd toggle
