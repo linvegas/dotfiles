@@ -72,6 +72,10 @@ nmap <leader>w :!firefox -private-window %<CR>
 " Open vertical terminal
 nmap <leader>t :vert term<CR>
 
+" For saving and loading folds
+nmap <leader>Z :mkview<CR>
+nmap <leader>z :loadview<CR>
+
 " Buffer Switching
 nnoremap <C-h> :bp<CR>
 nnoremap <C-l> :bn<CR>

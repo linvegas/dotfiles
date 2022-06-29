@@ -3,7 +3,8 @@
 ## Basics
 set $mod                    Mod4
 font pango:Noto Sans Mono   12
-default_border              pixel 1
+#set_from_resource           $blue i3wm.color5 #ff0000
+default_border              pixel 3
 default_floating_border     pixel 2
 hide_edge_borders           vertical
 smart_borders               on
@@ -13,20 +14,21 @@ smart_gaps                  on
 border_radius               0
 floating_modifier           $mod
 
-set $term        alacritty
-set $browser     firefox
+set $term                   alacritty
+set $browser                firefox
 
 ## Startup
-exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-exec --no-startup-id nm-applet
-exec --no-startup-id dunst
-exec --no-startup-id $HOME/.local/bin/setwallpaper
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id           dex --autostart --environment i3
+exec --no-startup-id           xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id           nm-applet
+exec --no-startup-id           dunst
+exec --no-startup-id           $HOME/.local/bin/setwallpaper
+exec_always --no-startup-id    $HOME/.config/polybar/launch.sh
 #exec --no-startup-id sysound -s
 
 ## Keybinds
 bindsym $mod+Return        exec --no-startup-id $term
+bindsym $mod+Shift+Return  exec --no-startup-id $term --class float
 
 bindsym $mod+q             kill
 
@@ -36,7 +38,6 @@ bindsym $mod+Shift+w       exec $browser -private-window
 bindsym $mod+e             split toggle
 bindsym $mod+Shift+e       exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym $mod+r             mode "resize"
 bindsym $mod+Shift+r       restart
 
 bindsym $mod+p             exec --no-startup-id sfx
@@ -52,15 +53,19 @@ bindsym $mod+Shift+g       gaps inner current set 0; gaps outer current set 0
 
 bindsym $mod+h             focus left
 bindsym $mod+Shift+h       move left
+bindsym $mod+Ctrl+h        resize grow width 5 px or 5 ppt
 
 bindsym $mod+j             focus down
 bindsym $mod+Shift+j       move down
+bindsym $mod+Ctrl+j        resize shrink height 5 px or 5 ppt
 
 bindsym $mod+k             focus up
 bindsym $mod+Shift+k       move up
+bindsym $mod+Ctrl+k        resize grow height 5 px or 5 ppt
 
 bindsym $mod+l             focus right
 bindsym $mod+Shift+l       move right
+bindsym $mod+Ctrl+l        resize shrink width 5 px or 5 ppt
 
 bindsym $mod+Shift+c       reload
 
@@ -75,6 +80,8 @@ bindsym $mod+minus         scratchpad show; move position center
 bindsym Print              exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 bindsym Shift+Print        exec --no-startup-id maim "/home/$USER/media/pic/screenshot/$(date +%d-%m-%Y--%H-%M-%S).png"
 
+bindsym $mod+Tab           workspace back_and_forth
+
 ## XF86 Keybinds
 set $refresh_i3status           killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume    exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
@@ -88,6 +95,7 @@ bindsym XF86MonBrightnessDown   exec --no-startup-id screen-bright dec 50
 
 ## Windows rules
 # specific windows on floating mode
+for_window [instance="^float$"]        floating enable
 for_window [class="Nitrogen"]          floating enable
 for_window [class="Cadence"]           floating enable
 for_window [class="Nvidia-settings"]   floating enable
@@ -113,8 +121,8 @@ set $ws9 "9"
 set $ws10 "10"
 
 # Next/prev workspace
-bindsym $mod+Ctrl+h     workspace prev
-bindsym $mod+Ctrl+l     workspace next
+bindsym $mod+Prior     workspace prev
+bindsym $mod+Next      workspace next
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -141,18 +149,7 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 workspace 6 output eDP-1-1
-
-## Modes
-mode "resize" {
-        bindsym h resize shrink width  5 px or 5 ppt
-        bindsym j resize grow   height 5 px or 5 ppt
-        bindsym k resize shrink height 5 px or 5 ppt
-        bindsym l resize grow   width  5 px or 5 ppt
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
+assign [class="(?i)Spotify"] 5
 
 ## i3 bar
 #bar {
