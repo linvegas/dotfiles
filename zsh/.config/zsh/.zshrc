@@ -21,8 +21,8 @@ PROMPT='${vcs_info_msg_0_}%F{blue}%B%1~%b%f %(!.#.>>) '
 # History configuration
 setopt histignorealldups sharehistory
 export HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zsh_history"
-export HISTSIZE=1000
-export SAVEHIST=1000
+export HISTSIZE=10000
+export SAVEHIST=10000
 
 # Use modern completion system
 autoload -Uz compinit && compinit
@@ -67,7 +67,7 @@ alias nvidia_settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settin
 alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
 
 # Functions
-webcam() { mpv --really-quiet av://v4l2:/dev/video${1:-0} --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set=input_format=mjpeg }
+webcam() { mpv --really-quiet av://v4l2:/dev/video${1:-0} --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set=input_format=mjpeg,video_size=1280x720 || notify-send "Nenhuma camera conectada" }
 
 goto() {
   case $1 in
