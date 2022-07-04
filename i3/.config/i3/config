@@ -74,6 +74,8 @@ bindsym $mod+v             exec --no-startup-id webcam.sh
 
 bindsym $mod+Shift+b       exec --no-startup-id polybar-msg cmd toggle
 
+bindsym $mod+m             exec --no-startup-id $term --class float -e pulsemixer
+
 bindsym $mod+Shift+space   floating toggle
 bindsym $mod+space         focus mode_toggle
 
