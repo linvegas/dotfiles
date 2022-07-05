@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 # A scrpit for editing config files
-
 # Text editor of preference
 EDITOR="vim"
 
