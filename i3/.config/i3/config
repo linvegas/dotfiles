@@ -1,12 +1,12 @@
 # MisterConscio's i3 config (i3gaps)
 
-## Basics
+## Basics and variables
 set $mod                    Mod4
 font pango:Noto Sans Mono   12
 #set_from_resource           $blue i3wm.color5 #ff0000
 default_border              pixel 3
 default_floating_border     pixel 2
-hide_edge_borders           vertical
+#hide_edge_borders           vertical
 smart_borders               on
 gaps inner                  10
 gaps outer                  8
@@ -18,12 +18,12 @@ set $term                   alacritty
 set $browser                firefox
 
 ## Startup
-exec --no-startup-id           dex --autostart --environment i3
-exec --no-startup-id           xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec_always --no-startup-id    $HOME/.config/polybar/launch.sh
+#exec --no-startup-id           dex --autostart --environment i3
+#exec --no-startup-id           xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id           nm-applet
 exec --no-startup-id           dunst
 exec --no-startup-id           $HOME/.local/bin/setwallpaper
-exec_always --no-startup-id    $HOME/.config/polybar/launch.sh
 #exec --no-startup-id sysound -s
 
 ## Keybinds
@@ -70,7 +70,7 @@ bindsym $mod+Ctrl+l        resize shrink width 5 px or 5 ppt
 bindsym --release $mod+c   exec --no-startup-id xcolor -s clipboard
 bindsym $mod+Shift+c       reload
 
-bindsym $mod+v             exec --no-startup-id webcam.sh
+bindsym $mod+v             exec --no-startup-id webcam.sh 0 720
 
 bindsym $mod+Shift+b       exec --no-startup-id polybar-msg cmd toggle
 
@@ -101,21 +101,23 @@ bindsym XF86MonBrightnessDown   exec --no-startup-id screen-bright dec 50
 
 ## Windows rules
 # specific windows on floating mode
-for_window [instance="^float$"]        floating enable
-for_window [title="webcam"]            floating enable sticky enable
-for_window [class="Nitrogen"]          floating enable
-for_window [class="Cadence"]           floating enable
-for_window [class="Nvidia-settings"]   floating enable
-for_window [class="KeePassXC"]         floating enable
-for_window [class="PdWindow"]          floating enable
-for_window [class="PatchWindow"]       floating enable
-for_window [title="Bluetooth Devices"] floating enable
-for_window [title="(?i)Duckstation"]   floating enable
-for_window [class="Pcsx2"]             floating enable
-for_window [class="Gcolor3"]           floating enable
-for_window [class="Gpick"]             floating enable
-for_window [class="QjackCtl"]          floating enable
-for_window [class="Spotify"]           move to workspace 5
+for_window [instance="^float$"]           floating enable
+for_window [title="webcam"]               floating enable sticky enable
+for_window [class="Nitrogen"]             floating enable
+for_window [class="Cadence"]              floating enable
+for_window [class="Nvidia-settings"]      floating enable
+for_window [class="KeePassXC"]            floating enable
+for_window [class="PdWindow"]             floating enable
+for_window [class="PatchWindow"]          floating enable
+for_window [title="Bluetooth Devices"]    floating enable
+for_window [title="(?i)Duckstation"]      floating enable
+for_window [class="Pcsx2"]                floating enable
+for_window [class="Gcolor3"]              floating enable
+for_window [class="Gpick"]                floating enable
+for_window [class="QjackCtl"]             floating enable
+for_window [class="Steam"]                move to workspace 3
+for_window [class="Spotify"]              move to workspace 5
+for_window [class="Thunderbird"]          move to workspace 7
 
 ## Workspaces
 set $ws1 "1"
