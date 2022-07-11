@@ -15,5 +15,8 @@ case $1 in
   set)
     echo $2 > $CARD_DIR/brightness;;
 
+  show)
+    echo "Brilho: $actual_value";;
+
   *) echo "Argumento inválido" && exit 1;;
 esac
