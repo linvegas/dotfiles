@@ -52,19 +52,19 @@ bindsym $mod+g             gaps inner current set 10; gaps outer current set 8
 bindsym $mod+Shift+g       gaps inner current set 0; gaps outer current set 0
 
 bindsym $mod+h             focus left
-bindsym $mod+Shift+h       move left
+bindsym $mod+Shift+h       move left 50 px
 bindsym $mod+Ctrl+h        resize grow width 5 px or 5 ppt
 
 bindsym $mod+j             focus down
-bindsym $mod+Shift+j       move down
+bindsym $mod+Shift+j       move down 50 px
 bindsym $mod+Ctrl+j        resize shrink height 5 px or 5 ppt
 
 bindsym $mod+k             focus up
-bindsym $mod+Shift+k       move up
+bindsym $mod+Shift+k       move up 50 px
 bindsym $mod+Ctrl+k        resize grow height 5 px or 5 ppt
 
 bindsym $mod+l             focus right
-bindsym $mod+Shift+l       move right
+bindsym $mod+Shift+l       move right 50 px
 bindsym $mod+Ctrl+l        resize shrink width 5 px or 5 ppt
 
 bindsym --release $mod+c   exec --no-startup-id xcolor -s clipboard
