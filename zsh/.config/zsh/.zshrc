@@ -67,34 +67,62 @@ alias nvidia_settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settin
 alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
 
 # Functions
-webcam() { mpv --really-quiet av://v4l2:/dev/video${1:-0} --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set=input_format=mjpeg,video_size=1280x720 || notify-send "Nenhuma camera conectada" }
 
-goto() {
-  case $1 in
-    "dot") cd ~/dotfiles;;
-    "dow") cd ~/docx/downloads;;
-    "pic") cd ~/media/pic;;
-    "vid") cd ~/media/vid;;
-    "mus") cd ~/media/mus;;
-    "emu") cd ~/media/emu;;
-    "smp") cd ~/media/samp;;
-    "pro") cd ~/media/proj;;
-    "bin") cd ~/.local/bin;;
-    "dev") cd ~/dev/test-zone/bash-script;;
-    "rep") cd ~/dev/repo;;
-    "usb") cd /mnt/usb1;;
-    "ext") cd /mnt/EXTERNO;;
-    "ssd") cd /mnt/SSD;;
-    "ani") cd /mnt/SSD/anime;;
-    "mor") cd /mnt/SSD/morbus;;
-    *) echo "goto dot|pic|vid|mus|emu|smp|pro|bin|dev|rep|ext|ssd|ani|mor";;
-  esac
+# Open webcam on mpv
+cam() {
+  mpv --really-quiet av://v4l2:/dev/video${1:-0} \
+  --demuxer-lavf-format=video4linux2 \
+  --demuxer-lavf-o-set=input_format=mjpeg,video_size=1280x720 \
+  || notify-send "Nenhuma camera conectada"
 }
 
+# share any file under 500mb using 0x0.st server
 share() {
   curl -s -F "file=@$1" https://0x0.st |\
   tee >(xclip -selection c) &&\
   echo "📋Seu link foi copiado!"
+}
+
+# cd to specified path
+g() {
+  case "$@" in
+    dot) cd ~/dotfiles;;
+    dow) cd ~/docx/downloads;;
+    pic) cd ~/media/pic;;
+    vid) cd ~/media/vid;;
+    mus) cd ~/media/mus;;
+    emu) cd ~/media/emu;;
+    smp) cd ~/media/samp;;
+    pro) cd ~/media/proj;;
+    bin) cd ~/.local/bin;;
+    dev) cd ~/dev/test-zone/bash-script;;
+    rep) cd ~/dev/repo;;
+    usb) cd /mnt/usb1;;
+    ext) cd /mnt/EXTERNO;;
+    ssd) cd /mnt/SSD;;
+    ani) cd /mnt/SSD/anime;;
+    mor) cd /mnt/SSD/morbus;;
+    *) echo "goto dot|pic|vid|mus|emu|smp|pro|bin|dev|rep|ext|ssd|ani|mor";;
+  esac
+}
+
+# shorcut for config files
+v() {
+  case "$@" in
+    term)  $EDITOR "$XDG_CONFIG_HOME/alacritty/alacritty.yml";;
+    bash)  $EDITOR "$HOME/.bashrc";;
+    bpro)  $EDITOR "$HOME/.bash_profile";;
+    dunst) $EDITOR "$XDG_CONFIG_HOME/dunst/dunstrc";;
+    i3)    $EDITOR "$XDG_CONFIG_HOME/i3/config";;
+    poly)  $EDITOR "$XDG_CONFIG_HOME/polybar/config.ini";;
+    tmux)  $EDITOR "$XDG_CONFIG_HOME/tmux/tmux.conf";;
+    vim)   $EDITOR "$HOME/.vim/vimrc";;
+    xini)  $EDITOR "$XDG_CONFIG_HOME/X11/xinitrc";;
+    xres)  $EDITOR "$XDG_CONFIG_HOME/X11/xresources";;
+    zsh)   $EDITOR "$XDG_CONFIG_HOME/zsh/.zshrc";;
+    zpro)  $EDITOR "$HOME/.zprofile";;
+    *)     echo "Precisa de um parâmetro ou argumento inválido";;
+  esac
 }
 
 # Dircolors
