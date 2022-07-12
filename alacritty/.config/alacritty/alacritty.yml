@@ -44,6 +44,9 @@ cursor:
 
   blink_interval: 500
 
+mouse:
+  hide_when_typing: true
+
 key_bindings:
   - { key: K,   mods: Control,   action: ScrollPageUp                 }
   - { key: J,   mods: Control,   action: ScrollPageDown               }
