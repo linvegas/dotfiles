@@ -44,14 +44,13 @@ set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 """""""""""""""""
 call plug#begin('~/.vim/plugged')
 
-  Plug 'mattn/emmet-vim'
-  Plug 'joshdick/onedark.vim'
-  Plug 'itchyny/lightline.vim'
-  Plug 'jiangmiao/auto-pairs'
-  "Plug 'sheerun/vim-polyglot'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  "Plug 'vimwiki/vimwiki'
-  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+Plug 'mattn/emmet-vim'
+Plug 'joshdick/onedark.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'vimwiki/vimwiki'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 call plug#end()
 
@@ -76,21 +75,18 @@ nmap <leader>t :vert term<CR>
 nmap <leader>Z :mkview<CR>
 nmap <leader>z :loadview<CR>
 
-" Buffer Switching
-nnoremap <C-h> :bp<CR>
-nnoremap <C-l> :bn<CR>
+" Tabs and Buffer
+nnoremap [b :bp<CR>
+nnoremap ]b :bn<CR>
+nnoremap <C-H> :tabprevious<CR>
+nnoremap <C-L> :tabnext<CR>
+nnoremap tn :tabnew<Space>
 
 " Emmet plugin
 let g:user_emmet_mode='n'
 let g:user_emmet_leader_key=','
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
-
-" Vimwiki plugin
-let g:vimwiki_list = [{'path': '~/docx/notes/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
-let g:vimwiki_ext2syntax = {'.md': 'markdown',
-                      \ '.mkd': 'markdown'}
 
 " MakrdownPreview plugin
 let g:mkdp_theme = 'light'
