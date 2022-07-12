@@ -1,40 +1,34 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
+# Script that uses "fzf" to fuzzy find specified configuration files and edit them
+# Requires: fzf, bat || cat
 
-# A scrpit for editing config files
-# Text editor of preference
-EDITOR="vim"
+EDITOR="vim" # choose your editor
+FZF_OP="--border --margin 3%" # fzf visual options
 
-# Array with config files location
-declare -a options=(
-"alacritty $HOME/.config/alacritty/alacritty.yml"
-"bashrc $HOME/.bashrc"
-"bash_profile $HOME/.bash_profile"
-"dunst $HOME/.config/dunst/dunstrc"
-"i3 $HOME/.config/i3/config"
-"picom $HOME/.config/picom/picom.conf"
-"polybar $HOME/.config/polybar/config.ini"
-"vim $HOME/.vim/vimrc"
-"xinitrc $HOME/.config/X11/xinitrc"
-"xresources $HOME/.config/X11/xresources"
-"zshrc $HOME/.config/zsh/.zshrc"
-"zsh_profile $HOME/.zprofile"
+# Absolute path for the files
+declare -a files=(
+"$HOME/.config/alacritty/alacritty.yml"
+"$HOME/.bashrc"
+"$HOME/.bash_profile"
+"$HOME/.config/dunst/dunstrc"
+"$HOME/.config/i3/config"
+"$HOME/.config/picom/picom.conf"
+"$HOME/.config/polybar/config.ini"
+"$HOME/.config/tmux/tmux.conf"
+"$HOME/.vim/vimrc"
+"$HOME/.config/X11/xinitrc"
+"$HOME/.config/X11/xresources"
+"$HOME/.config/zsh/.zshrc"
+"$HOME/.zprofile"
 "quit"
 )
 
-# Display array on dmenu
-choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 20 -p 'Edit config')
+# Where the magic happens
+choice=$(printf "%s\n" "${files[@]}" | fzf $FZF_OP --prompt="Escolha: " --preview 'bat --color=always --style=plain {}')
 
-# If quit is selected, exit
-if [[ "$choice" == "quit" ]]; then
-	echo "Finalizado" && exit 1
-
-# Print the selected option and awk to get the last column
-# And open the config with the editor
-elif [ "$choice" ]; then
-	choosen=$(printf '%s\n' "${choice}" | awk '{print $NF}')
-	$EDITOR "$choosen"
-
-# Exit the program
+# Checks if 'quit' is entered or none
+if [[ $choice == 'quit' ]] || [[ $choice == '' ]]; then
+  echo "Finalizado" && exit
 else
-	echo "Finalizado" && exit 1
+  $EDITOR $choice
 fi
