@@ -40,6 +40,8 @@ alias history="fc -l 1"
 alias so="source ~/.config/zsh/.zshrc"
 alias off="sudo shutdown now"
 alias reboot="sudo reboot"
+alias suspend="sudo systemctl suspend"
+alias fale="espeak -v roa/pt-BR"
 
 # Python
 alias py="python3"
@@ -88,6 +90,7 @@ g() {
   case "$@" in
     dot) cd ~/dotfiles;;
     dow) cd ~/docx/downloads;;
+    doc) cd ~/docx;;
     pic) cd ~/media/pic;;
     vid) cd ~/media/vid;;
     mus) cd ~/media/mus;;
