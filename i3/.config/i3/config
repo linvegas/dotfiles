@@ -11,20 +11,21 @@ smart_borders               on
 gaps inner                  10
 gaps outer                  8
 smart_gaps                  on
-border_radius               0
+#border_radius               0
 floating_modifier           $mod
 
 set $term                   alacritty
 set $browser                firefox
+set $mail                   thunderbird
 
 ## Startup
-exec_always --no-startup-id    $HOME/.config/polybar/launch.sh
+exec --no-startup-id           $HOME/.local/bin/setwallpaper
 #exec --no-startup-id           dex --autostart --environment i3
 #exec --no-startup-id           xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id           nm-applet
 exec --no-startup-id           dunst
-exec --no-startup-id           $HOME/.local/bin/setwallpaper
-#exec --no-startup-id sysound -s
+#exec --no-startup-id          sysound -s
+exec_always --no-startup-id    $HOME/.config/polybar/launch.sh
 
 ## Keybinds
 bindsym $mod+Return        exec --no-startup-id $term
@@ -74,7 +75,8 @@ bindsym $mod+v             exec --no-startup-id webcam.sh 0 720
 
 bindsym $mod+Shift+b       exec --no-startup-id polybar-msg cmd toggle
 
-bindsym $mod+m             exec --no-startup-id $term --class float -e pulsemixer
+bindsym $mod+m             exec --no-startup-id $mail
+bindsym $mod+Shift+m       exec --no-startup-id $term --class float -e pulsemixer
 
 bindsym $mod+Shift+space   floating toggle
 bindsym $mod+space         focus mode_toggle
