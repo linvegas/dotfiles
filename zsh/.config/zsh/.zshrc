@@ -42,6 +42,7 @@ alias off="sudo shutdown now"
 alias reboot="sudo reboot"
 alias suspend="sudo systemctl suspend"
 alias fale="espeak -v roa/pt-BR"
+alias c="clear"
 
 # Python
 alias py="python3"
@@ -100,7 +101,7 @@ g() {
     bin) cd ~/.local/bin;;
     dev) cd ~/dev/test-zone/bash-script;;
     rep) cd ~/dev/repo;;
-    usb) cd /mnt/usb1;;
+    usb) cd /mnt/USB1;;
     ext) cd /mnt/EXTERNO;;
     ssd) cd /mnt/SSD;;
     ani) cd /mnt/SSD/anime;;
@@ -113,16 +114,16 @@ g() {
 v() {
   case "$@" in
     term)  $EDITOR "$XDG_CONFIG_HOME/alacritty/alacritty.yml";;
-    bash)  $EDITOR "$HOME/.bashrc";;
+    b|bash)  $EDITOR "$HOME/.bashrc";;
     bpro)  $EDITOR "$HOME/.bash_profile";;
     dunst) $EDITOR "$XDG_CONFIG_HOME/dunst/dunstrc";;
     i3)    $EDITOR "$XDG_CONFIG_HOME/i3/config";;
     poly)  $EDITOR "$XDG_CONFIG_HOME/polybar/config.ini";;
     tmux)  $EDITOR "$XDG_CONFIG_HOME/tmux/tmux.conf";;
-    vim)   $EDITOR "$HOME/.vim/vimrc";;
+    v|vim)   $EDITOR "$HOME/.vim/vimrc";;
     xini)  $EDITOR "$XDG_CONFIG_HOME/X11/xinitrc";;
     xres)  $EDITOR "$XDG_CONFIG_HOME/X11/xresources";;
-    zsh)   $EDITOR "$XDG_CONFIG_HOME/zsh/.zshrc";;
+    z|zsh)   $EDITOR "$XDG_CONFIG_HOME/zsh/.zshrc";;
     zpro)  $EDITOR "$HOME/.zprofile";;
     *)     echo "Precisa de um parâmetro ou argumento inválido";;
   esac
