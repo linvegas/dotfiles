@@ -51,6 +51,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'vimwiki/vimwiki'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+Plug 'junegunn/fzf'
 
 call plug#end()
 
@@ -74,6 +75,10 @@ nmap <leader>t :vert term<CR>
 " For saving and loading folds
 nmap <leader>Z :mkview<CR>
 nmap <leader>z :loadview<CR>
+
+" Fzf plug
+nmap <leader>f :FZF<CR>
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9  }  }
 
 " Tabs and Buffer
 nnoremap [b :bp<CR>
