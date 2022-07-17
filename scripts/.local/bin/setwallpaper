@@ -5,25 +5,28 @@
 wp_dir="$HOME/media/pic/wallpaper"
 
 # Picking a random wallpaper
-image=$(find $wp_dir -name "*landscape*" | shuf -n 1)
+IMAGE=$(find $wp_dir -name "*landscape*" | shuf -n 1)
 
 # Get monitors connected
 connected=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1)
 
+# pywall
+pywal() {
+  [[ -e $(which wal) ]] && wal -i "$IMAGE" -n -s -q
+}
+
 # If there is only one monitor connected
-[[ $(echo $connected | wc -w ) -lt 2 ]] && xwallpaper --output $connected --stretch $image && exit
+[[ $(echo $connected | wc -w ) -lt 2 ]] && xwallpaper --output $connected --stretch $IMAGE && pywal && exit 0
 
 # Dual monitor setup
 for display in $connected; do
   if [[ $display =~ "DP" ]]; then
-    xwallpaper --output $display --zoom $image
+    xwallpaper --output $display --zoom $IMAGE
   elif [[ $display =~ "HDMI" ]]; then
-    xwallpaper --output $display --stretch $image
+    xwallpaper --output $display --stretch $IMAGE
   else
     echo "Nenhum monitor encontrado"
-    exit
   fi
 done
 
-# pywall
-[[ -e $(which wal) ]] && wal -i "$image" -n -s -q
+pywal

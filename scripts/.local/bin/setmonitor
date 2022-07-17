@@ -4,7 +4,7 @@
 connected=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1)
 
 # If there is only one monitor connected
-[[ $(echo $connected | wc -w ) -lt 2 ]] && xrandr --output "${connected}" --auto && exit
+[[ $(echo $connected | wc -w ) -lt 2 ]] && xrandr --output "${connected}" --auto --dpi 104 && exit
 
 # Dual monitor setup
 for display in $connected; do
@@ -18,4 +18,4 @@ for display in $connected; do
   fi
 done
 
-xrandr --output $secundary --auto --output $primary --mode 2560x1080 --rate 75 --primary --left-of $secundary && exit
+xrandr --output $secundary --auto --output $primary --mode 2560x1080 --rate 75 --primary --left-of $secundary --dpi 125 && exit
