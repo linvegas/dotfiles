@@ -23,7 +23,9 @@ stow zsh
 * figlet
 * stow
 * fzf
+* pulsemixer
 * ncmpcpp
+* espeak-ng
 
 #### Terminal Screensaver
 * cmatrix
@@ -32,8 +34,10 @@ stow zsh
 
 #### For Window Managers
 * xwallpaper
+* xcolor
+* python-pywal
+* maim
 * dunst
-* picom
 * dmenu
 * rofi
 
