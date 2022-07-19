@@ -1,0 +1,35 @@
+#!/usr/bin/env sh
+
+# Parsing avalible partitions for mounting
+# '-e 259,254' to avoid system and ram partitions
+options=$(lsblk -e 259,254 -o SIZE,LABEL,PATH,FSTYPE,TYPE,MOUNTPOINT | grep "part $")
+
+# If no partition was found, exit
+[[ "$options" = "" ]] && echo "Nenhuma partição para ser montada" && exit 1
+
+# Choosing one with dmenu
+dev_path=$(printf "%s\n" "$options" | dmenu -l 20 -p "Partição: " | awk '{print $3}')
+
+# If none was selected, exit
+[[ "$dev_path" = "" ]] && exit 1
+
+# Parsing avalible directories for mounting
+#mount_dir=$(find /mnt -mindepth 1 -maxdepth 1 -type d)
+mount_dirs=$(find /mnt -mindepth 1 -maxdepth 1 -type d -not -path '/mnt/SSD')
+
+# If it's a mountpoint, add to ava_mount parameter
+for dir in $mount_dirs; do
+  if ! mountpoint -q -- $dir; then
+    ava_mount+="$dir\n"
+  fi
+done
+
+# Choosing one with dmenu
+#dir_path=$(printf "%s\n" "$mount_dir" | dmenu -l 20 -p "Diretório: ")
+mount_path=$(printf "%s" "${ava_mount@E}" | sort | dmenu -l 20 -p "Dir: ")
+
+# If none was selected, exit
+[[ "$mount_path" = "" ]] && exit 1
+
+# Actual mounting
+sudo mount -o uid=${USER},gid=${USER},fmask=113,dmask=002 $dev_path $mount_path

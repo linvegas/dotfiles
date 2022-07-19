@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+
+# Search for mount directories
+mount_dirs=$(find /mnt -mindepth 1 -maxdepth 1 -type d -not -path '/mnt/SSD')
+
+# If it's a mountpoint, add to ava_mount parameter
+for dir in $mount_dirs; do
+  if mountpoint -q -- $dir; then
+    ava_mount+="$dir\n"
+  fi
+done
+
+# Exit if none was found
+[[ "$ava_mount" = "" ]] && echo "Nenhum ponto de montagem encontrado" && exit 1
+
+# Choose one
+mount_path=$(printf "%s" "${ava_mount@E}" | dmenu -l 20 -p "Dir: ")
+
+# Exit if none was selected
+[[ "$mount_path" = "" ]] && exit 1
+
+# Actual umount
+sudo umount $mount_path
