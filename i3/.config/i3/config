@@ -89,6 +89,9 @@ bindsym $mod+Print         exec --no-startup-id maim -u "/home/$USER/media/pic/s
 
 bindsym $mod+Tab           workspace back_and_forth
 
+bindsym $mod+F8            exec --no-startup-id ddcutil --bus 8 setvcp 10 - 10
+bindsym $mod+F9            exec --no-startup-id ddcutil --bus 8 setvcp 10 + 10
+
 ## XF86 Keybinds
 set $refresh_i3status           killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume    exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
@@ -134,7 +137,9 @@ set $ws10 "10"
 
 # Next/prev workspace
 bindsym $mod+Prior     workspace prev
+bindsym $mod+less      workspace prev
 bindsym $mod+Next      workspace next
+bindsym $mod+greater   workspace next
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
