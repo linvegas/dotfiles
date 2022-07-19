@@ -18,4 +18,4 @@ for display in $connected; do
   fi
 done
 
-xrandr --output $secundary --auto --output $primary --mode 2560x1080 --rate 75 --primary --left-of $secundary --dpi 125 && exit
+xrandr --output $secundary --off --output $primary --mode 2560x1080 --rate 75 --primary --left-of $secundary --dpi 123 && exit
