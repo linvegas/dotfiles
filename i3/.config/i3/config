@@ -32,12 +32,13 @@ bindsym $mod+Return        exec --no-startup-id $term
 bindsym $mod+Shift+Return  exec --no-startup-id $term --class float
 
 bindsym $mod+q             kill
+bindsym $mod+Shift+q       exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 bindsym $mod+w             exec $browser
 bindsym $mod+Shift+w       exec $browser -private-window
 
-bindsym $mod+e             split toggle
-bindsym $mod+Shift+e       exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+e             exec --no-startup-id $mail
+bindsym $mod+Shift+e       split toggle
 
 bindsym $mod+Shift+r       restart
 
@@ -75,8 +76,9 @@ bindsym $mod+v             exec --no-startup-id webcam.sh 0 720
 
 bindsym $mod+Shift+b       exec --no-startup-id polybar-msg cmd toggle
 
-bindsym $mod+m             exec --no-startup-id $mail
-bindsym $mod+Shift+m       exec --no-startup-id $term --class float -e pulsemixer
+bindsym $mod+n             exec --no-startup-id $term --class mplayer -e ncmpcpp
+
+bindsym $mod+m             exec --no-startup-id $term --class float -e pulsemixer
 
 bindsym $mod+Shift+space   floating toggle
 bindsym $mod+space         focus mode_toggle
@@ -94,8 +96,8 @@ bindsym $mod+F9            exec --no-startup-id ddcutil --bus 8 setvcp 10 + 10
 
 ## XF86 Keybinds
 set $refresh_i3status           killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume    exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume    exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioRaiseVolume    exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% && $refresh_i3status
+bindsym XF86AudioLowerVolume    exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% && $refresh_i3status
 bindsym XF86AudioMute           exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute        exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
@@ -121,6 +123,7 @@ for_window [class="Gpick"]                floating enable
 for_window [class="QjackCtl"]             floating enable
 for_window [class="Steam"]                move to workspace 3
 for_window [class="Spotify"]              move to workspace 5
+for_window [instance="mplayer"]           move to workspace 5
 for_window [class="Thunderbird"]          move to workspace 7
 
 ## Workspaces
