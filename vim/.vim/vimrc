@@ -81,10 +81,10 @@ nmap <leader>f :FZF<CR>
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9  }  }
 
 " Tabs and Buffer
-nnoremap [b :bp<CR>
-nnoremap ]b :bn<CR>
-nnoremap <C-H> :tabprevious<CR>
-nnoremap <C-L> :tabnext<CR>
+nnoremap <C-H> :bp<CR>
+nnoremap <C-L> :bn<CR>
+nnoremap <C-h> :tabprevious<CR>
+nnoremap <C-l> :tabnext<CR>
 nnoremap tn :tabnew<Space>
 
 " Emmet plugin
