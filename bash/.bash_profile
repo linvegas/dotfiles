@@ -1,7 +1,7 @@
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 # Basic Variables
-export EDITOR="vim"
+export EDITOR="nvim"
 export BROWSER="firefox"
 
 # Clean up ~/

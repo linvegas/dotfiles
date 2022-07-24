@@ -94,7 +94,6 @@ g() {
     doc)  cd ~/docx;;
     pic)  cd ~/media/pic;;
     vid)  cd ~/media/vid;;
-    mus)  cd ~/media/mus;;
     emu)  cd ~/media/emu;;
     smp)  cd ~/media/samp;;
     pro)  cd ~/media/proj;;
@@ -107,6 +106,7 @@ g() {
     ext)  cd /mnt/EXTERNO;;
     ssd)  cd /mnt/SSD;;
     ani)  cd /mnt/SSD/anime;;
+    mus)  cd /mnt/SSD/musique;;
     mor)  cd /mnt/SSD/morbus;;
     *)    echo "goto dot|pic|vid|mus|emu|smp|pro|bin|dev|rep|ext|ssd|ani|mor";;
   esac
@@ -115,21 +115,22 @@ g() {
 # shorcut for config files
 v() {
   case "$@" in
-    term)  $EDITOR "$XDG_CONFIG_HOME/alacritty/alacritty.yml";;
-    b|bash)  $EDITOR "$HOME/.bashrc";;
-    bpro)  $EDITOR "$HOME/.bash_profile";;
-    dunst) $EDITOR "$XDG_CONFIG_HOME/dunst/dunstrc";;
-    i3)    $EDITOR "$XDG_CONFIG_HOME/i3/config";;
-    mpd)   $EDITOR "$XDG_CONFIG_HOME/mpd/mpd.conf";;
-    mplay) $EDITOR "$XDG_CONFIG_HOME/ncmpcpp/config";;
-    poly)  $EDITOR "$XDG_CONFIG_HOME/polybar/config.ini";;
-    tmux)  $EDITOR "$XDG_CONFIG_HOME/tmux/tmux.conf";;
-    v|vim)   $EDITOR "$HOME/.vim/vimrc";;
-    xini)  $EDITOR "$XDG_CONFIG_HOME/X11/xinitrc";;
-    xres)  $EDITOR "$XDG_CONFIG_HOME/X11/xresources";;
-    z|zsh)   $EDITOR "$XDG_CONFIG_HOME/zsh/.zshrc";;
-    zpro)  $EDITOR "$HOME/.zprofile";;
-    *)     echo "Precisa de um parâmetro ou argumento inválido";;
+    term)   $EDITOR "$XDG_CONFIG_HOME/alacritty/alacritty.yml";;
+    b|bash) $EDITOR "$HOME/.bashrc";;
+    bpro)   $EDITOR "$HOME/.bash_profile";;
+    dunst)  $EDITOR "$XDG_CONFIG_HOME/dunst/dunstrc";;
+    i3)     $EDITOR "$XDG_CONFIG_HOME/i3/config";;
+    mpd)    $EDITOR "$XDG_CONFIG_HOME/mpd/mpd.conf";;
+    mplay)  $EDITOR "$XDG_CONFIG_HOME/ncmpcpp/config";;
+    poly)   $EDITOR "$XDG_CONFIG_HOME/polybar/config.ini";;
+    tmux)   $EDITOR "$XDG_CONFIG_HOME/tmux/tmux.conf";;
+    v|vim)  $EDITOR "$HOME/.vim/vimrc";;
+    nvim)   $EDITOR "$XDG_CONFIG_HOME/nvim/init.vim";;
+    xini)   $EDITOR "$XDG_CONFIG_HOME/X11/xinitrc";;
+    xres)   $EDITOR "$XDG_CONFIG_HOME/X11/xresources";;
+    z|zsh)  $EDITOR "$XDG_CONFIG_HOME/zsh/.zshrc";;
+    zpro)   $EDITOR "$HOME/.zprofile";;
+    *)      echo "Precisa de um parâmetro ou argumento inválido";;
   esac
 }
 
