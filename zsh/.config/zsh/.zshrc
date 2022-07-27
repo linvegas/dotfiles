@@ -16,7 +16,7 @@ zstyle ':vcs_info:git:*' formats '%F{green}(%b)%f '
 zstyle ':vcs_info:*' enable git
 setopt prompt_subst
 
-PROMPT='${vcs_info_msg_0_}%F{blue}%B%1~%b%f %(!.#.>>) '
+PROMPT='${vcs_info_msg_0_}%F{white}%B%1~%b%f %(!.#.>>) '
 
 # History configuration
 setopt histignorealldups sharehistory
@@ -43,6 +43,7 @@ alias reboot="sudo reboot"
 alias suspend="sudo systemctl suspend"
 alias fale="espeak -v roa/pt-BR"
 alias c="clear"
+alias vim="nvim"
 
 # Python
 alias py="python3"

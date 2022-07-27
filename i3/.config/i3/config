@@ -37,10 +37,11 @@ bindsym $mod+Shift+q       exec "i3-nagbar -t warning -m 'You pressed the exit s
 bindsym $mod+w             exec $browser
 bindsym $mod+Shift+w       exec $browser -private-window
 
-bindsym $mod+e             exec --no-startup-id $mail
-bindsym $mod+Shift+e       split toggle
+bindsym $mod+e             split toggle
 
 bindsym $mod+Shift+r       restart
+
+bindsym $mod+t             exec --no-startup-id $mail
 
 bindsym $mod+p             exec --no-startup-id sfx
 

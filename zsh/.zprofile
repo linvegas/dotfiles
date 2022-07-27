@@ -22,6 +22,7 @@ export LESSHISTFILE="-"
 
 # Local scripts
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
 export PF_INFO="ascii title os kernel shell pkgs wm memory"
 export FZF_DEFAULT_OPTS="--preview 'bat --color=always --plain {}'"
 
