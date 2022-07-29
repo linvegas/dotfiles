@@ -43,9 +43,11 @@ bindsym $mod+Shift+r       restart
 
 bindsym $mod+t             exec --no-startup-id $mail
 
-bindsym $mod+p             exec --no-startup-id sfx
+bindsym $mod+p             exec --no-startup-id pd-gui
 
 bindsym $mod+a             focus parent
+
+bindsym $mod+s             exec --no-startup-id sfx
 
 bindsym $mod+d             exec --no-startup-id dmenu_run
 
