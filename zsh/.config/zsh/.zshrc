@@ -46,6 +46,7 @@ alias suspend="sudo systemctl suspend"
 alias fale="espeak -v roa/pt-BR"
 alias c="clear"
 alias vim="nvim"
+alias hx="helix"
 
 # Python
 alias py="python3"
