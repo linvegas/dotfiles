@@ -20,7 +20,6 @@ stow zsh
 * tree
 * bat
 * gdu
-* figlet
 * stow
 * fzf
 * pulsemixer
@@ -40,6 +39,7 @@ stow zsh
 * dunst
 * dmenu
 * rofi
+* xcolor
 
 #### Wallpapers
 * archlinux-wallpaper
@@ -53,4 +53,3 @@ stow zsh
 #### Themes
 * papirus-icon-theme
 * xcursor-breeze
-* yaru-xfwm4-theme
