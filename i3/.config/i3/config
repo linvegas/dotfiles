@@ -21,7 +21,7 @@ set $mail                   thunderbird
 ## Startup
 exec --no-startup-id           $HOME/.local/bin/setwallpaper
 #exec --no-startup-id           dex --autostart --environment i3
-#exec --no-startup-id           xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id           xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id           nm-applet
 exec --no-startup-id           dunst
 #exec --no-startup-id          sysound -s
