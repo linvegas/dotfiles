@@ -1,101 +1,115 @@
 # MisterConscio's i3 config (i3gaps)
 
 ## Basics and variables
-set $mod                    Mod4
-font pango:Noto Sans Mono   12
-#set_from_resource           $blue i3wm.color5 #ff0000
-default_border              pixel 3
-default_floating_border     pixel 2
-#hide_edge_borders           vertical
-smart_borders               on
-gaps inner                  10
-gaps outer                  8
-smart_gaps                  on
-#border_radius               0
-floating_modifier           $mod
+set $mod                       Mod4
+font pango:Noto Sans Mono      12
+default_border                 pixel 3
+default_floating_border        pixel 2
+smart_borders                  on
+gaps inner                     10
+gaps outer                     8
+smart_gaps                     on
+floating_modifier              $mod
+#border_radius                  0
+#hide_edge_borders              vertical
 
-set $term                   alacritty
-set $browser                firefox
-set $mail                   thunderbird
+set $term                      alacritty
+set $browser                   firefox
+set $mail                      thunderbird
+
+# onedark colorscheme
+set $black                     #1E2127
+set $red                       #E06C75
+set $green                     #98C379
+set $yellow                    #D19A66
+set $blue                      #61AFEF
+set $magenta                   #C678DD
+set $cyan                      #56B6C2
+set $white                     #C8CCD4
+set $shadow                    #57585b
+
+# Colors                       border   backgr. text    indicator child_border
+client.focused                 $cyan    $cyan   $black  $blue     $cyan
+client.unfocused               $shadow  $black  $white  $blue     $shadow
 
 ## Startup
 exec --no-startup-id           $HOME/.local/bin/setwallpaper
-#exec --no-startup-id           dex --autostart --environment i3
 exec --no-startup-id           xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id           nm-applet
 exec --no-startup-id           dunst
-#exec --no-startup-id          sysound -s
+#exec --no-startup-id           dex --autostart --environment i3
 exec_always --no-startup-id    $HOME/.config/polybar/launch.sh
 
 ## Keybinds
-bindsym $mod+Return        exec --no-startup-id $term
-bindsym $mod+Shift+Return  exec --no-startup-id $term --class float
+bindsym $mod+Return            exec --no-startup-id $term
+bindsym $mod+Shift+Return      exec --no-startup-id $term --class float
 
-bindsym $mod+q             kill
-bindsym $mod+Shift+q       exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+q                 kill
+bindsym $mod+Shift+q           exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym $mod+w             exec $browser
-bindsym $mod+Shift+w       exec $browser -private-window
+bindsym $mod+w                 exec $browser
+bindsym $mod+Shift+w           exec $browser -private-window
 
-bindsym $mod+e             split toggle
+bindsym $mod+Shift+r           restart
 
-bindsym $mod+Shift+r       restart
+bindsym $mod+t                 exec --no-startup-id $mail
 
-bindsym $mod+t             exec --no-startup-id $mail
+bindsym $mod+p                 exec --no-startup-id pd-gui
 
-bindsym $mod+p             exec --no-startup-id pd-gui
+bindsym $mod+a                 focus parent
 
-bindsym $mod+a             focus parent
+bindsym $mod+s                 exec --no-startup-id sfx
 
-bindsym $mod+s             exec --no-startup-id sfx
+bindsym $mod+d                 exec --no-startup-id dmenu_run
 
-bindsym $mod+d             exec --no-startup-id dmenu_run
+bindsym $mod+f                 fullscreen toggle
 
-bindsym $mod+f             fullscreen toggle
+bindsym $mod+g                 gaps inner current set 10; gaps outer current set 8
+bindsym $mod+Shift+g           gaps inner current set 0; gaps outer current set 0
 
-bindsym $mod+g             gaps inner current set 10; gaps outer current set 8
-bindsym $mod+Shift+g       gaps inner current set 0; gaps outer current set 0
+bindsym $mod+h                 focus left
+bindsym $mod+Shift+h           move left 50 px
+bindsym $mod+Ctrl+h            resize grow width 5 px or 5 ppt
 
-bindsym $mod+h             focus left
-bindsym $mod+Shift+h       move left 50 px
-bindsym $mod+Ctrl+h        resize grow width 5 px or 5 ppt
+bindsym $mod+j                 focus down
+bindsym $mod+Shift+j           move down 50 px
+bindsym $mod+Ctrl+j            resize shrink height 5 px or 5 ppt
 
-bindsym $mod+j             focus down
-bindsym $mod+Shift+j       move down 50 px
-bindsym $mod+Ctrl+j        resize shrink height 5 px or 5 ppt
+bindsym $mod+k                 focus up
+bindsym $mod+Shift+k           move up 50 px
+bindsym $mod+Ctrl+k            resize grow height 5 px or 5 ppt
 
-bindsym $mod+k             focus up
-bindsym $mod+Shift+k       move up 50 px
-bindsym $mod+Ctrl+k        resize grow height 5 px or 5 ppt
+bindsym $mod+l                 focus right
+bindsym $mod+Shift+l           move right 50 px
+bindsym $mod+Ctrl+l            resize shrink width 5 px or 5 ppt
 
-bindsym $mod+l             focus right
-bindsym $mod+Shift+l       move right 50 px
-bindsym $mod+Ctrl+l        resize shrink width 5 px or 5 ppt
+bindsym $mod+x                 layout toggle split
+bindsym $mod+Shift+x           layout toggle tabbed splith
 
-bindsym --release $mod+c   exec --no-startup-id xcolor -s clipboard
-bindsym $mod+Shift+c       reload
+bindsym --release $mod+c       exec --no-startup-id xcolor -s clipboard
+bindsym $mod+Shift+c           reload
 
-bindsym $mod+v             exec --no-startup-id webcam.sh 0 720
+bindsym $mod+v                 exec --no-startup-id webcam.sh 0 720
 
-bindsym $mod+Shift+b       exec --no-startup-id polybar-msg cmd toggle
+bindsym $mod+Shift+b           exec --no-startup-id polybar-msg cmd toggle
 
-bindsym $mod+n             exec --no-startup-id $term --class mplayer -e ncmpcpp
+bindsym $mod+n                 exec --no-startup-id $term --class mplayer -e ncmpcpp
 
-bindsym $mod+m             exec --no-startup-id $term --class float -e pulsemixer
+bindsym $mod+m                 exec --no-startup-id $term --class float -e pulsemixer
 
-bindsym $mod+Shift+space   floating toggle
-bindsym $mod+space         focus mode_toggle
+bindsym $mod+Shift+space       floating toggle
+bindsym $mod+space             focus mode_toggle
 
-bindsym $mod+Shift+minus   move scratchpad
-bindsym $mod+minus         scratchpad show; move position center
+bindsym $mod+Shift+minus       move scratchpad
+bindsym $mod+minus             scratchpad show; move position center
 
-bindsym Print              exec --no-startup-id maim -u -s "/home/$USER/media/pic/screenshot/$(date +%d-%m-%Y--%H-%M-%S).png" | xclip -selection clipboard -t image/png
-bindsym $mod+Print         exec --no-startup-id maim -u "/home/$USER/media/pic/screenshot/$(date +%d-%m-%Y--%H-%M-%S).png"
+bindsym Print                  exec --no-startup-id maim -u -s "/home/$USER/media/pic/screenshot/$(date +%d-%m-%Y--%H-%M-%S).png" | xclip -selection clipboard -t image/png
+bindsym $mod+Print             exec --no-startup-id maim -u "/home/$USER/media/pic/screenshot/$(date +%d-%m-%Y--%H-%M-%S).png"
 
-bindsym $mod+Tab           workspace back_and_forth
+bindsym $mod+Tab               workspace back_and_forth
 
-bindsym $mod+F8            exec --no-startup-id ddcutil --bus 8 setvcp 10 - 10
-bindsym $mod+F9            exec --no-startup-id ddcutil --bus 8 setvcp 10 + 10
+bindsym $mod+F8                exec --no-startup-id ddcutil --bus 8 setvcp 10 - 10
+bindsym $mod+F9                exec --no-startup-id ddcutil --bus 8 setvcp 10 + 10
 
 ## XF86 Keybinds
 set $refresh_i3status           killall -SIGUSR1 i3status
