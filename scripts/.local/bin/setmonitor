@@ -1,21 +1,34 @@
 #!/usr/bin/env bash
 
+onemonitor() {
+  xrandr --output "$1" --auto --dpi 104
+}
+
+dualmonitor() {
+  for display in $1; do
+
+    if [[ $display =~ "DP" ]]; then
+      secundary=$display
+
+    elif [[ $display =~ "HDMI" ]]; then
+      primary=$display
+
+    else
+      echo "Nenhum monitor encontrado"
+
+    fi
+  done
+
+xrandr \
+  --output $secundary --auto \
+  --output $primary --mode 2560x1080 --rate 75 --primary --left-of $secundary --dpi 123
+}
+
+
 # Get monitors connected
-connected=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1)
+CONNECTED=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1)
 
 # If there is only one monitor connected
-[[ $(echo $connected | wc -w ) -lt 2 ]] && xrandr --output "${connected}" --auto --dpi 104 && exit
+[[ $(echo $CONNECTED | wc -w ) -lt 2 ]] && onemonitor "$CONNECTED" && exit
 
-# Dual monitor setup
-for display in $connected; do
-  if [[ $display =~ "DP" ]]; then
-    secundary=$display
-  elif [[ $display =~ "HDMI" ]]; then
-    primary=$display
-  else
-    echo "Nenhum monitor encontrado"
-    exit
-  fi
-done
-
-xrandr --output $secundary --off --output $primary --mode 2560x1080 --rate 75 --primary --left-of $secundary --dpi 123 && exit
+dualmonitor "$CONNECTED" && exit

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Depends on: xwallpaper, xorg-xrandr
+# Depends on: xwallpaper, xorg-xrandr and pywal
 
 # Wallpapers directorie
 wp_dir="$HOME/media/pic/wallpaper"
@@ -10,13 +10,15 @@ IMAGE=$(find $wp_dir -name "*landscape*" | shuf -n 1)
 # Get monitors connected
 connected=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1)
 
-# pywall
+# pywal
 pywal() {
-  [[ -e $(which wal) ]] && wal -i "$IMAGE" -n -s -q
+  [[ -e $(which wal) ]] && wal -n -s -q -i "$IMAGE"
 }
 
 # If there is only one monitor connected
-[[ $(echo $connected | wc -w ) -lt 2 ]] && xwallpaper --output $connected --stretch $IMAGE && pywal && exit 0
+[[ $(echo $connected | wc -w ) -lt 2 ]] && \
+  xwallpaper --output $connected --stretch $IMAGE && \
+  pywal && exit 0
 
 # Dual monitor setup
 for display in $connected; do
