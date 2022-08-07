@@ -25,6 +25,7 @@ stow zsh
 * pulsemixer
 * ncmpcpp
 * espeak-ng
+* beets
 
 #### Terminal Screensaver
 * cmatrix
