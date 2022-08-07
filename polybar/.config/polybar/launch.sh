@@ -1,16 +1,30 @@
 #!/usr/bin/env bash
 
-# Terminate already running bar instances
-#polybar-msg cmd quit
-killall -q polybar # nuclear option
-while pgrep -x polybar >/dev/null; do sleep 5; done
+# No mercy for polybar
+killall -q polybar
 
-if type "xrandr"; then
+# Watch it's funeral
+while pgrep -u $UID -x polybar >/dev/null; do sleep 5; done
+
+# New boss, time for managment
+if type "xrandr" > /dev/null; then
+
   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-    POLYMONITOR=$m polybar --reload main &
+
+    if [[ $m =~ "DP" ]]; then
+      POLYMONITOR=$m polybar --reload sidebar &
+
+    elif [[ $m =~ "HDMI" ]]; then
+      POLYMONITOR=$m polybar --reload mainbar &
+
+    else
+      POLYMONITOR=$m polybar --reload sidebar &
+    fi
   done
 else
-  polybar --reload main &
+
+  polybar --reload mainbar &
 fi
 
-echo "Bars launched..."
+# Revenge
+echo "LOL, bars got launched"
