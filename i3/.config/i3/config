@@ -2,8 +2,8 @@
 
 ## Basics and variables
 set $mod                       Mod4
-font pango:Noto Sans Mono      12
-default_border                 pixel 3
+font pango:Noto Sans Mono      9
+default_border                 pixel 2
 default_floating_border        pixel 2
 smart_borders                  on
 gaps inner                     10
@@ -19,6 +19,7 @@ set $mail                      thunderbird
 
 # onedark colorscheme
 set $black                     #1E2127
+set $black2                    #5C6370
 set $red                       #E06C75
 set $green                     #98C379
 set $yellow                    #D19A66
@@ -26,11 +27,12 @@ set $blue                      #61AFEF
 set $magenta                   #C678DD
 set $cyan                      #56B6C2
 set $white                     #C8CCD4
-set $shadow                    #57585b
+set $shadow                    #333333
 
 # Colors                       border   backgr. text    indicator child_border
-client.focused                 $cyan    $cyan   $black  $blue     $cyan
-client.unfocused               $shadow  $black  $white  $blue     $shadow
+client.focused                 $black2  $black2 $white  $magenta  $cyan
+client.unfocused               $black   $black  $white  $magenta  $shadow
+client.focused_inactive        $shadow  $shadow $white  #484e50   #5f676a
 
 ## Startup
 exec --no-startup-id           $HOME/.local/bin/setwallpaper
@@ -85,6 +87,7 @@ bindsym $mod+Ctrl+l            resize shrink width 5 px or 5 ppt
 
 bindsym $mod+x                 layout toggle split
 bindsym $mod+Shift+x           layout toggle tabbed splith
+bindsym $mod+Ctrl+x            split toggle
 
 bindsym --release $mod+c       exec --no-startup-id xcolor -s clipboard
 bindsym $mod+Shift+c           reload
@@ -124,24 +127,27 @@ bindsym XF86MonBrightnessDown   exec --no-startup-id screen-bright dec 50
 
 ## Windows rules
 # specific windows on floating mode
+for_window [all]                          title_format "%class"
+for_window [all]                          title_window_icon padding 3px
 for_window [instance="^float$"]           floating enable
 for_window [title="webcam"]               floating enable sticky enable
+for_window [title="Bluetooth Devices"]    floating enable
+for_window [title="(?i)Duckstation"]      floating enable
 for_window [class="Nitrogen"]             floating enable
 for_window [class="Cadence"]              floating enable
 for_window [class="Nvidia-settings"]      floating enable
 for_window [class="KeePassXC"]            floating enable
 for_window [class="PdWindow"]             floating enable
 for_window [class="PatchWindow"]          floating enable
-for_window [title="Bluetooth Devices"]    floating enable
-for_window [title="(?i)Duckstation"]      floating enable
-for_window [class="Pcsx2"]                floating enable
+for_window [class="pcsx2-qt"]             floating enable
 for_window [class="Gcolor3"]              floating enable
 for_window [class="Gpick"]                floating enable
 for_window [class="QjackCtl"]             floating enable
+for_window [class="TelegramDesktop"]      floating enable
 for_window [class="Steam"]                move to workspace 3
 for_window [class="Spotify"]              move to workspace 5
-for_window [instance="mplayer"]           move to workspace 5
 for_window [class="Thunderbird"]          move to workspace 7
+for_window [instance="mplayer"]           move to workspace 5
 
 ## Workspaces
 set $ws1 "1"
