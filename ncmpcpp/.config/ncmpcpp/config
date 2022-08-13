@@ -22,3 +22,7 @@ media_library_hide_album_dates = yes
 
 startup_screen = media_library
 screen_switcher_mode = playlist, media_library
+
+main_window_color = green
+header_window_color = cyan
+progressbar_elapsed_color = red:b

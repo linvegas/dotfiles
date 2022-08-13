@@ -98,7 +98,6 @@ g() {
     doc)  cd ~/docx;;
     pic)  cd ~/media/pic;;
     vid)  cd ~/media/vid;;
-    emu)  cd ~/media/emu;;
     smp)  cd ~/media/samp;;
     pro)  cd ~/media/proj;;
     bin)  cd ~/.local/bin;;
@@ -112,6 +111,7 @@ g() {
     ani)  cd /mnt/SSD/anime;;
     mus)  cd /mnt/SSD/musique;;
     mor)  cd /mnt/SSD/morbus;;
+    emu)  cd /mnt/SSD/emu;;
     *)    echo "goto dot|pic|vid|mus|emu|smp|pro|bin|dev|rep|ext|ssd|ani|mor";;
   esac
 }
