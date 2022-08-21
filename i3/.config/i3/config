@@ -2,7 +2,7 @@
 
 ## Basics and variables
 set $mod                       Mod4
-font pango:Noto Sans Mono      9
+font pango:Noto Sans Mono      10
 default_border                 pixel 2
 default_floating_border        pixel 2
 smart_borders                  on
