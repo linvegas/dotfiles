@@ -146,9 +146,9 @@ for_window [class="Gpick"]                floating enable
 for_window [class="QjackCtl"]             floating enable
 for_window [class="TelegramDesktop"]      floating enable
 for_window [class="Steam"]                move to workspace 3
-for_window [class="Spotify"]              move to workspace 5
-for_window [class="Thunderbird"]          move to workspace 7
-for_window [instance="mplayer"]           move to workspace 5
+for_window [class="Spotify"]              move to workspace 4
+for_window [class="Thunderbird"]          move to workspace 6
+for_window [instance="mplayer"]           move to workspace 4
 
 ## Workspaces
 set $ws1 "1"
