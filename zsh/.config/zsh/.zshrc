@@ -49,6 +49,7 @@ alias c="clear"
 alias vim="nvim"
 alias hx="helix"
 alias anon=" unset HISTFILE"
+alias zt="zathura"
 
 # Python
 alias py="python3"
