@@ -5,6 +5,8 @@ window:
 
   dynamic_padding: true
 
+  # opacity: 0.90
+
   title: Alacritty
   class: Alacritty
   instance: Alacritty
