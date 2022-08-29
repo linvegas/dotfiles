@@ -4,6 +4,7 @@ setopt extendedglob
 setopt hist_ignore_space
 bindkey -v # vi mode
 export KEYTIMEOUT=1
+stty stop undef
 
 # Autoload
 autoload -Uz colors && colors
