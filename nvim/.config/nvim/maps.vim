@@ -9,8 +9,8 @@ nmap <leader>n :tabnew<Space>
 nmap <leader>W <cmd>!firefox -private-window %<CR>
 
 " Buffer and tab switch
-nnoremap <C-s>h :bp<CR>
-nnoremap <C-s>l :bn<CR>
+nnoremap <C-S-h> :bp<CR>
+nnoremap <C-S-l> :bn<CR>
 nnoremap <C-h> :tabprevious<CR>
 nnoremap <C-l> :tabnext<CR>
 
@@ -20,3 +20,7 @@ nnoremap Y yy
 " A and I insert mode shortcut
 inoremap <C-a> <esc>A
 inoremap <C-i> <esc>I
+
+" New line in insert mode
+inoremap <C-o> <esc>o
+inoremap <C-S-o> <esc>O

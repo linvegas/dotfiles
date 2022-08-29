@@ -5,7 +5,7 @@ window:
 
   dynamic_padding: true
 
-  # opacity: 0.90
+  opacity: 1.00
 
   title: Alacritty
   class: Alacritty
@@ -50,5 +50,11 @@ mouse:
   hide_when_typing: true
 
 key_bindings:
-  - { key: K,   mods: Control,   action: ScrollPageUp                 }
-  - { key: J,   mods: Control,   action: ScrollPageDown               }
+  - { key: K,   mods: Control,       action: ScrollPageUp    }
+  - { key: J,   mods: Control,       action: ScrollPageDown  }
+  # Vim bindings thing
+  - { key: I,   mods: Control,       chars: "\x1b[105;5u"    }
+  - { key: O,   mods: Control,       chars: "\x1b[111;5u"    }
+  - { key: O,   mods: Control|Shift, chars: "\x1b[79;6u"     }
+  - { key: H,   mods: Control|Shift, chars: "\x1b[72;6u"     }
+  - { key: L,   mods: Control|Shift, chars: "\x1b[76;6u"     }
