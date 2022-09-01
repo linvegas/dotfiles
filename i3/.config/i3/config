@@ -142,13 +142,14 @@ for_window [class="PdWindow"]             floating enable
 for_window [class="PatchWindow"]          floating enable
 for_window [class="HelpBrowser"]          floating enable
 for_window [class="pcsx2-qt"]             floating enable
+for_window [class="PPSSPPQt"]             floating enable
 for_window [class="Gcolor3"]              floating enable
 for_window [class="Gpick"]                floating enable
 for_window [class="QjackCtl"]             floating enable
 for_window [class="TelegramDesktop"]      floating enable
 for_window [class="Steam"]                move to workspace 3
 for_window [class="Spotify"]              move to workspace 4
-for_window [class="Thunderbird"]          move to workspace 6
+for_window [class="thunderbird"]          move to workspace 6
 for_window [instance="mplayer"]           move to workspace 4
 
 ## Workspaces
