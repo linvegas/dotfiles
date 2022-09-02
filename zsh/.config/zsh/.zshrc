@@ -97,6 +97,7 @@ share() {
 # cd to specified path
 g() {
   case "$@" in
+    nvi)  cd ~/.config/nvim;;
     dot)  cd ~/dotfiles;;
     dow)  cd ~/docx/downloads;;
     doc)  cd ~/docx;;
@@ -105,8 +106,8 @@ g() {
     smp)  cd ~/media/samp;;
     pro)  cd ~/media/proj;;
     bin)  cd ~/.local/bin;;
-    dev)  cd ~/dev/test-zone/bash-script;;
-    rep)  cd ~/dev/repo;;
+    rep)  cd ~/.local/src;;
+    dev)  cd ~/dev/learn/bash-script;;
     usb)  cd /mnt/USB1;;
     usb2) cd /mnt/USB2;;
     usb3) cd /mnt/USB3;;
