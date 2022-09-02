@@ -27,6 +27,10 @@ autocmd BufReadPost *
   \   exe "normal! g`\"" |
   \ endif
 
+" Check if file was changed from outside
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
+  \ if mode() != 'c' | checktime | endif
+
 " Put a shebang on every new shell script buffer
 augroup Shebang
   autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env sh\<nl>\<nl>\"|$
