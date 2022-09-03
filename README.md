@@ -15,7 +15,10 @@ stow zsh
 * zathura
 * yt-dlp
 
-#### Terminal Apps
+#### CLI Tools
+* nvim
+* lf
+* tldr
 * bashtop
 * tree
 * bat
@@ -24,33 +27,44 @@ stow zsh
 * fzf
 * pulsemixer
 * ncmpcpp
-* espeak-ng
 * beets
+* mpc
+* espeak-ng
+* ddcutil
+* uzip
+
+#### For Window Managers
+* xorg-xinit
+* xwallpaper
+* xcolor
+* xclip
+* python-pywal
+* polybar
+* maim
+* dunst
+* dmenu
+* rofi
+* redshift
+* xcompmgr
+* xxs-lock
+* numlockx
+
+#### Fonts
+* noto-fonts
+* noto-fonts-emoji
+* ttf-hack
+* ttf-inconsolata
+* nerd-fonts-droid-sans-mono
+* ttf-font-awesome
 
 #### Terminal Screensaver
 * cmatrix
 * pipes.sh
 * asciiquarium
 
-#### For Window Managers
-* xwallpaper
-* xcolor
-* python-pywal
-* maim
-* dunst
-* dmenu
-* rofi
-* xcolor
-
-#### Wallpapers
-* archlinux-wallpaper
-* nature-wallpapers
-
-#### Fonts
-* noto-fonts-cjk
-* noto-fonts-emoji
-* ttf-font-awesome
-
 #### Themes
 * papirus-icon-theme
 * xcursor-breeze
+
+#### Wallpapers
+* archlinux-wallpaper
