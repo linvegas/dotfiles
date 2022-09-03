@@ -51,6 +51,7 @@ alias vim="nvim"
 alias hx="helix"
 alias anon=" unset HISTFILE"
 alias zt="zathura"
+alias lf="lf-uber"
 
 # Python
 alias py="python3"
