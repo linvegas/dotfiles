@@ -13,10 +13,10 @@ window:
 
 font:
   normal:
-    family: Noto Sans Mono
+    family: DroidSansMono Nerd Font Mono
     style: Regular
 
-  size: 15.0
+  size: 16.0
 
 # One Dark
 colors:
