@@ -1,14 +1,27 @@
 # MisterConscio dotfiles
+## Instalation:
 
-It's supposed to be used with [GNU/stow](https://www.gnu.org/software/stow/).
+The repo it's supposed to be used with [GNU/stow](https://www.gnu.org/software/stow/).
+
+```sh
+curl -LO "https://raw.githubusercontent.com/MisterConscio/dotfiles/main/pkglist.txt"
+```
+
+```sh
+sudo pacman -S --needed - < pkglist.txt
+```
 
 ```sh
 git clone https://github.com/MisterConscio/dotfiles.git
-cd dotfiles
-stow zsh
 ```
 
-## List of useful packages (pacman/aur)
+```sh
+cd dotfiles
+stow zsh
+stow x11
+```
+
+## List of useful packages (pacman/aur):
 #### Media Apps
 * mpv
 * sxiv
