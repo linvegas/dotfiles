@@ -2,7 +2,7 @@ i3
 polybar
 alacritty
 zsh
-nvim
+neovim
 tmux
 git
 stow
@@ -24,7 +24,7 @@ ddcutil
 dunst
 libnotify
 network-manager-applet
-xxs-lock
+xss-lock
 numlockx
 redshift
 xcompmgr
@@ -42,7 +42,7 @@ ffmpegthumbnailer
 man-db
 tldr
 ntfs-3g
-uzip
+unzip
 p7zip
 fzf
 bat

@@ -13,7 +13,7 @@ window:
 
 font:
   normal:
-    family: DroidSansMono Nerd Font Mono
+    family: monospace
     style: Regular
 
   size: 16.0
