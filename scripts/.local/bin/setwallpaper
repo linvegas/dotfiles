@@ -3,10 +3,11 @@
 
 # Wallpapers directorie
 wp_dir="$HOME/media/pic/wallpaper"
+[[ ! -e "$wp_dir" ]] && wp_dir="/usr/share/backgrounds/archlinux"
 
 # Set image from argument or default directory
 case "$1" in
-  "") image=$(find $wp_dir -name "*landscape*" | shuf -n 1);;
+  "") image=$(find "$wp_dir" -type f \( -name \*.jpg -o -name \*.png \)| shuf -n 1);;
   *)  image=$(readlink -f "$1");;
 esac
 
