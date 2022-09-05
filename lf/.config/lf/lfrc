@@ -5,3 +5,5 @@ set period 1
 
 set previewer "~/.config/lf/preview"
 set cleaner "~/.config/lf/clear"
+
+map D delete
