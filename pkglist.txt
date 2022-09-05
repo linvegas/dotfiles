@@ -50,3 +50,4 @@ gdu
 tree
 bashtop
 htop
+archlinux-wallpaper

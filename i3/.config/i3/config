@@ -95,6 +95,7 @@ bindsym $mod+Shift+c           reload
 
 bindsym $mod+v                 exec --no-startup-id webcam.sh 0 720
 
+bindsym $mod+b                 exec --no-startup-id setwallpaper
 bindsym $mod+Shift+b           exec --no-startup-id polybar-msg cmd toggle
 
 bindsym $mod+n                 exec --no-startup-id $term --class mplayer -e ncmpcpp
