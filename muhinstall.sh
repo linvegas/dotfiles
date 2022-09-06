@@ -50,7 +50,7 @@ aurinstall() {
 aurpkg() {
   echo "Instalando pacotes do AUR..."
   cd ~/dotfiles
-  yay -S --removemake --nocofirm - < aurlist.txt
+  yay -S --removemake --noconfirm - < aurlist.txt
 
 }
 
