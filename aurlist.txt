@@ -1,16 +1,5 @@
-arch-wiki-man
-bash-pipes
 brave-bin
 lf
 mpdscribble
 nerd-fonts-droid-sans-mono
-obs-cli
-pfetch
-rpi-imager
-simple-mtpfs
 xcursor-breeze
-mbrola
-mbrola-voices-br1
-mbrola-voices-br2
-mbrola-voices-br3
-mbrola-voices-br4
