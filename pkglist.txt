@@ -11,7 +11,9 @@ xorg-xset
 xorg-xinit
 xorg-xwininfo
 xorg-xdpyinfo
-i3
+i3-gaps
+i3lock
+i3status
 polybar
 alacritty
 zsh
@@ -69,3 +71,4 @@ archlinux-wallpaper
 nodejs
 npm
 imagemagick
+arc-gtk-theme
