@@ -13,16 +13,19 @@ visualizer_in_stereo = "yes"
 visualizer_type = "spectrum"
 visualizer_look = "+|"
 
-external_editor = nvim
-use_console_editor = yes
+external_editor = "nvim"
+use_console_editor = "yes"
 
-song_status_format = {{%a - %b - }{%t}}|{%f}
+song_status_format = "{{%a - %b - }{%t}}|{%f}"
+user_interface = "alternative"
+header_visibility = "no"
 
-media_library_hide_album_dates = yes
+media_library_hide_album_dates = "yes"
 
-startup_screen = media_library
-screen_switcher_mode = playlist, media_library
+startup_screen = "media_library"
+screen_switcher_mode = "playlist, media_library"
 
-main_window_color = green
-header_window_color = cyan
-progressbar_elapsed_color = red:b
+main_window_color = "green"
+header_window_color = "cyan"
+progressbar_elapsed_color = "red:b"
+progressbar_look = "▒▒░"

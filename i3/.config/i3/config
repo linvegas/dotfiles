@@ -64,6 +64,7 @@ bindsym $mod+a                 focus parent
 bindsym $mod+s                 exec --no-startup-id sfx
 
 bindsym $mod+d                 exec --no-startup-id dmenu_run
+bindsym $mod+Shift+d           exec --no-startup-id rofi -show drun
 
 bindsym $mod+f                 fullscreen toggle
 
@@ -148,6 +149,7 @@ for_window [class="Gcolor3"]              floating enable
 for_window [class="Gpick"]                floating enable
 for_window [class="QjackCtl"]             floating enable
 for_window [class="TelegramDesktop"]      floating enable
+for_window [class="Nm-connection-editor"] floating enable
 for_window [class="Steam"]                move to workspace 3
 for_window [class="Spotify"]              move to workspace 4
 for_window [class="thunderbird"]          move to workspace 6
