@@ -50,7 +50,7 @@ aurinstall() {
 aurpkg() {
   echo "Instalando pacotes do AUR..."
   cd ~/dotfiles
-  yay --removemake --nocofirm -S - < aurlist.txt
+  yay -S --removemake --nocofirm - < aurlist.txt
 
 }
 
@@ -70,11 +70,11 @@ changeshell() {
 }
 
 hello || error
-pacinstall || error
 mkfilestruct || error
+pacinstall || error
+dotfiles || error
 aurinstall || error
 aurpkg || error
-dotfiles || error
 changeshell || error
 
 echo -e "\nParece que tudo ocorreu bem, por favor, reinicie o sistema"
