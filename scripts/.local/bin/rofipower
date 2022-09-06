@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+[[ ! $(command -v rofi) ]] && echo "Rofi is not installed" && exit 1
+
+INPUT=$(
+  echo "SUS|OFF|RES|EXI" |\
+  rofi -dmenu -sep "|" -theme "~/.config/rofi/themes/power.rasi"
+)
+
+case "$INPUT" in
+  SUS) systemctl suspend;;
+  OFF) systemctl poweroff;;
+  RES) systemctl reboot;;
+  EXI) i3-msg exit;;
+esac
