@@ -58,7 +58,7 @@ pacinstall() {
 dotfiles() {
   message "ETAPA 3: Repositório dos dotfiles"
   echo -e "\nClonando o repositório dos dotfiles..."
-  git clone "$dotfiles_repo" "$HOME"
+  git clone "$dotfiles_repo"
   cd dotfiles
   stow -v \
     i3 alacritty x11 zsh \
