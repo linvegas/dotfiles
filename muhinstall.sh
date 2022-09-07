@@ -117,6 +117,7 @@ cleanup() {
 
 hello || error
 mkfilestruct || error
+setpacman || error
 pacinstall || error
 dotfiles || error
 aurinstall || error
