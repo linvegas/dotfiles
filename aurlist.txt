@@ -1,4 +1,3 @@
-brave-bin
 lf
 mpdscribble
 nerd-fonts-droid-sans-mono

@@ -32,6 +32,8 @@ hello() {
   sleep 3
   echo "Esse script é destinado para sistemas ${bold}Arch Linux${normal}"
   sleep 5
+  echo "${bold}Fique atento${normal} pois em alguns momentos sua senha será pedida!"
+  sleep 5
   echo "Vamos-lá :)"
   sleep 1
 }
@@ -48,10 +50,12 @@ mkfilestruct() {
 
 setpacman() {
   message "ETAPA 2: Configuração do pacman"
+  sudo pacman --noconfirm --needed -S reflector
   sudo sed -Ei "s/^#(ParallelDownloads).*/\1 = 5/;/^#Color$/s/#//;/^#VerbosePkgLists$/s/#//" /etc/pacman.conf
   sudo sed -i "s/-j2/-j$(nproc)/;/^#MAKEFLAGS/s/^#//" /etc/makepkg.conf
   sudo cp -v /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
-  sudo rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+  sudo reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+  sudo pacman -Syy
   message "ETAPA 2: Finalizada"
 }
 
@@ -73,7 +77,7 @@ dotfiles() {
     i3 alacritty x11 zsh \
     polybar xdg scripts gtk \
     dircolors mpd ncmpcpp dunst \
-    lf
+    lf fontconfig rofi
   message "ETAPA 4: Finalizada"
 }
 

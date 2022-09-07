@@ -72,4 +72,3 @@ nodejs
 npm
 imagemagick
 arc-gtk-theme
-pacman-contrib
