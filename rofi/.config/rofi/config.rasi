@@ -1,0 +1,26 @@
+/* vim: set filetype=rasi : */
+
+@theme "/usr/share/rofi/themes/gruvbox-light.rasi"
+
+window { width: 490; }
+
+mainbox { padding: 6px; }
+
+entry { placeholder: ""; }
+
+listview { lines: 10; }
+
+element {
+  orientation: horizontal;
+  padding: 8px 4px;
+  children: [ element-icon, element-text ];
+  spacing: 4px;
+}
+
+element-text {
+  text-color: inherit;
+}
+
+element-icon {
+  size: 1em;
+}

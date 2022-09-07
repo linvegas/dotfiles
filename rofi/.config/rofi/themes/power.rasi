@@ -1,0 +1,60 @@
+/* vim: set filetype=rasi : */
+
+* {
+  font:              "DroidSansMono Nerd Font 50";
+  background-color:  transparent;
+  lines:             1;
+  columns:           4;
+
+  bg:                #1E2127;
+  fg:                #ABB2BF;
+  blue:              #61AFEF;
+  red:               #E06C75;
+  green:             #98C379;
+  sel:               #5C6370;
+}
+
+window {
+  position:          center;
+  padding:           20px;
+  border:            2px;
+  border-radius:     10px;
+  border-color:      @sel;
+  background-color:  @bg;
+}
+
+mainbox {
+  padding:           8px;
+  children:          [inputbar, listview];
+}
+
+prompt {
+  enabled:           false;
+}
+
+inputbar {
+  enabled:           false;
+}
+
+listview {
+  background-color:  @bg;
+}
+
+element, element-text, element-icon {
+  cursor:            pointer;
+}
+
+element-text {
+  orientation:       horizontal;
+  horizontal-align:  0.5;
+  text-color:        @fg;
+}
+
+element {
+  padding:           20px;
+  border-radius:     10px;
+}
+
+element selected {
+  background-color:  @sel;
+}
