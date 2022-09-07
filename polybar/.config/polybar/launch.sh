@@ -1,13 +1,19 @@
 #!/usr/bin/env bash
 
-# No mercy for polybar
+# kills polybar first
 killall -q polybar
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-# Watch it's funeral
-while pgrep -u $UID -x polybar >/dev/null; do sleep 5; done
+# Names and number of monitors
+monitors=$(xrandr --query | grep " connected" | cut -d" " -f1)
+count=$(xrandr --query | grep " connected" | cut -d" " -f1 | wc -l)
 
-# New boss, time for managment
-if type "xrandr" > /dev/null; then
+# Actual launch
+if [ $count = 1 ]; then
+
+  POLYMONITOR=$monitors polybar --reload mainbar &
+
+else
 
   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
 
@@ -21,10 +27,7 @@ if type "xrandr" > /dev/null; then
       POLYMONITOR=$m polybar --reload sidebar &
     fi
   done
-else
 
-  polybar --reload mainbar &
 fi
 
-# Revenge
 echo "LOL, bars got launched"
