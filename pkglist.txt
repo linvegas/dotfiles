@@ -72,3 +72,10 @@ nodejs
 npm
 imagemagick
 arc-gtk-theme
+bash-language-server
+typescript
+typescript-language-server
+pyright
+vscode-css-languageserver
+vscode-html-languageserver
+vscode-json-languageserver

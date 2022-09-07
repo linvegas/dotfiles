@@ -28,7 +28,7 @@ export SAVEHIST=10000
 
 # Use modern completion system
 autoload -Uz compinit && compinit
-zstyle ':completion:*' menu select
+zstyle ':completion:*' menu select cache-path $XDG_CACHE_HOME/zsh/zcompcache
 compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
 # General aliases

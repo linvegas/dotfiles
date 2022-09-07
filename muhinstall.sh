@@ -71,13 +71,16 @@ pacinstall() {
 dotfiles() {
   message "ETAPA 4: Repositório dos dotfiles"
   echo -e "\nClonando o repositório dos dotfiles..."
+  curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
   git clone "$dotfiles_repo"
   cd dotfiles
   stow -v \
     i3 alacritty x11 zsh \
     polybar xdg scripts gtk \
     dircolors mpd ncmpcpp dunst \
-    lf fontconfig rofi
+    lf fontconfig rofi nvim \
+    zathura
   message "ETAPA 4: Finalizada"
 }
 
@@ -109,6 +112,7 @@ changeshell() {
 addgroups() {
   message "ETAPA 8: Adcionando ao usuário grupos"
   sudo usermod -aG video,audio,lp,network,kvm,storage $USER
+  echo "command: usermod -aG video,audio,lp,network,kvm,storage $USER"
   message "ETAPA 8: Finalizada"
 }
 
