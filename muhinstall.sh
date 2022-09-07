@@ -46,17 +46,26 @@ mkfilestruct() {
   message "ETAPA 1: Finalizada"
 }
 
+setpacman() {
+  message "ETAPA 2: Configuração do pacman"
+  sudo sed -Ei "s/^#(ParallelDownloads).*/\1 = 5/;/^#Color$/s/#//;/^#VerbosePkgLists$/s/#//" /etc/pacman.conf
+  sudo sed -i "s/-j2/-j$(nproc)/;/^#MAKEFLAGS/s/^#//" /etc/makepkg.conf
+  sudo cp -v /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+  sudo rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+  message "ETAPA 2: Finalizada"
+}
+
 pacinstall() {
-  message "ETAPA 2: Instalação de programas"
+  message "ETAPA 3: Instalação de programas"
   echo "Baixando lista de aplicativos..."
   curl -sLO "$pkg_list_url"
   echo "${bold}Iniciando a instalação...${normal}"
   sudo pacman --noconfirm --needed -S - < "$pkg_list"
-  message "ETAPA 2: Finalizada"
+  message "ETAPA 3: Finalizada"
 }
 
 dotfiles() {
-  message "ETAPA 3: Repositório dos dotfiles"
+  message "ETAPA 4: Repositório dos dotfiles"
   echo -e "\nClonando o repositório dos dotfiles..."
   git clone "$dotfiles_repo"
   cd dotfiles
@@ -65,45 +74,45 @@ dotfiles() {
     polybar xdg scripts gtk \
     dircolors mpd ncmpcpp dunst \
     lf
-  message "ETAPA 3: Finalizada"
+  message "ETAPA 4: Finalizada"
 }
 
 aurinstall() {
-  message "ETAPA 4: Instalação do Yay"
+  message "ETAPA 5: Instalação do Yay"
   echo "Instalando ${aurhelper} como AUR helper..."
   cd ~/.local/src
   git clone "$aurhelper_git"
   cd yay
-  makepkg -sirc
-  message "ETAPA 4: Finalizada"
-}
-
-aurpkg() {
-  message "ETAPA 5: Instalação de pacotes AUR"
-  echo "Instalando pacotes do AUR..."
-  cd ~/dotfiles
-  yay -S --removemake --noconfirm - < aurlist.txt
+  makepkg -sirc --noconfirm
   message "ETAPA 5: Finalizada"
 }
 
-changeshell() {
-  message "ETAPA 6: Mundança de shell para zsh"
-  echo "Mudando o shell para zsh"
-  chsh -s /usr/bin/zsh "$USER"
+aurpkg() {
+  message "ETAPA 6: Instalação de pacotes AUR"
+  echo "Instalando pacotes do AUR..."
+  cd ~/dotfiles
+  yay -S --removemake --noconfirm - < aurlist.txt
   message "ETAPA 6: Finalizada"
 }
 
-addgroups() {
-  message "ETAPA 7: Adcionando ao usuário grupos"
-  sudo usermod -aG video,audio,lp,network,kvm,storage $USER
+changeshell() {
+  message "ETAPA 7: Mundança de shell para zsh"
+  echo "Mudando o shell para zsh"
+  chsh -s /usr/bin/zsh "$USER"
   message "ETAPA 7: Finalizada"
 }
 
+addgroups() {
+  message "ETAPA 8: Adcionando ao usuário grupos"
+  sudo usermod -aG video,audio,lp,network,kvm,storage $USER
+  message "ETAPA 8: Finalizada"
+}
+
 cleanup() {
-  message "ETAPA 8: Limpeza"
+  message "ETAPA 9: Limpeza"
   rm -v ~/muhinstall.sh ~/pkglist.txt
   rm -v ~/.bash_logout ~/.bash_history ~/.bashrc ~/.bash_profile
-  message "ETAPA 8: Finalizada"
+  message "ETAPA 9: Finalizada"
 }
 
 hello || error
