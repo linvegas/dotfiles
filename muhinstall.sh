@@ -55,7 +55,7 @@ setpacman() {
   sudo sed -i "s/-j2/-j$(nproc)/;/^#MAKEFLAGS/s/^#//" /etc/makepkg.conf
   # sudo cp -v /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
   # sudo reflector --latest 25 --sort rate --number 6 --save /etc/pacman.d/mirrorlist
-  sudo pacman -Syy
+  sudo pacman --noconfirm -Syu
   message "ETAPA 2: Finalizada"
 }
 
