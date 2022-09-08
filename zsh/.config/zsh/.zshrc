@@ -55,6 +55,7 @@ alias hx="helix"
 alias anon=" unset HISTFILE"
 alias zt="zathura"
 alias lf="lf-uber"
+alias aplay="aplay -D pulse"
 
 # Python
 alias py="python3"
