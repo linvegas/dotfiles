@@ -3,7 +3,7 @@
 SYS_SOUND_DIR="$XDG_DATA_HOME/sys-sounds"
 
 case $1 in
-  -n|notification) aplay -q $SYS_SOUND_DIR/notify.wav;;
-  -s|startup) aplay -q $SYS_SOUND_DIR/startup.wav;;
+  -n|notification) aplay -D pulse -q $SYS_SOUND_DIR/notify.wav;;
+  -s|startup) aplay -D pulse -q $SYS_SOUND_DIR/startup.wav;;
   *) echo "Argumento inválido" && exit 1;;
 esac
