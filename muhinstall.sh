@@ -49,13 +49,13 @@ mkfilestruct() {
 }
 
 setpacman() {
-  message "ETAPA 2: Configuração do pacman e sudoers"
+  message "ETAPA 2: Configuração do pacman"
   # sudo pacman --noconfirm --needed -S reflector rsync
   sudo sed -Ei "s/^#(ParallelDownloads).*/\1 = 5/;/^#Color$/s/#//;/^#VerbosePkgLists$/s/#//" /etc/pacman.conf
   sudo sed -i "s/-j2/-j$(nproc)/;/^#MAKEFLAGS/s/^#//" /etc/makepkg.conf
-  sudo cp -v /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+  # sudo cp -v /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
   # sudo reflector --latest 25 --sort rate --number 6 --save /etc/pacman.d/mirrorlist
-  # sudo pacman -Syy
+  sudo pacman -Syy
   message "ETAPA 2: Finalizada"
 }
 
@@ -124,9 +124,6 @@ cleanup() {
   message "ETAPA 9: Finalizada"
 }
 
-trap 'rm -f /etc/sudoers.d/nopass-temp' EXIT
-sudo echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/nopass-temp
-
 hello || error
 mkfilestruct || error
 setpacman || error
@@ -137,7 +134,5 @@ aurpkg || error
 changeshell || error
 addgroups || error
 cleanup || error
-
-echo -e "Defaults timestamp_timeout=30\nDefaults timestamp_type=global" > /etc/sudoers.d/00-sudo-time
 
 echo -e "\n${bold}Parece que tudo ocorreu bem, por favor, reinicie o sistema${normal}"
