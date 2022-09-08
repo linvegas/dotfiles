@@ -1,7 +1,7 @@
 window:
   dimensions:
-    columns: 90
-    lines: 28
+    columns: 70
+    lines: 25
 
   dynamic_padding: true
 

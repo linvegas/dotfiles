@@ -28,7 +28,7 @@ message() {
 hello() {
   echo -e "\n${bold}Bem vindo ${USER}${normal}\n"
   sleep 3
-  echo "Irá começar o scrip de instalação"
+  echo "Irá começar o script de instalação"
   sleep 3
   echo "Esse script é destinado para sistemas ${bold}Arch Linux${normal}"
   sleep 5
@@ -43,19 +43,19 @@ mkfilestruct() {
   mkdir -pv ~/.config/{mpd,ncmpcpp,zsh}
   mkdir -pv ~/.cache/zsh
   mkdir -pv ~/.local/{src,share/gnupg}
-  mkdir -pv ~/media/{pic/screenshot,vid,mus}
+  mkdir -pv ~/media/{pic/screenshot,vid,mus,samp,proj}
   mkdir -pv ~/dev ~/docx
   message "ETAPA 1: Finalizada"
 }
 
 setpacman() {
-  message "ETAPA 2: Configuração do pacman"
-  sudo pacman --noconfirm --needed -S reflector rsync
+  message "ETAPA 2: Configuração do pacman e sudoers"
+  # sudo pacman --noconfirm --needed -S reflector rsync
   sudo sed -Ei "s/^#(ParallelDownloads).*/\1 = 5/;/^#Color$/s/#//;/^#VerbosePkgLists$/s/#//" /etc/pacman.conf
   sudo sed -i "s/-j2/-j$(nproc)/;/^#MAKEFLAGS/s/^#//" /etc/makepkg.conf
   sudo cp -v /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
-  sudo reflector --latest 25 --sort rate --number 6 --save /etc/pacman.d/mirrorlist
-  sudo pacman -Syy
+  # sudo reflector --latest 25 --sort rate --number 6 --save /etc/pacman.d/mirrorlist
+  # sudo pacman -Syy
   message "ETAPA 2: Finalizada"
 }
 
@@ -80,7 +80,7 @@ dotfiles() {
     polybar xdg scripts gtk \
     dircolors mpd ncmpcpp dunst \
     lf fontconfig rofi nvim \
-    zathura
+    zathura tmux
   nvim -c "PlugInstall|q|q"
   message "ETAPA 4: Finalizada"
 }
@@ -120,9 +120,12 @@ addgroups() {
 cleanup() {
   message "ETAPA 9: Limpeza"
   rm -v ~/muhinstall.sh ~/pkglist.txt
-  rm -v ~/.bash_logout ~/.bash_history ~/.bashrc ~/.bash_profile
+  rm -v ~/.bash_logout ~/.bashrc ~/.bash_profile
   message "ETAPA 9: Finalizada"
 }
+
+trap 'rm -f /etc/sudoers.d/nopass-temp' EXIT
+sudo echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/nopass-temp
 
 hello || error
 mkfilestruct || error
@@ -135,4 +138,6 @@ changeshell || error
 addgroups || error
 cleanup || error
 
-echo -e "\nParece que tudo ocorreu bem, por favor, reinicie o sistema"
+echo -e "Defaults timestamp_timeout=30\nDefaults timestamp_type=global" > /etc/sudoers.d/00-sudo-time
+
+echo -e "\n${bold}Parece que tudo ocorreu bem, por favor, reinicie o sistema${normal}"

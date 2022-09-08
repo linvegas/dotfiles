@@ -112,6 +112,8 @@ bindsym $mod+Print             exec --no-startup-id maim -u "/home/$USER/media/p
 
 bindsym $mod+Tab               workspace back_and_forth
 
+bindsym $mod+F1                exec --no-startup-id rofipower
+
 bindsym $mod+F8                exec --no-startup-id ddcutil --bus 8 setvcp 10 - 10
 bindsym $mod+F9                exec --no-startup-id ddcutil --bus 8 setvcp 10 + 10
 
