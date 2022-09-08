@@ -50,11 +50,11 @@ mkfilestruct() {
 
 setpacman() {
   message "ETAPA 2: Configuração do pacman"
-  sudo pacman --noconfirm --needed -S reflector
+  sudo pacman --noconfirm --needed -S reflector rsync
   sudo sed -Ei "s/^#(ParallelDownloads).*/\1 = 5/;/^#Color$/s/#//;/^#VerbosePkgLists$/s/#//" /etc/pacman.conf
   sudo sed -i "s/-j2/-j$(nproc)/;/^#MAKEFLAGS/s/^#//" /etc/makepkg.conf
   sudo cp -v /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
-  sudo reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+  sudo reflector --latest 25 --sort rate --number 6 --save /etc/pacman.d/mirrorlist
   sudo pacman -Syy
   message "ETAPA 2: Finalizada"
 }
@@ -81,6 +81,7 @@ dotfiles() {
     dircolors mpd ncmpcpp dunst \
     lf fontconfig rofi nvim \
     zathura
+  nvim -c "PlugInstall|q|q"
   message "ETAPA 4: Finalizada"
 }
 
