@@ -6,4 +6,12 @@ set period 1
 set previewer "~/.config/lf/preview"
 set cleaner "~/.config/lf/clear"
 
+cmd play ${{
+  case $(file --mime-type "$(readlink -f $f)" -b) in
+    audio/x-wav) aplay -D pulse -q "$f" &;;
+  esac
+}}
+
+map P play
 map D delete
+
