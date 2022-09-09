@@ -48,7 +48,6 @@ mkfilestruct() {
     /home/$name/media/{pic/screenshot,vid,mus,samp,proj} \
     /home/$name/{dev,doc}
   message "Finalizada"
-  exit 1
 }
 
 setpacman() {
@@ -62,8 +61,6 @@ setpacman() {
   echo "Testando velocidade dos repositórios..."
   rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 
-  echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/sudo-temp
-
   sudo pacman --noconfirm -Syy
   message "Finalizada"
 }
@@ -74,9 +71,9 @@ dotfiles() {
   echo -e "\nClonando o repositório dos dotfiles..."
   # curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
     # "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-  git clone "$dotfiles_repo" "/home/$name/dotfiles"
+  sudo -u "$name" git clone "$dotfiles_repo" "/home/$name/dotfiles"
   cd "/home/$name/dotfiles"
-  stow -v \
+  sudo -u "$name" stow -v \
     i3 alacritty x11 zsh \
     polybar xdg scripts gtk \
     dircolors mpd ncmpcpp dunst \
@@ -146,7 +143,8 @@ hello || error
 mkfilestruct || error
 
 # Configuração do pacman e arquivo temporário sudoers
-trap 'rm -f /etc/sudoers.d/sudo-temp' EXIT
+echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/sudo-temp
+trap 'rm -f /etc/sudoers.d/01_sudotemp' QUIT EXIT
 setpacman || error
 
 # Repositório dos dotfiles
