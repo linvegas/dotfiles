@@ -46,20 +46,26 @@ mkfilestruct() {
   mkdir -pv /home/$name/.cache/zsh
   mkdir -pv /home/$name/.local/{src,share/{gnupg,npm}}
   mkdir -pv /home/$name/media/{pic/screenshot,vid,mus,samp,proj}
-  mkdir -pv /home/$name/dev ~/docx
+  mkdir -pv /home/$name/{dev,doc}
   message "Etapa Finalizada"
-  exit 0
 }
 
 setpacman() {
-  message "ETAPA 2: Configuração do pacman"
-  # sudo pacman --noconfirm --needed -S reflector rsync
-  sudo sed -Ei "s/^#(ParallelDownloads).*/\1 = 5/;/^#Color$/s/#//;/^#VerbosePkgLists$/s/#//" /etc/pacman.conf
-  sudo sed -i "s/-j2/-j$(nproc)/;/^#MAKEFLAGS/s/^#//" /etc/makepkg.conf
-  # sudo cp -v /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
-  # sudo reflector --latest 25 --sort rate --number 6 --save /etc/pacman.d/mirrorlist
-  sudo pacman --noconfirm -Syu
-  message "ETAPA 2: Finalizada"
+  message "Configuração do pacman e sudoers"
+  pacman --noconfirm --needed -S pacman-contrib
+
+  sed -Ei "s/^#(ParallelDownloads).*/\1 = 5/;/^#Color$/s/#//;/^#VerbosePkgLists$/s/#//" /etc/pacman.conf
+  sed -i "s/-j2/-j$(nproc)/;/^#MAKEFLAGS/s/^#//" /etc/makepkg.conf
+
+  cp -v /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+  rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+
+  trap 'rm -f /etc/sudoers.d/sudo-temp' EXIT
+  echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/sudo-temp
+
+  sudo pacman --noconfirm -Syy
+  message "Finalizada"
+  exit 0
 }
 
 pacinstall() {
@@ -137,6 +143,7 @@ hello || error
 # Estrutura de arquivos pessoal
 mkfilestruct || error
 
+# Configuração do pacman e arquivo temporário sudoers
 setpacman || error
 pacinstall || error
 dotfiles || error
