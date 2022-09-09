@@ -8,14 +8,15 @@ aur_list="aurlist.txt"
 dotfiles_repo="https://github.com/MisterConscio/dotfiles.git"
 aurhelper="yay"
 aurhelper_git="https://aur.archlinux.org/yay.git"
+falsename="conscio"
 
 bold=$(tput bold)
 normal=$(tput sgr0)
 
 # Some export for building a few packages
-# export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
-# export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
-# export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
+export GNUPGHOME="${XDG_DATA_HOME:-/home/$name/.local/share}/gnupg"
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-/home/$name/.config}/npm/npmrc"
+export GOPATH="${XDG_DATA_HOME:-/home/$name/.local/share}/go"
 
 error() {
   echo -e "\n${bold}${1:-Ocorreu algum erro}${normal}\n"
@@ -111,21 +112,22 @@ aurpkg() {
   cd "$dotdir"
   sudo -u "$name" yay -S --removemake --noconfirm - < "$aur_list"
   message "Finalizada"
-  exit 1
 }
 
 changeshell() {
-  message "ETAPA 7: Mundança de shell para zsh"
-  echo "Mudando o shell para zsh"
-  chsh -s /usr/bin/zsh "$USER"
-  message "ETAPA 7: Finalizada"
+  message "Mundança de shell para zsh"
+  echo "Mudando o shell para zsh..."
+  chsh -s /usr/bin/zsh "$name"
+  chsh -s /usr/bin/zsh root
+  message "Finalizada"
 }
 
 addgroups() {
-  message "ETAPA 8: Adcionando ao usuário grupos"
-  sudo usermod -aG video,audio,lp,network,kvm,storage,i2c $USER
-  echo "command: usermod -aG video,audio,lp,network,kvm,storage $USER"
-  message "ETAPA 8: Finalizada"
+  message "APA 8: Adcionando ao usuário grupos"
+  usermod -aG video,audio,lp,network,kvm,storage,i2c "$name"
+  echo "command: usermod -aG video,audio,lp,network,kvm,storage $name"
+  message "Finalizada"
+  exit 1
 }
 
 cleanup() {
@@ -146,18 +148,32 @@ hello || error
 mkfilestruct || error
 
 # Configuração do pacman e arquivo temporário sudoers
-echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/01_sudotemp
-trap 'rm -f /etc/sudoers.d/01_sudotemp' QUIT EXIT
+echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/09_sudotemp
+trap 'rm -f /etc/sudoers.d/09_sudotemp' QUIT EXIT
 setpacman || error
 
 # Repositório dos dotfiles
 dotfiles || error
 
+# Instalação dos programas
 pacinstall || error
+
+# Instalação do yay
 aurinstall || error
+
+# Instalação de pacotes AUR
 aurpkg || error
+
+# Mudança de shell para zsh
 changeshell || error
+
+# Gerenciamento de grupos
 addgroups || error
+
+# Limpeza
 cleanup || error
+
+echo -e "Defaults timestamp_timeout=60\nDefaults timestamp_type=global" > /etc/sudoers.d/01_sudo_time
+echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers.d/02-sudo-wheel
 
 echo -e "\n${bold}Parece que tudo ocorreu bem, por favor, reinicie o sistema${normal}"
