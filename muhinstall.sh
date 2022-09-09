@@ -24,7 +24,7 @@ error() {
 
 message() {
   echo -e "\n${bold}${1:-Ocorreu algum erro}${normal}\n"
-  sleep 3
+  sleep 2
 }
 
 hello() {
@@ -33,7 +33,7 @@ hello() {
   echo "Irá começar o script de instalação"
   sleep 3
   echo "Esse script é destinado para sistemas ${bold}Arch Linux${normal}"
-  sleep 5
+  sleep 3
   read -p "Antes de começar, por farvor ${bold}informe seu usuário${normal}: " name
   [[ ! $(id -u "$name") ]] && error "O usuário ${name} não existe"
   echo "${bold}Vamos-lá ${name} :)${normal}"
@@ -42,12 +42,13 @@ hello() {
 
 mkfilestruct() {
   message "Estrutura de arquivos"
-  mkdir -pv /home/$name/.config/{mpd,ncmpcpp,zsh}
-  mkdir -pv /home/$name/.cache/zsh
-  mkdir -pv /home/$name/.local/{src,share/{gnupg,npm}}
-  mkdir -pv /home/$name/media/{pic/screenshot,vid,mus,samp,proj}
-  mkdir -pv /home/$name/{dev,doc}
+  sudo -u "$name" mkdir -pv /home/$name/.config/{mpd,ncmpcpp,zsh} \
+    /home/$name/.cache/zsh \
+    /home/$name/.local/{src,share/{gnupg,npm}} \
+    /home/$name/media/{pic/screenshot,vid,mus,samp,proj} \
+    /home/$name/{dev,doc}
   message "Finalizada"
+  exit 1
 }
 
 setpacman() {
