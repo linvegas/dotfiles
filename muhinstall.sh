@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+# Version to be used as root user
+
 pkg_list_url="https://raw.githubusercontent.com/MisterConscio/dotfiles/main/pkglist.txt"
 pkg_list="pkglist.txt"
 dotfiles_repo="https://github.com/MisterConscio/dotfiles.git"
