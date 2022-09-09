@@ -42,7 +42,7 @@ mkfilestruct() {
   message "ETAPA 1: Estrutura de arquivos"
   mkdir -pv ~/.config/{mpd,ncmpcpp,zsh}
   mkdir -pv ~/.cache/zsh
-  mkdir -pv ~/.local/{src,share/gnupg}
+  mkdir -pv ~/.local/{src,share/{gnupg,npm}}
   mkdir -pv ~/media/{pic/screenshot,vid,mus,samp,proj}
   mkdir -pv ~/dev ~/docx
   message "ETAPA 1: Finalizada"
@@ -112,7 +112,7 @@ changeshell() {
 
 addgroups() {
   message "ETAPA 8: Adcionando ao usuário grupos"
-  sudo usermod -aG video,audio,lp,network,kvm,storage $USER
+  sudo usermod -aG video,audio,lp,network,kvm,storage,i2c $USER
   echo "command: usermod -aG video,audio,lp,network,kvm,storage $USER"
   message "ETAPA 8: Finalizada"
 }

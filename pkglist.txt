@@ -68,6 +68,7 @@ tree
 bashtop
 htop
 archlinux-wallpaper
+keepassxc
 nodejs
 npm
 imagemagick
