@@ -83,7 +83,7 @@ dotfiles() {
     zathura tmux
   # nvim -c "PlugInstall|q|q"
   message "Finalizada"
-  exit 0
+  exit 1
 }
 
 pacinstall() {
