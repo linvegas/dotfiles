@@ -12,32 +12,35 @@ bold=$(tput bold)
 normal=$(tput sgr0)
 
 # Some export for building a few packages
-export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
-export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
-export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
+# export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
+# export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
+# export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 
 error() {
-  echo -e "\n${bold}Algum erro aconteceu, finalizando${normal}\n"
+  echo -e "\n${bold}$1${normal}\n" >&2
   sleep 2
   exit 1
 }
 
 message() {
-  echo -e "\n${bold}$1${normal}\n"
+  echo -e "\n${bold}${1:-Ocorreu algum erro}${normal}\n"
   sleep 3
 }
 
 hello() {
-  echo -e "\n${bold}Bem vindo ${USER}${normal}\n"
+  echo -e "\n${bold}Bem vindo${normal}\n"
   sleep 3
   echo "Irá começar o script de instalação"
   sleep 3
   echo "Esse script é destinado para sistemas ${bold}Arch Linux${normal}"
   sleep 5
-  echo "${bold}Fique atento${normal} pois em alguns momentos sua senha será pedida!"
-  sleep 5
-  echo "Vamos-lá :)"
+  read -p "Antes de começar, por farvor informe seu usuário: " name
+  [[ ! $(id -u "$name") ]] && error "O usuário $name não existe"
+  # echo "${bold}Fique atento${normal} pois em alguns momentos sua senha será pedida!"
+  # sleep 5
+  echo "${bold}Vamos-lá :) ${name}${normal}"
   sleep 1
+  exit 0
 }
 
 mkfilestruct() {
@@ -126,6 +129,11 @@ cleanup() {
   message "ETAPA 9: Finalizada"
 }
 
+# Atualização de sistema inicial
+pacman --noconfirm -Syyu ||
+  error "Você não está rodando o script como root ou não possui acesso à internet"
+
+# Mesangem de boas vindas
 hello || error
 mkfilestruct || error
 setpacman || error
