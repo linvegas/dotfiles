@@ -35,7 +35,7 @@ hello() {
   echo "Esse script é destinado para sistemas ${bold}Arch Linux${normal}"
   sleep 5
   read -p "Antes de começar, por farvor ${bold}informe seu usuário${normal}: " name
-  [[ ! $(id -u "$name" >/dev/null 2>&1) ]] && error "O usuário ${name} não existe"
+  [[ ! $(id -u "$name") ]] && error "O usuário ${name} não existe"
   echo "${bold}Vamos-lá ${name} :)${normal}"
   sleep 1
 }
