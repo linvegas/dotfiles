@@ -47,7 +47,7 @@ mkfilestruct() {
   mkdir -pv /home/$name/.local/{src,share/{gnupg,npm}}
   mkdir -pv /home/$name/media/{pic/screenshot,vid,mus,samp,proj}
   mkdir -pv /home/$name/{dev,doc}
-  message "Etapa Finalizada"
+  message "Finalizada"
 }
 
 setpacman() {
@@ -69,7 +69,7 @@ setpacman() {
 
 dotfiles() {
   message "Repositório dos dotfiles"
-  pacman --noconfirm --needed -S stow
+  pacman --noconfirm --needed -S stow git
   echo -e "\nClonando o repositório dos dotfiles..."
   # curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
     # "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
@@ -83,6 +83,7 @@ dotfiles() {
     zathura tmux
   # nvim -c "PlugInstall|q|q"
   message "Finalizada"
+  exit 0
 }
 
 pacinstall() {
