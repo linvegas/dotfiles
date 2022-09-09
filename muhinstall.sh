@@ -58,14 +58,31 @@ setpacman() {
   sed -i "s/-j2/-j$(nproc)/;/^#MAKEFLAGS/s/^#//" /etc/makepkg.conf
 
   cp -v /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+  echo "Testando velocidade dos repositórios..."
   rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 
-  trap 'rm -f /etc/sudoers.d/sudo-temp' EXIT
   echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/sudo-temp
 
   sudo pacman --noconfirm -Syy
   message "Finalizada"
-  exit 0
+}
+
+dotfiles() {
+  message "Repositório dos dotfiles"
+  pacman --noconfirm --needed -S stow
+  echo -e "\nClonando o repositório dos dotfiles..."
+  # curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+    # "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  git clone "$dotfiles_repo" "/home/$name/dotfiles"
+  cd "/home/$name/dotfiles"
+  stow -v \
+    i3 alacritty x11 zsh \
+    polybar xdg scripts gtk \
+    dircolors mpd ncmpcpp dunst \
+    lf fontconfig rofi nvim \
+    zathura tmux
+  # nvim -c "PlugInstall|q|q"
+  message "Finalizada"
 }
 
 pacinstall() {
@@ -75,23 +92,6 @@ pacinstall() {
   echo "${bold}Iniciando a instalação...${normal}"
   sudo pacman --noconfirm --needed -S - < "$pkg_list"
   message "ETAPA 3: Finalizada"
-}
-
-dotfiles() {
-  message "ETAPA 4: Repositório dos dotfiles"
-  echo -e "\nClonando o repositório dos dotfiles..."
-  curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-  git clone "$dotfiles_repo"
-  cd dotfiles
-  stow -v \
-    i3 alacritty x11 zsh \
-    polybar xdg scripts gtk \
-    dircolors mpd ncmpcpp dunst \
-    lf fontconfig rofi nvim \
-    zathura tmux
-  nvim -c "PlugInstall|q|q"
-  message "ETAPA 4: Finalizada"
 }
 
 aurinstall() {
@@ -144,9 +144,13 @@ hello || error
 mkfilestruct || error
 
 # Configuração do pacman e arquivo temporário sudoers
+trap 'rm -f /etc/sudoers.d/sudo-temp' EXIT
 setpacman || error
-pacinstall || error
+
+# Repositório dos dotfiles
 dotfiles || error
+
+pacinstall || error
 aurinstall || error
 aurpkg || error
 changeshell || error
