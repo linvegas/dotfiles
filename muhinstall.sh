@@ -4,6 +4,7 @@
 
 # pkg_list_url="https://raw.githubusercontent.com/MisterConscio/dotfiles/main/pkglist.txt"
 pkg_list="pkglist.txt"
+aur_list="aurlist.txt"
 dotfiles_repo="https://github.com/MisterConscio/dotfiles.git"
 aurhelper="yay"
 aurhelper_git="https://aur.archlinux.org/yay.git"
@@ -67,12 +68,13 @@ setpacman() {
 
 dotfiles() {
   message "Repositório dos dotfiles"
+  dotdir="/home/$name/dotfiles"
   pacman --noconfirm --needed -S stow git
   echo -e "\nClonando o repositório dos dotfiles..."
   # curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
     # "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-  sudo -u "$name" git clone "$dotfiles_repo" "/home/$name/dotfiles"
-  cd "/home/$name/dotfiles"
+  sudo -u "$name" git clone "$dotfiles_repo" $dotdir
+  cd $dotdir
   sudo -u "$name" stow -v \
     i3 alacritty x11 zsh \
     polybar xdg scripts gtk \
@@ -87,7 +89,7 @@ pacinstall() {
   message "Instalação de programas"
   # echo "Baixando lista de aplicativos..."
   # curl -sLO "$pkg_list_url"
-  [[ ! -e "/home/$name/dotfiles/$pkglist" ]] && error "O arquivo $pkg_list não existe"
+  [[ ! -e "$dotdir/$pkglist" ]] && error "O arquivo $pkg_list não existe"
   echo "${bold}Iniciando a instalação...${normal}"
   sudo pacman --noconfirm --needed -S - < "$pkg_list"
   message "Finalizada"
@@ -101,15 +103,15 @@ aurinstall() {
   cd $aurdir
   sudo -u "$name" makepkg -sirc --noconfirm || error
   message "Finalizada"
-  exit 1
 }
 
 aurpkg() {
-  message "ETAPA 6: Instalação de pacotes AUR"
+  message "Instalação de pacotes AUR"
   echo "Instalando pacotes do AUR..."
-  cd ~/dotfiles
-  yay -S --removemake --noconfirm - < aurlist.txt
-  message "ETAPA 6: Finalizada"
+  cd "$dotdir"
+  sudo -u "$name" yay -S --removemake --noconfirm - < "$aur_list"
+  message "Finalizada"
+  exit 1
 }
 
 changeshell() {
