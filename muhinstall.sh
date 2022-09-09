@@ -91,17 +91,17 @@ pacinstall() {
   echo "${bold}Iniciando a instalação...${normal}"
   sudo pacman --noconfirm --needed -S - < "$pkg_list"
   message "Finalizada"
-  exit 1
 }
 
 aurinstall() {
-  message "ETAPA 5: Instalação do Yay"
+  message "Instalação do Yay"
   echo "Instalando ${aurhelper} como AUR helper..."
-  cd ~/.local/src
-  git clone "$aurhelper_git"
-  cd yay
-  makepkg -sirc --noconfirm
-  message "ETAPA 5: Finalizada"
+  local aurdir="/home/$name/.local/src/$aurhelper"
+  sudo -u "$name" git clone "$aurhelper_git" $aurdir
+  cd $aurdir
+  sudo -u "$name" makepkg -sirc --noconfirm || error
+  message "Finalizada"
+  exit 1
 }
 
 aurpkg() {
