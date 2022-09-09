@@ -2,7 +2,7 @@
 
 # Version to be used as root user
 
-pkg_list_url="https://raw.githubusercontent.com/MisterConscio/dotfiles/main/pkglist.txt"
+# pkg_list_url="https://raw.githubusercontent.com/MisterConscio/dotfiles/main/pkglist.txt"
 pkg_list="pkglist.txt"
 dotfiles_repo="https://github.com/MisterConscio/dotfiles.git"
 aurhelper="yay"
@@ -17,23 +17,23 @@ normal=$(tput sgr0)
 # export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 
 error() {
-  echo -e "\n${bold}$1${normal}\n" >&2
+  echo -e "\n${bold}${1:-Ocorreu algum erro}${normal}\n"
   sleep 2
   exit 1
 }
 
 message() {
-  echo -e "\n${bold}${1:-Ocorreu algum erro}${normal}\n"
-  sleep 2
+  echo -e "\n${bold}$1${normal}\n" >&2
+  sleep 1
 }
 
 hello() {
   echo -e "\n${bold}Bem vindo${normal}\n"
-  sleep 3
+  sleep 2
   echo "Irá começar o script de instalação"
-  sleep 3
+  sleep 2
   echo "Esse script é destinado para sistemas ${bold}Arch Linux${normal}"
-  sleep 3
+  sleep 2
   read -p "Antes de começar, por farvor ${bold}informe seu usuário${normal}: " name
   [[ ! $(id -u "$name") ]] && error "O usuário ${name} não existe"
   echo "${bold}Vamos-lá ${name} :)${normal}"
@@ -81,16 +81,17 @@ dotfiles() {
     zathura tmux
   # nvim -c "PlugInstall|q|q"
   message "Finalizada"
-  exit 1
 }
 
 pacinstall() {
-  message "ETAPA 3: Instalação de programas"
-  echo "Baixando lista de aplicativos..."
-  curl -sLO "$pkg_list_url"
+  message "Instalação de programas"
+  # echo "Baixando lista de aplicativos..."
+  # curl -sLO "$pkg_list_url"
+  [[ ! -e "/home/$name/dotfiles/$pkglist" ]] && error "O arquivo $pkg_list não existe"
   echo "${bold}Iniciando a instalação...${normal}"
   sudo pacman --noconfirm --needed -S - < "$pkg_list"
-  message "ETAPA 3: Finalizada"
+  message "Finalizada"
+  exit 1
 }
 
 aurinstall() {
@@ -143,7 +144,7 @@ hello || error
 mkfilestruct || error
 
 # Configuração do pacman e arquivo temporário sudoers
-echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/sudo-temp
+echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/01_sudotemp
 trap 'rm -f /etc/sudoers.d/01_sudotemp' QUIT EXIT
 setpacman || error
 
