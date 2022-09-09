@@ -34,23 +34,21 @@ hello() {
   sleep 3
   echo "Esse script é destinado para sistemas ${bold}Arch Linux${normal}"
   sleep 5
-  read -p "Antes de começar, por farvor informe seu usuário: " name
-  [[ ! $(id -u "$name") ]] && error "O usuário $name não existe"
-  # echo "${bold}Fique atento${normal} pois em alguns momentos sua senha será pedida!"
-  # sleep 5
-  echo "${bold}Vamos-lá :) ${name}${normal}"
+  read -p "Antes de começar, por farvor ${bold}informe seu usuário${normal}: " name
+  [[ ! $(id -u "$name" >/dev/null 2>&1) ]] && error "O usuário ${name} não existe"
+  echo "${bold}Vamos-lá ${name} :)${normal}"
   sleep 1
-  exit 0
 }
 
 mkfilestruct() {
-  message "ETAPA 1: Estrutura de arquivos"
-  mkdir -pv ~/.config/{mpd,ncmpcpp,zsh}
-  mkdir -pv ~/.cache/zsh
-  mkdir -pv ~/.local/{src,share/{gnupg,npm}}
-  mkdir -pv ~/media/{pic/screenshot,vid,mus,samp,proj}
-  mkdir -pv ~/dev ~/docx
-  message "ETAPA 1: Finalizada"
+  message "Estrutura de arquivos"
+  mkdir -pv /home/$name/.config/{mpd,ncmpcpp,zsh}
+  mkdir -pv /home/$name/.cache/zsh
+  mkdir -pv /home/$name/.local/{src,share/{gnupg,npm}}
+  mkdir -pv /home/$name/media/{pic/screenshot,vid,mus,samp,proj}
+  mkdir -pv /home/$name/dev ~/docx
+  message "Etapa Finalizada"
+  exit 0
 }
 
 setpacman() {
@@ -133,9 +131,12 @@ cleanup() {
 pacman --noconfirm -Syyu ||
   error "Você não está rodando o script como root ou não possui acesso à internet"
 
-# Mesangem de boas vindas
+# Mesangem de boas vindas e informação do usuário
 hello || error
+
+# Estrutura de arquivos pessoal
 mkfilestruct || error
+
 setpacman || error
 pacinstall || error
 dotfiles || error
