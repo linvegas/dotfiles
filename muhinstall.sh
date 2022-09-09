@@ -13,11 +13,6 @@ falsename="conscio"
 bold=$(tput bold)
 normal=$(tput sgr0)
 
-# Some export for building a few packages
-export GNUPGHOME="${XDG_DATA_HOME:-/home/$name/.local/share}/gnupg"
-export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-/home/$name/.config}/npm/npmrc"
-export GOPATH="${XDG_DATA_HOME:-/home/$name/.local/share}/go"
-
 error() {
   echo -e "\n${bold}${1:-Ocorreu algum erro}${normal}\n"
   sleep 2
@@ -127,14 +122,12 @@ addgroups() {
   usermod -aG video,audio,lp,network,kvm,storage,i2c "$name"
   echo "command: usermod -aG video,audio,lp,network,kvm,storage $name"
   message "Finalizada"
-  exit 1
 }
 
 cleanup() {
-  message "ETAPA 9: Limpeza"
-  rm -v ~/muhinstall.sh ~/pkglist.txt
-  rm -v ~/.bash_logout ~/.bashrc ~/.bash_profile
-  message "ETAPA 9: Finalizada"
+  message "Limpeza"
+  rm -fv /home/$name/{muhinstall.sh,.bash_logout,.bashrc,.bash_profile}
+  message "Finalizada"
 }
 
 # Atualização de sistema inicial
@@ -160,6 +153,11 @@ pacinstall || error
 
 # Instalação do yay
 aurinstall || error
+
+# Some export for building a few packages
+export GNUPGHOME="${XDG_DATA_HOME:-/home/$name/.local/share}/gnupg"
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-/home/$name/.config}/npm/npmrc"
+export GOPATH="${XDG_DATA_HOME:-/home/$name/.local/share}/go"
 
 # Instalação de pacotes AUR
 aurpkg || error
