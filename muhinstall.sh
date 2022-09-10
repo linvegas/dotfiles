@@ -180,13 +180,17 @@ addgroups || error
 # Limpeza
 cleanup || error
 
-# [ ! -e /etc/security/limits.d/00-audio.conf ] && cat << EOF > /etc/security/limits.d/00-audio.conf
-# # Realtime Scheduling for jack server
-# @audio   -  rtprio     95
-# @audio   -  memlock    unlimited
-# EOF
+[ ! -e /etc/security/limits.d/00-audio.conf ] &&
+  mkdir -pv /etc/security/limits.d/ &&
+  cat << EOF > /etc/security/limits.d/00-audio.conf
+# Realtime Scheduling for jack server
+@audio   -  rtprio     95
+@audio   -  memlock    unlimited
+EOF
 
-echo -e "Defaults timestamp_timeout=60\nDefaults timestamp_type=global" > /etc/sudoers.d/01_sudo_time
+echo -e "Defaults timestamp_timeout=30\nDefaults timestamp_type=global" > /etc/sudoers.d/01_sudo_time
 echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers.d/02-sudo-wheel
+
+echo "PROMPT='%F{white}%B%1~%b%f %(!.#.>>) '" > /root/.zshrc
 
 echo -e "\n${bold}Parece que tudo ocorreu bem, por favor, reinicie o sistema${normal}"
