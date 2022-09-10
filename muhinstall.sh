@@ -67,8 +67,6 @@ dotfiles() {
   dotdir="/home/$name/dotfiles"
   pacman --noconfirm --needed -S stow git
   echo -e "\nClonando o repositório dos dotfiles..."
-  # curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-    # "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
   sudo -u "$name" git clone "$dotfiles_repo" $dotdir
   cd $dotdir
   sudo -u "$name" stow -v \
@@ -83,8 +81,6 @@ dotfiles() {
 
 pacinstall() {
   message "Instalação de programas"
-  # echo "Baixando lista de aplicativos..."
-  # curl -sLO "$pkg_list_url"
   [[ ! -e "$dotdir/$pkglist" ]] && error "O arquivo $pkg_list não existe"
   echo "${bold}Iniciando a instalação...${normal}"
   sudo pacman --noconfirm --needed -S - < "$pkg_list"
@@ -107,6 +103,13 @@ aurpkg() {
   cd "$dotdir"
   sudo -u "$name" yay -S --removemake --noconfirm - < "$aur_list"
   message "Finalizada"
+}
+
+vimplug() {
+  curl -fLo \
+    "/home/$name/.local/share/nvim/site/autoload/plug.vim" --create-dirs \
+    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  sudo -u "$name" nvim -c "PlugInstall|q|q"
 }
 
 changeshell() {
@@ -151,16 +154,19 @@ dotfiles || error
 # Instalação dos programas
 pacinstall || error
 
+# Some export for building a few packages
+export GNUPGHOME="/home/$name/.local/share/gnupg"
+export NPM_CONFIG_USERCONFIG="/home/$name/.config/npm/npmrc"
+export GOPATH="/home/$name/.local/share/go"
+
 # Instalação do yay
 aurinstall || error
 
-# Some export for building a few packages
-export GNUPGHOME="${XDG_DATA_HOME:-/home/$name/.local/share}/gnupg"
-export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-/home/$name/.config}/npm/npmrc"
-export GOPATH="${XDG_DATA_HOME:-/home/$name/.local/share}/go"
-
 # Instalação de pacotes AUR
 aurpkg || error
+
+# Vimplug install
+vimplug || error
 
 # Mudança de shell para zsh
 changeshell || error
