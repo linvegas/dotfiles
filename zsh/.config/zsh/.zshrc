@@ -113,15 +113,15 @@ g() {
     bin)  cd ~/.local/bin;;
     rep)  cd ~/.local/src;;
     dev)  cd ~/dev/learn/bash-script;;
-    usb)  cd /mnt/USB1;;
-    usb2) cd /mnt/USB2;;
-    usb3) cd /mnt/USB3;;
-    ext)  cd /mnt/EXTERNO;;
-    ssd)  cd /mnt/SSD;;
-    ani)  cd /mnt/SSD/anime;;
-    mus)  cd /mnt/SSD/musique;;
-    mor)  cd /mnt/SSD/morbus;;
-    emu)  cd /mnt/SSD/emu;;
+    usb)  cd /mnt/usb1;;
+    usb2) cd /mnt/usb2;;
+    usb3) cd /mnt/usb3;;
+    ext)  cd /mnt/externo;;
+    ssd)  cd /mnt/ssd;;
+    ani)  cd /mnt/ssd/anime;;
+    mus)  cd /mnt/ssd/musique;;
+    mor)  cd /mnt/ssd/morbus;;
+    emu)  cd /mnt/ssd/emu;;
     *)    echo "goto dot|pic|vid|mus|emu|smp|pro|bin|dev|rep|ext|ssd|ani|mor";;
   esac
 }
