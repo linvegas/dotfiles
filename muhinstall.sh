@@ -106,10 +106,13 @@ aurpkg() {
 }
 
 vimplug() {
-  curl -fLo \
-    "/home/$name/.local/share/nvim/site/autoload/plug.vim" --create-dirs \
-    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  message "Instalação dos plugins do vim"
+  sudo -u "$name" mkdir -pv /home/$name/.local/share/nvim/site/autoload
+  curl -Ls \
+    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > \
+    "/home/$name/.local/share/nvim/site/autoload/plug.vim"
   sudo -u "$name" nvim -c "PlugInstall|q|q"
+  message "Finalizada"
 }
 
 changeshell() {
@@ -140,6 +143,11 @@ pacman --noconfirm -Syyu ||
 # Mesangem de boas vindas e informação do usuário
 hello || error
 
+# Some export for building a few packages
+export GNUPGHOME="/home/$name/.local/share/gnupg"
+export NPM_CONFIG_USERCONFIG="/home/$name/.config/npm/npmrc"
+export GOPATH="/home/$name/.local/share/go"
+
 # Estrutura de arquivos pessoal
 mkfilestruct || error
 
@@ -153,11 +161,6 @@ dotfiles || error
 
 # Instalação dos programas
 pacinstall || error
-
-# Some export for building a few packages
-export GNUPGHOME="/home/$name/.local/share/gnupg"
-export NPM_CONFIG_USERCONFIG="/home/$name/.config/npm/npmrc"
-export GOPATH="/home/$name/.local/share/go"
 
 # Instalação do yay
 aurinstall || error
@@ -176,6 +179,12 @@ addgroups || error
 
 # Limpeza
 cleanup || error
+
+[ ! -e /etc/security/limits.d/00-audio.conf ] && cat << EOF > /etc/security/limits.d/00-audio.conf
+# Realtime Scheduling for jack server
+@audio   -  rtprio     95
+@audio   -  memlock    unlimited
+EOF
 
 echo -e "Defaults timestamp_timeout=60\nDefaults timestamp_type=global" > /etc/sudoers.d/01_sudo_time
 echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers.d/02-sudo-wheel
