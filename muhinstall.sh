@@ -144,9 +144,9 @@ pacman --noconfirm -Syyu ||
 hello || error
 
 # Some export for building a few packages
-export GNUPGHOME="/home/$name/.local/share/gnupg"
-export NPM_CONFIG_USERCONFIG="/home/$name/.config/npm/npmrc"
-export GOPATH="/home/$name/.local/share/go"
+sudo GNUPGHOME="/home/$name/.local/share/gnupg"
+sudo NPM_CONFIG_USERCONFIG="/home/$name/.config/npm/npmrc"
+sudo GOPATH="/home/$name/.local/share/go"
 
 # Estrutura de arquivos pessoal
 mkfilestruct || error
