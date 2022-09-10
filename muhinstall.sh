@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-# Version to be used as root user
+# This script is supposed to be executed as the root user
 
 # pkg_list_url="https://raw.githubusercontent.com/MisterConscio/dotfiles/main/pkglist.txt"
 pkg_list="pkglist.txt"
@@ -12,6 +12,11 @@ falsename="conscio"
 
 bold=$(tput bold)
 normal=$(tput sgr0)
+
+# Some export for building a few packages
+GNUPGHOME="/home/$name/.local/share/gnupg"
+NPM_CONFIG_USERCONFIG="/home/$name/.config/npm/npmrc"
+GOPATH="/home/$name/.local/share/go"
 
 error() {
   echo -e "\n${bold}${1:-Ocorreu algum erro}${normal}\n"
@@ -93,7 +98,7 @@ aurinstall() {
   local aurdir="/home/$name/.local/src/$aurhelper"
   sudo -u "$name" git clone "$aurhelper_git" $aurdir
   cd $aurdir
-  sudo -u "$name" makepkg -sirc --noconfirm || error
+  sudo -u "$name" -E makepkg -sirc --noconfirm || error
   message "Finalizada"
 }
 
@@ -101,7 +106,7 @@ aurpkg() {
   message "Instalação de pacotes AUR"
   echo "Instalando pacotes do AUR..."
   cd "$dotdir"
-  sudo -u "$name" yay -S --removemake --noconfirm - < "$aur_list"
+  sudo -u "$name" -E yay -S --removemake --noconfirm - < "$aur_list"
   message "Finalizada"
 }
 
@@ -142,11 +147,6 @@ pacman --noconfirm -Syyu ||
 
 # Mesangem de boas vindas e informação do usuário
 hello || error
-
-# Some export for building a few packages
-sudo GNUPGHOME="/home/$name/.local/share/gnupg"
-sudo NPM_CONFIG_USERCONFIG="/home/$name/.config/npm/npmrc"
-sudo GOPATH="/home/$name/.local/share/go"
 
 # Estrutura de arquivos pessoal
 mkfilestruct || error
