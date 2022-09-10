@@ -85,7 +85,7 @@ pacinstall() {
   message "Instalação de programas"
   [[ ! -e "$dotdir/$pkglist" ]] && error "O arquivo $pkg_list não existe"
   echo "${bold}Iniciando a instalação...${normal}"
-  sudo pacman --noconfirm --needed -S - < "$pkg_list"
+  pacman --noconfirm --needed -S - < "$pkg_list"
   message "Finalizada"
 }
 
@@ -95,7 +95,7 @@ aurinstall() {
   local aurdir="/home/$name/.local/src/$aurhelper"
   sudo -u "$name" git clone "$aurhelper_git" $aurdir
   cd $aurdir
-  sudo -u "$name" -E makepkg -sirc --noconfirm || error
+  sudo -u "$name" makepkg -sirc --noconfirm || error
   message "Finalizada"
 }
 
@@ -103,7 +103,7 @@ aurpkg() {
   message "Instalação de pacotes AUR"
   echo "Instalando pacotes do AUR..."
   cd "$dotdir"
-  sudo -u "$name" -E yay -S --removemake --noconfirm - < "$aur_list"
+  sudo -u "$name" yay -S --removemake --noconfirm - < "$aur_list"
   message "Finalizada"
 }
 
