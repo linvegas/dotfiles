@@ -14,9 +14,9 @@ bold=$(tput bold)
 normal=$(tput sgr0)
 
 # Some export for building a few packages
-GNUPGHOME="/home/$name/.local/share/gnupg"
-NPM_CONFIG_USERCONFIG="/home/$name/.config/npm/npmrc"
-GOPATH="/home/$name/.local/share/go"
+env GNUPGHOME="/home/$name/.local/share/gnupg"
+env NPM_CONFIG_USERCONFIG="/home/$name/.config/npm/npmrc"
+env GOPATH="/home/$name/.local/share/go"
 
 error() {
   echo -e "\n${bold}${1:-Ocorreu algum erro}${normal}\n"
