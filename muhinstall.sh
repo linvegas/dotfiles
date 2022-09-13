@@ -134,7 +134,7 @@ addgroups() {
 
 cleanup() {
   message "Limpeza"
-  rm -fv /home/$name/{muhinstall.sh,.bash_logout,.bashrc,.bash_profile}
+  rm -rfv /home/$name/{muhinstall.sh,.bash_logout,.bashrc,.bash_profile,go,.gnupg}
   message "Finalizada"
 }
 
@@ -146,9 +146,9 @@ pacman --noconfirm -Syyu ||
 hello || error
 
 # Some export for building a few packages
-GNUPGHOME="/home/$name/.local/share/gnupg"
-NPM_CONFIG_USERCONFIG="/home/$name/.config/npm/npmrc"
-GOPATH="/home/$name/.local/share/go"
+# GNUPGHOME="/home/$name/.local/share/gnupg"
+# NPM_CONFIG_USERCONFIG="/home/$name/.config/npm/npmrc"
+# GOPATH="/home/$name/.local/share/go"
 
 # Estrutura de arquivos pessoal
 mkfilestruct || error
