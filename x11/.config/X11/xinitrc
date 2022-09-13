@@ -21,4 +21,10 @@ xcompmgr &
 [ ! -s ~/.config/mpd/pid ] && mpd &
 [[ -z $(pgrep -xU $UID mpdscribble) ]] && mpdscribble &
 
-exec i3
+session="${1:-i3}"
+
+case "$session" in
+  i3)     exec i3;;
+  bspwm)  exec bspwm;;
+  *)      exec "$1";;
+esac
