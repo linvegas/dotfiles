@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-[[ ! $(command -v rofi) ]] && echo "Rofi is not installed" && exit 1
+[[ ! $(command -v rofi) ]] && notify-send "Rofi is not installed" && exit 1
 
 INPUT=$(
   echo "SUS|OFF|RES|EXI" |\
