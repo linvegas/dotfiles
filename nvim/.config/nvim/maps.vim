@@ -6,7 +6,7 @@ nmap <leader>rc :vsp $MYVIMRC<CR>
 " New tab prompt
 nmap <leader>n :tabnew<Space>
 " Open current file on browser
-nmap <leader>W <cmd>!firefox -private-window %<CR>
+nmap <leader>W !firefox -private-window %<CR>
 
 " Buffer and tab switch
 nnoremap <C-S-h> :bp<CR>
