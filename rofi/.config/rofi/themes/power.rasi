@@ -24,7 +24,7 @@ window {
 }
 
 mainbox {
-  padding:           8px;
+  padding:           4px;
   children:          [inputbar, listview];
 }
 
@@ -47,7 +47,7 @@ element, element-text, element-icon {
 element-text {
   orientation:       horizontal;
   horizontal-align:  0.5;
-  text-color:        @fg;
+  text-color:        @sel;
 }
 
 element {
@@ -56,5 +56,5 @@ element {
 }
 
 element selected {
-  background-color:  @sel;
+  background-color:  @green;
 }
