@@ -1,5 +1,5 @@
 "" Some basics
-set number
+set relativenumber
 set scrolloff=8
 set cursorline
 set splitbelow splitright

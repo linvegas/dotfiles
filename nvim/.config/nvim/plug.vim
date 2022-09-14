@@ -34,7 +34,8 @@ Plug 'windwp/nvim-ts-autotag'
 Plug 'numToStr/Comment.nvim'
 
 " Utilities
-Plug 'vimwiki/vimwiki'
+" Plug 'vimwiki/vimwiki'
+Plug 'baskerville/vim-sxhkdrc'
 
 " Tidalcyles
 "Plug 'tidalcycles/vim-tidal'
