@@ -10,7 +10,7 @@ Xcursor.theme: Breeze
 ! Red
 *.color1:        #E06C75
 *.color9:        #E06C75
-! Gree
+! Green
 *.color2:        #98C379
 *.color10:       #98C379
 ! Yellow
@@ -28,3 +28,5 @@ Xcursor.theme: Breeze
 ! White
 *.color7:        #ABB2BF
 *.color15:       #FFFFFF
+
+! vim:ft=xdefaults

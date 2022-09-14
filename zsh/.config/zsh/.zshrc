@@ -112,7 +112,7 @@ g() {
     pro)  cd ~/media/proj;;
     bin)  cd ~/.local/bin;;
     rep)  cd ~/.local/src;;
-    dev)  cd ~/dev/learn/bash-script;;
+    dev)  cd ~/dev/learn/shell;;
     usb)  cd /mnt/usb1;;
     usb2) cd /mnt/usb2;;
     usb3) cd /mnt/usb3;;
