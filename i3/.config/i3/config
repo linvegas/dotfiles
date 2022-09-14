@@ -35,10 +35,10 @@ client.unfocused               $black   $black  $white  $magenta  $shadow
 client.focused_inactive        $shadow  $shadow $white  #484e50   #5f676a
 
 ## Startup
-exec --no-startup-id           $HOME/.local/bin/setwallpaper
+# exec --no-startup-id           $HOME/.local/bin/setwallpaper
 exec --no-startup-id           xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id           nm-applet
-exec --no-startup-id           dunst
+# exec --no-startup-id           dunst
 exec_always --no-startup-id    $HOME/.config/polybar/launch.sh
 
 ## Keybinds
