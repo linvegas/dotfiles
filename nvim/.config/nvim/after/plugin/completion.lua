@@ -48,10 +48,10 @@ cmp.setup({
     -- documentation = cmp.config.window.bordered(),
   },
   sources = cmp.config.sources({
-    { name = 'nvim_lsp', keyword_length = 4, max_item_count = 20 },
+    { name = 'nvim_lsp', keyword_length = 3, max_item_count = 20 },
     { name = 'path', max_item_count = 20 },
     -- { name = 'buffer', keyword_length = 4, max_item_count = 20 },
-    { name = 'luasnip', keyword_length = 4, max_item_count = 20 },
+    { name = 'luasnip', keyword_length = 3, max_item_count = 20 },
     -- { name = 'vsnip' }, -- For vsnip users.
     -- { name = 'ultisnips' }, -- For ultisnips users.
     -- { name = 'snippy' }, -- For snippy users.
