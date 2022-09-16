@@ -35,3 +35,8 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
 augroup Shebang
   autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env sh\<nl>\<nl>\"|$
 augroup END
+
+augroup LaTeX
+  autocmd BufWritePost *.tex
+    \ silent !pdflatex % > /dev/null
+augroup END
