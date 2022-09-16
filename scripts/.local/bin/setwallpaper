@@ -11,28 +11,23 @@ case "$1" in
   *)  image=$(readlink -f "$1");;
 esac
 
-# Get monitors connected
-connected=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1)
+# Pywal
+[[ $(which wal) ]] && wal -n -s -q -i "$image"
 
-# pywal
-pywal() {
-  [[ -e $(which wal) ]] && wal -n -s -q -i "$image"
-}
+# Get monitors connected
+monitors=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1)
+count=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1 | wc -l)
 
 # If there is only one monitor connected
-[[ $(echo $connected | wc -w ) -lt 2 ]] && \
-  xwallpaper --output $connected --stretch $image && \
-  pywal && exit 0
+[[ $count = 1 ]] && \
+  xwallpaper --output "$monitors" --stretch "$image" && exit
 
 # Dual monitor setup
-for display in $connected; do
-  if [[ $display =~ "DP" ]]; then
-    xwallpaper --output $display --zoom $image
-  elif [[ $display =~ "HDMI" ]]; then
-    xwallpaper --output $display --stretch $image
+for m in $monitors; do
+  if [[ "$m" =~ "HDMI" ]]; then
+    xwallpaper --output "$m" --stretch "$image"
+
   else
-    echo "Nenhum monitor encontrado"
+    xwallpaper --output "$m" --zoom "$image"
   fi
 done
-
-pywal
