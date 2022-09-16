@@ -14,13 +14,10 @@ setxkbmap -option caps:escape &
 xset s off -dpms &
 xset r rate 300 50 &
 /usr/lib/geoclue-2.0/demos/agent &
-redshift &
-xcompmgr &
-dunst &
 
-# mpd server
-[ ! -s ~/.config/mpd/pid ] && mpd &
-[[ -z $(pgrep -xU $UID mpdscribble) ]] && mpdscribble &
+for p in redshift xcompmgr dunst mpd mpdscribble; do
+  pidof -s "$p" || "$p" &
+done
 
 session="${1:-i3}"
 
