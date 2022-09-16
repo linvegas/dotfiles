@@ -18,7 +18,7 @@ zstyle ':vcs_info:git:*' formats '%F{green}(%b)%f '
 zstyle ':vcs_info:*' enable git
 setopt prompt_subst
 
-PROMPT='$(test ${+HISTFILE} -eq 0 && echo " ")${vcs_info_msg_0_}%F{white}%B%1~%b%f %(!.#.>>) '
+PROMPT='$(test ${+HISTFILE} -eq 0 && echo " ")${vcs_info_msg_0_}%F{white}%B%1~%b%f %(!.#.$) '
 
 # History configuration
 setopt histignorealldups sharehistory
