@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Some global variables
-ANI_DIR="/mnt/SSD/anime"
+ANI_DIR="/mnt/ssd/anime"
 FIND_OPTS="-maxdepth 1 -mindepth 1"
 MPV="mpv --fs"
 
@@ -10,25 +10,24 @@ MPV="mpv --fs"
 
 # Selecting anime's folder
 ANI_PATH=$(
-  find "${ANI_DIR}" ${FIND_OPTS} -type d |\
-  xargs -I{} basename {} |\
-  dmenu -l 20 -p "Anime: "
+  find "${ANI_DIR}" ${FIND_OPTS} -type d -exec basename '{}' \; |
+  rofi -dmenu
 )
 
 # Check if options were selected
-[[ -z "${ANI_PATH}" ]] && echo "Nenhuma opção selecionada" && exit 0
+[[ -z "${ANI_PATH}" ]] && exit 0
 
 # Selecting anime's episode
 ANI_EPI=$(
   find "${ANI_DIR}/${ANI_PATH}" ${FIND_OPTS} \
-  -type f \( -name "*.mkv" -or -name "*.mp4" -or -name "*.webm" \) |\
-  sort |\
-  xargs -I{} basename {} |\
-  dmenu -l 24 -p "Episódio: "
+  -type f \( -name "*.mkv" -or -name "*.mp4" -or -name "*.webm" \) \
+  -exec basename '{}' \; |
+  sort |
+  rofi -dmenu
 )
 
 # Check if options were selected
-[[ -z "${ANI_EPI}" ]] && echo "Nenhuma opção selecionada" && exit 0
+[[ -z "${ANI_EPI}" ]] && exit 0
 
 # Actually playing the anime
 $MPV "${ANI_DIR}/${ANI_PATH}/${ANI_EPI}"
