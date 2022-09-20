@@ -1,6 +1,6 @@
 /* vim: set filetype=rasi : */
 
-@theme "/usr/share/rofi/themes/gruvbox-light.rasi"
+@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
 
 window { width: 490; }
 
