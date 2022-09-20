@@ -53,7 +53,6 @@ alias c="clear"
 alias vim="nvim"
 alias hx="helix"
 alias anom=" unset HISTFILE"
-alias zt="zathura"
 alias lf="lf-uber"
 alias aplay="aplay -D pulse"
 
@@ -76,7 +75,7 @@ alias gp="git push"
 # Media app aliases
 alias mpv="mpv --autofit=60%x60% --fs"
 alias sxiv="sxiv -f -b"
-alias zathura="zathura --mode=fullscreen"
+alias zt="zathura"
 
 # Clean home aliases
 alias nvidia_settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
@@ -147,6 +146,8 @@ v() {
     *)      echo "Precisa de um parâmetro ou argumento inválido";;
   esac
 }
+
+vv() { cd $HOME/.local/bin; $EDITOR $(fzf --height=15 --layout=reverse --info=hidden --preview=''); }
 
 # Dircolors
 [[ -x /usr/bin/dircolors ]] && test -r ~/.config/dircolors && eval "$(dircolors -b ~/.config/dircolors)" || eval "$(dircolors -b)"
