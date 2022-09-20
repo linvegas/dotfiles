@@ -18,6 +18,7 @@ use_console_editor = "yes"
 
 song_status_format = "{{%a - %b - }{%t}}|{%f}"
 user_interface = "alternative"
+alternative_header_second_line_format = {{$4$b%a$/b$9}{ - $7%b$9}{ - ($4%l$9)}}|{%D}
 header_visibility = "no"
 
 media_library_hide_album_dates = "yes"
@@ -27,5 +28,5 @@ screen_switcher_mode = "playlist, media_library"
 
 main_window_color = "green"
 header_window_color = "cyan"
-progressbar_elapsed_color = "red:b"
+progressbar_elapsed_color = "green:b"
 progressbar_look = "▒▒░"
