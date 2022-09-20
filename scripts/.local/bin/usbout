@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Search for mount directories
-mount_dirs=$(find /mnt -mindepth 1 -maxdepth 1 -type d -not -path '/mnt/SSD')
+mount_dirs=$(find /mnt -mindepth 1 -maxdepth 1 -type d -not -path '/mnt/ssd')
 
 # If it's a mountpoint, add to ava_mount parameter
 for dir in $mount_dirs; do
