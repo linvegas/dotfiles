@@ -12,6 +12,8 @@ cmd play ${{
   esac
 }}
 
+cmd setwallpaper "$1"
+
 map P play
 map D delete
-
+map b $setwallpaper $f
