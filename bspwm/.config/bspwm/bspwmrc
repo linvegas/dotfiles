@@ -1,0 +1,45 @@
+#! /bin/sh
+
+# Autostart
+pgrep -x sxhkd > /dev/null || sxhkd -c "$HOME/.config/bspwm/sxhkdrc" &
+nm-applet &
+xss-lock --transfer-sleep-lock &
+$HOME/.config/polybar/launch.sh &
+
+# Setting workspaces to monitors
+monitors=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1)
+count=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1 | wc -l)
+if [[ $count = 1 ]]; then
+  bspc monitor -d 1 2 3 4 5 6 7 8 9 0
+else
+  for m in $monitors; do
+    [[ "$m" =~ "HDMI" ]] && bspc monitor "$m" -d 1 2 3 4 5 6 7 8
+    [[ "$m" =~ "DP" ]] && bspc monitor "$m" -d 9 0
+  done
+fi
+
+# Basic config settings
+bspc config border_width           2
+bspc config window_gap             10
+
+bspc config focused_border_color   "#61AFEF"
+
+bspc config split_ratio            0.5
+bspc config borderless_monocle     true
+bspc config gapless_monocle        true
+bspc config focus_follows_pointer  true
+bspc config single_monocle         true
+bspc config automatic_scheme       alternate
+xsetroot -cursor_name left_ptr
+
+# Windows rules
+bspc rule -a "Steam"       desktop="^3"
+bspc rule -a "Spotify"     desktop="^4"
+bspc rule -a "*:mplayer"   desktop="^4"
+bspc rule -a "thunderbird" desktop="^6"
+bspc rule -a "*:float"     state=floating
+bspc rule -a "*:*:webcam"  state=floating
+bspc rule -a "KeePassXC"   state=floating
+bspc rule -a "PdWindow"    state=floating
+bspc rule -a "PatchWindow" state=floating
+bspc rule -a "Solaar"      state=floating
