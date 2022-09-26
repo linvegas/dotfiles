@@ -21,7 +21,7 @@ dualmonitor() {
 
 xrandr \
   --output $secundary --auto \
-  --output $primary --mode 2560x1080 --rate 75 --primary --left-of $secundary --dpi 123
+  --output $primary --mode 2560x1080 --rate 75 --primary --right-of $secundary --dpi 123
 }
 
 

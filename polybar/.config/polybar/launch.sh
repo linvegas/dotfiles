@@ -2,7 +2,7 @@
 
 # kills polybar first
 killall -q polybar
-while pgrep -u $UID -x polybar >/dev/null; do sleep 5; done
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Names and number of monitors
 monitors=$(xrandr --query | grep " connected" | cut -d" " -f1)

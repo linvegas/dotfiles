@@ -1,17 +1,18 @@
 # MisterConscio's i3 config (i3gaps)
 
 ## Basics and variables
-set $mod                       Mod4
-font pango:Noto Sans Mono      10
-default_border                 pixel 2
-default_floating_border        pixel 2
-smart_borders                  on
-gaps inner                     10
-gaps outer                     8
-smart_gaps                     on
-floating_modifier              $mod
-#border_radius                  0
-#hide_edge_borders              vertical
+set $mod                        Mod4
+font pango:Noto Sans Mono       10
+default_border                  pixel 1
+default_floating_border         pixel 1
+for_window [all] border         pixel 1
+smart_borders                   on
+gaps inner                      10
+gaps outer                      8
+smart_gaps                      on
+floating_modifier               $mod
+#border_radius                   0
+#hide_edge_borders               vertical
 
 set $term                      alacritty
 set $browser                   firefox
@@ -114,8 +115,8 @@ bindsym $mod+Tab               workspace back_and_forth
 
 bindsym $mod+F1                exec --no-startup-id rofipower
 
-bindsym $mod+F8                exec --no-startup-id ddcutil --bus 8 setvcp 10 - 10
-bindsym $mod+F9                exec --no-startup-id ddcutil --bus 8 setvcp 10 + 10
+bindsym $mod+F8                exec --no-startup-id ddcutil --model "LG HDR WFHD" setvcp 10 - 10
+bindsym $mod+F9                exec --no-startup-id ddcutil --model "LG HDR WFHD" setvcp 10 + 10
 
 ## XF86 Keybinds
 set $refresh_i3status           killall -SIGUSR1 i3status

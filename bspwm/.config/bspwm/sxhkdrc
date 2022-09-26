@@ -34,7 +34,7 @@ super + F1
 
 # change brightness from external monitor
 super + {F8,F9}
-  ddcutil --display 1 setvcp 10 {-,+} 10
+  ddcutil --model "LG HDR WFHD" setvcp 10 {-,+} 10
 
 # print screen(snapshot)
 {_,super + }Print
