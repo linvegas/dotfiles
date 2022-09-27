@@ -77,3 +77,5 @@ bash-language-server
 typescript
 typescript-language-server
 pyright
+sxhkd
+bspwm

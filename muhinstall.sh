@@ -45,7 +45,7 @@ mkfilestruct() {
     /home/$name/media/{pic/screenshot,vid,mus,samp,proj} \
     /home/$name/{dev,doc}
   mkdir -pv /mnt/{externo,ssd,usb1,usb2,usb3}
-  cd /mnt && chown -v -R $name:$name *
+  cd /mnt && chown -v -R $name:wheel *
   message "Finalizada"
 }
 
@@ -76,7 +76,7 @@ dotfiles() {
     polybar xdg scripts gtk \
     dircolors mpd ncmpcpp dunst \
     lf fontconfig rofi nvim \
-    zathura tmux
+    zathura tmux bspwm npm
   # nvim -c "PlugInstall|q|q"
   message "Finalizada"
 }
@@ -127,8 +127,8 @@ changeshell() {
 
 addgroups() {
   message "APA 8: Adcionando ao usuário grupos"
-  usermod -aG video,audio,lp,network,kvm,storage,i2c "$name"
-  echo "command: usermod -aG video,audio,lp,network,kvm,storage $name"
+  usermod -aG wheel,video,audio,lp,network,kvm,storage,i2c "$name"
+  echo "command: usermod -aG wheel,video,audio,lp,network,kvm,storage,i2c $name"
   message "Finalizada"
 }
 
@@ -190,9 +190,9 @@ cleanup || error
 @audio   -  memlock    unlimited
 EOF
 
-echo -e "Defaults timestamp_timeout=30\nDefaults timestamp_type=global" > /etc/sudoers.d/01_sudo_time
-echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers.d/02-sudo-wheel
+echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers.d/00-sudo-wheel
+echo -e "Defaults timestamp_timeout=30\nDefaults timestamp_type=global" > /etc/sudoers.d/01-sudo-time
 
-echo "PROMPT='%F{white}%B%1~%b%f %(!.#.>>) '" > /root/.zshrc
+echo "PROMPT='%F{red}%B%1~%b%f %(!.#.>>) '" > /root/.zshrc
 
 echo -e "\n${bold}Parece que tudo ocorreu bem, por favor, reinicie o sistema${normal}"
