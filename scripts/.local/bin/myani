@@ -11,7 +11,7 @@ MPV="mpv --fs"
 # Selecting anime's folder
 ANI_PATH=$(
   find "${ANI_DIR}" ${FIND_OPTS} -type d -exec basename '{}' \; |
-  rofi -dmenu
+  rofi -dmenu -i
 )
 
 # Check if options were selected
@@ -22,8 +22,7 @@ ANI_EPI=$(
   find "${ANI_DIR}/${ANI_PATH}" ${FIND_OPTS} \
   -type f \( -name "*.mkv" -or -name "*.mp4" -or -name "*.webm" \) \
   -exec basename '{}' \; |
-  sort |
-  rofi -dmenu
+  sort | rofi -dmenu -i
 )
 
 # Check if options were selected
