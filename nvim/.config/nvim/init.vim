@@ -2,7 +2,7 @@
 set number
 set relativenumber
 set scrolloff=8
-set cursorline
+" set cursorline
 set splitbelow splitright
 set tabstop=2 shiftwidth=2
 set expandtab

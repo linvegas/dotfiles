@@ -44,7 +44,7 @@ network-manager-applet
 xss-lock
 numlockx
 redshift
-xcompmgr
+picom
 mpd
 mpc
 ncmpcpp
