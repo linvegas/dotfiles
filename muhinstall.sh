@@ -71,12 +71,12 @@ dotfiles() {
   echo -e "\nClonando o repositório dos dotfiles..."
   sudo -u "$name" git clone "$dotfiles_repo" $dotdir
   cd $dotdir
-  sudo -u "$name" stow -v \
-    i3 alacritty x11 zsh \
-    polybar xdg scripts gtk \
-    dircolors mpd ncmpcpp dunst \
-    lf fontconfig rofi nvim \
-    zathura tmux bspwm npm
+  sudo -u "$name" stow -v */
+    # i3 alacritty x11 zsh \
+    # polybar xdg scripts gtk \
+    # dircolors mpd ncmpcpp dunst \
+    # lf fontconfig rofi nvim \
+    # zathura tmux bspwm npm
   # nvim -c "PlugInstall|q|q"
   message "Finalizada"
 }
