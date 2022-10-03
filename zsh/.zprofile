@@ -30,6 +30,9 @@ export FZF_DEFAULT_OPTS="--preview 'bat --color=always --plain {}'"
 export CALCURSE_PAGER="bat"
 export QT_QPA_PLATFORMTHEME="gtk2"
 
+export LIBVA_DRIVER_NAME="nvidia"
+export MOZ_DISABLE_RDD_SANDBOX="1"
+
 # Starts xorg
  if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
    exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" -- &> ~/.cache/startx-log
