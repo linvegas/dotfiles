@@ -74,7 +74,7 @@ alias gp="git push"
 
 # Media app aliases
 alias mpv="mpv --autofit=60%x60% --fs"
-alias sxiv="sxiv -f -b"
+alias sxiv="sxiv -b"
 alias zt="zathura"
 
 # Clean home aliases
@@ -109,6 +109,8 @@ g() {
     vid)  cd ~/media/vid;;
     smp)  cd ~/media/samp;;
     pro)  cd ~/media/proj;;
+    mus)  cd ~/media/mus;;
+    emu)  cd ~/media/emu;;
     bin)  cd ~/.local/bin;;
     rep)  cd ~/.local/src;;
     dev)  cd ~/dev/learn/shell;;
@@ -118,9 +120,7 @@ g() {
     ext)  cd /mnt/externo;;
     ssd)  cd /mnt/ssd;;
     ani)  cd /mnt/ssd/anime;;
-    mus)  cd /mnt/ssd/musique;;
     mor)  cd /mnt/ssd/morbus;;
-    emu)  cd /mnt/ssd/emu;;
     *)    echo "goto dot|pic|vid|mus|emu|smp|pro|bin|dev|rep|ext|ssd|ani|mor";;
   esac
 }
@@ -132,6 +132,7 @@ v() {
     b|bash) $EDITOR "$HOME/.bashrc";;
     bpro)   $EDITOR "$HOME/.bash_profile";;
     dunst)  $EDITOR "$XDG_CONFIG_HOME/dunst/dunstrc";;
+    picom)  $EDITOR "$XDG_CONFIG_HOME/picom/picom.conf";;
     i3)     $EDITOR "$XDG_CONFIG_HOME/i3/config";;
     mpd)    $EDITOR "$XDG_CONFIG_HOME/mpd/mpd.conf";;
     mplay)  $EDITOR "$XDG_CONFIG_HOME/ncmpcpp/config";;
