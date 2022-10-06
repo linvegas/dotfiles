@@ -1,5 +1,0 @@
-{
-  "suggest.maxCompleteItemCount": 25,
-  "suggest.autoTrigger": "none",
-  "suggest.timeout": 10000
-}
