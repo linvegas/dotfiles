@@ -1,0 +1,131 @@
+#!/usr/bin/env sh
+
+for p in sxiv mpv jq rofi; do
+  [[ ! $(type "$p") ]] && echo "$p needs to be installed" && exit 1
+done
+
+# if [[ $# -eq 0 ]]; then
+#   usage
+# fi
+
+tmp_dir="/tmp/reddget"
+json_file="$tmp_dir/list.json"
+url_list="$tmp_dir/url-list"
+curl_list="$tmp_dir/curl-list"
+last_name_file="$tmp_dir/last-name"
+first_name_file="$tmp_dir/first-name"
+
+conf_dir="${XDG_CONFIG_HOME:-$HOME/.config}/reddget"
+conf_file="$conf_dir/reddget.cfg"
+
+[[ ! -d "$tmp_dir" ]] && mkdir -p "$tmp_dir"
+[[ ! -d "$conf_dir" ]] && mkdir -p "$conf_dir"
+
+if [[ -e "$conf_file" ]]; then
+  source "$conf_file"
+else
+  default_sub="unixporn"
+  default_limit="50"
+fi
+
+img_viewer="sxiv -p -b -a"
+vid_viewer="mpv --loop=inf --really-quiet"
+
+usage() {
+cat << EOF
+Get images and stream videos from reddit
+Very simple script:
+  reddget [-cnpvfh] [-s SUBREDDIT] [-l LIMITS]
+
+  -s SUBREDDIT
+       Choose a subreddit
+
+  -l LIMIT
+       Set the limit of posts to search for (default: 50)
+
+  -c   Choose a subreddit from the config file
+  -v   Watch videos instead of images
+  -f   View content on fullscreen (must come first as option)
+  -n   Go to next page of posts (only works after fisrt query whitout this option)
+  -p   Go to previews page of posts (only works after using the option above)
+  -h   Show this help message
+
+EOF
+exit
+}
+
+while getopts ":s:l:ctnpvfh" options; do
+  case $options in
+
+    s) sub="${OPTARG}";;
+    l) limit="${OPTARG}";;
+
+    c)
+      [[ ! -e "$conf_file" ]] && echo "Config file doesn't exist" && exit 1
+      sub=$(
+        echo "$subreddits" |
+        rofi -dmenu -sep ' ' -i -p "Subreddit"
+      )
+      [[ -z "$sub" ]] && exit 1;;
+
+    t) query="top.json?t=all&";;
+    n) page="after=$(cat $last_name_file)";;
+    p) page="before=$(cat $first_name_file)";;
+    v) video_opt="1";;
+    f) img_viewer+=" -f" && vid_viewer+=" --fs";;
+    h) usage;;
+
+    \?) echo "Invalid option: '-${OPTARG}'" && exit 1;;
+    :)  echo "The option '-${OPTARG}' needs an argument." && exit 1;;
+  esac
+done
+
+cleanup() {
+  : > $json_file
+  : > $url_list
+  : > $curl_list
+  rm -f "$tmp_dir/"*.{jpg,jpeg,png,gif,mp4}
+}
+
+get_info() {
+  curl -H "User-Agent: Bruh" \
+    -s "https://www.reddit.com/r/${1}/${query:-hot.json?}limit=${2}&${3:-}" |
+    jq '.' > "$json_file"
+
+  if [[ "$video_opt" == "1" ]]; then
+    jq -r '.data.children[].data.preview.reddit_video_preview.fallback_url' "$json_file" \
+      > "$url_list"
+  else
+    jq -r '.data.children[].data.url_overridden_by_dest' "$json_file" |
+      grep -E "http(s|)://.*(jpg|jpeg|png|gif)\b" | sort -u > "$url_list"
+  fi
+
+  jq -r '.data.children[-1].data.name' "$json_file" > "$last_name_file"
+  jq -r '.data.children[0].data.name' "$json_file" > "$first_name_file"
+}
+
+view() {
+  if [[ "$video_opt" == "1" ]]; then
+
+    $vid_viewer --playlist="$url_list"
+
+  else
+
+    while read file; do
+      printf "url = \"%s\"\noutput = \"$tmp_dir/%s\"\n" "$file" "${file##*/}"
+    done < $url_list >> $curl_list
+
+    curl -LZsf -K "$curl_list"
+
+    $img_viewer "$tmp_dir/"*.{jpg,jpeg,png,gif} >/dev/null 2>&1
+
+  fi
+}
+
+[[ -z "$sub" ]] && sub="$default_sub"
+[[ -z "$limit" ]] && limit="$default_limit"
+
+get_info "$sub" "$limit" "$page"
+view
+
+cleanup
