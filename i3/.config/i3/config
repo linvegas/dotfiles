@@ -197,6 +197,7 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 workspace 9 output eDP-1-1
+workspace 10 output eDP-1-1
 
 ## i3 bar
 #bar {

@@ -45,7 +45,7 @@ mkfilestruct() {
     /home/$name/media/{pic/screenshot,vid,mus,samp,proj} \
     /home/$name/{dev,doc}
   mkdir -pv /mnt/{externo,ssd,usb1,usb2,usb3}
-  cd /mnt && chown -v -R $name:wheel *
+  cd /mnt && chown -v -R $name:$name *
   message "Finalizada"
 }
 
