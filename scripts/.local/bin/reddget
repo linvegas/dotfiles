@@ -14,12 +14,14 @@ url_list="$tmp_dir/url-list"
 curl_list="$tmp_dir/curl-list"
 last_name_file="$tmp_dir/last-name"
 first_name_file="$tmp_dir/first-name"
+media_dir="$tmp_dir/media"
 
 conf_dir="${XDG_CONFIG_HOME:-$HOME/.config}/reddget"
 conf_file="$conf_dir/reddget.cfg"
 
 [[ ! -d "$tmp_dir" ]] && mkdir -p "$tmp_dir"
 [[ ! -d "$conf_dir" ]] && mkdir -p "$conf_dir"
+[[ ! -d "$media_dir" ]] && mkdir -p "$media_dir"
 
 if [[ -e "$conf_file" ]]; then
   source "$conf_file"
@@ -45,6 +47,7 @@ Very simple script:
 
   -c   Choose a subreddit from the config file
   -v   Watch videos instead of images
+  -t   Search for the top posts of all time
   -f   View content on fullscreen (must come first as option)
   -n   Go to next page of posts (only works after fisrt query whitout this option)
   -p   Go to previews page of posts (only works after using the option above)
@@ -84,7 +87,7 @@ cleanup() {
   : > $json_file
   : > $url_list
   : > $curl_list
-  rm -f "$tmp_dir/"*.{jpg,jpeg,png,gif,mp4}
+  rm -f "$media_dir/"*.{jpg,jpeg,png,gif,mp4}
 }
 
 get_info() {
@@ -112,12 +115,12 @@ view() {
   else
 
     while read file; do
-      printf "url = \"%s\"\noutput = \"$tmp_dir/%s\"\n" "$file" "${file##*/}"
+      printf "url = \"%s\"\noutput = \"$media_dir/%s\"\n" "$file" "${file##*/}"
     done < $url_list >> $curl_list
 
     curl -LZsf -K "$curl_list"
 
-    $img_viewer "$tmp_dir/"*.{jpg,jpeg,png,gif} >/dev/null 2>&1
+    $img_viewer "$media_dir/"* >/dev/null 2>&1
 
   fi
 }
