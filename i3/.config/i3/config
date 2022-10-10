@@ -2,7 +2,7 @@
 
 ## Basics and variables
 set $mod                       Mod4
-font pango:Noto Sans Mono      10
+font pango:Noto Sans Mono      12
 default_border                 pixel 1
 default_floating_border        pixel 1
 for_window [all] border        pixel 1
@@ -108,8 +108,8 @@ bindsym $mod+space             focus mode_toggle
 bindsym $mod+Shift+minus       move scratchpad
 bindsym $mod+minus             scratchpad show; move position center
 
-bindsym Print                  exec --no-startup-id maim -u -s "/home/$USER/media/pic/screenshot/$(date +%d-%m-%Y--%H-%M-%S).png" | xclip -selection clipboard -t image/png
-bindsym $mod+Print             exec --no-startup-id maim -u "/home/$USER/media/pic/screenshot/$(date +%d-%m-%Y--%H-%M-%S).png"
+bindsym Print                  exec --no-startup-id maim -u -s "/home/$USER/media/pic/screenshot/$(date +%Y-%m-%d_%H-%M-%S).png" | xclip -selection clipboard -t image/png
+bindsym $mod+Print             exec --no-startup-id maim -u "/home/$USER/media/pic/screenshot/$(date +%Y-%m-%d_%H-%M-%S).png"
 
 bindsym $mod+Tab               workspace back_and_forth
 
