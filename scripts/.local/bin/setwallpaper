@@ -3,7 +3,7 @@
 
 # Wallpapers directorie
 wp_dir="$HOME/media/pic/wallpaper"
-[[ ! -e "$wp_dir" ]] && wp_dir="/usr/share/backgrounds/archlinux"
+[[ ! $(find "$wp_dir" -maxdepth 1 -mindepth 1) ]] && wp_dir="/usr/share/backgrounds/archlinux"
 
 # Set image from argument or default directory
 case "$1" in
