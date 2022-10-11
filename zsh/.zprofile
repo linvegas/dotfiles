@@ -36,5 +36,5 @@ export MOZ_DISABLE_RDD_SANDBOX="1"
 
 # Starts xorg
  if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-   exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" -- &> ~/.cache/startx-log
+   exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" -- &> ~/.cache/startx.log
  fi
