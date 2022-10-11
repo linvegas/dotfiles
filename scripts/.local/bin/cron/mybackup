@@ -1,0 +1,47 @@
+#!/usr/bin/env sh
+
+# Configurations
+conf_file="$HOME/.config/mybackup.cfg"
+date_format=$(date "+%Y-%m-%d+%Hh%Mm")
+
+# Check if config file exist
+checkconf() {
+  if [ -s "$conf_file" ]; then
+    source "$conf_file"
+  else
+    notify-send -u critical \
+      "Mybackup" "O arquivo de configuração não existe ou está vazio"
+    exit 1
+  fi
+}
+
+# Check if destination directory exist
+checkdest() {
+  if [ ! -d "$backup_dest" ]; then
+    notify-send -u critical \
+      "Mybackup" "O diretório destino ${backup_dest} não foi encontrado"
+    exit 1
+  fi
+}
+
+backup() {
+  notify-send "Mybackup" "Iniciando script de backup..."
+
+  # File format
+  backup_file="$backup_dest/backup-$date_format.tar.gz"
+
+  # Actual backup
+  if tar -zcSpf "$backup_file" --exclude-vcs ${tar_src[@]}; then
+    notify-send "Mybackup" "Backup realizado com sucesso"
+  else
+    notify-send -u critical "Mybackup" "Ocorreu um erro durante o backup"
+    exit 1
+  fi
+}
+
+checkconf
+checkdest
+backup
+
+# Exclude backups with more than 8 days
+find "$backup_dest" -mtime +8 -delete
