@@ -1,15 +1,15 @@
-#! /bin/sh
+#! /bin/bash
 
 # Autostart
 pgrep -x sxhkd > /dev/null || sxhkd -c "$HOME/.config/bspwm/sxhkdrc" &
 nm-applet &
 xss-lock --transfer-sleep-lock &
-$HOME/.config/polybar/launch.sh &
+"$HOME"/.config/polybar/launch.sh &
 
 # Setting workspaces to monitors
 monitors=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1)
 count=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1 | wc -l)
-if [[ $count = 1 ]]; then
+if [ "$count" = 1 ]; then
   bspc monitor -d 1 2 3 4 5 6 7 8 9 0
 else
   for m in $monitors; do

@@ -9,7 +9,7 @@ monitors=$(xrandr --query | grep " connected" | cut -d" " -f1)
 count=$(xrandr --query | grep " connected" | cut -d" " -f1 | wc -l)
 
 # Actual launch
-if [ $count = 1 ]; then
+if [ "$count" = 1 ]; then
 
   POLYMONITOR=$monitors polybar --reload mainbar &
 

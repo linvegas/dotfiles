@@ -17,7 +17,7 @@ xset r rate 300 50 &
 
 for p in redshift picom dunst mpd mpdscribble; do
   pidof -s "$p" ||
-   if [[ "$p" == "picom" ]]; then
+   if [ "$p" = "picom" ]; then
      "$p" --experimental-backends &
    else
      "$p" &
