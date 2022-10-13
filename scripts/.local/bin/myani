@@ -2,7 +2,6 @@
 
 # Some global variables
 ANI_DIR="/mnt/ssd/anime"
-FIND_OPTS="-maxdepth 1 -mindepth 1"
 MPV="mpv --fs"
 
 # Check if anime path exists
@@ -12,7 +11,7 @@ while true; do
 
   # Selecting anime's folder
   ani_path=$(
-    find "${ANI_DIR}" "${FIND_OPTS}" -type d -exec basename '{}' \; |
+    find "${ANI_DIR}" -maxdepth 1 -mindepth 1 -type d -exec basename '{}' \; |
     rofi -dmenu -i
   )
 
