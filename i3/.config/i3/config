@@ -93,7 +93,7 @@ bindsym $mod+Ctrl+x            split toggle
 bindsym --release $mod+c       exec --no-startup-id xcolor -s clipboard
 bindsym $mod+Shift+c           reload
 
-bindsym $mod+v                 exec --no-startup-id webcam.sh 0 720
+bindsym $mod+v                 exec --no-startup-id webcam 0 720
 
 bindsym $mod+b                 exec --no-startup-id setwallpaper
 bindsym $mod+Shift+b           exec --no-startup-id polybar-msg cmd toggle
