@@ -1,7 +1,6 @@
 # Set options
 setopt autocd
 setopt extendedglob
-setopt hist_ignore_space
 bindkey -v # vi mode
 export KEYTIMEOUT=1
 stty stop undef
@@ -21,6 +20,7 @@ setopt prompt_subst
 PROMPT='$(test ${+HISTFILE} -eq 0 && echo " ")${vcs_info_msg_0_}%F{white}%B%1~%b%f %(!.#.$) '
 
 # History configuration
+setopt hist_ignore_space
 setopt histignorealldups sharehistory
 export HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zsh_history"
 export HISTSIZE=10000
@@ -35,26 +35,27 @@ compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 alias ls="ls -X --color=auto --group-directories-first"
 alias la="ls -A"
 alias ll="ls -lh"
-alias grep="grep --color=auto"
-alias tree="tree -a -C"
-alias rm="rm -I"
+alias rm="rm -I -v"
 alias mv="mv -v"
 alias cp="cp -v"
 alias mkdir="mkdir -p -v"
 alias stow="stow -v"
 alias du="du -h"
-alias history="fc -l 1"
+alias grep="grep --color=auto"
+alias tree="tree -a -C"
+alias hist="fc -l 1"
 alias so="source ~/.config/zsh/.zshrc"
-alias off="sudo shutdown now"
-alias reboot="sudo reboot"
-alias suspend="sudo systemctl suspend"
 alias fale="espeak -v roa/pt-BR"
 alias c="clear"
 alias vim="nvim"
 alias hx="helix"
 alias anom=" unset HISTFILE"
 alias lf="lf-uber"
-alias play="aplay -D pulse"
+
+# System
+alias off="sudo shutdown now"
+alias reboot="sudo reboot"
+alias suspend="sudo systemctl suspend"
 
 # Python
 alias py="python3"
@@ -74,8 +75,9 @@ alias gp="git push"
 
 # Media app aliases
 alias mpv="mpv --autofit=60%x60% --fs"
-alias sxiv="sxiv -b"
+alias sxiv="sxiv -b -a"
 alias zt="zathura"
+alias play="aplay -D pulse"
 
 # Clean home aliases
 alias nvidia_settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
@@ -111,6 +113,7 @@ g() {
     pro)  cd ~/media/proj;;
     mus)  cd ~/media/mus;;
     emu)  cd ~/media/emu;;
+    ani)  cd ~/media/ani;;
     bin)  cd ~/.local/bin;;
     rep)  cd ~/.local/src;;
     dev)  cd ~/dev/learn/shell;;
@@ -119,9 +122,8 @@ g() {
     usb3) cd /mnt/usb3;;
     ext)  cd /mnt/externo;;
     ssd)  cd /mnt/ssd;;
-    ani)  cd /mnt/ssd/anime;;
     mor)  cd /mnt/ssd/morbus;;
-    *)    echo "goto dot|pic|vid|mus|emu|smp|pro|bin|dev|rep|ext|ssd|ani|mor";;
+    *)    echo "g nvi|dot|dow|doc|pic|vid|smp|pro|mus|emu|ani|bin|rep|dev|usb|usb2|usb3|ext|ssd|mor";;
   esac
 }
 
