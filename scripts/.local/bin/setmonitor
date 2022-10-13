@@ -20,8 +20,8 @@ dualmonitor() {
   done
 
 xrandr \
-  --output $secundary --auto \
-  --output $primary --mode 2560x1080 --rate 75 --primary --right-of $secundary --dpi 123
+  --output "$secundary" --auto \
+  --output "$primary" --mode 2560x1080 --rate 75 --primary --right-of "$secundary" --dpi 123
 }
 
 
@@ -29,6 +29,6 @@ xrandr \
 CONNECTED=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1)
 
 # If there is only one monitor connected
-[[ $(echo $CONNECTED | wc -w ) -lt 2 ]] && onemonitor "$CONNECTED" && exit
+[[ $(echo "$CONNECTED" | wc -w ) -lt 2 ]] && onemonitor "$CONNECTED" && exit
 
 dualmonitor "$CONNECTED" && exit

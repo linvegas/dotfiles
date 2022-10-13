@@ -6,29 +6,29 @@ FIND_OPTS="-maxdepth 1 -mindepth 1"
 MPV="mpv --fs"
 
 # Check if anime path exists
-[[ ! -d "$ANI_DIR" ]] && echo "O diretório ${ANI_DIR} não existe." && exit 1
+[ ! -d "$ANI_DIR" ] && echo "O diretório ${ANI_DIR} não existe." && exit 1
 
 while true; do
 
   # Selecting anime's folder
   ani_path=$(
-    find "${ANI_DIR}" ${FIND_OPTS} -type d -exec basename '{}' \; |
+    find "${ANI_DIR}" "${FIND_OPTS}" -type d -exec basename '{}' \; |
     rofi -dmenu -i
   )
 
   # Check if options were selected
-  [[ -z "${ani_path}" ]] && exit 1
+  [ -z "${ani_path}" ] && exit 1
 
   # Selecting anime's episode
   ani_epi=$(
-    find "${ANI_DIR}/${ani_path}" ${FIND_OPTS} \
+    find "${ANI_DIR}/${ani_path}" "${FIND_OPTS}" \
     -type f \( -name "*.mkv" -or -name "*.mp4" -or -name "*.webm" \) \
     -exec basename '{}' \; |
     sort | rofi -dmenu -i
   )
 
   # Check if options were selected
-  [[ -z "${ani_epi}" ]] && exit 1
+  [ -z "${ani_epi}" ] && exit 1
 
   # Actually playing the anime
   $MPV "${ANI_DIR}/${ani_path}/${ani_epi}"

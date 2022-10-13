@@ -5,15 +5,15 @@ actual_value=$(cat $CARD_DIR/actual_brightness)
 
 case $1 in
   inc)
-    increment=$(( $actual_value+$2 ))
+    increment=$(( actual_value+$2 ))
     echo $increment > $CARD_DIR/brightness;;
 
   dec)
-    decrement=$(( $actual_value-$2 ))
+    decrement=$(( actual_value-$2 ))
     echo $decrement > $CARD_DIR/brightness;;
 
   set)
-    echo $2 > $CARD_DIR/brightness;;
+    echo "$2" > $CARD_DIR/brightness;;
 
   show)
     echo "Brilho: $actual_value";;

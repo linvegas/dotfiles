@@ -4,7 +4,7 @@
 SFX_DIR="${XDG_DATA_HOME}/sound-fx"
 
 # Pick a random sound effect
-sound_file=$(find $SFX_DIR -type f -name "*.wav" | shuf -n 1)
+sound_file=$(find "$SFX_DIR" -type f -name "*.wav" | shuf -n 1)
 
 # Playback the sample
-aplay -q $sound_file
+aplay -q "$sound_file"

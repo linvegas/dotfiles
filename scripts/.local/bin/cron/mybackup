@@ -1,13 +1,16 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Configurations
 conf_file="$HOME/.config/mybackup.cfg"
 date_format=$(date "+%Y-%m-%d+%Hh%Mm")
+backup_dest="/tmp"
+tar_src="$HOME/docx"
 
 # Check if config file exist
 checkconf() {
   if [ -s "$conf_file" ]; then
-    source "$conf_file"
+    # shellcheck source=/dev/null
+    . "$conf_file"
   else
     notify-send -u critical \
       "Mybackup" "O arquivo de configuração não existe ou está vazio"
@@ -31,7 +34,7 @@ backup() {
   backup_file="$backup_dest/backup-$date_format.tar.gz"
 
   # Actual backup
-  if tar -zcSpf "$backup_file" --exclude-vcs ${tar_src[@]}; then
+  if tar -zcSpf "$backup_file" --exclude-vcs "${tar_src[@]}"; then
     notify-send "Mybackup" "Backup realizado com sucesso"
   else
     notify-send -u critical "Mybackup" "Ocorreu um erro durante o backup"

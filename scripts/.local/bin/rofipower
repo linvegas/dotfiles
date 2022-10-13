@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 
-[[ ! $(command -v rofi) ]] && notify-send "Rofi is not installed" && exit 1
+[ ! "$(command -v rofi)" ] && notify-send "Rofi is not installed" && exit 1
 
 INPUT=$(
   echo "|||" |\
-  rofi -dmenu -sep "|" -theme "~/.config/rofi/themes/power.rasi"
+  rofi -dmenu -sep "|" -theme "$HOME/.config/rofi/themes/power.rasi"
 )
 
 case "$INPUT" in
