@@ -1,34 +1,69 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
+
+checkconf() {
+  conf_file="$HOME/.config/setmonitor.cfg"
+  if [ -s "$conf_file" ]; then
+    # shellcheck source=/dev/null
+    . "$conf_file"
+
+  else
+    return
+  fi
+}
+
+checkopt() {
+
+  # Get monitors connected
+  CONNECTED=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1)
+
+  # If no monitor was specified, take from xrandr output
+  if [ -z "$monitor1" ] && [ -z "$monitor2" ]; then
+    i=1
+    for m in $CONNECTED; do
+      eval "monitor$i='$m'"
+      i=$((i + 1))
+    done
+  fi
+
+  # Default settings
+  [ -z "$dpi" ] && dpi="96"
+
+  [ -z "$monitor1_res" ] && monitor1_res="1920x1080"
+  [ -z "$monitor2_res" ] && monitor2_res="1920x1080"
+
+  [ -z "$monitor1_rate" ] && monitor1_rate="60"
+  [ -z "$monitor2_rate" ] && monitor2_rate="60"
+
+  [ -z "$monitor1_pos" ] && monitor1_pos="left"
+  [ -z "$monitor2_pos" ] && monitor2_pos="right"
+
+}
 
 onemonitor() {
-  xrandr --output "$1" --auto --dpi 104
+  [ -z "$monitor1" ] && monitor1="$CONNECTED"
+
+  xrandr --output "$monitor1" --mode "$monitor1_res" --dpi "$dpi"
+
+  exit 0
 }
 
 dualmonitor() {
-  for display in $1; do
+  xrandr \
+    --output "$monitor1" --mode "$monitor1_res" --rate "$monitor1_rate" --primary \
+    --output "$monitor2" --mode "$monitor2_res" --rate "$monitor2_rate" --"$monitor2_pos"-of "$monitor1" \
+    --dpi "$dpi"
 
-    if [[ $display =~ "DP" ]]; then
-      secundary=$display
-
-    elif [[ $display =~ "HDMI" ]]; then
-      primary=$display
-
-    else
-      echo "Nenhum monitor encontrado"
-
-    fi
-  done
-
-xrandr \
-  --output "$secundary" --auto \
-  --output "$primary" --mode 2560x1080 --rate 75 --primary --right-of "$secundary" --dpi 123
+  exit 0
 }
 
+# Check for configfile and default options
+checkconf
+checkopt
 
-# Get monitors connected
-CONNECTED=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1)
-
-# If there is only one monitor connected
-[[ $(echo "$CONNECTED" | wc -w ) -lt 2 ]] && onemonitor "$CONNECTED" && exit
-
-dualmonitor "$CONNECTED" && exit
+# Identify current setup
+case $(echo "$CONNECTED" | wc -w) in
+  1) onemonitor;;
+  2) dualmonitor;;
+  3) arandr && exit;;
+  0) exit 1;;
+esac
