@@ -20,13 +20,13 @@ mount_dirs=$(find /mnt -mindepth 1 -maxdepth 1 -type d -not -path '/mnt/SSD')
 # If it's a mountpoint, add to ava_mount parameter
 for dir in $mount_dirs; do
   if ! mountpoint -q -- "$dir"; then
-    ava_mount="${ava_mount}$dir\n"
+    ava_mount="$dir\n${ava_mount}"
   fi
 done
 
 # Choosing one with dmenu
 #dir_path=$(printf "%s\n" "$mount_dir" | dmenu -l 20 -p "Diretório: ")
-mount_path=$(printf "%s" "${ava_mount@E}" | sort | dmenu -l 20 -p "Dir: ")
+mount_path=$(echo "$ava_mount" | tr -s '\n' | sort | dmenu -l 20 -p "Dir: ")
 
 # If none was selected, exit
 [ "$mount_path" = "" ] && exit 1
