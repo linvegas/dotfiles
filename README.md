@@ -4,21 +4,9 @@
 The repo it's supposed to be used with [GNU/stow](https://www.gnu.org/software/stow/).
 
 ```sh
-curl -LO "https://raw.githubusercontent.com/MisterConscio/dotfiles/main/pkglist.txt"
-```
-
-```sh
-sudo pacman -S --needed - < pkglist.txt
-```
-
-```sh
 git clone https://github.com/MisterConscio/dotfiles.git
-```
-
-```sh
 cd dotfiles
-stow zsh
-stow x11
+stow i3
 ```
 
 ## List of useful packages (pacman/aur):
@@ -30,9 +18,10 @@ stow x11
 
 #### CLI Tools
 * nvim
+* tmux
 * lf
 * tldr
-* bashtop
+* btop
 * tree
 * bat
 * gdu
@@ -45,6 +34,7 @@ stow x11
 * espeak-ng
 * ddcutil
 * uzip
+* jq
 
 #### For Window Managers
 * xorg-xinit
@@ -58,7 +48,7 @@ stow x11
 * dmenu
 * rofi
 * redshift
-* xcompmgr
+* picom
 * xxs-lock
 * numlockx
 
@@ -67,8 +57,8 @@ stow x11
 * noto-fonts-emoji
 * ttf-hack
 * ttf-inconsolata
-* nerd-fonts-droid-sans-mono
 * ttf-font-awesome
+* nerd-fonts-droid-sans-mono
 
 #### Terminal Screensaver
 * cmatrix
@@ -76,6 +66,7 @@ stow x11
 * asciiquarium
 
 #### Themes
+* arc-gtk-theme
 * papirus-icon-theme
 * xcursor-breeze
 
