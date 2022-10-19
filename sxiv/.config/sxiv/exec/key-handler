@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+
+mor() {
+  MOR_DIR="/mnt/ssd/morbus/pic"
+  [ ! -d "$MOR_DIR" ] && notify-send "${MOR_DIR} não existe" && exit 1
+  folder=$(\
+    find "$MOR_DIR" -maxdepth 1 -mindepth 1 -exec basename '{}' \; |\
+    dmenu -l 20 -p "Escolha a pasta: "
+  )
+  [ ! -d "${MOR_DIR}/${folder}" ] && mkdir -p "${MOR_DIR}/${folder}"
+  newname=$(\
+    find "${MOR_DIR}/${folder}" -maxdepth 1 -mindepth 1 -exec basename '{}' \; |\
+    sort -r |\
+    dmenu -l 20 -p "Renomear ${1} para: "
+  )
+  [ -z "$newname" ] && exit
+  newpath="${MOR_DIR}/${folder}/${newname}"
+  cp "$1" "$newpath" && notify-send "Sxiv" "Esse arquivo foi copiado em \n$newpath"
+}
+
+while read -r file; do
+  case "$1" in
+    "i") notify-send "Info" "$(file "$file")";;
+    "m") mor "$file";;
+  esac
+done
