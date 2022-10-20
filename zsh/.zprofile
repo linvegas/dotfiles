@@ -27,12 +27,12 @@ export HEML_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/helm"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
 export PF_INFO="ascii title os kernel shell pkgs wm memory"
-export FZF_DEFAULT_OPTS="--preview 'bat --color=always --plain {}'"
+# export FZF_DEFAULT_OPTS="--preview 'bat --color=always --plain {}'"
 export CALCURSE_PAGER="bat"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
-export LIBVA_DRIVER_NAME="nvidia"
-export MOZ_DISABLE_RDD_SANDBOX="1"
+# export LIBVA_DRIVER_NAME="nvidia"
+# export MOZ_DISABLE_RDD_SANDBOX="1"
 
 # Starts xorg
  if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
