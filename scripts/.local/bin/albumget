@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+
+# Script for download youtube album playlists
+# Made specific for music albums
+
+[ ! "$(command -v yt-dlp)" ] && echo "yt-dlp needs to be installed" && exit 1
+
+path="$(readlink -f "$1")"
+url="$2"
+
+[ -z "$path" ] && echo "Choose a path to download the files" && exit 1
+[ -z "$url" ] && echo "Url missing" && exit 1
+
+[ ! -d "$path" ] && mkdir -p "$path"
+
+yt-dlp --ignore-errors --extract-audio --embed-metadata \
+  --format bestaudio --audio-format mp3 --audio-quality 320K \
+  -P "$path" \
+  --output "%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s" \
+  --yes-playlist "$url"
