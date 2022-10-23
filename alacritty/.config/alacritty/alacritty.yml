@@ -45,9 +45,21 @@ cursor:
     blinking: Always
 
   blink_interval: 500
+  blink_timeout: 0
 
 mouse:
   hide_when_typing: true
+
+hints:
+  alphabet: "jfkdls;ahgurieowpq"
+  enabled:
+  - regex: "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
+            [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+    hyperlinks: true
+    action: Copy
+    binding:
+      key: U
+      mods: Control|Shift
 
 key_bindings:
   - { key: K,   mods: Control,       action: ScrollPageUp    }
@@ -56,7 +68,7 @@ key_bindings:
   - { key: I,   mods: Control,       chars: "\x1b[105;5u"    }
   # - { key: J,   mods: Control,       chars: "\x1b[106;5u"    }
   # - { key: K,   mods: Control,       chars: "\x1b[107;5u"    }
-  - { key: L,   mods: Control,       chars: "\x1b[108;5u"    }
+  # - { key: L,   mods: Control,       chars: "\x1b[108;5u"    }
   - { key: O,   mods: Control,       chars: "\x1b[111;5u"    }
   - { key: O,   mods: Control|Shift, chars: "\x1b[79;6u"     }
   - { key: H,   mods: Control|Shift, chars: "\x1b[72;6u"     }
