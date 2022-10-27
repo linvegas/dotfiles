@@ -1,15 +1,15 @@
-# Set options
+## Set options
 setopt autocd
 setopt extendedglob
 bindkey -v # vi mode
 export KEYTIMEOUT=1
 stty stop undef
 
-# Autoload
+## Autoload
 autoload -Uz colors && colors
 autoload -Uz promptinit && promptinit
 
-# Prompt
+## Prompt
 autoload -Uz vcs_info # Git setup
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
@@ -19,19 +19,19 @@ setopt prompt_subst
 
 PROMPT='$(test ${+HISTFILE} -eq 0 && echo " ")${vcs_info_msg_0_}%F{white}%B%1~%b%f %(!.#.$) '
 
-# History configuration
+## History configuration
 setopt hist_ignore_space
 setopt histignorealldups sharehistory
 export HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zsh_history"
 export HISTSIZE=10000
 export SAVEHIST=10000
 
-# Use modern completion system
+## Use modern completion system
 autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select cache-path $XDG_CACHE_HOME/zsh/zcompcache
 compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
-# General aliases
+## General aliases
 alias ls="ls -X --color=auto --group-directories-first"
 alias la="ls -A"
 alias ll="ls -lh"
@@ -77,13 +77,21 @@ alias gp="git push"
 alias mpv="mpv --autofit=60%x60% --fs"
 alias sxiv="sxiv -b -a"
 alias zt="zathura"
+# alias ncmpcpp="ncmpcpp-uber"
 alias play="aplay -D pulse"
 
 # Clean home aliases
 alias nvidia_settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
 alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
 
-# Functions
+## Functions
+
+# Fuzzy find into shell history
+hh() {
+  hist |
+  awk '{$1=""; print $0}' | sed -e 's/^[[:space:]]*//' |
+  fzf --layout=reverse --height=20 --info=hidden | xclip -r -selection clipboard
+}
 
 # Open webcam on mpv
 cam() {
@@ -93,7 +101,7 @@ cam() {
   || notify-send "Nenhuma camera conectada"
 }
 
-# share any file under 500mb using 0x0.st server
+# Share any file under 500mb using 0x0.st server
 share() {
   curl -s -F "file=@$1" https://0x0.st |\
   tee >(xclip -selection c) &&\
@@ -128,9 +136,19 @@ g() {
   esac
 }
 
-vv() { cd $HOME/.local/bin; $EDITOR $(fzf --height=15 --layout=reverse --info=hidden --preview=''); }
+# Edit personal scripts
+vv() {
+  file=$(
+    find -L "$HOME/.local/bin" -type f -exec basename '{}' \; | sort |
+    fzf --height=20 --layout=reverse --info=hidden --preview=''
+  )
 
-# shorcut for config files
+  [ -z "$file" ] && return
+
+  $EDITOR "$HOME/.local/bin/$file"
+}
+
+# Shorcut for config files
 v() {
   case "$@" in
     term)   $EDITOR "$XDG_CONFIG_HOME/alacritty/alacritty.yml";;
@@ -151,7 +169,7 @@ v() {
 }
 
 # Dircolors
-[[ -x /usr/bin/dircolors ]] && test -r ~/.config/dircolors && eval "$(dircolors -b ~/.config/dircolors)" || eval "$(dircolors -b)"
+[ -x /usr/bin/dircolors ] && test -r ~/.config/dircolors && eval "$(dircolors -b ~/.config/dircolors)" || eval "$(dircolors -b)"
 
 # Zsh highlight
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
