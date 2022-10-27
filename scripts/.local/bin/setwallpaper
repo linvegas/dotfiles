@@ -2,8 +2,9 @@
 # Depends on: xwallpaper, xorg-xrandr and pywal
 
 # Wallpapers directorie
-wp_dir="$HOME/media/pic/wallpaper"
-[ ! "$(find "$wp_dir" -maxdepth 1 -mindepth 1)" ] && wp_dir="/usr/share/backgrounds/archlinux"
+wp_dir="$HOME/.local/share/backgrounds"
+[ -n "$(find "$wp_dir" -type d -empty)" ] &&
+  wp_dir="/usr/share/backgrounds/archlinux"
 
 # Set image from argument or default directory
 case "$1" in
