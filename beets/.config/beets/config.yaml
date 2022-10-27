@@ -1,0 +1,7 @@
+directory: ~/media/mus
+library: ~/.config/beets/library.db
+plugins: ftintitle
+
+ftintitle:
+  auto: yes
+  drop: yes
