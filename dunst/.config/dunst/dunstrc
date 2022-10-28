@@ -101,7 +101,7 @@
     timeout = 5
     default_icon = /usr/share/icons/Papirus-Dark/32x32/status/dialog-error.svg
 
-[espeak]
+[notification-sound]
     summary = "*"
     script = notification-sound.sh
 
