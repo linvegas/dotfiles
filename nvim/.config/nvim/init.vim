@@ -8,6 +8,7 @@ set tabstop=2 shiftwidth=2
 set expandtab
 set nowrap
 set makeprg=gcc\ -Wall\ %\ -o\ %<
+set clipboard+=unnamedplus
 
 "" Bloody plugins
 runtime ./plug.vim
