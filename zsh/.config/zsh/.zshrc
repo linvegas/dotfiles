@@ -78,7 +78,7 @@ alias mpv="mpv --autofit=60%x60% --fs"
 alias sxiv="sxiv -b -a"
 alias zt="zathura"
 # alias ncmpcpp="ncmpcpp-uber"
-alias play="aplay -D pulse"
+alias play="aplay -D pipewire"
 
 # Clean home aliases
 alias nvidia_settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
@@ -90,7 +90,8 @@ alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
 hh() {
   hist |
   awk '{$1=""; print $0}' | sed -e 's/^[[:space:]]*//' |
-  fzf --layout=reverse --height=20 --info=hidden | xclip -r -selection clipboard
+  fzf --tac --layout=reverse --height=20 --info=hidden |
+  xclip -r -selection clipboard
 }
 
 # Open webcam on mpv
