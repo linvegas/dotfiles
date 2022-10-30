@@ -1,31 +1,26 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # kills polybar first
 killall -q polybar
-while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+while pgrep -u "$(id -u)" -x polybar >/dev/null; do sleep 1; done
 
 # Names and number of monitors
-monitors=$(xrandr --query | grep " connected" | cut -d" " -f1)
-count=$(xrandr --query | grep " connected" | cut -d" " -f1 | wc -l)
+monitors=$(xrandr --query | grep -e "\sconnected")
 
 # Actual launch
-if [ "$count" = 1 ]; then
+if [ "$($monitors | wc -l)" -eq 1 ]; then
 
-  POLYMONITOR=$monitors polybar --reload mainbar &
+  POLYMONITOR="$($monitors | cut -d" " -f1)" polybar --reload mainbar &
 
 else
 
-  for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+  for m in $monitors; do
 
-    if [[ $m =~ "DP" ]]; then
-      POLYMONITOR=$m polybar --reload sidebar &
+    case $m in
+      *primary*) POLYMONITOR="$($m | cut -d" " -f1)" polybar --reload mainbar &;;
+      *) POLYMONITOR="$($m | cut -d" " -f1)" polybar --reload sidebar &;;
+    esac
 
-    elif [[ $m =~ "HDMI" ]]; then
-      POLYMONITOR=$m polybar --reload mainbar &
-
-    else
-      POLYMONITOR=$m polybar --reload sidebar &
-    fi
   done
 
 fi
