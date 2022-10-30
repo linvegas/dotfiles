@@ -4,25 +4,25 @@
 killall -q polybar
 while pgrep -u "$(id -u)" -x polybar >/dev/null; do sleep 1; done
 
-# Names and number of monitors
+# Xrandr one line about monitors connected, not actual monitor name
 monitors=$(xrandr --query | grep -e "\sconnected")
 
 # Actual launch
-if [ "$($monitors | wc -l)" -eq 1 ]; then
+if [ "$(echo "$monitors" | wc -l)" -eq 1 ]; then
 
-  POLYMONITOR="$($monitors | cut -d" " -f1)" polybar --reload mainbar &
+  POLYMONITOR="$(echo "$monitors" | cut -d" " -f1)" polybar --reload mainbar &
 
 else
 
-  for m in $monitors; do
-
+  printf "%s\n" "$monitors" |
+  while IFS= read -r m; do
     case $m in
-      *primary*) POLYMONITOR="$($m | cut -d" " -f1)" polybar --reload mainbar &;;
-      *) POLYMONITOR="$($m | cut -d" " -f1)" polybar --reload sidebar &;;
+      *primary*)
+        POLYMONITOR="$(echo "$m" | cut -d" " -f1)" polybar --reload mainbar &;;
+      *)
+        POLYMONITOR="$(echo "$m" | cut -d" " -f1)" polybar --reload sidebar &;;
     esac
-
   done
 
 fi
 
-echo "LOL, bars got launched"
