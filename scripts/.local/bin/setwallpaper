@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # Depends on: xwallpaper, xorg-xrandr and pywal
 
 # Wallpapers directorie
@@ -13,22 +13,23 @@ case "$1" in
 esac
 
 # Pywal
-[ "$(which wal)" ] && wal -n -s -q -i "$image"
+# [ "$(which wal)" ] && wal -n -s -q -i "$image"
 
 # Get monitors connected
-monitors=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1)
-count=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1 | wc -l)
+monitors=$(xrandr -q | grep -e '\sconnected')
 
 # If there is only one monitor connected
-[ "$count" = 1 ] && \
-  xwallpaper --output "$monitors" --stretch "$image" && exit
+[ "$(echo "$monitors" | wc -l)" -eq 1 ] && \
+  xwallpaper --output "$(echo "$monitors" | cut -d" " -f1)" --stretch "$image" && exit
 
 # Dual monitor setup
-for m in $monitors; do
-  if [[ "$m" =~ "HDMI" ]]; then
-    xwallpaper --output "$m" --stretch "$image"
-
-  else
-    xwallpaper --output "$m" --zoom "$image"
-  fi
+printf "%s\n" "$monitors" |
+while IFS= read -r m; do
+  case $m in
+    *primary*)
+      xwallpaper --output "$(echo "$m" | cut -d" " -f1)" --stretch "$image";;
+    *)
+      xwallpaper --output "$(echo "$m" | cut -d" " -f1)" --zoom "$image";;
+  esac
 done
+
