@@ -34,6 +34,12 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 # export LIBVA_DRIVER_NAME="nvidia"
 # export MOZ_DISABLE_RDD_SANDBOX="1"
 
+export LG_WEBOS_TV_SDK_HOME="$HOME/dev/webOS_TV_SDK"
+if [ -d "$LG_WEBOS_TV_SDK_HOME/CLI/bin" ]; then
+  export WEBOS_CLI_TV="$LG_WEBOS_TV_SDK_HOME/CLI/bin"
+  export PATH="$PATH:$WEBOS_CLI_TV"
+fi
+
 # Starts xorg
  if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
    exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" -- &> ~/.cache/startx.log

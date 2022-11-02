@@ -74,7 +74,7 @@ alias gd="git diff"
 alias gp="git push"
 
 # Media app aliases
-alias mpv="mpv --autofit=60%x60% --fs"
+alias mpv="mpv --hwdec=auto --autofit=60%x60% --fs"
 alias sxiv="sxiv -b -a"
 alias zt="zathura"
 # alias ncmpcpp="ncmpcpp-uber"
