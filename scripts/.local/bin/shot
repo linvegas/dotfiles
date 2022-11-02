@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+[ ! "$(command -v maim)" ] &&
+  notify-send -u critical "maim needs to be installed" && exit 1
+
+options=$(printf "area\nscreen\nwindow" | rofi -dmenu -p "Capture")
+
+output="$HOME/media/pic/screenshot/$(date '+%Y%m%d-%H-%M-%S').png"
+
+case "$options" in
+  area) maim -s "$output";;
+  screen) maim -q -d 0.5 "$output";;
+  window) maim -i "$(xdotool getactivewindow)" "$output";;
+esac
