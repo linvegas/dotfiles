@@ -1,11 +1,9 @@
 #!/usr/bin/env sh
 
-mpv="mpv --really-quiet --autofit=50%x50% --title=webcam"
-
 device="video${1:-0}"
 cam_res="${2:-960x720}"
 
-$mpv \
+mpv --really-quiet --autofit=50%x50% --title=webcam \
   av://v4l2:/dev/"$device" \
   --demuxer-lavf-format=video4linux2 \
   --demuxer-lavf-o-set=input_format=mjpeg,video_size="$cam_res" ||\
