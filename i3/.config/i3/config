@@ -3,9 +3,9 @@
 ## Basics and variables
 set $mod                       Mod4
 font pango:Noto Sans Mono      12
-default_border                 pixel 1
-default_floating_border        pixel 1
-for_window [all] border        pixel 1
+default_border                 pixel 2
+default_floating_border        pixel 2
+for_window [all] border        pixel 2
 smart_borders                  on
 gaps inner                     10
 gaps outer                     8
@@ -93,7 +93,7 @@ bindsym $mod+Ctrl+x            split toggle
 bindsym --release $mod+c       exec --no-startup-id xcolor -s clipboard
 bindsym $mod+Shift+c           reload
 
-bindsym $mod+v                 exec --no-startup-id webcam 0 720
+bindsym $mod+v                 exec --no-startup-id webcam
 
 bindsym $mod+b                 exec --no-startup-id setwallpaper
 bindsym $mod+Shift+b           exec --no-startup-id polybar-msg cmd toggle
@@ -108,8 +108,7 @@ bindsym $mod+space             focus mode_toggle
 bindsym $mod+Shift+minus       move scratchpad
 bindsym $mod+minus             scratchpad show; move position center
 
-bindsym Print                  exec --no-startup-id maim -u -s "/home/$USER/media/pic/screenshot/$(date +%Y-%m-%d_%H-%M-%S).png" | xclip -selection clipboard -t image/png
-bindsym $mod+Print             exec --no-startup-id maim -u "/home/$USER/media/pic/screenshot/$(date +%Y-%m-%d_%H-%M-%S).png"
+bindsym Print                  exec --no-startup-id shot
 
 bindsym $mod+Tab               workspace back_and_forth
 
