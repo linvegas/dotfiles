@@ -42,8 +42,7 @@ checkopt() {
 onemonitor() {
   [ -z "$monitor1" ] && monitor1="$CONNECTED"
 
-  xrandr --output "$monitor1" --mode "$monitor1_res" --dpi "$dpi"
-
+  xrandr --output "$monitor1" --mode "$monitor1_res" --dpi "$dpi" && setwallpaper
   exit 0
 }
 
@@ -51,8 +50,7 @@ dualmonitor() {
   xrandr \
     --output "$monitor1" --mode "$monitor1_res" --rate "$monitor1_rate" --primary \
     --output "$monitor2" --mode "$monitor2_res" --rate "$monitor2_rate" --"$monitor2_pos"-of "$monitor1" \
-    --dpi "$dpi"
-
+    --dpi "$dpi" && setwallpaper
   exit 0
 }
 
@@ -67,3 +65,4 @@ case $(echo "$CONNECTED" | wc -w) in
   3) arandr && exit;;
   0) exit 1;;
 esac
+

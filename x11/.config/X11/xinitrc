@@ -7,7 +7,7 @@ xrandr --setprovideroutputsource modesetting NVIDIA-0
 
 # local scripts
 setmonitor &
-setwallpaper &
+# setwallpaper &
 
 numlockx &
 setxkbmap -option caps:escape &
