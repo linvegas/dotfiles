@@ -139,14 +139,14 @@ g() {
 
 # Edit personal scripts
 vv() {
-  file=$(
-    find -L "$HOME/.local/bin" -type f -exec basename '{}' \; | sort |
-    fzf --height=20 --layout=reverse --info=hidden --preview=''
-  )
+  cd "$HOME/.local/bin"
 
-  [ -z "$file" ] && return
+  local file=$(fzf --height=20 --layout=reverse --info=hidden --preview='')
 
-  $EDITOR "$HOME/.local/bin/$file"
+  [ -z "$file" ] && cd - > /dev/null 2>&1 && return
+
+  $EDITOR "$file"
+  cd - > /dev/null 2>&1
 }
 
 # Shorcut for config files
