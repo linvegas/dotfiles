@@ -24,3 +24,7 @@ inoremap <C-i> <esc>I
 " New line in insert mode
 inoremap <C-o> <esc>o
 inoremap <C-S-o> <esc>O
+
+" Replace selected text in visual mode and prompt for each substitution
+" Press 'a' to confirm all or 'q' to quit
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>

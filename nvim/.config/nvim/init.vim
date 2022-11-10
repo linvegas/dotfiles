@@ -40,5 +40,5 @@ augroup END
 
 augroup LaTeX
   autocmd BufWritePost *.tex
-    \ silent !pdflatex % > /dev/null
+    \ silent !comptex % > /dev/null
 augroup END
