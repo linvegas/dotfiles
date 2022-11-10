@@ -1,26 +1,80 @@
-/* vim: set filetype=rasi : */
+configuration {
+  font: "DroidSansMono Nerd Font 10";
 
-@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
+  drun {
+    display-name: "";
+  }
 
-window { width: 490; }
+  run {
+    display-name: "";
+  }
 
-mainbox { padding: 6px; }
+  window {
+    display-name: "";
+  }
 
-entry { placeholder: ""; }
-
-listview { lines: 10; }
-
-element {
-  orientation: horizontal;
-  padding: 8px 4px;
-  children: [ element-icon, element-text ];
-  spacing: 4px;
+  timeout {
+    delay: 10;
+    action: "kb-cancel";
+  }
 }
 
-element-text {
-  text-color: inherit;
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+
+  bg: #1a1b26;
+  bg-alt: #232433;
+  fg: #6a6f87;
+  fg-alt: #a9b1d6;
+
+  background-color: @bg;
+  text-color: @fg;
+}
+
+window {
+  transparency: "real";
+  width: 700px;
+}
+
+mainbox {
+  children: [inputbar, listview];
+}
+
+inputbar {
+  background-color: @bg-alt;
+  children: [prompt, entry];
+}
+
+entry {
+  background-color: inherit;
+  padding: 12px 3px;
+}
+
+prompt {
+  background-color: inherit;
+  padding: 12px;
+}
+
+listview {
+  lines: 8;
+}
+
+element {
+  children: [element-icon, element-text];
 }
 
 element-icon {
-  size: 1em;
+  padding: 10px 10px;
+  size: 20px;
+}
+
+element-text {
+  padding: 10px 0;
+}
+
+element-text selected {
+  text-color: @fg-alt;
 }
