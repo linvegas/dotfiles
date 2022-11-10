@@ -90,7 +90,7 @@ alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
 hh() {
   hist |
   awk '{$1=""; print $0}' | sed -e 's/^[[:space:]]*//' |
-  fzf --tac --layout=reverse --height=20 --info=hidden |
+  fzf -e --tac --layout=reverse --height=20 --info=hidden |
   xclip -r -selection clipboard
 }
 
