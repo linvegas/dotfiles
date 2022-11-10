@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 checkconf() {
-  conf_file="$HOME/.config/setmonitor.cfg"
+  conf_file="$HOME/.config/setmonitor.conf"
   if [ -s "$conf_file" ]; then
     # shellcheck source=/dev/null
     . "$conf_file"
@@ -42,15 +42,30 @@ checkopt() {
 onemonitor() {
   [ -z "$monitor1" ] && monitor1="$CONNECTED"
 
-  xrandr --output "$monitor1" --mode "$monitor1_res" --dpi "$dpi" && setwallpaper
+  if [ -z "$monitor1_res" ] && [ -z "$monitor1_rate" ]; then
+    xrandr --output "$monitor1" --auto --dpi "$dpi"
+  else
+    xrandr --output "$monitor1" --mode "$monitor1_res" --dpi "$dpi"
+  fi
+
+  setwallpaper
   exit 0
 }
 
 dualmonitor() {
-  xrandr \
-    --output "$monitor1" --mode "$monitor1_res" --rate "$monitor1_rate" --primary \
-    --output "$monitor2" --mode "$monitor2_res" --rate "$monitor2_rate" --"$monitor2_pos"-of "$monitor1" \
-    --dpi "$dpi" && setwallpaper
+  if [ -z "$monitor1_rate" ] || [ -z "$monitor2_rate" ]; then
+    xrandr \
+      --output "$monitor1" --auto --primary \
+      --output "$monitor2" --auto --"$monitor2_pos"-of "$monitor1" \
+      --dpi "$dpi"
+  else
+    xrandr \
+      --output "$monitor1" --mode "$monitor1_res" --rate "$monitor1_rate" --primary \
+      --output "$monitor2" --mode "$monitor2_res" --rate "$monitor2_rate" --"$monitor2_pos"-of "$monitor1" \
+      --dpi "$dpi"
+  fi
+
+  setwallpaper
   exit 0
 }
 

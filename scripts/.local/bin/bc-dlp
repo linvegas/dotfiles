@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+# Script for download bandcamp albums
+# Made specific for bandcamp
+
+[ ! "$(command -v yt-dlp)" ] && echo "yt-dlp needs to be installed" && exit 1
+
+path="$(readlink -f "$1")"
+url="$2"
+
+[ -z "$path" ] && echo "Choose a path to download the files" && exit 1
+[ -z "$url" ] && echo "Url missing" && exit 1
+
+[ ! -d "$path" ] && mkdir -p "$path"
+
+yt-dlp --ignore-errors --embed-metadata --embed-thumbnail \
+  --format "(bestaudio[ext*=mp3])" --audio-quality bestaudio \
+  -P "$path" --output "%(album)s/%(track_number)s - %(track)s.%(ext)s" "$url"

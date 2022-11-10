@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+
+[ -z "$1" ] && exit 1
+
+input=$(readlink -f "$1") # file full path
+
+input_dir="${input%/*}" # file directory full path
+input_file="$(basename "$input")" # file name only
+
+[ ! -d "${input_dir}/build" ] && mkdir -p "${input_dir}/build"
+
+cd "$input_dir" || exit 1
+
+pdflatex --output-directory=build "$input"
+grep -qi "addbibresource" "$input" &&
+  biber --input-directory "${input_dir}/build" "${input_file%.*}" &&
+  pdflatex --output-directory=build "$input" &&
+  pdflatex --output-directory=build "$input"
+
+[ -f "${input_dir}/build/${input_file%.*}.pdf" ] &&
+  mv "${input_dir}/build/${input_file%.*}.pdf" ./

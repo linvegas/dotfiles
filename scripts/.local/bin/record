@@ -1,0 +1,75 @@
+#!/usr/bin/env sh
+
+[ ! "$(command -v ffmpeg)" ] &&
+  notify-send -u critical "Hey!" "ffmpeg needs to be installed" && exit 1
+
+output="$HOME/media/vid/record-$(date '+%Y%m%d-%H-%M-%S').mkv"
+size=$(xrandr | awk '$0 ~ "*" {print $1}' | head -n 1)
+pid="/tmp/recordid"
+
+video() {
+  ffmpeg -y \
+    -video_size "$size" -framerate 60 \
+    -f x11grab -i :0.0 \
+    -c:v h264_nvenc -qp 0 "$output" &
+  echo $! > "$pid"
+}
+
+video_audio() {
+  ffmpeg -y \
+    -video_size "$size" -framerate 60 \
+    -f x11grab -i :0.0 \
+    -f alsa -i default \
+    -c:v h264_nvenc -qp 0 \
+    -c:a aac -b:a 192k "$output" &
+  echo $! > "$pid"
+}
+
+video_audio2() {
+  audio1="$(pactl list short sources | awk 'NR==1 {print $1}')"
+  audio2="$(pactl list short sources | awk 'NR==2 {print $1}')"
+
+  ffmpeg -y \
+    -video_size "$size" -framerate 60 \
+    -f x11grab -i :0.0 \
+    -f pulse -ac 2 -i "$audio1" \
+    -f pulse -ac 2 -i "$audio2" -filter_complex amerge \
+    -c:v h264_nvenc -qp 0 \
+    -c:a aac -b:a 192k "$output" &
+  echo $! > "$pid"
+}
+
+webcam() {
+  camsize=$(
+    v4l2-ctl -d /dev/video0 --list-formats-ext |
+    awk '$0 ~ "Size" {print $3}' | tail -n 1
+  )
+
+  ffmpeg -y \
+    -video_size "$camsize" -framerate 60 \
+    -f v4l2 -i /dev/video0 \
+    -f alsa -i default \
+    -c:v h264_nvenc -qp 0 "$output" &
+  echo $! > "$pid"
+}
+
+stop_rec() {
+  if [ -f "$pid" ]; then
+    kill -15 "$(cat $pid)"
+    rm -f "$pid"
+  fi
+
+  sleep 2
+
+  [ -z "$(pidof ffmpeg)" ] && pkill ffmpeg
+}
+
+case "$1" in
+  video) video;;
+  "video_audio1") video_audio;;
+  "video_audio2") video_audio2;;
+  webcam) webcam;;
+  stop) stop_rec;;
+  *) video_audio;;
+esac
+

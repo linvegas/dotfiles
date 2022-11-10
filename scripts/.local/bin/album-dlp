@@ -15,6 +15,5 @@ url="$2"
 
 yt-dlp --ignore-errors --extract-audio --embed-metadata \
   --format bestaudio --audio-format mp3 --audio-quality 320K \
-  -P "$path" \
-  --output "%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s" \
+  -P "$path" --output "%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s" \
   --yes-playlist "$url"

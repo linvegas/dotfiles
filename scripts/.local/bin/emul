@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+
+# My personal Lutris, lol
+
+game_files="$HOME/media/emu"
+
+[ ! -d "$game_files" ] &&
+  notify-send -u critical "Emu" "O arquivo de jogos não existe!" && exit 1
+
+plat_sel=$(
+  find -L "$game_files" -maxdepth 1 -mindepth 1 -type d -exec basename '{}' \; |
+  rofi -dmenu -i -p "Platform:"
+)
+
+[ -z "$plat_sel" ] && exit 1
+
+game_sel=$(
+  find -L "$game_files/$plat_sel" -type f \
+  \( -name "*.zip" -or -name "*.bin" -or -name "*.iso" \) \
+  -exec basename '{}' \; |
+  sort | rofi -dmenu -i -p "Game:"
+)
+
+[ -z "$game_sel" ] && exit 1
+
+case "$plat_sel" in
+  snes) snes9x-gtk "$game_files/$plat_sel/$game_sel" > /dev/null 2>&1;;
+  ps1) duckstation-qt "$game_files/$plat_sel/$game_sel" > /dev/null 2>&1;;
+  ps2) pcsx2-qt "$game_files/$plat_sel/$game_sel" > /dev/null 2>&1;;
+  psp) PPSSPPSDL "$game_files/$plat_sel/$game_sel" > /dev/null 2>&1;;
+  *) notify-send "Emu" "Não tem um emulador compatível no momento" && exit 1;;
+esac
