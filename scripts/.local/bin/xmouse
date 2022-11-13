@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+# Unecessary script for moving the mouse with the keyboard
+
+[ ! "$(command -v xdotool)" ] && notify-send "You need to install xdotool" && exit 1
+
+# Get current mouse location
+eval "$(xdotool getmouselocation --shell)"
+
+# How many pixels to move
+RANGE=25
+
+case "$1" in
+  left|l)  X="$(( X - RANGE ))" && xdotool mousemove "$X" "$Y";;
+  right|r) X="$(( X + RANGE ))" && xdotool mousemove "$X" "$Y";;
+  up|u)    Y="$(( Y - RANGE ))" && xdotool mousemove "$X" "$Y";;
+  down|d)  Y="$(( Y + RANGE ))" && xdotool mousemove "$X" "$Y";;
+  *) echo "Use left, right, up or down as argument";;
+esac
