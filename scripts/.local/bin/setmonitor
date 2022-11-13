@@ -53,7 +53,7 @@ onemonitor() {
 }
 
 dualmonitor() {
-  if [ -z "$monitor1_rate" ] || [ -z "$monitor2_rate" ]; then
+  if [ -z "$monitor1_rate" ] && [ -z "$monitor2_rate" ]; then
     xrandr \
       --output "$monitor1" --auto --primary \
       --output "$monitor2" --auto --"$monitor2_pos"-of "$monitor1" \

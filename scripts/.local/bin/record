@@ -66,7 +66,7 @@ stop_rec() {
 
 case "$1" in
   video) video;;
-  "video_audio1") video_audio;;
+  "video_audio") video_audio;;
   "video_audio2") video_audio2;;
   webcam) webcam;;
   stop) stop_rec;;
