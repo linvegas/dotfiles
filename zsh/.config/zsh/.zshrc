@@ -86,6 +86,9 @@ alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
 
 ## Functions
 
+# Pause or play every instances of mpv
+mpvall() { for i in $(xdotool search --class mpv); do xdotool key --window "$i" p; done };
+
 # Fuzzy find into shell history
 hh() {
   hist |
@@ -164,7 +167,7 @@ v() {
     xini)   $EDITOR "$XDG_CONFIG_HOME/X11/xinitrc";;
     xres)   $EDITOR "$XDG_CONFIG_HOME/X11/xresources";;
     z|zsh)  $EDITOR "$XDG_CONFIG_HOME/zsh/.zshrc";;
-    zpro)   $EDITOR "$HOME/.zprofile";;
+    zp)     $EDITOR "$HOME/.zprofile";;
     *)      echo "Precisa de um parâmetro ou argumento inválido";;
   esac
 }
