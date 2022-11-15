@@ -1,80 +1,96 @@
 configuration {
-  font: "DroidSansMono Nerd Font 10";
+  font:    "DroidSansMono Nerd Font 13";
+  hide-scrollbar: true;
+  modes: [window,drun,run,ssh,filebrowser];
 
   drun {
     display-name: "";
   }
-
-  run {
-    display-name: "";
-  }
-
-  window {
-    display-name: "";
-  }
-
-  timeout {
-    delay: 10;
-    action: "kb-cancel";
-  }
 }
 
+@theme "/dev/null"
+
 * {
-  border: 0;
-  margin: 0;
+
+  padding: 0;
+  margin:  0;
   padding: 0;
   spacing: 0;
 
-  bg: #1a1b26;
-  bg-alt: #232433;
-  fg: #6a6f87;
-  fg-alt: #a9b1d6;
+  bg:      #1E2127;
+  bg2:     #5C6370;
+  bg3:     #455a62;
+  fg:      #ABB2BF;
+  fg2:     #FFFFFF;
+  red:     #E06C75;
+  green:   #98C379;
+  yellow:  #D19A66;
+  blue:    #61AFEF;
+  magenta: #C678DD;
+  cyan:    #56B6C2;
 
-  background-color: @bg;
+  background-color: transparent;
   text-color: @fg;
 }
 
 window {
+  width: 500;
   transparency: "real";
-  width: 700px;
+  location: center;
+  border-radius: 5px;
+  border: 2px;
+  border-color: @bg2;
+  background-color: @bg;
 }
 
-mainbox {
-  children: [inputbar, listview];
+mainbox { children: [message,inputbar,listview]; }
+
+message {
+  enabled: true;
+  background-color: @blue;
+  text-color: @bg;
+  padding: 5px;
+}
+
+textbox {
+  background-color: inherit;
+  text-color: inherit;
+  vertical-align: 0.5;
+  horizontal-align: 0.0;
 }
 
 inputbar {
-  background-color: @bg-alt;
-  children: [prompt, entry];
+  children: [prompt,entry];
+  text-color: @fg;
 }
 
 entry {
   background-color: inherit;
-  padding: 12px 3px;
+  text-color: @fg;
+  padding: 14px 3px;
 }
 
 prompt {
   background-color: inherit;
-  padding: 12px;
+  text-color: inherit;
+  padding: 14px;
+  text-color: @fg;
 }
 
-listview {
-  lines: 8;
-}
+listview { lines: 10; }
 
 element {
-  children: [element-icon, element-text];
+  children: [element-icon,element-text];
+  padding: 8px 8px;
+  spacing: 16px;
 }
 
-element-icon {
-  padding: 10px 10px;
-  size: 20px;
-}
+element selected { background-color: @bg2; }
 
-element-text {
-  padding: 10px 0;
-}
+element-text { text-color: inherit; }
 
-element-text selected {
-  text-color: @fg-alt;
-}
+element-text selected { text-color: @fg2; }
+
+element-icon { size: 1em; }
+
+/* vim: set filetype=rasi : */
