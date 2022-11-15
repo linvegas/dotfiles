@@ -56,6 +56,7 @@ alias lf="lf-uber"
 alias off="sudo shutdown now"
 alias reboot="sudo reboot"
 alias suspend="sudo systemctl suspend"
+alias pacup="sudo pacman -Syu && yay -Sua"
 
 # Python
 alias py="python3"
@@ -85,7 +86,6 @@ alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settin
 alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
 
 ## Functions
-
 # Pause or play every instances of mpv
 mpvall() { for i in $(xdotool search --class mpv); do xdotool key --window "$i" p; done };
 

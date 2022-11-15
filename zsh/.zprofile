@@ -38,7 +38,7 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 # fi
 
 # Starts xorg
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+if [ ! $(pidof -s Xorg) ] && [ "$(tty)" = "/dev/tty1" ]; then
   exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" -- &> ~/.cache/startx.log
   # exec ssh-agent sway --unsupported-gpu -- &> ~/.cache/startw.log
 fi
