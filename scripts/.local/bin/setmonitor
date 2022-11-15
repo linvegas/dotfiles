@@ -31,9 +31,6 @@ checkopt() {
   [ -z "$monitor1_res" ] && monitor1_res="1920x1080"
   [ -z "$monitor2_res" ] && monitor2_res="1920x1080"
 
-  [ -z "$monitor1_rate" ] && monitor1_rate="60"
-  [ -z "$monitor2_rate" ] && monitor2_rate="60"
-
   [ -z "$monitor1_pos" ] && monitor1_pos="left"
   [ -z "$monitor2_pos" ] && monitor2_pos="right"
 
@@ -42,7 +39,7 @@ checkopt() {
 onemonitor() {
   [ -z "$monitor1" ] && monitor1="$CONNECTED"
 
-  if [ -z "$monitor1_res" ] && [ -z "$monitor1_rate" ]; then
+  if [ -z "$monitor1_res" ]; then
     xrandr --output "$monitor1" --auto --dpi "$dpi"
   else
     xrandr --output "$monitor1" --mode "$monitor1_res" --dpi "$dpi"
@@ -53,7 +50,7 @@ onemonitor() {
 }
 
 dualmonitor() {
-  if [ -z "$monitor1_rate" ] && [ -z "$monitor2_rate" ]; then
+  if [ -z "$monitor1_rate" ] || [ -z "$monitor2_rate" ]; then
     xrandr \
       --output "$monitor1" --auto --primary \
       --output "$monitor2" --auto --"$monitor2_pos"-of "$monitor1" \
