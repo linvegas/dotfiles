@@ -1,10 +1,13 @@
 #!/usr/bin/env sh
-# Depends on: xwallpaper, xorg-xrandr and pywal
+# Depends on: xwallpaper, xorg-xrandr, pywal and imagemagick
 
 # Wallpapers directorie
 wp_dir="$HOME/.local/share/backgrounds"
-[ -n "$(find "$wp_dir" -type d -empty)" ] &&
-  wp_dir="/usr/share/backgrounds/archlinux"
+if [ -n "$(find "$wp_dir" -type d -empty)" ]; then
+  magick -size "$(xrand | awk '$0 ~ "*" {print $1}' | head -n 1)" canvas:"#5C6370" \
+  "$HOME/.local/share/backgrounds/default.png"
+  # wp_dir="/usr/share/backgrounds/archlinux"
+fi
 
 # Set image from argument or default directory
 case "$1" in
