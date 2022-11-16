@@ -26,6 +26,7 @@ mor() {
 
 while read -r file; do
   case "$1" in
+    "b") setwallpaper "$file";;
     "i") notify-send "Info" "$(file "$file")";;
     "m") mor "$file";;
   esac
