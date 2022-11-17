@@ -5,7 +5,7 @@
 options=$(lsblk -e 259,254 -o SIZE,LABEL,PATH,FSTYPE,TYPE,MOUNTPOINT | grep "part $")
 
 # If no partition was found, exit
-[ "$options" = "" ] && echo "Nenhuma partição para ser montada" && exit 1
+[ "$options" = "" ] && notify-send "USBIN" "Nenhuma partição para ser montada" && exit 1
 
 # Choosing one with dmenu
 dev_path=$(printf "%s\n" "$options" | dmenu -l 20 -p "Partição: " | awk '{print $3}')

@@ -11,7 +11,7 @@ for dir in $mount_dirs; do
 done
 
 # Exit if none was found
-[ "$ava_mount" = "" ] && echo "Nenhum ponto de montagem encontrado" && exit 1
+[ "$ava_mount" = "" ] && notify-send "USBOUT" "Nenhum ponto de montagem encontrado" && exit 1
 
 # Choose one
 mount_path=$(echo "$ava_mount" | tr -s '\n' | dmenu -l 20 -p "Dir: ")
@@ -20,4 +20,4 @@ mount_path=$(echo "$ava_mount" | tr -s '\n' | dmenu -l 20 -p "Dir: ")
 [ "$mount_path" = "" ] && exit 1
 
 # Actual umount
-sudo umount "$mount_path"
+sudo umount "$mount_path" && notify-send "USBOUT" "Dispositivo removido com sucesso"

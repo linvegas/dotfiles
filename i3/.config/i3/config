@@ -59,6 +59,9 @@ bindsym $mod+Shift+r           restart
 
 bindsym $mod+t                 exec --no-startup-id $mail
 
+bindsym $mod+u                 exec --no-startup-id usbin
+bindsym $mod+Shift+u           exec --no-startup-id usbout
+
 bindsym $mod+p                 exec --no-startup-id muhpassxc
 
 bindsym $mod+a                 focus parent
