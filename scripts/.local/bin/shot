@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-[ -x "$(command -v maim)" ] &&
+[ ! -x "$(command -v maim)" ] &&
   notify-send -u critical "maim needs to be installed" && exit 1
 
 options=$(printf "area\nscreen\nwindow" | rofi -dmenu -p "Capture")

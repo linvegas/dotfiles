@@ -3,7 +3,7 @@
 # Script for download youtube album playlists
 # Made specific for music albums
 
-[ -x "$(command -v yt-dlp)" ] && echo "yt-dlp needs to be installed" && exit 1
+[ ! -x "$(command -v yt-dlp)" ] && echo "yt-dlp needs to be installed" && exit 1
 
 path="$(readlink -f "$1")"
 url="$2"
