@@ -2,7 +2,7 @@
 
 # Unecessary script for moving the mouse with the keyboard
 
-[ ! "$(command -v xdotool)" ] && notify-send "You need to install xdotool" && exit 1
+[ -x "$(command -v xdotool)" ] && notify-send "You need to install xdotool" && exit 1
 
 # Get current mouse location
 eval "$(xdotool getmouselocation --shell)"

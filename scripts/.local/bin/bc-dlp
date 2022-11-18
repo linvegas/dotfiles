@@ -3,7 +3,7 @@
 # Script for download bandcamp albums
 # Made specific for bandcamp
 
-[ ! "$(command -v yt-dlp)" ] && echo "yt-dlp needs to be installed" && exit 1
+[ -x "$(command -v yt-dlp)" ] && echo "yt-dlp needs to be installed" && exit 1
 
 path="$(readlink -f "$1")"
 url="$2"

@@ -1,12 +1,16 @@
 #!/usr/bin/env sh
 # Depends on: xwallpaper, xorg-xrandr, pywal and imagemagick
 
-# Wallpapers directorie
+# Wallpapers directory
 wp_dir="$HOME/.local/share/backgrounds"
+[ ! -d "$wp_dir" ] && mkdir -p "$wp_dir"
+
+# If there is no image on directory, make one with imagemagick
 if [ -n "$(find "$wp_dir" -type d -empty)" ]; then
-  magick -size "$(xrandr | awk '$0 ~ "*" {print $1}' | head -n 1)" canvas:"#5C6370" \
-  "$HOME/.local/share/backgrounds/default.png"
-  # wp_dir="/usr/share/backgrounds/archlinux"
+  # magick -size "$(xrandr | awk '$0 ~ "*" {print $1}' | head -n 1)" canvas:"#5C6370" \
+  magick -size "100x56" xc: +noise Random "/tmp/noise.png" &&
+  convert "/tmp/noise.png" -virtual-pixel tile -blur 0x18 -auto-level -resize 1920x1080 \
+  "${wp_dir}/default.png"
 fi
 
 # Set image from argument or default directory
