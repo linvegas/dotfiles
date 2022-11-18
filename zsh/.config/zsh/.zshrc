@@ -1,11 +1,8 @@
 ## Set options
-setopt autocd
-setopt extendedglob
+setopt autocd extendedglob
 bindkey -v # vi mode
 export KEYTIMEOUT=1
 stty stop undef
-
-## Autoload
 autoload -Uz colors && colors
 autoload -Uz promptinit && promptinit
 
@@ -20,8 +17,7 @@ setopt prompt_subst
 PROMPT='$(test ${+HISTFILE} -eq 0 && echo " ")${vcs_info_msg_0_}%F{white}%B%1~%b%f %(!.#.$) '
 
 ## History configuration
-setopt hist_ignore_space
-setopt histignorealldups sharehistory
+setopt hist_ignore_space histignorealldups sharehistory
 export HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zsh_history"
 export HISTSIZE=10000
 export SAVEHIST=10000
@@ -31,59 +27,9 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select cache-path $XDG_CACHE_HOME/zsh/zcompcache
 compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
-## General aliases
-alias ls="ls -X --color=auto --group-directories-first"
-alias la="ls -A"
-alias ll="ls -lh"
-alias rm="rm -I -v"
-alias mv="mv -v"
-alias cp="cp -v"
-alias mkdir="mkdir -p -v"
-alias stow="stow -v"
-alias du="du -h"
-alias grep="grep --color=auto"
-alias tree="tree -a -C"
-alias hist="fc -l 1"
-alias so="source ~/.config/zsh/.zshrc"
-alias fale="espeak -v roa/pt-BR"
-alias c="clear"
-alias vim="nvim"
-alias hx="helix"
-alias anom=" unset HISTFILE"
-alias lf="lf-uber"
-
-# System
-alias off="sudo shutdown now"
-alias reboot="sudo reboot"
-alias suspend="sudo systemctl suspend"
-alias pacup="sudo pacman -Syu && yay -Sua"
-
-# Python
-alias py="python3"
-alias pyon="source env/bin/activate"
-
-# Ubuntu aliases
-alias apt="nala"
-alias aptup="sudo nala update && sudo nala upgrade"
-
-# Git aliases
-alias gs="git status"
-alias ga="git add"
-alias gc="git commit"
-alias gl="git log"
-alias gd="git diff"
-alias gp="git push"
-
-# Media app aliases
-alias mpv="mpv --hwdec=auto --autofit=60%x60% --fs"
-alias sxiv="sxiv -b -a"
-alias zt="zathura"
-# alias ncmpcpp="ncmpcpp-uber"
-alias play="aplay -D pipewire"
-
-# Clean home aliases
-alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
-alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
+## Aliases
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] &&
+  source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
 
 ## Functions
 # Pause or play every instances of mpv
@@ -173,7 +119,7 @@ v() {
 }
 
 # Dircolors
-[ -x /usr/bin/dircolors ] && test -r ~/.config/dircolors && eval "$(dircolors -b ~/.config/dircolors)" || eval "$(dircolors -b)"
+[ -x "/usr/bin/dircolors" ] && test -r "$HOME/.config/dircolors" && eval "$(dircolors -b ~/.config/dircolors)" || eval "$(dircolors -b)"
 
 # Zsh highlight
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

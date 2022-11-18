@@ -1,0 +1,67 @@
+#!/bin/sh
+
+# Neovim alias
+[ -x "$(command -v nvim)" ] && alias vim="nvim"
+
+# Verbose commands
+alias \
+  mv="mv -iv" \
+  cp="cp -iv" \
+  rm="rm -Iv" \
+  mkdir="mkdir -pv" \
+  stow="stow -v"
+
+# ls command
+alias \
+  ls="ls -X --color=auto --group-directories-first" \
+  la="ls -A" \
+  ll="ls -lh"
+
+# Color output
+alias \
+  grep="grep --color=auto" \
+  diff="diff --color=auto" \
+  ip="ip -color=auto"
+
+# General stuff
+alias \
+  du="du -h" \
+  tree="tree -a -C" \
+  hist="fc -l 1" \
+  so="source ~/.config/zsh/.zshrc" \
+  fale="espeak -v roa/pt-BR" \
+  c="clear" \
+  anom=" unset HISTFILE" # incognito mode
+
+# Apps
+alias \
+  mpv="mpv --hwdec=auto --autofit=60%x60% --fs" \
+  sxiv="sxiv -b -a" \
+  zt="zathura" \
+  play="aplay -D pipewire"
+
+# System
+alias \
+  off="sudo poweroff" \
+  reboot="sudo reboot" \
+  suspend="sudo systemctl suspend"
+
+# Package manager
+alias \
+  pacup="sudo pacman -Syu && yay -Sua" \
+  apt="nala" \
+  aptup="sudo nala update && sudo nala upgrade"
+
+# Git
+alias \
+  gs="git status" \
+  ga="git add" \
+  gc="git commit" \
+  gl="git log" \
+  gd="git diff" \
+  gp="git push"
+
+# Clean home aliases
+alias \
+  nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings' \
+  yarn='yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config'
