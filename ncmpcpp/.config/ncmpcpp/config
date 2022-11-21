@@ -8,29 +8,46 @@ lyrics_directory = "~/.local/share/lyrics"
 mpd_host "127.0.0.1"
 mpd_port "6600"
 
-visualizer_data_source = "/tmp/mpd.fifo"
-visualizer_output_name = "my_fifo"
-visualizer_in_stereo = "yes"
-visualizer_type = "spectrum"
-visualizer_look = "+|"
-
 external_editor = "nvim"
 use_console_editor = "yes"
 
-# playlist_display_mode = "columns"
-# song_columns_list_format = "(20)[6]{a} (30)[4]{t} (10)[2]{l}"
+autocenter_mode = "yes"
+user_interface = "classic"
 
-song_status_format = "{{%a - %b - }{%t}}|{%f}"
-user_interface = "alternative"
-alternative_header_second_line_format = "{{$4$b%a$/b$9}{ - $7%b$9}{ - ($4%l$9)}}|{%D}"
+playlist_shorten_total_times = "yes"
+playlist_display_mode = "columns"
+
 header_visibility = "no"
+statusbar_visibility = "yes"
+titles_visibility = "no"
 
 media_library_hide_album_dates = "yes"
 
 startup_screen = "media_library"
 screen_switcher_mode = "playlist, media_library"
 
-main_window_color = "green"
-header_window_color = "cyan"
-progressbar_elapsed_color = "green:b"
-progressbar_look = "▒▒░"
+visualizer_data_source = "/tmp/mpd.fifo"
+visualizer_output_name = "FIFO"
+visualizer_in_stereo = "yes"
+visualizer_type = "wave"
+visualizer_look = "●▮"
+visualizer_color = "blue, cyan, green, yellow, magenta, red, black"
+visualizer_spectrum_dft_size = 4
+visualizer_spectrum_gain = 15
+
+current_item_prefix = "$(green)$r"
+current_item_suffix = "$/r$(end)"
+
+# main_window_color = "red"
+# state_line_color = "magenta"
+progressbar_color = "black"
+progressbar_elapsed_color = "white"
+progressbar_look = "──"
+
+# song_columns_list_format = "(20)[6]{a} (30)[4]{t} (10)[2]{l}"
+song_columns_list_format = "(6)[]{} (23)[cyan]{a} (26)[white]{t|f} (40)[green]{b} (4)[blue]{l}"
+
+# song_status_format = "{{%a - %b - }{%t}}|{%f}"
+song_status_format = "$b$7♫ $2%A $8- $3%b $8- $8%t "
+alternative_header_second_line_format = "{{$4$b%a$/b$9}{ - $7%b$9}{ - ($4%l$9)}}|{%D}"
+
