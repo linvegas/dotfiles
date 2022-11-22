@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Configurations
-conf_file="$HOME/.config/mybackup.cfg"
+conf_file="$HOME/.config/mybackup.conf"
 date_format=$(date "+%Y-%m-%d+%Hh%Mm")
 backup_dest="/tmp"
 tar_src="$HOME/docx"

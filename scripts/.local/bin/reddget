@@ -17,7 +17,7 @@ first_name_file="$tmp_dir/first-name"
 media_dir="$tmp_dir/media"
 
 conf_dir="${XDG_CONFIG_HOME:-$HOME/.config}/reddget"
-conf_file="$conf_dir/reddget.cfg"
+conf_file="$conf_dir/reddget.conf"
 
 [ ! -d "$tmp_dir" ] && mkdir -p "$tmp_dir"
 [ ! -d "$conf_dir" ] && mkdir -p "$conf_dir"
