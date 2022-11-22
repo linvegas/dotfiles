@@ -57,6 +57,8 @@ return packer.startup(function(use)
 
   --Lsp and treesitter
   use 'neovim/nvim-lspconfig'
+  use "williamboman/mason.nvim"
+  use "williamboman/mason-lspconfig.nvim"
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
