@@ -10,7 +10,7 @@ autoload -Uz promptinit && promptinit
 autoload -Uz vcs_info # Git setup
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
-zstyle ':vcs_info:git:*' formats '%F{green}(%b)%f '
+zstyle ':vcs_info:git:*' formats '%F{green}[%b]%f '
 zstyle ':vcs_info:*' enable git
 setopt prompt_subst
 
@@ -101,6 +101,7 @@ vv() {
 # Shorcut for config files
 v() {
   case "$@" in
+    al)     $EDITOR "$XDG_CONFIG_HOME/shell/aliasrc";;
     term)   $EDITOR "$XDG_CONFIG_HOME/alacritty/alacritty.yml";;
     dunst)  $EDITOR "$XDG_CONFIG_HOME/dunst/dunstrc";;
     picom)  $EDITOR "$XDG_CONFIG_HOME/picom/picom.conf";;

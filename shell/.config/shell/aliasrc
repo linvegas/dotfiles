@@ -35,10 +35,10 @@ alias \
 
 # Apps
 alias \
-  mpv="mpv --hwdec=auto --autofit=60%x60% --fs" \
   sxiv="sxiv -b -a" \
   zt="zathura" \
   play="aplay -D pipewire"
+  # mpv="mpv --hwdec=auto --autofit=60%x60% --fs" \
 
 # System
 alias \
@@ -49,8 +49,6 @@ alias \
 # Package manager
 alias \
   pacup="sudo pacman -Syu && yay -Sua" \
-  apt="nala" \
-  aptup="sudo nala update && sudo nala upgrade"
 
 # Git
 alias \
