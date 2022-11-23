@@ -130,11 +130,10 @@ bindsym $mod+F8                exec --no-startup-id ddcutil --model "LG HDR WFHD
 bindsym $mod+F9                exec --no-startup-id ddcutil --model "LG HDR WFHD" setvcp 10 + 10
 
 ## XF86 Keybinds
-set $refresh_i3status           killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume    exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ && $refresh_i3status
-bindsym XF86AudioLowerVolume    exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && $refresh_i3status
-bindsym XF86AudioMute           exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute        exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume    exec --no-startup-id audioctl up
+bindsym XF86AudioLowerVolume    exec --no-startup-id audioctl down
+bindsym XF86AudioMute           exec --no-startup-id audioctl toggle
+bindsym XF86AudioMicMute        exec --no-startup-id audioctl mute
 
 # Backlight script
 bindsym XF86MonBrightnessUp     exec --no-startup-id screen-bright inc 50
