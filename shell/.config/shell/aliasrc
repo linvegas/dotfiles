@@ -32,7 +32,7 @@ alias \
 [ -x "$(command -v xbps-install)" ] &&
 alias \
   xi="sudo xbps-install" \
-  xq="sudo xbps-query" \
+  xq="xbps-query" \
   xr="sudo xbps-remove" \
   xall="sudo xbps-install -Su"
 
