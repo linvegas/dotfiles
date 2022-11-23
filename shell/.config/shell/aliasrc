@@ -23,6 +23,19 @@ alias \
   diff="diff --color=auto" \
   ip="ip -color=auto"
 
+# Ach Linux
+[ -x "$(command -v pacman)" ] &&
+alias \
+  pacup="sudo pacman -Syu && yay -Sua"
+
+# Void Linux
+[ -x "$(command -v xbps-install)" ] &&
+alias \
+  xi="sudo xbps-install" \
+  xq="sudo xbps-query" \
+  xr="sudo xbps-remove" \
+  xall="sudo xbps-install -Su"
+
 # General stuff
 alias \
   du="du -h" \
@@ -45,10 +58,6 @@ alias \
   off="sudo poweroff" \
   reboot="sudo reboot" \
   suspend="sudo systemctl suspend"
-
-# Package manager
-alias \
-  pacup="sudo pacman -Syu && yay -Sua" \
 
 # Git
 alias \
