@@ -1,18 +1,19 @@
 #!/bin/sh
 
-xrdb -load ~/.config/X11/xresources
+[ -f "$HOME/.config/X11/xresources" ] && xrdb -load "$HOME/.config/X11/xresources"
+[ -f "$HOME/.config/X11/xmodmap" ] && xmodmap "$HOME/.config/X11/xmodmap"
 
-# For nvidia people
+# For the nvidia people
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 
 # local scripts
 setmonitor &
-# setwallpaper &
 
 numlockx &
 setxkbmap -option caps:escape &
 xset s off -dpms &
 xset r rate 300 50 &
+
 /usr/lib/geoclue-2.0/demos/agent &
 
 for p in redshift picom dunst mpd mpdscribble; do
