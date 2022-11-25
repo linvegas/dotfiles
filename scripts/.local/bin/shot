@@ -3,6 +3,8 @@
 [ ! -x "$(command -v maim)" ] &&
   notify-send -u critical "maim needs to be installed" && exit 1
 
+[ ! -d "$HOME/media/pic/screenshot" ] && mkdir -p "$HOME/media/pic/screenshot"
+
 options=$(printf "area\nscreen\nwindow" | rofi -dmenu -p "Capture")
 
 output="$HOME/media/pic/screenshot/$(date '+%Y%m%d-%H-%M-%S').png"

@@ -34,7 +34,7 @@ alias \
   xi="sudo xbps-install" \
   xq="xbps-query" \
   xr="sudo xbps-remove" \
-  xall="sudo xbps-install -Su"
+  xall="sudo xbps-install -Su && xcheckrestart"
 
 # General stuff
 alias \
