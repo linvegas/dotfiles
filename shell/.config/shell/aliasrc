@@ -66,7 +66,8 @@ alias \
   gc="git commit" \
   gl="git log" \
   gd="git diff" \
-  gp="git push"
+  gp="git push" \
+  gb="git branch"
 
 # Clean home aliases
 alias \
