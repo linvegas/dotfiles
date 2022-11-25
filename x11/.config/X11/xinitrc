@@ -8,16 +8,13 @@ xrandr --setprovideroutputsource modesetting NVIDIA-0
 # local scripts
 setmonitor &
 
-numlockx &
 setxkbmap -option caps:escape &
 xset s off -dpms &
 xset r rate 300 50 &
 
 [ -f "$HOME/.config/X11/xmodmap" ] && xmodmap "$HOME/.config/X11/xmodmap"
 
-/usr/lib/geoclue-2.0/demos/agent &
-
-for p in redshift picom dunst mpd mpdscribble; do
+for p in numlockx rshift picom dunst mpd mpdscribble; do
   pidof -s "$p" || "$p" &
 done
 
