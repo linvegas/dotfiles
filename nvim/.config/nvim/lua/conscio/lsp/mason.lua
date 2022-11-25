@@ -5,11 +5,8 @@ local status_ok_1, mason_lspconfig = pcall(require, "mason-lspconfig")
 if (not status_ok_1) then return end
 
 local servers = {
-  "html",
-  "cssls",
   "tsserver",
   "pyright",
-  "bashls",
   "sumneko_lua"
 }
 

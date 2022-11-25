@@ -28,7 +28,7 @@ M.setup = function()
     -- virtual_text = true,
     virtual_text = {
       spacing = 3,
-      -- update_in_insert = false,
+      update_in_insert = false,
       -- severity_sort = true,
       -- prefix = "<-",
       prefix = " ●",
@@ -42,7 +42,7 @@ M.setup = function()
     signs = {
       active = signs,
     },
-    update_in_insert = true,
+    update_in_insert = false,
     underline = true,
     severity_sort = true,
     float = {
