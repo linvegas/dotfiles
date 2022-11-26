@@ -32,4 +32,5 @@ mount_path=$(echo "$ava_mount" | tr -s '\n' | sort | dmenu -l 20 -p "Dir: ")
 [ "$mount_path" = "" ] && exit 1
 
 # Actual mounting
-sudo mount -o uid="${USER}",gid="${USER}",fmask=113,dmask=002 "$dev_path" "$mount_path"
+sudo mount -o uid="${USER}",gid="${USER}",fmask=113,dmask=002 "$dev_path" "$mount_path" &&
+  notify-send "USBIN" "Dispositivo montado com suscesso"
