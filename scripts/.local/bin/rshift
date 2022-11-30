@@ -5,11 +5,9 @@
 
 [ ! -x "$(command -v redshift)" ] && exit
 
-conf="$XDG_CONFIG_HOME/redshift/redshift.conf"
-
 lat_long=$(
   curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" |
   jq -r '"\(.location.lat):\(.location.lng)"'
 )
 
-redshift -l "$lat_long" -c "$conf"
+redshift -l "$lat_long"
