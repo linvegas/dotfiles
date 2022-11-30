@@ -64,7 +64,7 @@ alias \
   gs="git status" \
   ga="git add" \
   gc="git commit" \
-  gl="git log" \
+  gl="git log --stat" \
   gd="git diff" \
   gp="git push" \
   gb="git branch"

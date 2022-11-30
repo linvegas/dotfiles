@@ -24,8 +24,7 @@ export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export HEML_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/helm"
 
 # Local scripts and configurations
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:$HOME/.local/bin/muhstuff"
+export PATH="$PATH:${$(find -L ~/.local/bin -type d -printf %p:)%%:}"
 export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
 export PF_INFO="ascii title os kernel shell pkgs wm memory"
 export CALCURSE_PAGER="bat"
