@@ -29,5 +29,6 @@ while read -r file; do
     "b") setwallpaper "$file";;
     "i") notify-send "Info" "$(file "$file")";;
     "m") mor "$file";;
+    "d") rm "$file" && notify-send "SXIV" "$file\nfoi removido";;
   esac
 done
