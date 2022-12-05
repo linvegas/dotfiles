@@ -3,10 +3,15 @@ local ag = vim.api.nvim_create_augroup
 local au = vim.api.nvim_create_autocmd
 
 -- Delete whitespaces on save
-au('BufWritePre', { pattern = "*", command = ":%s/\\s\\+$//e" })
+au('BufWritePre', {
+  group = ag("cleanWhitespaces", { clear = true }),
+  pattern = "*",
+  command = ":%s/\\s\\+$//e"
+})
 
 -- Remember last position
 au("BufReadPost", {
+  group = ag("Remember", { clear = true }),
   pattern = "*",
   callback = function()
     local row, column = unpack(vim.api.nvim_buf_get_mark(0, '"'))
