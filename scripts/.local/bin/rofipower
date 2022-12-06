@@ -7,9 +7,16 @@ INPUT=$(
   rofi -dmenu -sep "|" -theme "$HOME/.config/rofi/themes/power.rasi"
 )
 
+# In case you are not using systemd
+if [ -x "$(command -v systemctl)" ]; then
+  sleep() { systemctl suspend ;}
+else
+  sleep() { loginctl suspend ;}
+fi
+
 case "$INPUT" in
-  ) systemctl suspend;;
-  ) systemctl poweroff;;
-  ) systemctl reboot;;
+  ) sleep;;
+  ) sudo poweroff;;
+  ) sudo reboot;;
   ) xdotool key Control_L+Alt_L+BackSpace;;
 esac
