@@ -3,7 +3,7 @@
 # Searchs for avaliable tmux sessions in fzf(dependency) and attatch them
 # for laziness
 
-[ ! "$(tmux ls)" ] && echo "Theres is no sessions on tmux" && exit 1
+[ ! "$(tmux ls)" ] && exit 1
 
 session=$(tmux ls | fzf --height=10 --layout=reverse --info=hidden --preview='')
 
