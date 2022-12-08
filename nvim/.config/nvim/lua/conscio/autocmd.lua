@@ -23,16 +23,24 @@ au("BufReadPost", {
   end,
 })
 
--- Put a shebang on every new shell script buffer
-au("BufNewFile", {
-  group = ag("Shebang", { clear = true }),
-  pattern = "*.sh",
-  command = '0put =\\"#!/usr/bin/env sh\\<nl>\\<nl>\\"|$'
-})
-
 -- Compile tex file on save
 au("BufWritePost", {
   group = ag("Latex", { clear = true }),
   pattern = "*.tex",
   command = "silent !comptex % > /dev/null"
 })
+
+-- Enter insertmode and remove numberline on every terminal
+au("TermOpen", {
+  group = ag("Term", { clear = true }),
+  pattern = "*",
+  command = "setlocal nonumber norelativenumber | startinsert"
+})
+
+-- Template for especific filetypes
+au("BufNewFile", {
+  group = ag("Template", { clear = true }),
+  pattern = { "*.sh", "*.c", "*.html"},
+  command = "0r $HOME/.config/nvim/templates/skeleton.%:e"
+})
+

@@ -8,6 +8,10 @@ vim.g.mapleader = " "
 -- Newtab prompt
 keymap("n", "<leader>n", ":tabnew<space>", opts)
 
+-- Open terminal on split window
+keymap("n", "<leader>t", ":vsplit term://zsh<CR>", opts)
+keymap("n", "<leader>T", ":split term://zsh<CR>", opts)
+
 -- Buffer and tab switch
 keymap("n", "<C-S-h>", ":bp<CR>", opts)
 keymap("n", "<C-S-l>", ":bn<CR>", opts)
