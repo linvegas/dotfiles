@@ -97,6 +97,9 @@ bindsym $mod+Shift+l           move right 50 px
 bindsym $mod+Ctrl+l            resize shrink width 5 px or 5 ppt
 bindsym $mod+Mod1+l            exec --no-startup-id xmouse r
 
+bindsym $mod+z                 exec i3-input -F '[con_mark="%s"] focus' -l 3 -P 'Goto: '
+bindsym $mod+Shift+z           exec i3-input -F 'mark %s' -l 3 -P 'Mark: '
+
 bindsym $mod+x                 layout toggle split
 bindsym $mod+Shift+x           layout toggle tabbed splith
 bindsym $mod+Ctrl+x            split toggle

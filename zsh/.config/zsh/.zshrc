@@ -61,7 +61,7 @@ share() {
 # cd to specified path
 g() {
   case "$@" in
-    nvi)  cd ~/.config/nvim;;
+    vim)  cd ~/.config/nvim;;
     dot)  cd ~/dotfiles;;
     dow)  cd ~/docx/downloads;;
     doc)  cd ~/docx;;
