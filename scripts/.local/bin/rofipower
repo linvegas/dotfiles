@@ -11,7 +11,7 @@ INPUT=$(
 if [ -x "$(command -v systemctl)" ]; then
   sleep() { systemctl suspend ;}
 else
-  sleep() { loginctl suspend ;}
+  sleep() { sudo loginctl suspend ;}
 fi
 
 case "$INPUT" in
