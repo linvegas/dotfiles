@@ -13,5 +13,14 @@ filename=$(basename -- "$1")
 filesize=$(du -Hh -- "$1" | cut -f 1)
 geometry="${2}x${3}"
 
-echo "${filename}${s}${filesize}${s}${geometry}"
+tmp_dir=$(find /tmp -type d -name "34get*")
+if [ -z "$tmp_dir" ]; then
+  echo "${filename}${s}${filesize}${s}${geometry}"
+else
+  json_file=$(find "$tmp_dir" -type f -name "json-info")
+  hash="${filename%.*}"
+  tags="$(jq -r '.[]? | select(.hash == "'"$hash"'") | .tags' < "$json_file")"
+  echo "${filename}${s}${tags}" && exit
+fi
+
 
