@@ -10,6 +10,9 @@ keymap("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
 
 telescope.setup {
   defaults = {
+    file_ignore_patterns = {
+      "%.png", "%.jpg", "%.gif", "%.jpeg"
+    },
     mappings = {
       i = {
         ["<esc>"] = require("telescope.actions").close

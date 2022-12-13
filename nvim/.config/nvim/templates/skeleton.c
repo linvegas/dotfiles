@@ -2,7 +2,7 @@
 
 int main(void) {
 
-  printf("Sup Bruh!\n");
+    printf("Sup Bruh!\n");
 
-  return 0;
+    return 0;
 }

@@ -7,6 +7,7 @@ local options = {
   cursorline = true,
 	tabstop = 2,
 	shiftwidth = 2,
+  softtabstop = 2,
   scrolloff = 8,
 	splitbelow = true,
 	splitright = true,
