@@ -10,7 +10,7 @@ options=$(printf "area\nscreen\nwindow" | rofi -dmenu -p "Capture")
 output="$HOME/media/pic/screenshot/$(date '+%Y%m%d-%H-%M-%S').png"
 
 case "$options" in
-  area) maim -s "$output";;
-  screen) maim -q -d 0.5 "$output";;
-  window) maim -i "$(xdotool getactivewindow)" "$output";;
+  area) maim -m 2 -d 0.5 -s "$output";;
+  screen) maim -m 2 -q -d 0.5 "$output";;
+  window) maim -m 2 -i "$(xdotool getactivewindow)" "$output";;
 esac
