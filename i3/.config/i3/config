@@ -52,6 +52,7 @@ bindsym $mod+w                 exec $browser
 bindsym $mod+Shift+w           exec $browser -private-window
 
 bindsym $mod+e                 exec --no-startup-id emul
+bindsym $mod+Shift+e           exec --no-startup-id setemoji
 
 bindsym $mod+r                 exec --no-startup-id record
 bindsym $mod+Ctrl+r            exec --no-startup-id record stop
