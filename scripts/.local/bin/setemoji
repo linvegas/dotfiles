@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+emoji_list="${XDG_DATA_HOME:-$HOME/.local/share}/emoji.txt"
+
+[ ! -f "$emoji_list" ] && notify-send "😵 oops!" "$emoji_list doesn't exist" && exit 1
+
+emoji_sel=$(rofi -dmenu -p "emoji:" < "$emoji_list")
+
+[ -z "$emoji_sel" ] && exit
+
+echo "$emoji_sel" | awk '{print $1}' | tr -d "\n" | xclip -selection clipboard
