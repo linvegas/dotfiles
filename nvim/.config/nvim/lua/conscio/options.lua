@@ -8,12 +8,14 @@ local options = {
 	tabstop = 2,
 	shiftwidth = 2,
   softtabstop = 2,
+	expandtab = true,
   scrolloff = 8,
 	splitbelow = true,
 	splitright = true,
-	expandtab = true,
 	wrap = false,
-	clipboard = "unnamedplus"
+	clipboard = "unnamedplus",
+  hlsearch = false,
+  incsearch = true
 }
 
 for k, v in pairs(options) do

@@ -1,5 +1,4 @@
 local opts = { noremap = true }
-
 local keymap = vim.api.nvim_set_keymap
 
 -- Spacebar as leader key
@@ -32,4 +31,8 @@ keymap("i", "<C-S-o>", "<esc>O", opts)
 -- Replace selected text in visual mode and prompt for each substitution
 -- Press 'a' to confirm all or 'q' to quit
 keymap("v", "<C-r>", '"hy:%s/<C-r>h//gc<left><left><left>', opts)
+
+-- Move selected text between lines
+keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
+keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
 
