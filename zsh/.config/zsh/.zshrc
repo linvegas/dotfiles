@@ -66,7 +66,7 @@ g() {
     dow)  cd ~/docx/downloads;;
     doc)  cd ~/docx;;
     dev)  cd ~/dev;;
-    sh)   cd ~/dev/learn/shell;;
+    sh)   cd ~/dev/shell;;
     pic)  cd ~/media/pic;;
     vid)  cd ~/media/vid;;
     smp)  cd ~/media/samp;;
