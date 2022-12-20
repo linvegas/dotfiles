@@ -9,7 +9,8 @@ alias \
   cp="cp -iv" \
   rm="rm -Iv" \
   mkdir="mkdir -pv" \
-  stow="stow -v"
+  stow="stow -v" \
+  ln="ln -v"
 
 # ls command
 alias \
@@ -23,7 +24,7 @@ alias \
   diff="diff --color=auto" \
   ip="ip -color=auto"
 
-# Ach Linux
+# Arch Linux
 [ -x "$(command -v pacman)" ] &&
 alias \
   pacup="sudo pacman -Syu && yay -Sua --noconfirm --removemake"

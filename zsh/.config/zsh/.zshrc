@@ -23,7 +23,7 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 
 ## Use modern completion system
-autoload -Uz compinit && compinit
+autoload -Uz compinit
 zstyle ':completion:*' menu select cache-path $XDG_CACHE_HOME/zsh/zcompcache
 compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
