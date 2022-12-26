@@ -22,6 +22,7 @@ export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export LESSHISTFILE="-"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export HEML_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/helm"
+export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 
 # Local scripts and configurations
 export PATH="$PATH:${$(find -L ~/.local/bin -type d -printf %p:)%%:}"
