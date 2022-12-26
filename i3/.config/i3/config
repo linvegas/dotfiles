@@ -2,7 +2,7 @@
 
 ## Basics and variables
 set $mod                       Mod4
-font pango:Noto Sans Mono      12
+font pango:Noto Sans Mono      10
 default_border                 pixel 2
 default_floating_border        pixel 2
 for_window [all] border        pixel 2
@@ -28,6 +28,7 @@ set $blue                      #61AFEF
 set $magenta                   #C678DD
 set $cyan                      #56B6C2
 set $white                     #C8CCD4
+set $white2                    #ABB2BF
 set $shadow                    #333333
 
 # Colors                       border   backgr. text    indicator child_border
@@ -214,8 +215,23 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 workspace 6 output eDP-1-1
 
 ## i3 bar
-#bar {
-#        status_command i3status
-#        position top
-#        tray_output primary
-#}
+# bar {
+#   font pango: Font Awesome 6 10
+#   status_command i3blocks -c $HOME/.config/i3blocks/i3blocks.conf
+#
+#   position top
+#   output primary
+#   tray_output primary
+#   workspace_min_width 30px
+#   separator_symbol " "
+#
+#   colors {
+#     background $black
+#     statusline $white2
+#
+#     focused_workspace  $white2 $black  $yellow
+#     active_workspace   $black  $black  $white2
+#     inactive_workspace $black  $black  $shadow
+#     urgent_workspace   $red    $black  $white2
+#   }
+# }
