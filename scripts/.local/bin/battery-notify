@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+
+full_bat="/tmp/full-bat"
+almost_full_bat="/tmp/almost-full-bat"
+low_bat="/tmp/low-bat"
+
+acpi -b | grep "Battery 2" | awk -F'[,:%]' '{print $2, $3}' | {
+	read -r status capacity
+
+	if [ "$status" = Charging ] && [ "$capacity" -gt 94 ] && [ ! -f "$almost_full_bat" ]; then
+
+    notify-send "Bateria" "Carga quase completa: ${capacity}%"
+    touch "$almost_full_bat" && rm "$full_bat" "$low_bat"
+
+  elif [ "$status" = Discharging ] && [ "$capacity" -lt 16 ] && [ ! -f "$low_bat" ]; then
+
+    notify-send -u critical "Bateria" "Descarregando: ${capacity}%"
+    touch "$low_bat" && rm "$full_bat" "$almost_full_bat"
+
+  elif [ "$status" = Full ] && [ ! -f "$full_bat" ]; then
+
+    notify-send "Bateria" "Carga completa: ${capacity}%"
+    touch "$full_bat" && rm "$low_bat" "$almost_full_bat"
+
+	fi
+}

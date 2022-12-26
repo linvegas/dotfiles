@@ -106,7 +106,8 @@ bindsym $mod+x                 layout toggle split
 bindsym $mod+Shift+x           layout toggle tabbed splith
 bindsym $mod+Ctrl+x            split toggle
 
-bindsym --release $mod+c       exec --no-startup-id xcolor -s clipboard
+bindsym $mod+c                 exec --no-startup-id $term --class float -e qalc
+bindsym --release $mod+Ctrl+c  exec --no-startup-id xcolor -s clipboard
 bindsym $mod+Shift+c           reload
 
 bindsym $mod+v                 exec --no-startup-id webcam
