@@ -43,14 +43,6 @@ hh() {
   xclip -r -selection clipboard
 }
 
-# Open webcam on mpv
-cam() {
-  mpv --really-quiet av://v4l2:/dev/video${1:-0} \
-  --demuxer-lavf-format=video4linux2 \
-  --demuxer-lavf-o-set=input_format=mjpeg,video_size=1280x720 \
-  || notify-send "Nenhuma camera conectada"
-}
-
 # Share any file under 500mb using 0x0.st server
 share() {
   curl -s -F "file=@$1" https://0x0.st |\
