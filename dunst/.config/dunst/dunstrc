@@ -46,10 +46,10 @@
 
     ### Icons ###
 
-    icon_position = off
-    min_icon_size = 0
-    max_icon_size = 16
-    icon_path = /usr/share/icons/Papirus-Dark/32x32/status/:/usr/share/icons/Papirus-Dark/32x32/devices/:/usr/share/icons/Papirus-Dark/32x32/apps/
+    icon_position = left
+    min_icon_size = 32
+    max_icon_size = 128
+    # icon_path = /usr/share/icons/Papirus-Dark/32x32/status/:/usr/share/icons/Papirus-Dark/32x32/devices/:/usr/share/icons/Papirus-Dark/32x32/apps/
 
     ### History ###
 
@@ -92,14 +92,14 @@
     background = "#5C6370"
     foreground = "#ffffff"
     timeout = 4
-    default_icon = /usr/share/icons/Papirus-Dark/32x32/status/dialog-information.svg
+    # default_icon = /usr/share/icons/Papirus-Dark/32x32/status/dialog-information.svg
 
 [urgency_critical]
     background = "#E06C75"
     foreground = "#1E2127"
     frame_color = "#E06C75"
     timeout = 5
-    default_icon = /usr/share/icons/Papirus-Dark/32x32/status/dialog-error.svg
+    # default_icon = /usr/share/icons/Papirus-Dark/32x32/status/dialog-error.svg
 
 [notification-sound]
     summary = "*"
