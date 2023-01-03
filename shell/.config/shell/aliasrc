@@ -45,6 +45,7 @@ alias \
   so="source ~/.config/zsh/.zshrc" \
   fale="espeak -v roa/pt-BR" \
   c="clear" \
+  lf="lf-uber" \
   anom=" unset HISTFILE" # incognito mode
 
 # Apps
