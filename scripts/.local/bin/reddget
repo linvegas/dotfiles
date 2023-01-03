@@ -69,7 +69,7 @@ while getopts ":s:l:ctnpvfh" options; do
       )
       [ -z "$sub" ] && exit 1;;
 
-    t) query="top.json?t=all&";;
+    t) query="top.json?";;
     n) page="after=$(cat $LAST_NAME_FILE)";;
     p) page="before=$(cat $FIRST_NAME_FILE)";;
     v) video_opt="1";;
@@ -89,8 +89,9 @@ cleanup() {
 }
 
 get_info() {
-  curl -H "User-Agent: Bruh Moment" \
-    -s "https://www.reddit.com/r/${1}/${query:-hot.json?}limit=${2}&${3:-}" |
+  base_url="https://www.reddit.com/r"
+  curl -s -H "User-Agent: Bruh Moment" -H "Content-Type: application/json" \
+    -G "${base_url}/${1}/${2:-hot.json?}" -d "t=all" -d "limit=${3}" -d "${4:-}" |
     jq '.' > "$JSON_FILE"
 
   if [ "$video_opt" = "1" ]; then
@@ -127,7 +128,7 @@ view() {
 [ -z "$sub" ] && sub="$default_sub"
 [ -z "$limit" ] && limit="$default_limit"
 
-get_info "$sub" "$limit" "$page"
+get_info "$sub" "$query" "$limit" "$page"
 view
 
 cleanup
