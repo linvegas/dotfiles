@@ -3,10 +3,13 @@
 mor() {
   MOR_DIR="/mnt/ssd/morbus/pic"
   [ ! -d "$MOR_DIR" ] && notify-send "${MOR_DIR} não existe" && exit 1
-  folder=$(\
-    find "$MOR_DIR" -maxdepth 1 -mindepth 1 -exec basename '{}' \; |\
+
+  folder=$(
+    find "$MOR_DIR" -maxdepth 1 -mindepth 1 -exec basename '{}' \; |
     dmenu -l 20 -p "Escolha a pasta: "
   )
+  [ -z "$folder" ] && exit
+
   if [ ! -d "${MOR_DIR}/${folder}" ]; then
     newfolder="$(printf "Sim\nnão" | dmenu -p "Criar a pasta ${folder}?")"
     case $newfolder in
@@ -14,12 +17,17 @@ mor() {
       *) exit 1;;
     esac
   fi
-  newname=$(\
-    find "${MOR_DIR}/${folder}" -maxdepth 1 -mindepth 1 -exec basename '{}' \; |\
-    sort -r |\
-    dmenu -l 20 -p "Renomear ${1} para: "
+
+  last_file_name=$(
+    find "${MOR_DIR}/${folder}" -type f -exec basename '{}' \; |
+    sort -r | head -n 1
   )
+
+  last_file_number=$(echo "$last_file_name" | grep -Eo "[0-9]{3}")
+  new_file_number=$(printf "%03d\n" "$(echo "$last_file_number + 1" | bc)")
+  newname=$(echo "$last_file_name" | sed -E "s/[0-9]{3}/$new_file_number/")
   [ -z "$newname" ] && exit
+
   newpath="${MOR_DIR}/${folder}/${newname}"
   cp "$1" "$newpath" && notify-send "Sxiv" "Esse arquivo foi copiado em \n$newpath"
 }
