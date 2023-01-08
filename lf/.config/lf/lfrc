@@ -17,3 +17,4 @@ cmd setwallpaper "$1"
 map P play
 map D delete
 map b $setwallpaper $f
+map a push %mkdir<space>

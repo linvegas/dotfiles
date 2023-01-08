@@ -18,6 +18,7 @@ cache() {
 }
 
 file="$1"
+width="$2"
 shift
 
 case "$(file --mime-type --brief --dereference -- "$file")" in
@@ -41,11 +42,11 @@ case "$(file --mime-type --brief --dereference -- "$file")" in
     ffmpegthumbnailer -i "$file" -o "$cache" -s 0
     draw "$cache" "$@";;
 
-  # */pdf)
-  #   cache="$(hash "$file").jpg"
-  #   cache "$cache" "$@"
-  #   pdftoppm -jpeg -f 1 -singlefile "$file" "$cache"
-  #   draw "$cache" "$@";;
+  */pdf)
+    cache="$(hash "$file").jpg"
+    cache "$cache" "$@"
+    pdftoppm -jpeg -f 1 -l 1 -singlefile -- "$file" "$cache"
+    draw "$cache" "$@";;
 
   *) echo "Lol, work in progress";;
 esac
