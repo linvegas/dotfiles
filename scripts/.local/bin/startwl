@@ -19,6 +19,4 @@ for p in dunst mpd mpdscribble; do
   pidof -s "$p" || "$p" &
 done
 
-if [ ! "$(pidof -s Xorg)" ] && [ "$(tty)" = "/dev/tty1" ]; then
-  exec ssh-agent Hyprland
-fi
+exec Hyprland

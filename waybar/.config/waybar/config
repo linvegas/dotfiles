@@ -5,8 +5,7 @@
   "spacing": 4,
   "modules-left": ["wlr/workspaces", "cpu", "memory", "temperature"],
   "modules-center": ["clock"],
-  "modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "battery", "tray"],
-  // Modules configuration
+  "modules-right": ["mpd", "disk", "pulseaudio", "network", "battery", "tray"],
   "wlr/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
@@ -38,15 +37,8 @@
     "tooltip-format": "MPD (connected)",
     "tooltip-format-disconnected": "MPD (disconnected)"
   },
-  "idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-      "activated": "",
-      "deactivated": ""
-    }
-  },
   "tray": {
-    // "icon-size": 21,
+    "icon-size": 21,
     "spacing": 10
   },
   "clock": {
@@ -68,15 +60,10 @@
     "format": "{icon} {temperatureC}°C",
     "format-icons": ["", "", ""]
   },
-  "backlight": {
-    // "device": "acpi_video1",
-    "format": "{percent}% {icon}",
-    "format-icons": ["", "", "", "", "", "", "", "", ""]
-  },
   "battery": {
     "states": {
-      // "good": 95,
-      "warning": 30,
+      "good": 95,
+      "warning": 25,
       "critical": 15
     },
     "format": "{icon} {capacity}%",
@@ -118,18 +105,11 @@
     },
     "on-click": "pavucontrol"
   },
-  "custom/media": {
-    "format": "{icon} {}",
-    "return-type": "json",
-    "max-length": 40,
-    "format-icons": {
-      "spotify": "",
-      "default": "🎜"
-    },
-    "escape": true,
-    //"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-    // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-  }
+  "disk": {
+    "interval": 30,
+    "format": " {percentage_used}%",
+    "path": "/"
+  },
 }
 
 // vim:filetype=json
