@@ -46,6 +46,7 @@ alias \
   fale="espeak -v roa/pt-BR" \
   c="clear" \
   lf="lf-uber" \
+  rsync="rsync --info=progress2" \
   anom=" unset HISTFILE" # incognito mode
 
 # Apps
