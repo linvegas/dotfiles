@@ -23,6 +23,7 @@ export LESSHISTFILE="-"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export HEML_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/helm"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
+export ICEAUTHORITY="${XDG_CACHE_HOME:-$HOME/.cache}/ICEauthority"
 
 # Local scripts and configurations
 export PATH="$PATH:${$(find -L ~/.local/bin -type d -printf %p:)%%:}"
@@ -40,6 +41,7 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # Starts xorg
 if [ ! $(pidof -s Xorg) ] && [ "$(tty)" = "/dev/tty1" ]; then
-  exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" -- &> ~/.cache/startx.log
+  exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" i3 &> ~/.cache/startx.log
   # exec ssh-agent sway --unsupported-gpu -- &> ~/.cache/startw.log
+  # exec ssh-agent startwl
 fi
