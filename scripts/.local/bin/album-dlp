@@ -14,6 +14,6 @@ url="$2"
 [ ! -d "$path" ] && mkdir -p "$path"
 
 yt-dlp --ignore-errors --extract-audio --embed-metadata \
-  --format bestaudio --audio-format mp3 --audio-quality 320K \
+  --format bestaudio --audio-format mp3 \
   -P "$path" --output "%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s" \
   --yes-playlist "$url"

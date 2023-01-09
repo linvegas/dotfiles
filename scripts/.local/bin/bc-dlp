@@ -15,4 +15,4 @@ url="$2"
 
 yt-dlp --ignore-errors --embed-metadata --embed-thumbnail \
   --format "(bestaudio[ext*=mp3])" --audio-quality bestaudio \
-  -P "$path" --output "%(album)s/%(track_number)s - %(track)s.%(ext)s" "$url"
+  -P "$path" --output "%(album)s/%(track_number)02d - %(track)s.%(ext)s" "$url"
