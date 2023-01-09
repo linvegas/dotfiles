@@ -8,6 +8,7 @@ bufferline.setup {
     mode = "tabs",
     always_show_bufferline = false,
     show_buffer_close_icons = false,
+    modified_icon = '',
     separator_style = "thin",
   },
   highlights = {

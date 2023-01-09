@@ -15,7 +15,8 @@ local options = {
 	wrap = false,
 	clipboard = "unnamedplus",
   hlsearch = false,
-  incsearch = true
+  incsearch = true,
+  termguicolors = true
 }
 
 for k, v in pairs(options) do
