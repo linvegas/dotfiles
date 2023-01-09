@@ -46,5 +46,5 @@ checkconf
 checkdest
 backup
 
-# Exclude backups with more than 8 days
-find "$backup_dest" -mtime +5 -delete
+# Exclude backups with more than 3 days
+find "$backup_dest" -mtime +3 -delete
