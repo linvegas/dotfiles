@@ -47,6 +47,7 @@ alias \
   c="clear" \
   lf="lf-uber" \
   rsync="rsync --info=progress2" \
+  hx="helix" \
   anom=" unset HISTFILE" # incognito mode
 
 # Apps
