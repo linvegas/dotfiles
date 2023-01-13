@@ -32,12 +32,11 @@ set $white2                    #ABB2BF
 set $shadow                    #333333
 
 # Colors                       border   backgr. text    indicator child_border
-client.focused                 $black2  $black2 $white  $magenta  $cyan
+client.focused                 $black2  $black2 $white  $red      $magenta
 client.unfocused               $black   $black  $white  $magenta  $shadow
 client.focused_inactive        $shadow  $shadow $white  #484e50   #5f676a
 
 ## Startup
-# exec --no-startup-id           $HOME/.local/bin/setwallpaper
 exec --no-startup-id           setmonitor
 exec --no-startup-id           nm-applet
 exec --no-startup-id           picom
