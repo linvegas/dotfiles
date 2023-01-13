@@ -29,6 +29,12 @@ mason_lspconfig.setup {
   automatic_installation = true,
 }
 
+mason_lspconfig.setup_handlers {
+  function (server_name)
+    require("lspconfig")[server_name].setup {}
+  end,
+}
+
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if (not lspconfig_status_ok) then return end
 
