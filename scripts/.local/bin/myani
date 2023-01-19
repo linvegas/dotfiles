@@ -5,7 +5,7 @@ ANI_DIR="/mnt/ssd/anime"
 MPV="mpv --fs"
 
 # Check if anime path exists
-[ ! -d "$ANI_DIR" ] && echo "O diretório ${ANI_DIR} não existe." && exit 1
+[ ! -d "$ANI_DIR" ] && notify-send -u critical "${0##*/}" "O diretório ${ANI_DIR} não existe." && exit 1
 
 while true; do
 

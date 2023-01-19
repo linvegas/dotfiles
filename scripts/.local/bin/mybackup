@@ -34,7 +34,7 @@ backup() {
   backup_file="$backup_dest/backup-$date_format.tar.gz"
 
   # Actual backup
-  if tar -zcSpf "$backup_file" --exclude-vcs "${tar_src[@]}"; then
+  if tar -zcSpf "$backup_file" "${tar_src[@]}"; then
     notify-send "Mybackup" "Backup realizado com sucesso"
   else
     notify-send -u critical "Mybackup" "Ocorreu um erro durante o backup"

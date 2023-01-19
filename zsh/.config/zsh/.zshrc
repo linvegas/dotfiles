@@ -68,6 +68,7 @@ g() {
     ani)  cd ~/media/ani;;
     bin)  cd ~/.local/bin;;
     rep)  cd ~/.local/src;;
+    wp)   cd ~/.local/share/backgrounds;;
     usb)  cd /mnt/usb1;;
     usb2) cd /mnt/usb2;;
     usb3) cd /mnt/usb3;;
