@@ -12,10 +12,15 @@ require'nvim-treesitter.configs'.setup {
   auto_install = true,
 
   highlight = {
-    enable = true
+    enable = true,
+    use_languagetree = true
   },
 
   autotag = {
     enable = true,
-  },
+    filetypes = {
+      'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'rescript',
+      'css', 'lua', 'xml', 'php', 'markdown'
+    }
+  }
 }
