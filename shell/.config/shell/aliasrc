@@ -48,6 +48,7 @@ alias \
   lf="lf-uber" \
   rsync="rsync --info=progress2" \
   hx="helix" \
+  cwd="pwd | xclip -r -sel clip" \
   anom=" unset HISTFILE" # incognito mode
 
 # Apps
