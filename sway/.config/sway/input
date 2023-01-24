@@ -1,0 +1,11 @@
+input "type:keyboard" {
+    xkb_layout br
+    # xkb_model abnt2
+    xkb_model thinkpad60
+    xkb_options caps:escape
+
+    repeat_rate  50
+    repeat_delay  300
+}
+
+# vim:ft=swayconfig
