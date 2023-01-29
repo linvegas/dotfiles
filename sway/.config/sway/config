@@ -15,6 +15,7 @@ smart_borders                  on
 gaps inner                     10
 smart_gaps                     on
 
+include $HOME/.config/sway/colors
 include $HOME/.config/sway/binds
 include $HOME/.config/sway/window
 include $HOME/.config/sway/input
