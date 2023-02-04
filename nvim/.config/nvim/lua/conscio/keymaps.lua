@@ -7,9 +7,10 @@ vim.g.mapleader = " "
 -- Newtab prompt
 keymap("n", "<leader>n", ":tabnew<space>", opts)
 
--- Open terminal on split window
+-- Open terminal on split and buffer
 keymap("n", "<leader>t", ":vsplit term://zsh<CR>", opts)
 keymap("n", "<leader>T", ":split term://zsh<CR>", opts)
+keymap("n", "<leader>tt", ":e term://zsh<CR>", opts)
 
 -- Buffer and tab switch
 keymap("n", "<C-S-h>", ":bp<CR>", opts)
@@ -19,6 +20,9 @@ keymap("n", "<C-l>", ":tabnext<CR>", opts)
 
 -- Yank line
 keymap("n", "Y", "yy", opts)
+
+-- Open vim File Browser
+keymap("n", "<F3>", ":Ex<CR>", opts)
 
 -- A and I insert mode shortcut
 keymap("i", "<C-a>", "<esc>A", opts)
@@ -36,3 +40,5 @@ keymap("v", "<C-r>", '"hy:%s/<C-r>h//gc<left><left><left>', opts)
 keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
 keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
 
+-- Esc to enter normal mode while on terminal
+keymap("t", "<ESC>", "<C-\\><C-n>", opts)
