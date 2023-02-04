@@ -146,6 +146,11 @@ bindsym XF86AudioMicMute        exec --no-startup-id audioctl mute
 bindsym XF86MonBrightnessUp     exec --no-startup-id screen-bright inc 50
 bindsym XF86MonBrightnessDown   exec --no-startup-id screen-bright dec 50
 
+bindsym XF86AudioPlay           exec playerctl play-pause
+bindsym XF86AudioPause          exec playerctl pause-pause
+bindsym XF86AudioNext           exec playerctl next
+bindsym XF86AudioPrev           exec playerctl previous
+
 ## Windows rules
 # specific windows on floating mode
 for_window [all]                          title_format "%class"
