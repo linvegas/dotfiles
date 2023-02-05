@@ -22,7 +22,8 @@ keymap("n", "<C-l>", ":tabnext<CR>", opts)
 keymap("n", "Y", "yy", opts)
 
 -- Open vim File Browser
-keymap("n", "<F3>", ":Ex<CR>", opts)
+keymap("n", "<F3>", ":Explore<CR>", opts)
+keymap("n", "<F4>", ":Rexplore<CR>", opts)
 
 -- A and I insert mode shortcut
 keymap("i", "<C-a>", "<esc>A", opts)
