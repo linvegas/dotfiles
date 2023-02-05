@@ -161,7 +161,6 @@ for_window [title="Bluetooth Devices"]    floating enable
 for_window [class="Nitrogen"]             floating enable
 for_window [class="Cadence"]              floating enable
 for_window [class="Nvidia-settings"]      floating enable
-for_window [class="KeePassXC"]            floating enable
 for_window [class="PdWindow"]             floating enable
 for_window [class="purr-data"]            floating enable
 for_window [class="PatchWindow"]          floating enable
@@ -172,10 +171,6 @@ for_window [class="Gpick"]                floating enable
 for_window [class="QjackCtl"]             floating enable
 for_window [class="TelegramDesktop"]      floating enable
 for_window [class="Nm-connection-editor"] floating enable
-# for_window [class="Steam"]                move to workspace 3
-# for_window [class="Spotify"]              move to workspace 4
-# for_window [class="thunderbird"]          move to workspace 6
-# for_window [instance="mplayer"]           move to workspace 4
 
 ## Workspaces
 set $ws1 "1"
