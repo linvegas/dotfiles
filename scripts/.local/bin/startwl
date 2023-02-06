@@ -2,13 +2,13 @@
 
 cd ~ || exit 1
 
-export GBM_BACKEND="nvidia-drm"
-export __GLX_VENDOR_LIBRARY_NAME="nvidia"
-export LIBVA_DRIVER_NAME="nvidia"
+# export GBM_BACKEND="nvidia-drm"
+# export __GLX_VENDOR_LIBRARY_NAME="nvidia"
+# export LIBVA_DRIVER_NAME="nvidia"
 export XDG_SESSION_TYPE="wayland"
 
-export WLR_NO_HARDWARE_CURSORS=1
-export WLR_DRM_DEVICES="/dev/dri/card0"
+# export WLR_NO_HARDWARE_CURSORS=1
+# export WLR_DRM_DEVICES="/dev/dri/card0"
 
 export XCURSOR_THEME="Breeze"
 export XCURSOR_SIZE=24
@@ -19,4 +19,10 @@ for p in dunst mpd mpdscribble; do
   pidof -s "$p" || "$p" &
 done
 
-exec Hyprland
+session="${1:-sway}"
+
+case "$session" in
+  hypr) exec Hyprland;;
+  sway) exec dbus-run-session sway;;
+  *) exec "$1";;
+esac

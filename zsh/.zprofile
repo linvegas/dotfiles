@@ -39,9 +39,8 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 #   export PATH="$PATH:$WEBOS_CLI_TV"
 # fi
 
-# Starts xorg
+# Starts xorg or wayland
 if [ ! $(pidof -s Xorg) ] && [ "$(tty)" = "/dev/tty1" ]; then
-  exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" i3 &> ~/.cache/startx.log
-  # exec ssh-agent sway --unsupported-gpu -- &> ~/.cache/startw.log
-  # exec ssh-agent startwl
+  # exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" i3 &> ~/.cache/startx.log
+  exec ssh-agent startwl sway &> ~/.cache/startw.log
 fi
