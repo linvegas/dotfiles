@@ -18,6 +18,7 @@ export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export NODE_REPL_HISTORY="${XDG_DATA_HOME:-$HOME/.local/share}/node_repl_history"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export LESSHISTFILE="-"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
@@ -33,14 +34,8 @@ export PF_INFO="ascii title os kernel shell pkgs wm memory"
 export CALCURSE_PAGER="bat"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
-# export LG_WEBOS_TV_SDK_HOME="$HOME/dev/webOS_TV_SDK"
-# if [ -d "$LG_WEBOS_TV_SDK_HOME/CLI/bin" ]; then
-#   export WEBOS_CLI_TV="$LG_WEBOS_TV_SDK_HOME/CLI/bin"
-#   export PATH="$PATH:$WEBOS_CLI_TV"
-# fi
-
 # Starts xorg or wayland
 if [ ! $(pidof -s Xorg) ] && [ "$(tty)" = "/dev/tty1" ]; then
-  # exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" i3 &> ~/.cache/startx.log
-  exec ssh-agent startwl sway &> ~/.cache/startw.log
+  exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" xfce &> ~/.cache/startx.log
+  # exec ssh-agent startwl hypr &> ~/.cache/startw.log
 fi

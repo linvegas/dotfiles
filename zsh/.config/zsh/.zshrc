@@ -33,7 +33,10 @@ compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
 ## Functions
 # Pause or play every instances of mpv
-mpvall() { for i in $(xdotool search --class mpv); do xdotool key --window "$i" p; done };
+mpvall() { for i in $(xdotool search --class mpv); do xdotool key --window "$i" p; done ;}
+
+# Local web server
+serve() { python3 -m http.server --bind "${1:-127.0.0.1}" "${2:-4242}" ;}
 
 # Fuzzy find into shell history
 hh() {
