@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+NEWTAB_DIR="$HOME/.local/src/web-newtab"
+
+if [ -d "$NEWTAB_DIR" ]; then
+  cd "$NEWTAB_DIR" || exit 1
+  python3 -m http.server --bind 127.0.0.1 4242
+else
+  echo "$NEWTAB_DIR not found"
+fi
