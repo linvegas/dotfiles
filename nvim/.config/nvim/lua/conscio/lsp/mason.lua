@@ -7,7 +7,7 @@ if (not status_ok_1) then return end
 local servers = {
   "tsserver",
   "pyright",
-  "sumneko_lua"
+  "lua_ls"
 }
 
 local settings = {
