@@ -1,21 +1,27 @@
-#! /bin/bash
+#!/usr/bin/env sh
 
 # Autostart
 pgrep -x sxhkd > /dev/null || sxhkd -c "$HOME/.config/bspwm/sxhkdrc" &
+setmonitor &
+picom &
 nm-applet &
 xss-lock --transfer-sleep-lock &
 "$HOME"/.config/polybar/launch.sh &
 
 # Setting workspaces to monitors
-monitors=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1)
-count=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1 | wc -l)
-if [ "$count" = 1 ]; then
+monitors=$(xrandr -q | grep -e '\sconnected')
+if [ "$(echo "$monitors" | wc -l)" -eq 1 ]; then
   bspc monitor -d 1 2 3 4 5 6 7 8 9 0
 else
-  for m in $monitors; do
-    [[ "$m" =~ "HDMI" ]] && bspc monitor "$m" -d 1 2 3 4 5 6 7 8
-    [[ "$m" =~ "DP" ]] && bspc monitor "$m" -d 9 0
-  done
+  printf "%s\n" "$monitors" |
+    while IFS= read -r m; do
+      case "$m" in
+        *primary*)
+          bspc monitor "$(echo "$m" | cut -d" " -f1)" -d 1 2 3 4 5;;
+        *)
+          bspc monitor "$(echo "$m" | cut -d" " -f1)" -d 6 7 8 9 0;;
+      esac
+    done
 fi
 
 # Basic config settings
@@ -33,10 +39,6 @@ bspc config automatic_scheme       alternate
 xsetroot -cursor_name left_ptr
 
 # Windows rules
-bspc rule -a "Steam"       desktop="^3"
-bspc rule -a "Spotify"     desktop="^4"
-bspc rule -a "*:mplayer"   desktop="^4"
-bspc rule -a "thunderbird" desktop="^6"
 bspc rule -a "*:float"     state=floating
 bspc rule -a "*:*:webcam"  state=floating
 bspc rule -a "KeePassXC"   state=floating
