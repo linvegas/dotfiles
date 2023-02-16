@@ -2,7 +2,7 @@ local status, telescope = pcall(require, "telescope")
 if (not status) then return end
 
 local opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>fd", ":Telescope diagnostics<CR>", opts)

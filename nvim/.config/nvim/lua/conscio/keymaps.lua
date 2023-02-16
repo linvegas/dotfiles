@@ -1,8 +1,9 @@
 local opts = { noremap = true }
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 
 -- Spacebar as leader key
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Newtab prompt
 keymap("n", "<leader>n", ":tabnew<space>", opts)
