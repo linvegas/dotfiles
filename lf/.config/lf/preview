@@ -22,8 +22,8 @@ width="$2"
 shift
 
 case "$(file --mime-type --brief --dereference -- "$file")" in
-  text/* | application/json) bat -p -f "$file";;
-  audio/*) mediainfo "$file" || exit 1 ;;
+  text/* | application/json | */xml) bat -p -f "$file";;
+  audio/* | application/octet-stream) mediainfo "$file" || exit 1 ;;
 
   image/*)
     orientation="$(identify -format '%[EXIF:Orientation]\n' -- "$file")"
@@ -45,7 +45,7 @@ case "$(file --mime-type --brief --dereference -- "$file")" in
   */pdf)
     cache="$(hash "$file").jpg"
     cache "$cache" "$@"
-    pdftoppm -jpeg -f 1 -l 1 -singlefile -- "$file" "$cache"
+    pdftoppm -jpeg -f 1 -singlefile "$file" "$cache"
     draw "$cache" "$@";;
 
   *) echo "Lol, work in progress";;
