@@ -20,4 +20,4 @@ mount_path=$(echo "$ava_mount" | tr -s '\n' | dmenu -l 20 -p "Dir: ")
 [ "$mount_path" = "" ] && exit 1
 
 # Actual umount
-sudo umount "$mount_path" && notify-send "USBOUT" "Dispositivo removido com sucesso"
+sudo umount "$mount_path" && sync && notify-send "USBOUT" "Dispositivo removido com sucesso"
