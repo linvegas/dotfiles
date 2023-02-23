@@ -118,7 +118,7 @@ view() {
       printf "url = \"%s\"\noutput = \"$MEDIA_DIR/%s\"\n" "$file" "${file##*/}"
     done < $URL_LIST >> $CURL_LIST
 
-    curl -LZsf -K "$CURL_LIST"
+    curl -sLZf -K "$CURL_LIST" >/dev/null 2>&1
 
     $img_viewer "$MEDIA_DIR/"* >/dev/null 2>&1
 
