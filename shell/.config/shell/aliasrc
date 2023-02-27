@@ -53,7 +53,7 @@ alias \
 
 # Apps
 alias \
-  sxiv="sxiv -b -a" \
+  sxiv="nsxiv -b -a" \
   zt="zathura" \
   play="aplay -D pipewire"
   # mpv="mpv --hwdec=auto --autofit=60%x60% --fs" \

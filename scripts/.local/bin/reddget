@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-for p in sxiv mpv jq rofi; do
+for p in nsxiv mpv jq rofi; do
   [ ! "$(type "$p")" ] && echo "$p needs to be installed" && exit 1
 done
 
@@ -28,7 +28,7 @@ else
   subreddits=""
 fi
 
-img_viewer="sxiv -p -b -a"
+img_viewer="nsxiv -p -b -a"
 vid_viewer="mpv --loop=inf --really-quiet"
 
 usage() {
