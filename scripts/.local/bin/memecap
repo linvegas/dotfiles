@@ -1,0 +1,58 @@
+#!/usr/bin/env sh
+
+if [ $# -eq 0 ]; then
+  echo "No arguments passed" && exit 1
+fi
+
+[ ! "$(type magick)" ] && echo "You need to install imagemagick" && exit 1
+
+usage() {
+  echo "memecap -i input.jpg -m 'text1:text2' -o output.jpg"
+}
+
+while getopts ":m:i:o:h" options; do
+  case $options in
+    h) usage && exit;;
+
+    m)
+      input_msg="${OPTARG}"
+      if [ "$(echo "$input_msg" | grep -o ':')" != ":" ]; then
+        punch_line1="$input_msg"
+      else
+        punch_line1="${input_msg%%:*}"
+        punch_line2="${input_msg##*:}"
+      fi
+      ;;
+
+    i)
+      input_img="${OPTARG}"
+      ;;
+
+    o)
+      output_img="${OPTARG}"
+      ;;
+
+    # Search for options not especified on OPTSTRING
+    \?) echo "Opção inválida: -${OPTARG}" && exit;;
+
+    # Search for options that don't require an argument
+    :) echo "A opção -${OPTARG} precisa de um argumento" && exit;;
+
+  esac
+done
+
+if [ -z "$input_img" ] || [ ! -f "$(realpath "$input_img")" ]; then
+  echo "No input image" && exit 1
+fi
+
+[ -z "$output_img" ] && output_img="out.jpg"
+
+input_img_width=$(identify -format %w "$input_img")
+
+magick "$input_img" \
+  -background none -font "Impact" -fill white -stroke black -strokewidth 2 \
+  -size "$input_img_width"x$(( input_img_width / 8 )) \
+  -gravity north caption:"${punch_line1:-Bruh}" -composite \
+  -gravity south caption:"${punch_line2:-}" -composite \
+  "${output_img}"
+
