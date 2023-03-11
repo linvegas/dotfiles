@@ -2,7 +2,6 @@
 
 # Some global variables
 ANI_DIR="/mnt/ssd/anime"
-MPV="mpv --fs"
 
 # Check if anime path exists
 [ ! -d "$ANI_DIR" ] && notify-send -u critical "${0##*/}" "O diretório ${ANI_DIR} não existe." && exit 1
@@ -16,20 +15,22 @@ while true; do
   )
 
   # Check if options were selected
-  [ -z "${ani_path}" ] && exit 1
+  [ -z "$ani_path" ] && exit 0
 
-  # Selecting anime's episode
-  ani_epi=$(
-    find "${ANI_DIR}/${ani_path}" "${FIND_OPTS}" \
-    -type f \( -name "*.mkv" -or -name "*.mp4" -or -name "*.webm" \) \
-    -exec basename '{}' \; |
-    sort | rofi -dmenu -i
-  )
+  while true; do
 
-  # Check if options were selected
-  [ -z "${ani_epi}" ] && exit 1
+    # Selecting anime's episode
+    ani_epi=$(
+      find "${ANI_DIR}/${ani_path}" \
+      -type f \( -name "*.mkv" -or -name "*.mp4" -or -name "*.webm" \) -exec basename '{}' \; |
+      sort | rofi -dmenu -i -select "${ani_epi:-}"
+    )
 
-  # Actually playing the anime
-  $MPV "${ANI_DIR}/${ani_path}/${ani_epi}"
+    # Check if options were selected
+    [ -z "$ani_epi" ] && break
 
+    # Actually playing the anime
+    mpv --fs "${ANI_DIR}/${ani_path}/${ani_epi}"
+
+  done
 done
