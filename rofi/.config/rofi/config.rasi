@@ -1,5 +1,5 @@
 configuration {
-  font:    "DroidSansMono Nerd Font 13";
+  font:    "DroidSansMono Nerd Font 14";
   hide-scrollbar: true;
   modes: [window,drun,run,ssh,filebrowser];
 
@@ -75,6 +75,10 @@ prompt {
   text-color: inherit;
   padding: 14px;
   text-color: @fg;
+}
+
+error-message {
+  padding: 16px;
 }
 
 listview { lines: 10; }
