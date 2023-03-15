@@ -50,6 +50,15 @@ get_info() {
   jq -r '.data.children[0].data.name' "$JSON_FILE" > "$FIRST_NAME_FILE"
 }
 
+check_request() {
+  response=$(curl -s -H "User-Agent: Not a bot" -o /dev/null -w "%{http_code}" "https://www.reddit.com/r/${1}/hot.json?&t=all")
+  if [ "$response" -eq 200 ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
 media_type_option() {
   media_type_opt=$(
     printf "images\nvideos" | rofi -dmenu -mesg "${TITLE} - Images or videos?" -p ">"
@@ -130,6 +139,9 @@ subreddit() {
     subredd_name=$(rofi -dmenu -mesg "${TITLE} - Enter a subreddit name" -p ">")
 
     [ -z "$subredd_name" ] && break
+
+    check_request "$subredd_name" ||
+      rofi -e "'$subredd_name' don't exist, enter a new subreddit name" && continue
 
     media_type_option
 
