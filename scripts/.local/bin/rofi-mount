@@ -1,0 +1,55 @@
+#!/usr/bin/env sh
+
+TITLE=$(echo "${0##*/}" | tr '[:lower:]' '[:upper:]')
+
+if [ "$1" = "-u" ]; then
+  mount_dirs=$(find /mnt -mindepth 1 -maxdepth 1 -type d | sort)
+
+  for dir in $mount_dirs; do
+    if mountpoint -q -- "$dir"; then
+      mount_path="$dir\n${mount_path}"
+    fi
+  done
+
+  [ -z "$mount_path" ] &&
+    notify-send "$TITLE" "There is no mountpoint" && exit
+
+  mount_opt=$(
+    echo "$mount_path" | tr -s '\n' |
+      rofi -dmenu -mesg "$TITLE - Choose a directory" -p ">"
+  )
+
+  [ -z "$mount_opt" ] && exit
+
+  sudo umount "$mount_opt" && sync && notify-send "$TITLE" "Device unmounted"
+  exit
+fi
+
+choose_mount_path() {
+  mount_path=$(
+  find /mnt -mindepth 1 -maxdepth 1 -type d | sort |
+    rofi -dmenu -mesg "$TITLE - Choose a mountpoint" -p ">" -i
+  )
+  [ -z "$mount_path" ] && exit
+}
+
+device_opt=$(
+  lsblk -e 259,254 -o LABEL,SIZE,FSTYPE,PATH,TYPE,MOUNTPOINT | grep "part $" |
+    rofi -dmenu -mesg "$TITLE - Choose a device" -p ">" -i
+)
+
+[ -z "$device_opt" ] && exit
+
+choose_mount_path
+
+if mountpoint -q "$mount_path"; then
+  notify-send -u critical "$TITLE" "${mount_path} is already mounted"
+  choose_mount_path
+fi
+
+device_path=$(echo "$device_opt" | awk '{print $4}')
+
+sudo mount \
+  -o uid="$(id -u)",gid="$(id -g)",fmask=113,dmask=002 "$device_path" "$mount_path" &&
+  notify-send "$TITLE" "$(echo "$device_opt" | awk '{print $1}') is mounted in ${mount_path}"
+
