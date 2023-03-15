@@ -81,7 +81,10 @@ error-message {
   padding: 16px;
 }
 
-listview { lines: 10; }
+listview {
+  lines: 10;
+  fixed-height: false;
+}
 
 element {
   children: [element-icon,element-text];
