@@ -3,33 +3,38 @@
   "position": "top",
   "height": 28,
   "spacing": 4,
-  "modules-left": ["wlr/workspaces", "cpu", "memory", "temperature"],
+  "modules-left": ["sway/workspaces", "wlr/workspaces", "cpu", "memory", "temperature", "disk"],
   "modules-center": ["clock"],
-  "modules-right": ["mpd", "disk", "pulseaudio", "network", "battery", "tray"],
+  "modules-right": ["mpd", "pulseaudio", "network", "battery", "tray"],
   "wlr/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
-    "format": "{name}",
+    "format": "{name}"
+  },
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{name}"
   },
   "mpd": {
-    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-    "format-disconnected": "Disconnected ",
-    "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+    "format": "<span color='#E06C75'></span> {stateIcon} {consumeIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}%",
+    "format-disconnected": "<span color='#E06C75'></span> Disconnected",
+    "format-stopped": "<span color='#E06C75'></span> {consumeIcon}Stopped",
     "unknown-tag": "N/A",
     "interval": 2,
     "consume-icons": {
       "on": " "
     },
-    "random-icons": {
-      "off": "<span color=\"#f53c3c\"></span> ",
-      "on": " "
-    },
-    "repeat-icons": {
-      "on": " "
-    },
-    "single-icons": {
-      "on": "1 "
-    },
+    //"random-icons": {
+    //  "off": "<span color=\"#f53c3c\"></span> ",
+    //  "on": " "
+    //},
+    //"repeat-icons": {
+    //  "on": " "
+    //},
+    //"single-icons": {
+    //  "on": "1 "
+    //},
     "state-icons": {
       "paused": "",
       "playing": ""
@@ -46,15 +51,15 @@
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
   },
   "cpu": {
-    "format": " {usage}%",
+    "format": "<span color='#E06C75'></span> {usage}%",
     "tooltip": false
   },
   "memory": {
-    "format": " {}%"
+    "format": "<span color='#98C379'></span> {}%"
   },
   "temperature": {
     // "thermal-zone": 2,
-    "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon6/temp1_input",
+    "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon3/temp1_input",
     "critical-threshold": 80,
     // "format-critical": "{temperatureC}°C {icon}",
     "format": "{icon} {temperatureC}°C",
@@ -79,16 +84,16 @@
   },
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": "{essid} ({signalStrength}%) ",
-    "format-ethernet": " {ifname}",
-    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-wifi": "<span color='#C678DD'></span> {ifname}",
+    "format-ethernet": "<span color='#C678DD'></span> {ifname}",
+    "tooltip-format": "{essid} via {gwaddr} ",
     "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "Disconnected ⚠",
+    "format-disconnected": "⚠ Disconnected",
     "format-alt": "{ifname}: {ipaddr}/{cidr}"
   },
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
-    "format": "{icon} {volume}% {format_source}",
+    "format": "<span color='#56B6C2'>{icon}</span> {volume}% {format_source}",
     "format-bluetooth": "{volume}% {icon} {format_source}",
     "format-bluetooth-muted": " {icon} {format_source}",
     "format-muted": " {format_source}",
@@ -107,7 +112,7 @@
   },
   "disk": {
     "interval": 30,
-    "format": " {percentage_used}%",
+    "format": "<span color='#61AFEF'></span> {percentage_used}%",
     "path": "/"
   },
 }

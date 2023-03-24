@@ -35,6 +35,22 @@ bindsym $mod+f                 fullscreen toggle
 bindsym $mod+g                 gaps inner current set 10
 bindsym $mod+Shift+g           gaps inner current set 0; gaps outer current set 0
 
+bindsym $mod+h                 focus left
+bindsym $mod+Shift+h           move left 50 px
+bindsym $mod+Ctrl+h            resize grow width 5 px or 5 ppt
+
+bindsym $mod+j                 focus down
+bindsym $mod+Shift+j           move down 50 px
+bindsym $mod+Ctrl+j            resize shrink height 5 px or 5 ppt
+
+bindsym $mod+k                 focus up
+bindsym $mod+Shift+k           move up 50 px
+bindsym $mod+Ctrl+k            resize grow height 5 px or 5 ppt
+
+bindsym $mod+l                 focus right
+bindsym $mod+Shift+l           move right 50 px
+bindsym $mod+Ctrl+l            resize shrink width 5 px or 5 ppt
+
 bindsym $mod+x                 layout toggle split
 bindsym $mod+Shift+x           layout toggle tabbed splith
 bindsym $mod+Ctrl+x            split toggle
@@ -55,6 +71,8 @@ bindsym $mod+Shift+minus       move scratchpad
 bindsym $mod+space             focus mode_toggle
 bindsym $mod+Shift+space       floating toggle
 
+bindsym Print                  exec grim -g "$(slurp)"
+
 ## XF86 Keybinds
 bindsym XF86AudioRaiseVolume    exec audioctl up
 bindsym XF86AudioLowerVolume    exec audioctl down
@@ -66,16 +84,16 @@ bindsym XF86MonBrightnessDown   exec screen-bright dec 50
 
 # Moving around:
 # Move your focus around
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
+# bindsym $mod+$left focus left
+# bindsym $mod+$down focus down
+# bindsym $mod+$up focus up
+# bindsym $mod+$right focus right
 
 # Move the focused window with the same, but add Shift
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
+# bindsym $mod+Shift+$left move left
+# bindsym $mod+Shift+$down move down
+# bindsym $mod+Shift+$up move up
+# bindsym $mod+Shift+$right move right
 
 # Workspaces:
 # Switch to workspace

@@ -1,6 +1,7 @@
 * {
     font-family: "Noto Sans Mono", sans-serif;
-    font-size: 15px;
+    font-size: 13px;
+    border: none;
 }
 
 window#waybar {
@@ -16,7 +17,8 @@ window#waybar {
     font-size: 19px;
 }
 
-#workspaces button.active {
+#workspaces button.active,
+#workspaces button.focused {
     color: #ABB2BF;
     border-bottom: 3px solid #D19A66;
 }
@@ -36,7 +38,7 @@ window#waybar {
 #custom-media,
 #tray,
 #mpd {
-    padding: 0 15px;
+    padding: 0 10px;
     color: #ABB2BF;
 }
 
