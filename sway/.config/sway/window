@@ -4,7 +4,6 @@ for_window [title="Bluetooth Devices"]    floating enable
 for_window [class="Nitrogen"]             floating enable
 for_window [class="Cadence"]              floating enable
 for_window [class="Nvidia-settings"]      floating enable
-for_window [class="KeePassXC"]            floating enable
 for_window [class="PdWindow"]             floating enable
 for_window [class="purr-data"]            floating enable
 for_window [class="PatchWindow"]          floating enable
