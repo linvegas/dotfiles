@@ -13,7 +13,7 @@ filename=$(basename -- "$1")
 filesize=$(du -Hh -- "$1" | cut -f 1)
 geometry="${2}x${3}"
 
-tmp_dir=$(find /tmp -type d -name "34get*")
+tmp_dir=$(find /tmp -type d \( -name "34get*" -or -name "rofi-34*" \))
 if [ -z "$tmp_dir" ]; then
   echo "${filename}${s}${filesize}${s}${geometry}"
 else
