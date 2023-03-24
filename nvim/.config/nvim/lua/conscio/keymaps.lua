@@ -26,6 +26,10 @@ keymap("n", "Y", "yy", opts)
 keymap("n", "<F3>", ":Explore<CR>", opts)
 keymap("n", "<F4>", ":Rexplore<CR>", opts)
 
+-- Hide status line
+keymap("n", "<leader>b", ":set laststatus=0<CR>", opts)
+keymap("n", "<leader>B", ":set laststatus=2<CR>", opts)
+
 -- A and I insert mode shortcut
 keymap("i", "<C-a>", "<esc>A", opts)
 keymap("i", "<C-i>", "<esc>I", opts)
