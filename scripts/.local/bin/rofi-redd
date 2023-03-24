@@ -140,8 +140,10 @@ subreddit() {
 
     [ -z "$subredd_name" ] && break
 
-    check_request "$subredd_name" ||
-      rofi -e "'$subredd_name' don't exist, enter a new subreddit name" && continue
+    if [ "$(check_request "$subredd_name")" -eq 1 ]; then
+      rofi -e "'$subredd_name' don't exist, enter a new subreddit name"
+      continue
+    fi
 
     media_type_option
 
