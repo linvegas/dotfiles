@@ -3,11 +3,17 @@
 # Lil script for starting redshift on login
 # and automatic location based on gps
 
-[ ! -x "$(command -v redshift)" ] && exit
-
 lat_long=$(
   curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" |
   jq -r '"\(.location.lat):\(.location.lng)"'
 )
+
+if [ "$XDG_SESSION_TYPE" = "wayland" ];then
+  [ ! -x "$(command -v gammastep)" ] && exit
+  gammastep -l "$lat_long"
+  exit
+fi
+
+[ ! -x "$(command -v redshift)" ] && exit
 
 redshift -l "$lat_long"
