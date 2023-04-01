@@ -3,3 +3,7 @@ set recolor-lightcolor "#232326"
 set statusbar-bg "#303030"
 set statusbar-fg "#a8a8a8"
 set statusbar-basename true
+
+set guioptions ""
+
+map f toggle_fullscreen
