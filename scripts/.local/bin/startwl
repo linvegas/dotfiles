@@ -4,9 +4,9 @@ cd ~ || exit 1
 
 export HYPRLAND_LOG_WLR=1
 
-export GBM_BACKEND="nvidia-drm"
-export __GLX_VENDOR_LIBRARY_NAME="nvidia"
-export LIBVA_DRIVER_NAME="nvidia"
+#export GBM_BACKEND="nvidia-drm"
+#export __GLX_VENDOR_LIBRARY_NAME="nvidia"
+export LIBVA_DRIVER_NAME="i965"
 export XDG_SESSION_TYPE="wayland"
 export MOZ_ENABLE_WAYLAND=1
 
@@ -18,7 +18,7 @@ export XCURSOR_SIZE=24
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-for p in dunst mpd mpdscribble; do
+for p in dunst mpd mpdscribble rshift; do
   pidof -s "$p" || "$p" &
 done
 
