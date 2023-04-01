@@ -1,4 +1,4 @@
-for_window [class="^float$"]              floating enable
+for_window [class="float"]              floating enable
 for_window [title="webcam"]               floating enable sticky enable
 for_window [title="Bluetooth Devices"]    floating enable
 for_window [class="Nitrogen"]             floating enable

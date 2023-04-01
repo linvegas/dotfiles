@@ -20,8 +20,12 @@ bindsym $mod+Shift+w           exec $browser -private-window
 bindsym $mod+e                 exec emul
 bindsym $mod+Shift+e           exec setemoji
 
-bindsym $mod+u                 exec usbin
-bindsym $mod+Shift+u           exec usbout
+bindsym $mod+y                 exec $term -e ytfzf
+
+bindsym $mod+u                 exec rofi-mount
+bindsym $mod+Shift+u           exec rofi-mount -u
+
+bindsym $mod+p                 exec rofi-pass
 
 bindsym $mod+a                 focus parent
 
@@ -41,11 +45,11 @@ bindsym $mod+Ctrl+h            resize grow width 5 px or 5 ppt
 
 bindsym $mod+j                 focus down
 bindsym $mod+Shift+j           move down 50 px
-bindsym $mod+Ctrl+j            resize shrink height 5 px or 5 ppt
+bindsym $mod+Ctrl+j            resize grow height 5 px or 5 ppt
 
 bindsym $mod+k                 focus up
 bindsym $mod+Shift+k           move up 50 px
-bindsym $mod+Ctrl+k            resize grow height 5 px or 5 ppt
+bindsym $mod+Ctrl+k            resize shrink height 5 px or 5 ppt
 
 bindsym $mod+l                 focus right
 bindsym $mod+Shift+l           move right 50 px
