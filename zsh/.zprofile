@@ -27,6 +27,7 @@ export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export ICEAUTHORITY="${XDG_CACHE_HOME:-$HOME/.cache}/ICEauthority"
 export PYTHONPYCACHEPREFIX="${XDG_CACHE_HOME:-$HOME/.cache}/python"
 export PYTHONUSERBASE="${XDG_DATA_HOME:-$HOME/.local/share}/python"
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # Local scripts and configurations
 export PATH="$PATH:${$(find -L ~/.local/bin -type d -printf %p:)%%:}"
@@ -38,6 +39,6 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # Starts xorg or wayland
 if [ ! $(pidof -s Xorg) ] && [ "$(tty)" = "/dev/tty1" ]; then
-  exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" xfce &> ~/.cache/startx.log
-  # exec ssh-agent startwl sway &> ~/.cache/startw.log
+  # exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" xfce &> ~/.cache/startx.log
+  exec ssh-agent startwl sway &> ~/.cache/startw.log
 fi
