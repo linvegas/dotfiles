@@ -43,8 +43,7 @@ hh() {
   hist |
   awk '{$1=""; print $0}' | sed -e 's/^[[:space:]]*//' |
   fzf -e --tac --layout=reverse --height=20 --info=hidden |
-  wl-copy --trim-newline
-  # xclip -r -selection clipboard
+  xclip -r -selection clipboard
 }
 
 # Share any file under 500mb using 0x0.st server
