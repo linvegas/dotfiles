@@ -5,7 +5,7 @@ window:
 
   dynamic_padding: true
 
-  opacity: 0.85
+  opacity: 1.0
 
   title: Alacritty
   class: Alacritty
@@ -16,7 +16,7 @@ font:
     family: monospace
     style: Regular
 
-  size: 16.0
+  size: 14.0
 
 # One Dark
 colors:
