@@ -50,7 +50,9 @@ alias \
   rsync="rsync --info=progress2" \
   hx="helix" \
   cwd="pwd | xclip -r -sel clip" \
-  anom=" unset HISTFILE" # incognito mode
+  anom=" unset HISTFILE" \
+  cleaner="rm .pulse-cookie .steampath" \
+  ffmpeg="ffmpeg -hide_banner -loglevel info"
 
 # Apps
 alias \
