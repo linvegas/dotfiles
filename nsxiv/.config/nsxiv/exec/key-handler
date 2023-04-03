@@ -1,42 +1,10 @@
 #!/usr/bin/env sh
 
-mor() {
-  MOR_DIR="/mnt/ssd/morbus/pic"
-  [ ! -d "$MOR_DIR" ] && notify-send "${MOR_DIR} não existe" && exit 1
-
-  folder=$(
-    find "$MOR_DIR" -maxdepth 1 -mindepth 1 -exec basename '{}' \; |
-    dmenu -l 20 -p "Escolha a pasta: "
-  )
-  [ -z "$folder" ] && exit
-
-  if [ ! -d "${MOR_DIR}/${folder}" ]; then
-    newfolder="$(printf "Sim\nnão" | dmenu -p "Criar a pasta ${folder}?")"
-    case $newfolder in
-      "Sim"|"sim"|"s"|"y") mkdir -p "${MOR_DIR}/${folder}";;
-      *) exit 1;;
-    esac
-  fi
-
-  last_file_name=$(
-    find "${MOR_DIR}/${folder}" -type f -exec basename '{}' \; |
-    sort -r | head -n 1
-  )
-
-  last_file_number=$(echo "$last_file_name" | grep -Eo "[0-9]{3}")
-  new_file_number=$(printf "%03d\n" "$(echo "$last_file_number + 1" | bc)")
-  newname=$(echo "$last_file_name" | sed -E "s/[0-9]{3}/$new_file_number/")
-  [ -z "$newname" ] && exit
-
-  newpath="${MOR_DIR}/${folder}/${newname}"
-  cp "$1" "$newpath" && notify-send "Sxiv" "Esse arquivo foi copiado em \n$newpath"
-}
-
 while read -r file; do
   case "$1" in
     "b") setwallpaper "$file";;
     "i") notify-send "Info" "$(file "$file")";;
-    "m") mor "$file";;
+    "m") mor-handler "$file";;
     "d") rm "$file" && notify-send "SXIV" "$file\nfoi removido";;
   esac
 done
