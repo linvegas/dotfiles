@@ -30,6 +30,8 @@ keymap("n", "<F4>", ":Rexplore<CR>", opts)
 keymap("n", "<leader>b", ":set laststatus=0<CR>", opts)
 keymap("n", "<leader>B", ":set laststatus=2<CR>", opts)
 
+keymap("n", "<leader>y", "<cmd> %y+ <CR>", opts)
+
 -- A and I insert mode shortcut
 keymap("i", "<C-a>", "<esc>A", opts)
 keymap("i", "<C-i>", "<esc>I", opts)
@@ -37,6 +39,12 @@ keymap("i", "<C-i>", "<esc>I", opts)
 -- New line in insert mode
 keymap("i", "<C-o>", "<esc>o", opts)
 keymap("i", "<C-S-o>", "<esc>O", opts)
+
+-- Navigate on insert mode
+keymap("i", "<C-h>", "<Left>", opts)
+keymap("i", "<C-j>", "<Down>", opts)
+keymap("i", "<C-k>", "<Up>", opts)
+keymap("i", "<C-l>", "<Right>", opts)
 
 -- Replace selected text in visual mode and prompt for each substitution
 -- Press 'a' to confirm all or 'q' to quit
