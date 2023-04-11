@@ -23,6 +23,7 @@ include $HOME/.config/sway/bar
 
 exec {
   waybar
+  dunst
 }
 
 exec swayidle -w \
