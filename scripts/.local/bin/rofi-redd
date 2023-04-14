@@ -31,7 +31,7 @@ get_info() {
   else
 
     curl -s -H "User-Agent: Certified Human Being" -H "Content-Type: applications/json" \
-      -G "${base_url}/r/${1}/hot.json?" -d "t=all" -d "limit=50" -d "${2:-}" | jq '.' > "$JSON_FILE"
+      -G "${base_url}/r/${1}/${sort_query:-hot.json}?" -d "t=all" -d "limit=50" -d "${2:-}" | jq '.' > "$JSON_FILE"
 
     if [ "$video_query" -eq 1 ]; then
 
@@ -73,6 +73,18 @@ media_type_option() {
   return
 }
 
+sort_option() {
+  sort_opt=$(
+    printf "hot\ntop" | rofi -dmenu -mesg "${TITLE} - Sort by?" -p ">"
+  )
+
+  case "$sort_opt" in
+    hot) sort_query="hot.json";;
+    top) sort_query="top.json";;
+    *) return
+  esac
+}
+
 clean_media() {
   if [ "$video_query" -ne 1 ]; then
 
@@ -101,9 +113,10 @@ watch_media() {
         printf "url = \"%s\"\noutput = \"$MEDIA_DIR/%s\"\n" "$file" "${file##*/}"
       done < "$URL_LIST" >> "$CURL_LIST"
 
-      curl -s -Z -K "$CURL_LIST" #>/dev/null 2>&1
+      notif_id=$(notify-send -t 0 -p "⬇️ Downloading images...")
+      curl -s -Z -K "$CURL_LIST" && notify-send -t 250 -r "$notif_id" "Done!"
 
-      nsxiv -f -p -a -b "$MEDIA_DIR/"* #>/dev/null 2>&1
+      nsxiv -f -p -a -b "$MEDIA_DIR/"*
 
     fi
 
@@ -140,10 +153,12 @@ subreddit() {
 
     [ -z "$subredd_name" ] && break
 
-    if [ "$(check_request "$subredd_name")" -eq 1 ]; then
+    if ! check_request "$subredd_name"; then
       rofi -e "'$subredd_name' don't exist, enter a new subreddit name"
       continue
     fi
+
+    sort_option
 
     media_type_option
 
@@ -170,6 +185,8 @@ list_subs() {
     )
 
     [ -z "$sub_list_opt" ] && break
+
+    sort_option
 
     media_type_option
 
@@ -200,6 +217,8 @@ search() {
       [ -z "$sub_query_result" ] && break
 
       subreddits_query=0
+
+      sort_option
 
       media_type_option
 
