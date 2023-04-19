@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
-SYS_SOUND_DIR="$XDG_DATA_HOME/sounds"
+SYS_SOUND_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/sounds"
 
-aplay -D pulse -q "$SYS_SOUND_DIR"/notify.wav
+aplay -q "$SYS_SOUND_DIR"/notify.wav
