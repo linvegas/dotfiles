@@ -52,7 +52,9 @@ alias \
   cwd="pwd | xclip -r -sel clip" \
   anom=" unset HISTFILE" \
   cleaner="rm .pulse-cookie .steampath" \
-  ffmpeg="ffmpeg -hide_banner -loglevel info"
+  ffmpeg="ffmpeg -hide_banner -loglevel info" \
+  mount.droid="mkdir ~/android; simple-mtpfs --device 1 ~/android" \
+  umount.droid="fusermount -u ~/android && rmdir ~/android"
 
 # Apps
 alias \
