@@ -77,6 +77,7 @@ g() {
     usb2) cd /mnt/usb2;;
     usb3) cd /mnt/usb3;;
     ext)  cd /mnt/externo;;
+    shr)  cd /mnt/share;;
     ssd)  cd /mnt/ssd;;
     mor)  cd /mnt/ssd/morbus;;
     *)    echo "g nvi|dot|dow|doc|pic|vid|smp|pro|mus|emu|ani|bin|rep|dev|usb|usb2|usb3|ext|ssd|mor";;

@@ -3,8 +3,17 @@
 while read -r file; do
   case "$1" in
     "b") setwallpaper "$file";;
+    "c")
+      path_dest=$(zenity --file-selection --save --confirm-overwrite --filename="${file##*/}")
+      [ -z "$path_dest" ] && exit 1
+      cp "$file" "$path_dest" && notify-send "NSXIV" "Image copied to\n${path_dest}"
+      ;;
+    "d")
+      [ "$(printf "Yes\nNo" | rofi -dmenu -p '>' -mesg "You really want to delete it?")" = "Yes" ] &&
+        rm "$file" && notify-send "NSXIV" "$file\nwas removed"
+      ;;
+    "g") setsid -f gimp "$file" > /dev/null 2>&1;;
     "i") notify-send "Info" "$(file "$file")";;
     "m") mor-handler "$file";;
-    "d") rm "$file" && notify-send "SXIV" "$file\nfoi removido";;
   esac
 done
