@@ -5,7 +5,7 @@
 }
 
 window#waybar {
-    background-color: rgba(30, 33, 39, 0.9);
+    background-color: #1E2127;
     color: #ABB2BF;
     transition-property: background-color;
     transition-duration: .5s;
@@ -20,7 +20,8 @@ window#waybar {
 #workspaces button.active,
 #workspaces button.focused {
     color: #ABB2BF;
-    border-bottom: 3px solid #D19A66;
+    font-weight: bold;
+    /* border-bottom: 3px solid #D19A66; */
 }
 
 #workspaces button.urgent {
