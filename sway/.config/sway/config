@@ -31,5 +31,5 @@ exec swayidle -w \
      timeout 1200 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
      before-sleep 'swaylock -f -c 000000'
 
-output * bg $HOME/.local/share/backgrounds/gradient.png fill
+output * bg $HOME/.local/share/backgrounds/background.png fill
 

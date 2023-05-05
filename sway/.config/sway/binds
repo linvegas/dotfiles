@@ -75,7 +75,7 @@ bindsym $mod+Shift+minus       move scratchpad
 bindsym $mod+space             focus mode_toggle
 bindsym $mod+Shift+space       floating toggle
 
-bindsym Print                  exec grim -g "$(slurp)"
+bindsym Print                  exec grim -t png -l 8 -g "$(slurp -d)"
 
 ## XF86 Keybinds
 bindsym XF86AudioRaiseVolume    exec audioctl up

@@ -1,0 +1,20 @@
+# vim:ft=swayconfig
+# onedark colorscheme
+
+set $black                     #1E2127
+set $black2                    #5C6370
+set $red                       #E06C75
+set $green                     #98C379
+set $yellow                    #D19A66
+set $blue                      #61AFEF
+set $magenta                   #C678DD
+set $cyan                      #56B6C2
+set $white                     #C8CCD4
+set $white2                    #ABB2BF
+set $shadow                    #333333
+
+# Colors                       border   backgr.  text    indicator child_border
+client.focused                 $magenta $black   $white  $red      $magenta
+client.unfocused               $black   $black   $white  $magenta  $black
+client.focused_inactive        $shadow  $shadow  $white  #484e50   #5f676a
+# client.focused_tab_title       $magenta $black   $white
