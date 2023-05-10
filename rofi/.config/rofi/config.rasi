@@ -1,5 +1,5 @@
 configuration {
-  font:    "DroidSansMono Nerd Font 14";
+  font:    "DroidSansM Nerd Font 14";
   hide-scrollbar: true;
   modes: [window,drun,run,ssh,filebrowser];
 
