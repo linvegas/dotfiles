@@ -23,3 +23,5 @@ for k, v in pairs(options) do
 	opt[k] = v
 end
 
+-- Global options
+vim.g.netrw_banner = 0
