@@ -5,8 +5,8 @@
 
 [ ! "$(tmux ls)" ] && exit 1
 
-session=$(tmux ls | fzf --height=10 --layout=reverse --info=hidden --preview='')
+session=$(tmux list-sessions -F '#S' | fzf --height=10 --layout=reverse --info=hidden --preview='')
 
 [ -z "$session" ] && exit
 
-tmux attach -t "${session%%:*}"
+tmux attach -t "$session"

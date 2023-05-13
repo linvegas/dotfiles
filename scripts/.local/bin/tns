@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+PROJ_DIR="$HOME/.local/src"
+
+[ ! -d "$PROJ_DIR" ] && { echo "${PROJ_DIR} doens't exits" && exit 1 ;}
+
+proj_sel=$(
+  find "$PROJ_DIR" -mindepth 1 -maxdepth 1 -type d -exec basename '{}' \; |
+  fzf --height=20 --layout=reverse --info=hidden --preview=''
+)
+
+[ -z "$proj_sel" ] && exit 0
+
+tmux new-session -c "${PROJ_DIR}/${proj_sel}" -s "$proj_sel" nvim .
