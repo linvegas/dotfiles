@@ -6,8 +6,7 @@ if (not status_ok_1) then return end
 
 local servers = {
   "tsserver",
-  "pyright",
-  "lua_ls"
+  "pyright"
 }
 
 local settings = {
