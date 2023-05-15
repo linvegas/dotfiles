@@ -1,5 +1,12 @@
 #!/usr/bin/env sh
 
+if [ "$1" = "." ]; then
+	current_dir="$(pwd)"
+	current_dir_name="$(basename "$(pwd)")"
+	tmux new-session -c "$current_dir" -s "$current_dir_name" nvim .
+	exit
+fi
+
 PROJ_DIR="$HOME/.local/src"
 
 [ ! -d "$PROJ_DIR" ] && { echo "${PROJ_DIR} doens't exits" && exit 1 ;}
