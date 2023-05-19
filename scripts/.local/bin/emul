@@ -2,31 +2,35 @@
 
 # My personal Lutris, lol
 
-game_files="$HOME/media/emu"
+TITLE=$(echo "${0##*/}" | tr '[:lower:]' '[:upper:]')
 
-[ ! -d "$game_files" ] &&
-  notify-send -u critical "Emu" "O arquivo de jogos não existe!" && exit 1
+games_dir="$HOME/media/emu"
+
+if [ ! -d "$games_dir" ] || [ -n "$(find "$games_dir" -type d -empty)" ]; then
+  notify-send -u critical "$TITLE" "O arquivo de jogos não existe!"
+  exit 1
+fi
 
 plat_sel=$(
-  find -L "$game_files" -maxdepth 1 -mindepth 1 -type d -exec basename '{}' \; |
-  rofi -dmenu -i -p "Platform:"
+  find -L "$games_dir" -maxdepth 1 -mindepth 1 -type d -exec basename '{}' \; |
+  rofi -dmenu -i -p ">" -mesg "Choose a platform"
 )
 
-[ -z "$plat_sel" ] && exit 1
+[ -z "$plat_sel" ] && exit
 
 game_sel=$(
-  find -L "$game_files/$plat_sel" -type f \
+  find -L "$games_dir/$plat_sel" -type f \
   \( -name "*.zip" -or -name "*.bin" -or -name "*.iso" \) \
   -exec basename '{}' \; |
-  sort | rofi -dmenu -i -p "Game:"
+  sort | rofi -dmenu -i -p ">" -mesg "Choose a game"
 )
 
-[ -z "$game_sel" ] && exit 1
+[ -z "$game_sel" ] && exit
 
 case "$plat_sel" in
-  snes) snes9x-gtk "$game_files/$plat_sel/$game_sel" > /dev/null 2>&1;;
-  ps1) duckstation-qt "$game_files/$plat_sel/$game_sel" > /dev/null 2>&1;;
-  ps2) pcsx2-qt "$game_files/$plat_sel/$game_sel" > /dev/null 2>&1;;
-  psp) PPSSPPSDL "$game_files/$plat_sel/$game_sel" > /dev/null 2>&1;;
-  *) notify-send "Emu" "Não tem um emulador compatível no momento" && exit 1;;
+  snes) snes9x-gtk "$games_dir/$plat_sel/$game_sel" > /dev/null 2>&1;;
+  ps1) duckstation-qt "$games_dir/$plat_sel/$game_sel" > /dev/null 2>&1;;
+  ps2) pcsx2-qt "$games_dir/$plat_sel/$game_sel" > /dev/null 2>&1;;
+  psp) PPSSPPSDL "$games_dir/$plat_sel/$game_sel" > /dev/null 2>&1;;
+  *) notify-send -u critial "$TITLE" "Nenhum emulador para essa plataforma no momento" && exit 1;;
 esac
