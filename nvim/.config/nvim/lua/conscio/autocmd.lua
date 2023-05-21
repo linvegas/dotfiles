@@ -1,17 +1,17 @@
--- Auto commands
-local ag = vim.api.nvim_create_augroup
-local au = vim.api.nvim_create_autocmd
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+local usercmd = vim.api.nvim_create_user_command
 
--- Delete whitespaces on save
-au('BufWritePre', {
-  group = ag("cleanWhitespaces", { clear = true }),
-  pattern = "*",
-  command = ":%s/\\s\\+$//e"
+-- Deletes trailling whitespace on every save
+autocmd('BufWritePre', {
+	group = augroup("WhitespacesCleaner", { clear = true }),
+	pattern = "*",
+	command = ":%s/\\s\\+$//e"
 })
 
--- Remember last position
-au("BufReadPost", {
-  group = ag("Remember", { clear = true }),
+-- Remeber cursor last position
+autocmd("BufReadPost", {
+  group = augroup("Remember", { clear = true }),
   pattern = "*",
   callback = function()
     local row, column = unpack(vim.api.nvim_buf_get_mark(0, '"'))
@@ -23,24 +23,34 @@ au("BufReadPost", {
   end,
 })
 
--- Compile tex file on save
-au("BufWritePost", {
-  group = ag("Latex", { clear = true }),
-  pattern = "*.tex",
-  command = "silent !comptex % > /dev/null"
-})
-
--- Enter insertmode and remove numberline on every terminal
-au("TermOpen", {
-  group = ag("Term", { clear = true }),
+-- Removes line number from terminal mode
+autocmd("TermOpen", {
+  group = augroup("TermBuffer", { clear = true }),
   pattern = "*",
   command = "setlocal nonumber norelativenumber | startinsert"
 })
 
--- Template for especific filetypes
-au("BufNewFile", {
-  group = ag("Template", { clear = true }),
+-- Load a boilerplate code for specific new files
+autocmd("BufNewFile", {
+  group = augroup("Template", { clear = true }),
   pattern = { "*.sh", "*.c", "*.html"},
-  command = "0r $HOME/.config/nvim/templates/skeleton.%:e"
+  command = "0r $HOME/.config/nvim/templates/template.%:e"
 })
 
+-- Highlight yanked text
+autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = augroup('YankHighlight', { clear = true }),
+  pattern = '*',
+})
+
+-- User command for loading personal templates
+usercmd("LoadTemp", function(args)
+  local path = vim.fn.stdpath "config" .. "/templates"
+  local template_file =  path .. "/" .. args['args']
+  local content = vim.fn.readfile(template_file)
+  local cursor_pos = vim.api.nvim_win_get_cursor(0)
+  vim.api.nvim_buf_set_lines(0, cursor_pos[1] - 1, cursor_pos[1] - 1, false, content)
+end, { nargs = 1 })

@@ -8,4 +8,4 @@ if exists(":CompilerSet") != 2
   command -nargs=* CompilerSet setlocal <args>
 endif
 
-CompilerSet makeprg=gcc\ -Wall\ %\ -o\ %<
+CompilerSet makeprg=gcc\ -Wall\ -Wextra\ %\ -o\ %<
