@@ -1,7 +1,7 @@
 /* vim: set filetype=rasi : */
 
 * {
-  font:              "DroidSansMono Nerd Font 50";
+  font:              "DroidSansM Nerd Font 50";
   background-color:  transparent;
   lines:             1;
   columns:           4;
