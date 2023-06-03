@@ -9,11 +9,12 @@ while read -r file; do
       cp "$file" "$path_dest" && notify-send "NSXIV" "Image copied to\n${path_dest}"
       ;;
     "d")
-      [ "$(printf "Yes\nNo" | rofi -dmenu -p '>' -mesg "You really want to delete it?")" = "Yes" ] &&
+      [ "$(printf "Yes\nNo" | rofi -dmenu -p '>' -mesg "You sure mate?")" = "Yes" ] &&
         rm "$file" && notify-send "NSXIV" "$file\nwas removed"
       ;;
     "g") setsid -f gimp "$file" > /dev/null 2>&1;;
     "i") notify-send "Info" "$(file "$file")";;
     "m") mor-handler "$file";;
+    "p") readlink -f "$file" | xclip -r -sel clip && notify-send "NSXIV" "📎 Image's path copied";;
   esac
 done
