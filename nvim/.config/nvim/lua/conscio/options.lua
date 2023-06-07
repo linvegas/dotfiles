@@ -2,6 +2,7 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.numberwidth = 2
+vim.opt.cursorline = true
 
 -- Window scroll
 vim.opt.scrolloff = 8
