@@ -38,6 +38,9 @@ mpvall() { for i in $(xdotool search --class mpv); do xdotool key --window "$i" 
 # Local web server
 serve() { python3 -m http.server --bind "${1:-127.0.0.1}" "${2:-4242}" ;}
 
+# Put file absolute path on clipboard
+cf() { readlink -f "$1" | xclip -sel clip -r ;}
+
 # Fuzzy find into shell history
 hh() {
   hist |
