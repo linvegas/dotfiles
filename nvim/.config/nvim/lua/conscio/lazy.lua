@@ -40,6 +40,42 @@ require("lazy").setup({
       require("conscio.plugins.autopairs")
     end,
   },
+  -- LSP
+  {
+    'neovim/nvim-lspconfig',
+    dependencies = {
+      -- Automatically install LSPs to stdpath for neovim
+      { 'williamboman/mason.nvim', config = true },
+      'williamboman/mason-lspconfig.nvim',
+
+      -- Useful status updates for LSP
+      { 'j-hui/fidget.nvim', tag = 'legacy', opts = { window = { blend = 0 }} },
+
+      -- Additional lua configuration for neovim
+      'folke/neodev.nvim',
+    },
+    config = function()
+      require("conscio.plugins.lspconfig")
+    end,
+  },
+  -- Autocompletion
+  {
+    'hrsh7th/nvim-cmp',
+    dependencies = {
+      -- Snippet Engine & its associated nvim-cmp source
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+
+      -- Adds LSP completion capabilities
+      'hrsh7th/cmp-nvim-lsp',
+
+      -- Vscode snippets
+      -- 'rafamadriz/friendly-snippets',
+    },
+    config = function()
+      require("conscio.plugins.cmp")
+    end,
+  },
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
