@@ -21,7 +21,10 @@ require("lazy").setup({
     config = function()
       require('onedark').setup {
         style = 'warmer',
-        transparent = true
+        transparent = true,
+        highlights = {
+          StatusLine = {bg = 'none', fmt = 'bold'}
+        }
       }
       vim.cmd.colorscheme 'onedark'
     end,
