@@ -11,6 +11,7 @@ local on_attach = function(_, bufnr)
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+  nmap('<leader>f', function() vim.lsp.buf.format() end, '[F]ormat Code')
 
   nmap('<leader>dn', vim.diagnostic.goto_next, 'Go to [N]ext Diagnostic')
   nmap('<leader>dp', vim.diagnostic.goto_prev, 'Go to [P]revious Diagnostic')
