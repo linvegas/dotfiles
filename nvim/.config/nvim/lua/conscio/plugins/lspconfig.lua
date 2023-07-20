@@ -42,12 +42,9 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
--- Enable the following language servers
+-- Enable the following language servers and formatters
 local servers = {
-  -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
+  pyright = {},
   tsserver = {},
   -- lua_ls = {
   --   Lua = {

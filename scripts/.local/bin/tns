@@ -6,9 +6,8 @@ if [ "$1" = "." ]; then
 	tmux new-session -c "$current_dir" -s "$current_dir_name" nvim .
 	exit
 elif [ -n "$1" ]; then
-  current_dir="$(pwd)"
-	current_dir_name="$1"
-	tmux new-session -c "$current_dir" -s "$current_dir_name"
+	session_name="$1"
+	tmux new-session -s "$session_name"
 	exit
 fi
 
@@ -23,4 +22,9 @@ proj_sel=$(
 
 [ -z "$proj_sel" ] && exit 0
 
-tmux new-session -c "${PROJ_DIR}/${proj_sel}" -s "$proj_sel" nvim .
+if [ -z "$TMUX" ]; then
+  tmux new-session -c "${PROJ_DIR}/${proj_sel}" -s "$proj_sel" nvim .
+else
+  TMUX=$(tmux new-session -d -c "${PROJ_DIR}/${proj_sel}" -s "$proj_sel" nvim .)
+  tmux switch-client -t "$proj_sel"
+fi
