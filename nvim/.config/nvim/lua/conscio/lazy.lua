@@ -54,6 +54,12 @@ require("lazy").setup({
       -- Useful status updates for LSP
       { 'j-hui/fidget.nvim', tag = 'legacy', opts = { window = { blend = 0 }} },
 
+      { 'jose-elias-alvarez/null-ls.nvim', event = "VeryLazy",
+        opts = function()
+          return require("conscio.plugins.null-ls")
+        end
+      },
+
       -- Additional lua configuration for neovim
       'folke/neodev.nvim',
     },
