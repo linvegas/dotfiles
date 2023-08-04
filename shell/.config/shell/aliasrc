@@ -56,7 +56,9 @@ alias \
   ffprobe="ffprobe -hide_banner" \
   mount.droid="mkdir ~/android; simple-mtpfs --device 1 ~/android" \
   umount.droid="fusermount -u ~/android && rmdir ~/android" \
-  open="xdg-open"
+  open="xdg-open" \
+  exifall="exiftool -All= -overwrite_original *" \
+  irssi='irssi --config="$XDG_CONFIG_HOME"/irssi/config --home="$XDG_DATA_HOME"/irssi'
 
 # Apps
 alias \
