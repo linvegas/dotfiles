@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+# Generates lorem text from lipsum website
+# usage:
+#   lorem 15 words
+#   lorem 2 paras
+
+amount="$1"
+type="$2"
+
+curl -s -X POST \
+  -d "amount=${amount:-10}" -d "what=${type:-words}" \
+  "https://lipsum.com/feed/json" |
+  jq -r '.feed.lipsum'
