@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export XDG_SESSION_TYPE="x11"
+
 [ -f "$HOME/.config/X11/xresources" ] && xrdb -load "$HOME/.config/X11/xresources"
 
 # For the nvidia people
@@ -18,8 +20,13 @@ done
 session="${1:-i3}"
 
 case "$session" in
-  i3)     exec i3;;
-  bspwm)  exec bspwm;;
-  xfce)   exec startxfce4;;
+  i3)       exec i3;;
+  bspwm)    exec bspwm;;
+  xfce)     exec startxfce4;;
+  cinnamon) exec cinnamon-session;;
+  dwm)
+    setmonitor &
+    dwmblocks &
+    exec dwm;;
   *)      exec "$1";;
 esac
