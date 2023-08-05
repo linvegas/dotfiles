@@ -46,6 +46,7 @@ onemonitor() {
   fi
 
   setwallpaper
+  # setwallpaper "$HOME/.local/share/backgrounds/wp-onedark.png"
   exit 0
 }
 
@@ -63,6 +64,7 @@ dualmonitor() {
   fi
 
   setwallpaper
+  # setwallpaper "$HOME/.local/share/backgrounds/wp-onedark.png"
   exit 0
 }
 

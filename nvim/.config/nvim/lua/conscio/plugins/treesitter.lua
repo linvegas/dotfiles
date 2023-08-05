@@ -1,7 +1,7 @@
 local opts = {
   auto_install = false,
   highlight = { enable = true },
-  indent = { enable = true, disable = { 'python' } },
+  indent = { enable = true },
   ensure_installed = {
     "html", "javascript", "typescript", "tsx",
     "bash", "c", "lua", "python", "vim"

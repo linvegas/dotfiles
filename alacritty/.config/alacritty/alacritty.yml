@@ -21,23 +21,23 @@ font:
 # One Dark
 colors:
   primary:
-    background: '#1e2127' #282c34
-    foreground: '#abb2bf'
+    background: "#1e2127" #282c34
+    foreground: "#abb2bf"
   cursor:
-    text:       CellBackground
-    cursor:     '#528bff' # syntax-cursor-color
+    text: CellBackground
+    cursor: "#528bff" # syntax-cursor-color
   selection:
-    text:       CellForeground
-    background: '#3e4451' # syntax-selection-color
+    text: CellForeground
+    background: "#3e4451" # syntax-selection-color
   normal:
-    black:      '#1e2127'
-    red:        '#e06c75' # red 1
-    green:      '#98c379'
-    yellow:     '#e5c07b' # orange 2
-    blue:       '#61afef'
-    magenta:    '#c678dd'
-    cyan:       '#56b6c2'
-    white:      '#828997' # mono-2
+    black: "#1e2127"
+    red: "#e06c75" # red 1
+    green: "#98c379"
+    yellow: "#e5c07b" # orange 2
+    blue: "#61afef"
+    magenta: "#c678dd"
+    cyan: "#56b6c2"
+    white: "#828997" # mono-2
 
 cursor:
   style:
@@ -53,23 +53,24 @@ mouse:
 hints:
   alphabet: "jfkdls;ahgurieowpq"
   enabled:
-  - regex: "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
-            [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
-    hyperlinks: true
-    action: Copy
-    binding:
-      key: U
-      mods: Control|Shift
+    - regex:
+        "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
+        [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+      hyperlinks: true
+      action: Copy
+      binding:
+        key: U
+        mods: Control|Shift
 
 key_bindings:
-  - { key: K,   mods: Control,       action: ScrollPageUp    }
-  - { key: J,   mods: Control,       action: ScrollPageDown  }
+  - { key: K, mods: Control, action: ScrollPageUp }
+  - { key: J, mods: Control, action: ScrollPageDown }
   # Vim bindings thing
-  - { key: I,   mods: Control,       chars: "\x1b[105;5u"    }
+  - { key: I, mods: Control, chars: "\x1b[105;5u" }
   # - { key: J,   mods: Control,       chars: "\x1b[106;5u"    }
   # - { key: K,   mods: Control,       chars: "\x1b[107;5u"    }
   # - { key: L,   mods: Control,       chars: "\x1b[108;5u"    }
-  - { key: O,   mods: Control,       chars: "\x1b[111;5u"    }
-  - { key: O,   mods: Control|Shift, chars: "\x1b[79;6u"     }
-  - { key: H,   mods: Control|Shift, chars: "\x1b[72;6u"     }
-  - { key: L,   mods: Control|Shift, chars: "\x1b[76;6u"     }
+  - { key: O, mods: Control, chars: "\x1b[111;5u" }
+  - { key: O, mods: Control|Shift, chars: "\x1b[79;6u" }
+  - { key: H, mods: Control|Shift, chars: "\x1b[72;6u" }
+  - { key: L, mods: Control|Shift, chars: "\x1b[76;6u" }
