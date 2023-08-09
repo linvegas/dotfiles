@@ -39,27 +39,6 @@ alias \
   xr="sudo xbps-remove" \
   xall="sudo xbps-install -Su && xcheckrestart"
 
-# General stuff
-alias \
-  du="du -h" \
-  tree="tree -a -C" \
-  hist="fc -l 1" \
-  so="source ~/.config/zsh/.zshrc" \
-  fale="espeak -v roa/pt-BR" \
-  c="clear" \
-  rsync="rsync --info=progress2" \
-  hx="helix" \
-  cwd="pwd | xclip -r -sel clip" \
-  anom=" unset HISTFILE" \
-  cleaner="rm .pulse-cookie .steampath" \
-  ffmpeg="ffmpeg -hide_banner -loglevel info" \
-  ffprobe="ffprobe -hide_banner" \
-  mount.droid="mkdir ~/android; simple-mtpfs --device 1 ~/android" \
-  umount.droid="fusermount -u ~/android && rmdir ~/android" \
-  open="xdg-open" \
-  exifall="exiftool -All= -overwrite_original *" \
-  irssi='irssi --config="$XDG_CONFIG_HOME"/irssi/config --home="$XDG_DATA_HOME"/irssi'
-
 # Apps
 alias \
   sxiv="nsxiv -b -a" \
@@ -86,4 +65,28 @@ alias \
 # Clean home aliases
 alias \
   nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings' \
-  yarn='yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config'
+  yarn='yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config' \
+  irssi='irssi --config="$XDG_CONFIG_HOME"/irssi/config --home="$XDG_DATA_HOME"/irssi'
+
+# General stuff
+alias \
+  du="du -h" \
+  tree="tree -a -C" \
+  hist="fc -l 1" \
+  so="source ~/.config/zsh/.zshrc" \
+  fale="espeak -v roa/pt-BR" \
+  c="clear" \
+  rsync="rsync --info=progress2" \
+  hx="helix" \
+  cwd="pwd | xclip -r -sel clip" \
+  anom=" unset HISTFILE" \
+  cleaner="rm .pulse-cookie .steampath" \
+  ffmpeg="ffmpeg -hide_banner -loglevel info" \
+  ffprobe="ffprobe -hide_banner" \
+  mount.droid="mkdir ~/android; simple-mtpfs --device 1 ~/android" \
+  umount.droid="fusermount -u ~/android && rmdir ~/android" \
+  open="xdg-open" \
+  exifall="exiftool -All= -overwrite_original *" \
+  pyon="source ./venv/bin/activate" \
+  pyoff="deactivate"
+
