@@ -4,7 +4,8 @@ local augroup = vim.api.nvim_create_augroup("LSPFormatting", {})
 
 local opts = {
   sources = {
-    null_ls.builtins.formatting.prettierd
+    null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.formatting.black
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
