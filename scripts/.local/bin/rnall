@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+# md5_name() {
+#   echo "$1" | md5sum | cut -f 1 -d " "
+# }
+
+new_file_name() {
+  hash=$(echo "$1" | md5sum | cut -f 1 -d " ")
+  printf "%s.%s\n" "$hash" "$2"
+}
+
+for file in *; do
+  mv -v "$file" "$(new_file_name "${file%%.*}" "${file##*.}")"
+done
+

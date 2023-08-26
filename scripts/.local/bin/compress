@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+input_file="$1"
+output_file="${2:-out.jpg}"
+resize_unit="${3:-500}"
+
+magick "$input_file" -resize "$resize_unit" -quality 70 "$output_file"
+
