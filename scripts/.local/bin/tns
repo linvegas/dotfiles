@@ -5,6 +5,9 @@ if [ "$1" = "." ]; then
 	current_dir_name="$(basename "$(pwd)")"
 	tmux new-session -c "$current_dir" -s "$current_dir_name" nvim .
 	exit
+elif [ "$1" = "vim" ]; then
+	tmux new-session -s "vim" -c "$HOME/.config/nvim" nvim .
+  exit
 elif [ -n "$1" ]; then
 	session_name="$1"
 	tmux new-session -s "$session_name"
