@@ -26,6 +26,9 @@ keymap("n", "<leader>T", ":split term://zsh<CR>", opts)
 keymap("n", "<leader>b", ":set laststatus=0<CR>", { silent = true })
 keymap("n", "<leader>B", ":set laststatus=3<CR>", { silent = true })
 
+-- Run last command
+keymap("n", "<leader>:", ":@:<CR>", { silent = true })
+
 -- Enter a new line in insert mode whitout breaking the line
 keymap("i", "<C-o>", "<esc>o", opts)
 keymap("i", "<C-S-o>", "<esc>O", opts)
