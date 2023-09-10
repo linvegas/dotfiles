@@ -29,6 +29,12 @@ require("lazy").setup({
       vim.cmd.colorscheme 'onedark'
     end,
   },
+  -- Comments
+  {
+    'numToStr/Comment.nvim',
+    opts = {},
+    lazy = false,
+  },
   -- Autopairs
   {
     "windwp/nvim-autopairs",

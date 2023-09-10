@@ -3,7 +3,8 @@ local opts = {
   highlight = { enable = true },
   indent = { enable = true },
   ensure_installed = {
-    "html", "javascript", "typescript", "tsx",
+    "html", "css", "javascript", "typescript",
+    "tsx", "svelte", "vue",
     "bash", "c", "lua", "python", "vim"
   },
   incremental_selection = {
