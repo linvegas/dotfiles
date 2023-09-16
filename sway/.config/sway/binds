@@ -21,6 +21,7 @@ bindsym $mod+e                 exec emul
 bindsym $mod+Shift+e           exec setemoji
 
 bindsym $mod+y                 exec $term -e ytfzf
+bindsym $mod+Shift+y           exec $term -e ytfzf -c youtube-subscriptions
 
 bindsym $mod+u                 exec rofi-mount
 bindsym $mod+Shift+u           exec rofi-mount -u
@@ -62,6 +63,8 @@ bindsym $mod+Ctrl+x            split toggle
 bindsym $mod+Shift+c           reload
 
 bindsym $mod+v                 exec webcam
+
+bindsym $mod+Shift+b           exec killall -SIGUSR1 waybar
 
 bindsym $mod+n                 exec $term --class musicplayer -e ncmpcpp
 
