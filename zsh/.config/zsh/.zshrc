@@ -124,3 +124,6 @@ v() {
 
 # Zsh highlight
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# bun completions
+[ -s "/home/conscio/.bun/_bun" ] && source "/home/conscio/.bun/_bun"
