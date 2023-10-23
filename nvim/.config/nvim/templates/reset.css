@@ -12,17 +12,29 @@ html {
   color-scheme: dark;
 }
 
-img {
-  max-width: 100%;
-  display: block;
-}
-
 body {
   font-family: system-ui, sans-serif;
   line-height: 1.5;
 }
 
+h1, h2, h3, h4 {
+  line-height: 1.1;
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+ul, ol {
+  padding: 0;
+}
+
+input, button, textarea {
+  font: inherit;
+}
+
 .container {
-  width: min(100% - 3rem, 80ch);
+  width: min(100% - 3rem, 1000px);
   margin-inline: auto;
 }

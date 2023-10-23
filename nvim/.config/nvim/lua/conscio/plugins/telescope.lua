@@ -11,7 +11,10 @@ local options = {
   pickers = {
     find_files = {
       follow = true
-    }
+    },
+    buffers = {
+      sort_lastused = true
+    },
   }
   -- extensions_list = { "fzf" },
 }
