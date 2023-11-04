@@ -1,18 +1,27 @@
 #!/usr/bin/env sh
 
-if [ "$1" = "." ]; then
-	current_dir="$(pwd)"
-	current_dir_name="$(basename "$(pwd)")"
-	tmux new-session -c "$current_dir" -s "$current_dir_name" nvim .
-	exit
-elif [ "$1" = "vim" ]; then
-	tmux new-session -s "vim" -c "$HOME/.config/nvim" nvim .
-  exit
-elif [ -n "$1" ]; then
-	session_name="$1"
-	tmux new-session -s "$session_name"
-	exit
-fi
+case "$1" in
+  ".")
+    current_dir="$(pwd)"
+    current_dir_name="$(basename "$(pwd)")"
+    tmux new-session -c "$current_dir" -s "$current_dir_name" nvim .
+    exit
+    ;;
+  "vim")
+    tmux new-session -s "vim" -c "$HOME/.config/nvim" nvim .
+    exit
+    ;;
+  "music")
+    tmux new-session -s "music" ncmpcpp
+    exit
+    ;;
+  "");;
+  *)
+    session_name="$1"
+    tmux new-session -s "$session_name"
+    exit
+    ;;
+esac
 
 PROJ_DIR="$HOME/.local/src"
 

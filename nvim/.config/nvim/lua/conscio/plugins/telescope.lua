@@ -1,7 +1,7 @@
 local options = {
   defaults = {
     file_ignore_patterns = {
-      "node_modules" ,
+      "node_modules", "venv",
       "%.png", "%.jpg", "%.gif", "%.jpeg"
     },
     mappings = {
@@ -11,7 +11,10 @@ local options = {
   pickers = {
     find_files = {
       follow = true
-    }
+    },
+    buffers = {
+      sort_lastused = true
+    },
   }
   -- extensions_list = { "fzf" },
 }

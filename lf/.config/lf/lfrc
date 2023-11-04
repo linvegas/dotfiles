@@ -1,3 +1,4 @@
+set ifs "\n"
 set ratios 1:2
 set scrolloff 3
 
@@ -14,7 +15,7 @@ cmd open ${{
   case $(file --mime-type "$(readlink -f $f)" -Lb) in
     audio/*|video/x-ms-asf) mpv --audio-display=no $f ;;
     video/*) mpv --fs --really-quiet $f;;
-    image/*) nsxiv -fab -s f $f;;
+    image/*) nsxiv -fab --scale-mode f $f;;
     application/pdf|application/vnd.djvu|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
     *) for f in $fx; do xdg-open $f >/dev/null 2>&1; done;;
   esac

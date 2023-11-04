@@ -9,7 +9,7 @@ local opts = {
         "javascript", "javascriptreact", "typescript", "typescriptreact"
       },
     }),
-    null_ls.builtins.formatting.black
+    -- null_ls.builtins.formatting.black
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then

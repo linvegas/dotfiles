@@ -28,11 +28,13 @@ export ICEAUTHORITY="${XDG_CACHE_HOME:-$HOME/.cache}/ICEauthority"
 export PYTHONPYCACHEPREFIX="${XDG_CACHE_HOME:-$HOME/.cache}/python"
 export PYTHONUSERBASE="${XDG_DATA_HOME:-$HOME/.local/share}/python"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+export BUN_INSTALL="${XDG_DATA_HOME:-$HOME/.local/share}/bun"
 
 # Local scripts and configurations
 export PATH="$PATH:${$(find -L ~/.local/bin -type d -printf %p:)%%:}"
 export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
 export PATH="$PATH:$(go env GOPATH)/bin"
+export PATH="$PATH:$BUN_INSTALL/bin"
 export PF_INFO="ascii title os kernel shell pkgs wm memory"
 export CALCURSE_PAGER="bat"
 export QT_QPA_PLATFORMTHEME="qt5ct"

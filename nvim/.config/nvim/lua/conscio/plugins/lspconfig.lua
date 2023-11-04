@@ -46,6 +46,7 @@ end
 local servers = {
   pyright = {},
   tsserver = {},
+  gopls = {},
   -- lua_ls = {
   --   Lua = {
   --     workspace = { checkThirdParty = false },

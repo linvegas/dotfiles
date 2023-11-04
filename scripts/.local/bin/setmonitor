@@ -27,13 +27,6 @@ checkopt() {
 
   # Default settings
   [ -z "$dpi" ] && dpi="96"
-
-  # [ -z "$monitor1_res" ] && monitor1_res="1920x1080"
-  # [ -z "$monitor2_res" ] && monitor2_res="1920x1080"
-
-  # [ -z "$monitor1_pos" ] && monitor1_pos="left"
-  # [ -z "$monitor2_pos" ] && monitor2_pos="right"
-
 }
 
 onemonitor() {
@@ -45,7 +38,7 @@ onemonitor() {
     xrandr --output "$monitor1" --mode "$monitor1_res" --dpi "$dpi"
   fi
 
-  setwallpaper
+  # setwallpaper
   # setwallpaper "$HOME/.local/share/backgrounds/wp-onedark.png"
   exit 0
 }
@@ -63,7 +56,7 @@ dualmonitor() {
       --"${monitor2_pos:-right}"-of "$monitor1" --dpi "$dpi"
   fi
 
-  setwallpaper
+  # setwallpaper
   # setwallpaper "$HOME/.local/share/backgrounds/wp-onedark.png"
   exit 0
 }
