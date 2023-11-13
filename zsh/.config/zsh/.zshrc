@@ -40,12 +40,10 @@ serve() { python3 -m http.server --bind "${1:-127.0.0.1}" "${2:-4242}" ;}
 
 # Fuzzy find into shell history
 hh() {
-  cp_cmd="xclip -r -selection clipboard"
-  test "$XDG_SESSION_TYPE" == "wayland" && cp_cmd="wl-copy -n"
   hist |
-  awk '{$1=""; print $0}' | sed -e 's/^[[:space:]]*//' |
-  fzf -e --tac --layout=reverse --height=20 --info=hidden |
-  $cp_cmd
+    awk '{$1=""; print $0}' | sed -e 's/^[[:space:]]*//' |
+    fzf -e --tac --layout=reverse --height=20 --info=hidden |
+    xclip -r -selection clipboard
 }
 
 # Share any file under 500mb using 0x0.st server
