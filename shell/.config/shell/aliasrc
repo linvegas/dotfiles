@@ -12,7 +12,8 @@ alias \
   rmdir="rmdir -v" \
   mkdir="mkdir -pv" \
   stow="stow -v" \
-  ln="ln -v"
+  ln="ln -v" \
+  shred="shred -vzu"
 
 # ls command
 alias \

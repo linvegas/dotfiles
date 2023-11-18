@@ -38,9 +38,6 @@ mpvall() { for i in $(xdotool search --class mpv); do xdotool key --window "$i" 
 # Local web server
 serve() { python3 -m http.server --bind "${1:-127.0.0.1}" "${2:-4242}" ;}
 
-# Put file absolute path on clipboard
-cf() { readlink -f "$1" | xclip -sel clip -r ;}
-
 # Fuzzy find into shell history
 hh() {
   hist |
@@ -73,17 +70,18 @@ g() {
     mus)  cd ~/media/mus;;
     emu)  cd ~/media/emu;;
     ani)  cd ~/media/ani;;
+    man)  cd ~/media/mang;;
     bin)  cd ~/.local/bin;;
     rep)  cd ~/.local/src;;
     wp)   cd ~/.local/share/backgrounds;;
-    usb)  cd /mnt/usb1;;
+    usb1)  cd /mnt/usb1;;
     usb2) cd /mnt/usb2;;
     usb3) cd /mnt/usb3;;
     ext)  cd /mnt/externo;;
     shr)  cd /mnt/share;;
     ssd)  cd /mnt/ssd;;
     mor)  cd /mnt/ssd/morbus;;
-    *)    echo "g nvi|dot|dow|doc|pic|vid|smp|pro|mus|emu|ani|bin|rep|dev|usb|usb2|usb3|ext|ssd|mor";;
+    *)    echo "g [vim|dot|dow|doc|dev|sh|pic|vid|smp|pro|mus|emu|ani|man|bin|rep|wp|usb1|usb2|usb3|ext|shr|ssd|mor]";;
   esac
 }
 

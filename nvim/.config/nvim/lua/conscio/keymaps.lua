@@ -29,6 +29,11 @@ keymap("n", "<leader>B", ":set laststatus=3<CR>", { silent = true })
 -- Run last command
 keymap("n", "<leader>:", ":@:<CR>", { silent = true })
 
+-- Quickfix shortcuts
+keymap("n", "<leader>co", ":copen<CR>", opts)
+keymap("n", "<leader>cn", ":cnext<CR>", opts)
+keymap("n", "<leader>cp", ":cprevious<CR>", opts)
+
 -- Enter a new line in insert mode whitout breaking the line
 keymap("i", "<C-o>", "<esc>o", opts)
 keymap("i", "<C-S-o>", "<esc>O", opts)

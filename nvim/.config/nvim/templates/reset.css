@@ -23,7 +23,9 @@ h1, h2, h3, h4 {
 
 img, video {
   max-width: 100%;
+  height: auto;
   display: block;
+  font-style: italic;
 }
 
 ul, ol {
