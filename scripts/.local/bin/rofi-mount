@@ -21,7 +21,7 @@ if [ "$1" = "-u" ]; then
 
   [ -z "$mount_opt" ] && exit
 
-  sudo umount "$mount_opt" && sync && notify-send "$TITLE" "Device unmounted"
+  sudo umount "$mount_opt" && notify-send "$TITLE" "Device unmounted"
   exit
 fi
 
