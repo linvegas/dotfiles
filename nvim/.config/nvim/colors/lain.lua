@@ -3,13 +3,16 @@ vim.cmd("hi clear")
 vim.opt.background = "dark"
 vim.opt.termguicolors = true
 
-local hl = {}
+local hl = { plugins = {} }
 
 local c = {
-  Bg =        "#262224",
-  LightBg =   "#3D3842",
+  Bg =        "#262224", -- purple-ish bg
+  -- Bg =        "#191918", -- darker bg
+  -- LightBg =   "#3D3842",
+  LightBg =   "#2D282B",
   LighterBg = "#49394B",
-  Fg =        "#EFECF1",
+  Fg =        "#FEFEFE",
+  -- Fg =        "#EFECF1",
   Gray =      "#625669",
   LightGray = "#988EAD",
   -- LightGray = "#868d9c",
@@ -24,8 +27,11 @@ local c = {
   -- Magenta =   "#9F95B7",
   -- Magenta =   "#9E91D4",
 
-  Yellow =    "#B4CA82",
+  -- Yellow =    "#B4CA82",
   -- Yellow =    "#B9D775",
+  -- Yellow =    "#CFDC98",
+  Yellow =    "#CAD4A1",
+
 
   Cyan =      "#76BBCB",
   Orange =    "#BEB48E",
@@ -35,9 +41,18 @@ local c = {
 hl.editor = {
   Normal =       { fg = c.Fg, bg = c.Bg },
   Visual =       { bg = c.LighterBg },
-  StatusLine =   { fg = c.Fg, bg = c.LightBg },
+  Terminal =     { fg = c.fg, bg = c.Bg},
+  FoldColumn =   { fg = c.fg, c.LighterBg },
+  Folded =       { fg = c.fg, c.LighterBg },
+  StatusLine =   { fg = c.Fg, bg = c.LighterBg },
+  ColorColumn =  { bg = c.LightBg },
   CursorLine =   { bg = c.LightBg },
   CursorLineNr = { fg = c.Fg, fmt = "bold"},
+  Cursor =       { fmt = "reverse" },
+  vCursor =      { fmt = "reverse" },
+  iCursor =      { fmt = "reverse" },
+  lCursor =      { fmt = "reverse" },
+  CursorIM =     { fmt = "reverse" },
   LineNr =       { fg = c.Gray },
   VertSplit =    { fg = c.LightGray, bg = c.Bg },
   Pmenu =        { bg = c.Gray },
@@ -48,6 +63,13 @@ hl.editor = {
   TabLineSel =   { fg = c.Fg, bg = c.Gray },
   TabLineFill =  { fg = c.Gray, bg = c.Bg },
   EndOfBuffer =  { fg = c.Gray },
+  Substitute =   { fg = c.Bg, bg = c.Yellow },
+  MatchParen =   { bg = c.Gray },
+  ErrorMsg =     { fg = c.Red, fmt = "bold" },
+  WarningMsg =   { fg = c.Yellow, fmt = "bold" },
+  NormalFloat =  { fg = c.Fg, bg = c.LighterBg },
+  FloatBorder =  { fg = c.Gray, bg = c.LighterBg },
+  Directory =    { fg = c.Blue, fmt = "bold" },
 }
 
 hl.syntax = {
@@ -61,6 +83,7 @@ hl.syntax = {
   Identifier = { fg = c.Red},
   Function =   { fg = c.Blue},
   Statement =  { fg = c.Magenta, fmt = "bold" },
+  PreProc =    { fg = c.Magenta, fmt = "bold" },
   Type =       { fg = c.Yellow,  fmt = "bold" },
   Special =    { fg = c.Red },
   Delimiter =  { fg = c.LightGray },
@@ -68,12 +91,13 @@ hl.syntax = {
 }
 
 hl.treesitter = {
+  ["@attribute"] =        { fg = c.LightGray },
   ["@field"] =            { fg = c.Red },
   ["@constructor"] =      { fg = c.Yellow },
   ["@variable"] =         { fg = c.Fg },
   ["@variable.builtin"] = { fg = c.Red },
   ["@include"] =          { fg = c.Magenta, fmt = "bold" },
-  ["@type.builtin"] =     { fg = c.Orange, fmt = "bold" },
+  ["@type.builtin"] =     { fg = c.Yellow, fmt = "bold" },
   ["@property"] =         { fg = c.Cyan },
   ["@operator"] =         { fg = c.Fg },
   ["@tag"] =              { fg = c.Magenta },
@@ -82,6 +106,17 @@ hl.treesitter = {
   ["@text.emphasis"] =    { fg = c.Fg, fmt = "italic" },
   ["@text.underline"] =   { fg = c.Fg, fmt = 'underline' },
   ["@text.strike"] =      { fg = c.Fg, fmt = 'strikethrough' },
+}
+
+hl.plugins.telescope = {
+  TelescopeBorder =         { fg = c.Yellow },
+  TelescopePromptBorder =   { fg = c.Gray },
+  TelescopeResultsBorder =  { fg = c.Gray },
+  TelescopePreviewBorder =  { fg = c.Gray },
+  TelescopeMatching =       { fg = c.Yellow, fmt = "bold" },
+  TelescopePromptPrefix =   { fg = c.Green },
+  TelescopeSelection =      { fg = c.Bg, bg = c.Magenta },
+  TelescopeSelectionCaret = { fg = c.Yellow },
 }
 
 local function set_highlights(groups)
@@ -96,3 +131,5 @@ end
 set_highlights(hl.editor)
 set_highlights(hl.syntax)
 set_highlights(hl.treesitter)
+
+for _, group in pairs(hl.plugins) do set_highlights(group) end
