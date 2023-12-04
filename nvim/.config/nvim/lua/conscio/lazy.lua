@@ -23,7 +23,8 @@ require("lazy").setup({
         style = 'warmer',
         transparent = true,
         highlights = {
-          StatusLine = {bg = 'none', fmt = 'bold'}
+          StatusLine = {bg = 'none', fmt = 'bold'},
+          Whitespace = {fg = '$bg3'},
         }
       }
       vim.cmd.colorscheme 'onedark'
