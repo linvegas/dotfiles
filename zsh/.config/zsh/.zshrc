@@ -100,7 +100,7 @@ vv() {
 v() {
   case "$@" in
     al)     $EDITOR "$XDG_CONFIG_HOME/shell/aliasrc";;
-    term)   $EDITOR "$XDG_CONFIG_HOME/alacritty/alacritty.yml";;
+    term)   $EDITOR "$XDG_CONFIG_HOME/alacritty/alacritty.toml";;
     dunst)  $EDITOR "$XDG_CONFIG_HOME/dunst/dunstrc";;
     picom)  $EDITOR "$XDG_CONFIG_HOME/picom/picom.conf";;
     i3)     $EDITOR "$XDG_CONFIG_HOME/i3/config";;
