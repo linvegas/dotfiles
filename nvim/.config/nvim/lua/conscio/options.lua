@@ -17,7 +17,7 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 
 -- Special characters display
-vim.opt.listchars = "trail:•,extends:>,leadmultispace:│   "
+vim.opt.listchars = "tab:> ,trail:•,extends:>,leadmultispace:│   "
 vim.opt.list = true
 
 -- Split window

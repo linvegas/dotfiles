@@ -58,7 +58,7 @@ require("lazy").setup({
       { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
       -- Useful status updates for LSP
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = { window = { blend = 0 }} },
+      { 'j-hui/fidget.nvim', tag = 'v1.0.0', opts = { notification = { window = { winblend = 0 } } } },
       -- Additional lua configuration for neovim
       'folke/neodev.nvim',
     },

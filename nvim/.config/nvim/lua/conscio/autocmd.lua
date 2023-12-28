@@ -47,10 +47,23 @@ autocmd('TextYankPost', {
 })
 
 -- User command for loading personal templates
-usercmd("LoadTemp", function(args)
-  local path = vim.fn.stdpath "config" .. "/templates"
-  local template_file =  path .. "/" .. args['args']
-  local content = vim.fn.readfile(template_file)
-  local cursor_pos = vim.api.nvim_win_get_cursor(0)
-  vim.api.nvim_buf_set_lines(0, cursor_pos[1] - 1, cursor_pos[1] - 1, false, content)
-end, { nargs = 1 })
+usercmd(
+  "LoadTemp",
+  function(opts)
+    local path = vim.fn.stdpath "config" .. "/templates"
+    local content = vim.fn.readfile(path .. "/" .. opts.fargs[1])
+    local cursor_pos = vim.api.nvim_win_get_cursor(0)
+    vim.api.nvim_buf_set_lines(0, cursor_pos[1] - 1, cursor_pos[1] - 1, false, content)
+  end,
+  {
+    nargs = 1,
+    complete = function(ArgLead, CmdLine, CursorPos)
+      local templates = vim.api.nvim_get_runtime_file("templates/*", true)
+      local filenames = {}
+      for i, file in ipairs(templates) do
+        filenames[i] = file:match("([^/]+)$")
+      end
+      return filenames
+    end,
+  }
+)
