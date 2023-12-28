@@ -7,7 +7,6 @@ local awful = require("awful")
 -- Autostart programs
 awful.spawn.with_shell("setmonitor")
 awful.spawn.with_shell("nm-applet")
-awful.spawn.with_shell("volctl")
 
 require("awful.autofocus")
 
