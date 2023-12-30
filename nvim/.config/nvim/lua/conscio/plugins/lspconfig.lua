@@ -42,19 +42,6 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
--- Enable the following language servers and formatters
-local servers = {
-  pyright = {},
-  tsserver = {},
-  gopls = {},
-  -- lua_ls = {
-  --   Lua = {
-  --     workspace = { checkThirdParty = false },
-  --     telemetry = { enable = false },
-  --   },
-  -- },
-}
-
 -- Setup neovim lua configuration
 require('neodev').setup()
 
@@ -70,8 +57,19 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
 
+-- Enable the following language servers and formatters
+local servers = {
+  pyright = {},
+  tsserver = {},
+  gopls = {},
+}
+
 mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
+  ensure_installed = {
+    "tsserver",
+    "pyright",
+    "gopls",
+  },
 }
 
 mason_lspconfig.setup_handlers {

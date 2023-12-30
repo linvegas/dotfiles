@@ -23,7 +23,8 @@ require("lazy").setup({
         style = 'warmer',
         transparent = true,
         highlights = {
-          StatusLine = {bg = 'none', fmt = 'bold'}
+          StatusLine = {bg = 'none', fmt = 'bold'},
+          Whitespace = {fg = '$bg3'},
         }
       }
       vim.cmd.colorscheme 'onedark'
@@ -56,16 +57,8 @@ require("lazy").setup({
       -- Automatically install LSPs to stdpath for neovim
       { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
-
       -- Useful status updates for LSP
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = { window = { blend = 0 }} },
-
-      { 'jose-elias-alvarez/null-ls.nvim', event = "VeryLazy",
-        opts = function()
-          return require("conscio.plugins.null-ls")
-        end
-      },
-
+      { 'j-hui/fidget.nvim', tag = 'v1.0.0', opts = { notification = { window = { winblend = 0 } } } },
       -- Additional lua configuration for neovim
       'folke/neodev.nvim',
     },
@@ -78,7 +71,7 @@ require("lazy").setup({
     'hrsh7th/nvim-cmp',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
-      'L3MON4D3/LuaSnip',
+      {'L3MON4D3/LuaSnip', version = "v2.*"},
       'saadparwaiz1/cmp_luasnip',
 
       -- Adds LSP completion capabilities

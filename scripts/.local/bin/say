@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+BASE_URL="https://api.streamelements.com/kappa/v2/speech?"
+
+TMP_DIR="$(mktemp -d /tmp/tts-XXXXXX)"
+trap 'rm -r "$TMP_DIR"' EXIT
+
+text="$(echo "$1" | tr "[:blank:]" "+")"
+
+curl -s --output "$TMP_DIR/out.mp3" \
+    -G "$BASE_URL" -d "voice=Ricardo" -d "text=$text" &&
+    mpv --really-quiet "$TMP_DIR/out.mp3"
+

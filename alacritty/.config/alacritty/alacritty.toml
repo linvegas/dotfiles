@@ -1,0 +1,97 @@
+[colors.cursor]
+cursor = "#528bff"
+text = "CellBackground"
+
+[colors.normal]
+black = "#1e2127"
+blue = "#61afef"
+cyan = "#56b6c2"
+green = "#98c379"
+magenta = "#c678dd"
+red = "#e06c75"
+white = "#828997"
+yellow = "#e5c07b"
+
+[colors.primary]
+background = "#1f2329"
+foreground = "#abb2bf"
+
+[colors.selection]
+background = "#3e4451"
+text = "CellForeground"
+
+[cursor]
+blink_interval = 500
+blink_timeout = 0
+
+[cursor.style]
+blinking = "Always"
+shape = "Block"
+
+[font]
+size = 16.0
+
+[font.normal]
+family = "monospace"
+style = "Regular"
+
+[hints]
+alphabet = "jfkdls;ahgurieowpq"
+
+[[hints.enabled]]
+action = "Copy"
+hyperlinks = true
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
+
+[hints.enabled.binding]
+key = "U"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ScrollPageUp"
+key = "K"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ScrollPageDown"
+key = "J"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u001B[105;5u"
+key = "I"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u001B[111;5u"
+key = "O"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u001B[79;6u"
+key = "O"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+chars = "\u001B[72;6u"
+key = "H"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+chars = "\u001B[76;6u"
+key = "L"
+mods = "Control|Shift"
+
+[mouse]
+hide_when_typing = true
+
+[window]
+class = "Alacritty"
+dynamic_padding = true
+# instance = "Alacritty"
+opacity = 1.0
+title = "Alacritty"
+
+[window.dimensions]
+columns = 80
+lines = 28

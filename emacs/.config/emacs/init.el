@@ -9,4 +9,3 @@
 
 (setq backup-directory-alist '(("." . "~/.local/share/emacs/backups")))
 (setq eshell-directory-name "~/.local/share/emacs/eshell")
-(setq auto-save-default nil)
