@@ -9,11 +9,14 @@
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: dark light;
+  font-family:
+    system-ui, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji';
 }
 
 body {
-  font-family: system-ui, sans-serif;
   line-height: 1.5;
 }
 
@@ -32,11 +35,20 @@ ul, ol {
   padding: 0;
 }
 
-input, button, textarea {
+input, button, select, textarea, optgroup {
   font: inherit;
 }
 
+code, kbd, samp, pre {
+  font-family:
+    ui-monospace, SFMono-Regular, Consolas,
+    'Liberation Mono', Menlo, monospace;
+  font-size: 1em;
+}
+
+/*
 .container {
   width: min(100% - 3rem, 1000px);
   margin-inline: auto;
 }
+*/
