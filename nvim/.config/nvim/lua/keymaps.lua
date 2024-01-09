@@ -15,6 +15,7 @@ keymap("n", "<leader>B", ":set laststatus=3<CR>", { noremap = true, silent = tru
 keymap("n", "<leader>co", ":copen<CR>", { noremap = true })
 keymap("n", "<leader>cn", ":cnext<CR>", { noremap = true })
 keymap("n", "<leader>cp", ":cprevious<CR>", { noremap = true })
+keymap("n", "<leader>cc", ":cclose<CR>", { noremap = true })
 
 -- Open a terminal on vertical or horizontal split
 keymap("n", "<leader>T", ":vsplit term://zsh<CR>", { noremap = true })
