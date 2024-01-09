@@ -56,6 +56,8 @@ hl.editor = {
     WinSeparator = { fg = c.White4 },
     Directory =    { fg = c.Blue1 },
     QuickFixLine = { fg = c.Blue1, fmt = "underline" },
+    Question =     { fg = c.Yellow1, fmt = "bold" },
+    MatchParen =   { bg = c.Grey0 },
 }
 
 hl.syntax = {
@@ -69,14 +71,14 @@ hl.syntax = {
     Identifier =     { fg = c.Blue1},
     Function =       { fg = c.Blue1},
     Statement =      { fg = c.Magenta1, fmt = "bold" },
-    Operator =       { fg = c.Cyan1 },
+    Operator =       { fg = c.Magenta1 },
     Type =           { fg = c.Yellow1 },
     PreProc =        { fg = c.Magenta1 },
     Macro =          { fg = c.Red1 },
     Special =        { fg = c.Red1 },
     Underlined =     { fg = c.Fg0, fmt = "underline" },
-    Error =          { fg = c.Red2, bg = c.Red1 },
-    Todo =           { fg = c.Yellow2, bg = c.Yellow1 },
+    Error =          { fg = c.Bg0 , bg = c.Red1 },
+    Todo =           { fg = c.Bg0 , bg = c.Yellow1 },
     Title =          { fmt = "bold" },
     Tag =            { fg = c.Green1 },
 }
@@ -103,15 +105,31 @@ hl.lsp = {
     LspDiagnosticsUnderlineHint =        { fmt = "undercurl" or "underline", sp = c.Magenta1 },
     LspDiagnosticsUnderlineInformation = { fmt = "undercurl" or "underline", sp = c.Blue1 },
     LspDiagnosticsUnderlineWarning =     { fmt = "undercurl" or "underline", sp = c.Yellow1 },
-    LspReferenceText =                   { bg = c.Bg2 },
-    LspReferenceWrite =                  { bg = c.Bg2 },
-    LspReferenceRead =                   { bg = c.Bg2 },
+    LspReferenceText =                   { bg = c.Bg1 },
+    LspReferenceWrite =                  { bg = c.Bg1 },
+    LspReferenceRead =                   { bg = c.Bg1 },
+    ["@lsp.type.method"] =               { fg = c.Blue1 },
+    ["@lsp.type.property"] =             { fg = c.Cyan1 },
+    ["@lsp.type.variable"] =             { fg = c.Fg0 },
+    ["@lsp.type.parameter"] =            { fg = c.Fg0, fmt = "bold" },
+    ["@lsp.type.builtinType"] =          { fg = c.Orange0 },
+    ["@lsp.type.keyword"] =              { fg = c.Magenta1 },
+    ["@lsp.type.generic"] =              { fg = c.Fg0 },
+    ["@lsp.type.member"] =               { fg = c.Blue1 },
+    ["@lsp.typemod.method.defaultLibrary"] =   { fg = c.Blue1 },
+    ["@lsp.typemod.function.defaultLibrary"] = { fg = c.Blue1 },
+    ["@lsp.typemod.variable.defaultLibrary"] = { fg = c.Red1 },
 }
 
 hl.c = {
     cInclude = { fg = c.Blue1 },
     cTypedef = { fg = c.Magenta1 },
     cDefine =  { fg = c.Blue1 },
+}
+
+hl.js = {
+    javaScriptFunction = { fg = c.Magenta1, fmt = "bold" },
+    javaScriptBraces =   { fg = c.Fg0 },
 }
 
 local function set_highlights(groups)
@@ -129,3 +147,4 @@ set_highlights(hl.syntax)
 set_highlights(hl.statusline)
 set_highlights(hl.lsp)
 set_highlights(hl.c)
+set_highlights(hl.js)
