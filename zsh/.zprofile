@@ -33,7 +33,7 @@ export BUN_INSTALL="${XDG_DATA_HOME:-$HOME/.local/share}/bun"
 # Local scripts and configurations
 export PATH="$PATH:${$(find -L ~/.local/bin -type d -printf %p:)%%:}"
 export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
-export PATH="$PATH:$(go env GOPATH)/bin"
+export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:$BUN_INSTALL/bin"
 export PF_INFO="ascii title os kernel shell pkgs wm memory"
 export CALCURSE_PAGER="bat"
