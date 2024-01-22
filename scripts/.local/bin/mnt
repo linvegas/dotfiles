@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+
+if [ "$1" = "-u" ]; then
+    mounted_path=$(find /mnt -mindepth 1 -maxdepth 1 -type d -exec mountpoint -q '{}' \; -print | sort | rofi -dmenu -p '>' -mesg "Select path to unmount")
+    test -z "$mounted_path" && exit 0
+    sudo umount "$mounted_path" && notify-send "mnt" "Device on "$mounted_path" unmounted"
+    exit 0
+fi
+
+selected_dev=$(
+    lsblk -e 259,254 -o LABEL,SIZE,FSTYPE,PATH,TYPE,MOUNTPOINT |
+        awk '($5 == "part" && $6 == "")' |
+        rofi -dmenu -p '>' -mesg "Select a device"
+);
+test -z "$selected_dev" && exit 0
+fstype=$(echo "$selected_dev" | awk '{print $3}')
+dev_path=$(echo "$selected_dev" | awk '{print $4}')
+
+mount_path=$(find /mnt -mindepth 1 -maxdepth 1 -type d -empty | sort | rofi -dmenu -p '>' -mesg "Select a path to be mounted")
+test -z "$mount_path" && exit 0
+
+case "$fstype" in
+    ntfs) sudo mount -t ntfs -o uid="$(id -u)",gid="$(id -g)",fmask=113,dmask=002 "$dev_path" "$mount_path" && notify-send "mnt" "Device mounted on $mount_path";;
+    vfat) sudo mount -t vfat -o uid="$(id -u)",gid="$(id -g)",fmask=113,dmask=002 "$dev_path" "$mount_path" && notify-send "mnt" "Device mounted on $mount_path";;
+    ext4)
+        sudo mount -t ext4 "$dev_path" "$mount_path"
+        sudo chown -R "$USER":"$USER" "$mount_path"
+        notify-send "mnt" "Device mounted on $mount_path"
+        ;;
+    *) echo "Filesystem not indentified";;
+esac
