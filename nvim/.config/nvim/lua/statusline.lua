@@ -54,6 +54,7 @@ M.icon = function()
         typescriptreact = "󰛦",
         javascript = "󰌞",
         javascriptreact = "󰌞",
+        svelte = "",
     }
     local result = map[filetype] or ""
     return result

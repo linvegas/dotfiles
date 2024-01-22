@@ -1,3 +1,7 @@
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+local usercmd = vim.api.nvim_create_user_command
+
 local gopls = {
     cmd = { "gopls" },
     workspace_markers = { "go.work", "go.mod", ".git" },
@@ -33,6 +37,11 @@ local tsserver = {
     },
 }
 
+local svelteserver = {
+    cmd = { "svelteserver", "--stdio", },
+    workspace_markers = { "svelte.config.js", "package.json", ".git" },
+}
+
 local servers = {
     go = gopls,
     typescript = tsserver,
@@ -41,12 +50,13 @@ local servers = {
     javascript = tsserver,
     javascriptreact = tsserver,
     ["javascript.jsx"] = tsserver,
+    svelte = svelteserver,
 }
 
-vim.api.nvim_create_autocmd(
+autocmd(
     "FileType",
     {
-        group = vim.api.nvim_create_augroup(
+        group = augroup(
             "LspStart", { clear = true }
         ),
         pattern = vim.tbl_keys(servers),
@@ -96,7 +106,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     }
 )
 
-vim.api.nvim_create_autocmd(
+autocmd(
     "LspAttach",
     {
         callback = function(event)
@@ -107,6 +117,17 @@ vim.api.nvim_create_autocmd(
             keymap("n", "<leader>rn", vim.lsp.buf.rename, { buffer = buffer, noremap = true })
             keymap("n", "<leader>dn", vim.diagnostic.goto_next, { buffer = buffer, noremap = true })
             keymap("n", "<leader>dp", vim.diagnostic.goto_prev, { buffer = buffer, noremap = true })
+            keymap("n", "<leader>df", vim.diagnostic.open_float, { buffer = buffer, noremap = true })
         end
     }
 )
+
+-- Todo: Restart only client on current buffer
+usercmd(
+    "LSPRestart",
+    function()
+        vim.lsp.stop_client(vim.lsp.get_active_clients())
+        vim.cmd("edit")
+    end, {}
+)
+
