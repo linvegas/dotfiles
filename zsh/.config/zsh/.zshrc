@@ -28,8 +28,9 @@ zstyle ':completion:*' menu select cache-path $XDG_CACHE_HOME/zsh/zcompcache
 compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
 ## Aliases
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] &&
-  source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
+if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ]; then
+    source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
+fi
 
 ## Functions
 # Pause or play every instances of mpv
@@ -80,7 +81,7 @@ g() {
     shr)  cd /mnt/share;;
     ssd)  cd /mnt/ssd;;
     mor)  cd /mnt/ssd/morbus;;
-    *)    echo "g [vim|dot|dow|doc|dev|sh|pic|vid|smp|pro|mus|emu|ani|man|bin|rep|wp|usb1|usb2|usb3|ext|shr|ssd|mor]";;
+    *)    echo "Wrong directory alias";;
   esac
 }
 
@@ -121,7 +122,9 @@ v() {
 [ -x "/usr/bin/dircolors" ] && test -r "$HOME/.config/dircolors" && eval "$(dircolors -b ~/.config/dircolors)" || eval "$(dircolors -b)"
 
 # Zsh highlight
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 # bun completions
 [ -s "/home/conscio/.bun/_bun" ] && source "/home/conscio/.bun/_bun"
