@@ -32,6 +32,7 @@ awful.rules.rules = {
                 "Pavucontrol",
                 "Blueman-manager",
                 "Gpick",
+                "Galculator",
                 "Kruler",
                 "MessageWin",  -- kalarm.
                 -- "Sxiv",
