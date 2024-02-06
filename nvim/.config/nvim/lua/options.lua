@@ -30,7 +30,7 @@ opt.title = true
 opt.titlestring = "%t%(%M%)"
 
 opt.pumheight = 10
-opt.completeopt = "menuone,noinsert,noselect,preview"
+opt.completeopt = "menuone,noinsert,noselect"
 opt.wildoptions = "fuzzy,pum"
 
 opt.shortmess:append({c = true, W = true})

@@ -88,6 +88,40 @@ hl.statusline = {
     StatusLineMode = { fg = c.Fg0, fmt = "bold" },
 }
 
+hl.treesitter = {
+    ["@function"] =              { fg = c.Blue1 },
+    ["@function.builtin"] =      { fg = c.Blue1 },
+    ["@function.marcro"] =       { fg = c.Blue1 },
+    ["@parameter"] =             { fg = c.Red1 },
+    ["@parameter.reference"] =   { fg = c.Fg0 },
+    ["@method"] =                { fg = c.Blue1 },
+    ["@attribute"] =             { fg = c.Cyan1 },
+    ["@attribute.typescript"] =  { fg = c.Blue1 },
+    ["@type"] =                  { fg = c.Yellow1 },
+    ["@type.builtin"] =          { fg = c.Yellow1 },
+    ["@field"] =                 { fg = c.Cyan1 },
+    ["@property"] =              { fg = c.Cyan1 },
+    ["@variable"] =              { fg = c.Fg0 },
+    ["@variable.builtin"] =      { fg = c.Fg0 },
+    ["@string"] =                { fg = c.Green1 },
+    ["@string.regex"] =          { fg = c.Orange0 },
+    ["@string.escape"] =         { fg = c.Red1 },
+    ["@text"] =                  { fg = c.Fg0 },
+    ["@text.strong"] =           { fg = c.Fg0, fmt = "bold" },
+    ["@text.emphasis"] =         { fg = c.Fg0, fmt = "italic" },
+    ["@text.underline"] =        { fg = c.Fg0, fmt = "underline" },
+    ["@text.strike"] =           { fg = c.Fg0, fmt = "strikethrough" },
+    ["@text.title"] =            { fg = c.Fg0, fmt = "bold" },
+    ["@text.uri"] =              { fg = c.Fg0, fmt = "underline" },
+    ["@text.literal"] =          { fg = c.Green1 },
+    ["@punctuation.delimiter"] = { fg = c.Fg0 },
+    ["@punctuation.bracket"] =   { fg = c.Fg0 },
+    ["@punctuation.special"] =   { fg = c.Fg0 },
+    ["@tag"] =                   { fg = c.Magenta1 },
+    ["@tag.attribute"] =         { fg = c.Yellow1 },
+    ["@tag.delimiter"] =         { fg = c.Magenta2 },
+}
+
 hl.lsp = {
     DiagnosticError =                    { fg = c.Red1 },
     DiagnosticHint =                     { fg = c.Magenta1 },
@@ -122,9 +156,9 @@ hl.lsp = {
 }
 
 hl.c = {
-    cInclude = { fg = c.Blue1 },
-    cTypedef = { fg = c.Magenta1 },
-    cDefine =  { fg = c.Blue1 },
+    cInclude = { fg = c.Blue1, fmt = "bold" },
+    cTypedef = { fg = c.Magenta1, fmt = "bold" },
+    cDefine =  { fg = c.Blue1, fmt = "bold" },
 }
 
 hl.js = {
@@ -145,6 +179,7 @@ end
 set_highlights(hl.editor)
 set_highlights(hl.syntax)
 set_highlights(hl.statusline)
+set_highlights(hl.treesitter)
 set_highlights(hl.lsp)
 set_highlights(hl.c)
 set_highlights(hl.js)

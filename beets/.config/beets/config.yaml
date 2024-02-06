@@ -1,7 +1,11 @@
 directory: ~/media/mus
 library: ~/.config/beets/library.db
-plugins: ftintitle
+plugins: ftintitle fetchart
 
 ftintitle:
-  auto: yes
-  drop: yes
+    auto: yes
+    drop: yes
+
+fetchart:
+    cautious: true
+    sources: itunes *

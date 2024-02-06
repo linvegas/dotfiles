@@ -78,6 +78,26 @@ aucmd(
     }
 )
 
+aucmd(
+    "FileType",
+    {
+        group = augroup(
+            "WebshitterStandards", { clear = true }
+        ),
+        pattern = {
+            "javascript", "typescript", "html", "css", "svelte",
+            "javascriptreact", "typescriptreact", "json"
+        },
+        callback = function()
+            vim.opt_local.tabstop = 2
+            vim.opt_local.softtabstop = 2
+            vim.opt_local.shiftwidth = 2
+            vim.opt_local.listchars = "tab:> ,trail:•,extends:>,leadmultispace:│ "
+            vim.opt_local.list = true
+        end,
+    }
+)
+
 -- Load a shebang on every new shell file
 aucmd(
     "BufNewFile",
