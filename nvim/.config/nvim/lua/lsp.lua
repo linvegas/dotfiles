@@ -64,7 +64,7 @@ autocmd(
             local server_cmd = servers[event.match].cmd
             if vim.fn.executable(server_cmd[1]) == 0 then
                 vim.notify(
-                    "\"" .. executable .. "\" lsp server not found",
+                    "\"" .. server_cmd[1] .. "\" lsp server not found",
                     vim.log.levels.WARN
                 )
                 return
