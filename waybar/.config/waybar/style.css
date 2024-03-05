@@ -1,31 +1,46 @@
 * {
-    font-family: "Noto Sans Mono", sans-serif;
-    font-size: 13px;
-    border: none;
+  font-family: "DroidSansMono Nerd Font", monospace;
+  font-size: 13px;
+  border: none;
 }
 
 window#waybar {
-    background-color: #1E2127;
-    color: #ABB2BF;
-    transition-property: background-color;
-    transition-duration: .5s;
+  background-color: #1f2329;
+  /* background-color: rgba(31,35,41, 0.5); */
+  color: #a7aab0;
+  transition: background-color 500ms;
+
+  border-top: 1px solid #5a5b5e;
 }
 
 #workspaces button {
-    padding: 0 5px;
-    color: #5C6370;
-    font-size: 19px;
+  background: #37383d;
+  color: #5C6370;
+
+  padding: 0.125rem 0.25rem;
+  margin: 5px 5px 5px 0;
+  box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.25);
+
+  font-size: 1rem;
 }
 
-#workspaces button.active,
+#workspaces button:first-child {
+  margin-left: 5px;
+}
+
+#workspaces button:last-child {
+  margin-right: 10px;
+}
+
+#workspaces button.visible {
+  color: #a7aab0;
+  font-weight: bold;
+}
+
 #workspaces button.focused {
-    color: #ABB2BF;
-    font-weight: bold;
-    /* border-bottom: 3px solid #D19A66; */
-}
-
-#workspaces button.urgent {
-    background-color: #eb4d4b;
+  background: #c27fd7;
+  color: #1f2329;
+  font-weight: bold;
 }
 
 #clock,
@@ -39,7 +54,33 @@ window#waybar {
 #custom-media,
 #tray,
 #mpd {
-    padding: 0 10px;
-    color: #ABB2BF;
+  background: #37383d;
+
+  padding: 0.125rem 0.5rem;
+  margin: 5px 5px 5px 0;
+  border-radius: 0.25rem;
+
+  box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.25);
 }
 
+#cpu,
+#memory,
+#temperature,
+#disk {
+  margin-right: 2.5px;
+}
+
+#battery.critical {
+  background: #e16d77;
+  color: #1f2329;
+}
+
+#battery.completed {
+  background: #99bc80;
+  color: #1f2329;
+}
+
+#cpu.loaded {
+  background: #e16d77;
+  color: #1f2329;
+}

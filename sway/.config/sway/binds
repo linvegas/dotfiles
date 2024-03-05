@@ -11,14 +11,13 @@ floating_modifier              $mod normal
 bindsym $mod+Return            exec $term
 bindsym $mod+Shift+Return      exec $term --class float
 
-bindsym $mod+q                 kill
-bindsym $mod+Shift+q           exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+Shift+q           kill
 
 bindsym $mod+w                 exec $browser
 bindsym $mod+Shift+w           exec $browser -private-window
 
-bindsym $mod+e                 exec emul
-bindsym $mod+Shift+e           exec setemoji
+bindsym $mod+e                 exec setemoji
+bindsym $mod+Shift+e           exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
 bindsym $mod+y                 exec $term -e ytfzf
 bindsym $mod+Shift+y           exec $term -e ytfzf -c youtube-subscriptions
@@ -33,7 +32,6 @@ bindsym $mod+a                 focus parent
 bindsym $mod+Shift+s           sticky toggle
 
 bindsym $mod+d                 exec rofi -show drun
-bindsym $mod+Shift+d           exec dmenu_run
 
 bindsym $mod+f                 fullscreen toggle
 
@@ -64,7 +62,8 @@ bindsym $mod+Shift+c           reload
 
 bindsym $mod+v                 exec webcam
 
-bindsym $mod+Shift+b           exec killall -SIGUSR1 waybar
+bindsym $mod+b                 exec killall -SIGUSR1 waybar
+bindsym $mod+Shift+b           exec killall -SIGUSR2 waybar
 
 bindsym $mod+n                 exec $term --class musicplayer -e ncmpcpp
 
@@ -129,8 +128,8 @@ bindsym $mod+Shift+0 move container to workspace number 10
 
 # Next/prev workspace
 bindsym $mod+Prior     workspace prev
-bindsym $mod+comma      workspace prev
+bindsym $mod+comma     workspace prev
 bindsym $mod+Next      workspace next
-bindsym $mod+period   workspace next
+bindsym $mod+period    workspace next
 
 # vim:ft=swayconfig

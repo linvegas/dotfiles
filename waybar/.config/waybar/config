@@ -1,11 +1,11 @@
 {
   "layer": "top",
-  "position": "top",
+  "position": "bottom",
   "height": 28,
   "spacing": 4,
-  "modules-left": ["sway/workspaces", "wlr/workspaces", "cpu", "memory", "temperature", "disk"],
+  "modules-left": ["sway/workspaces", "wlr/workspaces", "cpu", "memory", "disk"],
   "modules-center": ["clock"],
-  "modules-right": ["mpd", "pulseaudio", "network", "battery", "tray"],
+  "modules-right": ["pulseaudio", "network", "battery", "tray"],
   "wlr/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
@@ -13,7 +13,7 @@
   },
   "sway/workspaces": {
     "disable-scroll": true,
-    "all-outputs": true,
+    "all-outputs": false,
     "format": "{name}"
   },
   "mpd": {
@@ -25,16 +25,6 @@
     "consume-icons": {
       "on": " "
     },
-    //"random-icons": {
-    //  "off": "<span color=\"#f53c3c\"></span> ",
-    //  "on": " "
-    //},
-    //"repeat-icons": {
-    //  "on": " "
-    //},
-    //"single-icons": {
-    //  "on": "1 "
-    //},
     "state-icons": {
       "paused": "",
       "playing": ""
@@ -48,57 +38,55 @@
   },
   "clock": {
     "format": "<span color='#D19A66'></span> {:%H:%M %a %d/%m}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   },
   "cpu": {
+    "states": {
+      "loaded": 90,
+      "normal": 5
+    },
     "format": "<span color='#E06C75'></span> {usage}%",
     "tooltip": false
   },
   "memory": {
-    "format": "<span color='#98C379'></span> {}%"
+    "format": "<span color='#98C379'>󰍛</span> {}%"
   },
   "temperature": {
-    // "thermal-zone": 2,
-    "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon3/temp1_input",
+    "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon1/temp1_input",
     "critical-threshold": 80,
-    // "format-critical": "{temperatureC}°C {icon}",
     "format": "{icon} {temperatureC}°C",
     "format-icons": ["", "", ""]
   },
   "battery": {
     "states": {
+      "completed": 100,
       "good": 95,
-      "warning": 25,
       "critical": 15
     },
     "format": "{icon} {capacity}%",
     "format-charging": " {capacity}%",
     "format-plugged": " {capacity}%",
     "format-alt": "{time} {icon}",
-    // "format-good": "", // An empty format will hide the module
-    // "format-full": "",
     "format-icons": ["", "", "", "", ""]
   },
   "battery#bat2": {
     "bat": "BAT2"
   },
   "network": {
-    // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": "<span color='#C678DD'></span> {ifname}",
-    "format-ethernet": "<span color='#C678DD'></span> {ifname}",
+    "format-wifi": "<span color='#C678DD'></span>  {ifname}",
+    "format-ethernet": "<span color='#C678DD'>󰈁</span> {ifname}",
     "tooltip-format": "[{essid}] {signalStrength}% - {ipaddr}",
-    "format-linked": "{ifname} (No IP) ",
+    "format-linked": "{ifname} (No IP) 󰈁",
     "format-disconnected": "⚠ Disconnected",
     "format-alt": "{ifname}: {ipaddr}/{cidr}"
   },
   "pulseaudio": {
-    // "scroll-step": 1, // %, can be a float
     "format": "<span color='#56B6C2'>{icon}</span> {volume}% {format_source}",
     "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": " {format_source}",
+    "format-bluetooth-muted": "󰝟 {icon} {format_source}",
+    "format-muted": "󰝟 0% {format_source}",
     "format-source": " {volume}%",
-    "format-source-muted": "",
+    "format-source-muted": " 0%",
     "format-icons": {
       "headphone": "",
       "hands-free": "",
@@ -114,7 +102,7 @@
     "interval": 30,
     "format": "<span color='#61AFEF'></span> {percentage_used}%",
     "path": "/"
-  },
+  }
 }
 
 // vim:filetype=json
