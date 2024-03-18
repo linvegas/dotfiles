@@ -23,7 +23,7 @@ opt.scrolloff = 8
 opt.wrap = false
 
 opt.fillchars = { eob = " " }
-opt.listchars = "tab:> ,trail:•,extends:>,leadmultispace:│   "
+opt.listchars = "tab:» ,trail:•,extends:>,leadmultispace:•···"
 opt.list = true
 
 opt.title = true

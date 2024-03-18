@@ -42,6 +42,18 @@ local svelteserver = {
     workspace_markers = { "svelte.config.js", "package.json", ".git" },
 }
 
+local volar = {
+    cmd = { "vue-language-server", "--stdio" },
+    workspace_markers = { "vue.config.js", "package.json" },
+    init_options = {
+        typescript = {
+            -- TODO: Use the local typescrpit lib and fallback
+            -- to global typescript lib
+            tsdk = "/usr/lib/node_modules/typescript/lib"
+        }
+    }
+}
+
 local servers = {
     go = gopls,
     typescript = tsserver,
@@ -51,6 +63,7 @@ local servers = {
     javascriptreact = tsserver,
     ["javascript.jsx"] = tsserver,
     svelte = svelteserver,
+    vue = volar,
 }
 
 autocmd(
