@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+case "$1" in
+    *.jpg|*.jpeg|*.png|*.bmp|*.webp|*.gif)
+        chafa -s "$2x$3" --animate off --polite on "$1"
+        ;;
+    *.mp4|*.mkv|*.webm|*.bmp|*.gif)
+        file "${1##*/}" | tr '[:,,]' '\n'
+        ;;
+    *.mp3|*.flac|*.wav|*.opus)
+        file "${1##*/}" | tr '[:,,]' '\n'
+        ;;
+    *)
+        highlight -O ansi "$1"
+        ;;
+esac
+
+exit 0

@@ -3,7 +3,6 @@ require("keymaps")
 require("commands")
 require("statusline")
 require("lsp")
--- require("treesitter")
 
 -- Manually install treesitter
 local treesitter_path = vim.fn.stdpath("data") .. "/site/pack/nvim-treesitter/start/nvim-treesitter"

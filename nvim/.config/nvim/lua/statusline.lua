@@ -55,6 +55,7 @@ M.icon = function()
         javascript = "󰌞",
         javascriptreact = "󰌞",
         svelte = "",
+        vue = "",
     }
     local result = map[filetype] or ""
     return result
