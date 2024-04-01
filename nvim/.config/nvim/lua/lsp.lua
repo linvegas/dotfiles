@@ -44,14 +44,14 @@ local svelteserver = {
 
 local volar = {
     cmd = { "vue-language-server", "--stdio" },
-    workspace_markers = { "vue.config.js", "package.json" },
+    workspace_markers = { "package.json" },
     init_options = {
         typescript = {
             -- TODO: Use the local typescrpit lib and fallback
             -- to global typescript lib
             tsdk = "/usr/lib/node_modules/typescript/lib"
-        }
-    }
+        },
+    },
 }
 
 local servers = {
