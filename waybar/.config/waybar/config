@@ -3,12 +3,12 @@
   "position": "top",
   "height": 28,
   "spacing": 4,
-  "modules-left": ["sway/workspaces", "wlr/workspaces", "cpu", "memory", "temperature", "disk"],
+  "modules-left": ["sway/workspaces", "hyprland/workspaces", "cpu", "memory", "temperature", "disk"],
   "modules-center": ["clock"],
-  "modules-right": ["mpd", "pulseaudio", "network", "battery", "tray"],
-  "wlr/workspaces": {
+  "modules-right": ["pulseaudio", "network", "battery", "tray"],
+  "hyprland/workspaces": {
     "disable-scroll": true,
-    "all-outputs": true,
+    "all-outputs": false,
     "format": "{name}"
   },
   "sway/workspaces": {
@@ -16,46 +16,20 @@
     "all-outputs": true,
     "format": "{name}"
   },
-  "mpd": {
-    "format": "<span color='#E06C75'></span> {stateIcon} {consumeIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}%",
-    "format-disconnected": "<span color='#E06C75'></span> Disconnected",
-    "format-stopped": "<span color='#E06C75'></span> {consumeIcon}Stopped",
-    "unknown-tag": "N/A",
-    "interval": 2,
-    "consume-icons": {
-      "on": " "
-    },
-    //"random-icons": {
-    //  "off": "<span color=\"#f53c3c\"></span> ",
-    //  "on": " "
-    //},
-    //"repeat-icons": {
-    //  "on": " "
-    //},
-    //"single-icons": {
-    //  "on": "1 "
-    //},
-    "state-icons": {
-      "paused": "",
-      "playing": ""
-    },
-    "tooltip-format": "MPD (connected)",
-    "tooltip-format-disconnected": "MPD (disconnected)"
-  },
   "tray": {
     "icon-size": 21,
     "spacing": 10
   },
   "clock": {
     "format": "<span color='#D19A66'></span> {:%H:%M %a %d/%m}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   },
   "cpu": {
     "format": "<span color='#E06C75'></span> {usage}%",
     "tooltip": false
   },
   "memory": {
-    "format": "<span color='#98C379'></span> {}%"
+    "format": "<span color='#98C379'></span> {}%"
   },
   "temperature": {
     // "thermal-zone": 2,
