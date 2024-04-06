@@ -23,7 +23,7 @@ case "$1" in
     ;;
 esac
 
-PROJ_DIR="$HOME/.local/src"
+PROJ_DIR="$HOME/src"
 
 [ ! -d "$PROJ_DIR" ] && { echo "${PROJ_DIR} doens't exits" && exit 1 ;}
 
