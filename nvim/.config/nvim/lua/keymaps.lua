@@ -34,3 +34,4 @@ keymap("v", "<C-r>", '"hy:%s/<C-r>h//gc<left><left><left>', { noremap = true })
 
 -- Exit terminal mode with C-x
 keymap("t", "<C-x>", "<C-\\><C-n>", { noremap = true })
+
