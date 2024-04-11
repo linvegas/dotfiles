@@ -1,42 +1,18 @@
 #!/usr/bin/env sh
 
-case "$1" in
-  ".")
-    current_dir="$(pwd)"
+if [ "$1" = "." ]; then
     current_dir_name="$(basename "$(pwd)")"
-    tmux new-session -c "$current_dir" -s "$current_dir_name" nvim .
+    tmux new-session -s "$current_dir_name" nvim .
     exit
-    ;;
-  "vim")
-    tmux new-session -s "vim" -c "$HOME/.config/nvim" nvim .
-    exit
-    ;;
-  "music")
-    tmux new-session -s "music" ncmpcpp
-    exit
-    ;;
-  "");;
-  *)
-    session_name="$1"
-    tmux new-session -s "$session_name"
-    exit
-    ;;
-esac
+fi
 
-PROJ_DIR="$HOME/src"
-
-[ ! -d "$PROJ_DIR" ] && { echo "${PROJ_DIR} doens't exits" && exit 1 ;}
-
-proj_sel=$(
-  find "$PROJ_DIR" -mindepth 1 -maxdepth 1 -type d -exec basename '{}' \; |
-  fzf --height=20 --layout=reverse --info=hidden --preview=''
+project_path=$(
+find -L ~/repo ~/dev/* ~/.config -maxdepth 1 -mindepth 1 -type d |
+    sed "s/^\/home\/$USER\///" |
+    fzf --height=20 --layout=reverse --info=hidden --preview=''
 )
 
-[ -z "$proj_sel" ] && exit 0
-
-if [ -z "$TMUX" ]; then
-  tmux new-session -c "${PROJ_DIR}/${proj_sel}" -s "$proj_sel" nvim .
-else
-  TMUX=$(tmux new-session -d -c "${PROJ_DIR}/${proj_sel}" -s "$proj_sel" nvim .)
-  tmux switch-client -t "$proj_sel"
+if [ -n "$project_path" ]; then
+    tmux new-session -c "$HOME/${project_path}" -s "${project_path##*/}" nvim .
 fi
+
