@@ -41,6 +41,6 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # Starts xorg or wayland
 if [ ! $(pidof -s Xorg) ] && [ "$(tty)" = "/dev/tty1" ]; then
-  # exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" awesome &> ~/.cache/startx.log
-  exec ssh-agent startwl hypr &> ~/.cache/startw.log
+  exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" awesome &> ~/.cache/startx.log
+  # exec ssh-agent startwl hypr &> ~/.cache/startw.log
 fi

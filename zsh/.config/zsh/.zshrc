@@ -73,7 +73,7 @@ g() {
     man)  cd ~/media/mang;;
     bin)  cd ~/.local/bin;;
     wp)   cd ~/.local/share/backgrounds;;
-    rep)  cd ~/src;;
+    rep)  cd ~/repo;;
     usb1) cd /mnt/usb1;;
     usb2) cd /mnt/usb2;;
     usb3) cd /mnt/usb3;;
