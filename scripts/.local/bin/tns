@@ -12,7 +12,11 @@ find -L ~/repo ~/dev/* ~/.config -maxdepth 1 -mindepth 1 -type d |
     fzf --height=20 --layout=reverse --info=hidden --preview=''
 )
 
-if [ -n "$project_path" ]; then
-    tmux new-session -c "$HOME/${project_path}" -s "${project_path##*/}" nvim .
-fi
+[ -z "$project_path" ] && exit
 
+if [ -z "$TMUX" ]; then
+    tmux new-session -c "$HOME/${project_path}" -s "${project_path##*/}" nvim .
+else
+    TMUX=$(tmux new-session -d -c "$HOME/${project_path}" -s "${project_path##*/}" nvim .)
+    tmux switch-client -t "${project_path##*/}"
+fi
