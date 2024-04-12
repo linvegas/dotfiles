@@ -28,6 +28,7 @@ M.icon = function()
         c="",
         cpp="",
         go="",
+        python="",
         html="",
         css="",
         typescript = "󰛦",
