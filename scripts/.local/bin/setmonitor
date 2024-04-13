@@ -1,75 +1,12 @@
 #!/usr/bin/env sh
 
-checkconf() {
-  conf_file="$HOME/.config/setmonitor.conf"
-  if [ -s "$conf_file" ]; then
-    # shellcheck source=/dev/null
-    . "$conf_file"
+hdmi_monitor_width=$(xrandr --listmonitors | awk 'NR==2 {print $3}' | grep -o "^[0-9]\+")
 
-  else
-    return
-  fi
-}
-
-checkopt() {
-
-  # Get monitors connected
-  CONNECTED=$(xrandr -q | grep -e '\sconnected' | cut -d ' ' -f1)
-
-  # If no monitor was specified, take from xrandr output
-  if [ -z "$monitor1" ] && [ -z "$monitor2" ]; then
-    i=1
-    for m in $CONNECTED; do
-      eval "monitor$i='$m'"
-      i=$((i + 1))
-    done
-  fi
-
-  # Default settings
-  [ -z "$dpi" ] && dpi="96"
-}
-
-onemonitor() {
-  [ -z "$monitor1" ] && monitor1="$CONNECTED"
-
-  if [ -z "$monitor1_res" ]; then
-    xrandr --output "$monitor1" --auto --dpi "$dpi"
-  else
-    xrandr --output "$monitor1" --mode "$monitor1_res" --dpi "$dpi"
-  fi
-
-  # setwallpaper
-  # setwallpaper "$HOME/.local/share/backgrounds/wp-onedark.png"
-  exit 0
-}
-
-dualmonitor() {
-  if [ -z "$monitor1_res" ] || [ -z "$monitor2_res" ]; then
-    xrandr \
-      --output "$monitor1" --auto --primary \
-      --output "$monitor2" --auto --"${monitor2_pos:-right}"-of "$monitor1" \
-      --dpi "$dpi"
-  else
-    xrandr \
-      --output "$monitor1" --mode "$monitor1_res" --rate "${monitor1_rate:-60}" --primary \
-      --output "$monitor2" --mode "$monitor2_res" --rate "${monitor2_rate:-60}" \
-      --"${monitor2_pos:-right}"-of "$monitor1" --dpi "$dpi"
-  fi
-
-  # setwallpaper
-  # setwallpaper "$HOME/.local/share/backgrounds/wp-onedark.png"
-  exit 0
-}
-
-# Check for configfile and default options
-checkconf
-checkopt
-
-# Identify current setup
-case $(echo "$CONNECTED" | wc -w) in
-  1) onemonitor;;
-  2) dualmonitor;;
-  3) arandr && exit;;
-  0) exit 1;;
+case "$hdmi_monitor_width" in
+    2560) width="$hdmi_monitor_width" ;;
+    *)    width=1920;;
 esac
 
+xrandr \
+    --output "HDMI-0" --mode "${width}x1080" --rate 75 --primary \
+    --output "eDP-1-1"  --right-of "HDMI-0"  --auto --dpi 123

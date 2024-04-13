@@ -1,12 +1,12 @@
-Sxiv.background: black
-Sxiv.foreground: white
+! Sxiv.background: black
+! Sxiv.foreground: white
 
-Nsxiv.window.background: black
-Nsxiv.window.foreground: white
+! Nsxiv.window.background: black
+! Nsxiv.window.foreground: white
 
-Nsxiv.bar.background: white
-Nsxiv.bar.foreground: black
-Nsxiv.mark.foreground: green
+! Nsxiv.bar.background: white
+! Nsxiv.bar.foreground: black
+! Nsxiv.mark.foreground: green
 
 Xcursor.theme: Breeze
 

@@ -73,16 +73,16 @@ g() {
     ani)  cd ~/media/ani;;
     man)  cd ~/media/mang;;
     bin)  cd ~/.local/bin;;
-    rep)  cd ~/.local/src;;
     wp)   cd ~/.local/share/backgrounds;;
-    usb1)  cd /mnt/usb1;;
+    rep)  cd ~/repo;;
+    usb1) cd /mnt/usb1;;
     usb2) cd /mnt/usb2;;
     usb3) cd /mnt/usb3;;
     ext)  cd /mnt/externo;;
     shr)  cd /mnt/share;;
     ssd)  cd /mnt/ssd;;
     mor)  cd /mnt/ssd/morbus;;
-    *)    echo "Wrong directory alias";;
+    *)    echo -e "g [rep|usb1|mus|dot|...]\n\e[0;31mInvalid argument\e[0m";;
   esac
 }
 
@@ -115,7 +115,7 @@ v() {
     xres)   $EDITOR "$XDG_CONFIG_HOME/X11/xresources";;
     z|zsh)  $EDITOR "$XDG_CONFIG_HOME/zsh/.zshrc";;
     zp)     $EDITOR "$HOME/.zprofile";;
-    *)      echo "Precisa de um parâmetro ou argumento inválido";;
+    *)      echo -e "v [zp|z|xini|term|...]\n\e[0;31mInvalid argument\e[0m";;
   esac
 }
 
