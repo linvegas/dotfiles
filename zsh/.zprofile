@@ -35,12 +35,13 @@ export PATH="$PATH:${$(find -L ~/.local/bin -type d -printf %p:)%%:}"
 export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
 export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:$BUN_INSTALL/bin"
+export PATH="$PATH:$CARGO_HOME/bin"
 export PF_INFO="ascii title os kernel shell pkgs wm memory"
 export CALCURSE_PAGER="bat"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # Starts xorg or wayland
 if [ ! $(pidof -s Xorg) ] && [ "$(tty)" = "/dev/tty1" ]; then
-  # exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" xfce &> ~/.cache/startx.log
+  # exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" i3 &> ~/.cache/startx.log
   exec ssh-agent startwl sway &> ~/.cache/startw.log
 fi
