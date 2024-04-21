@@ -3,17 +3,10 @@
   "position": "bottom",
   "height": 28,
   "spacing": 4,
-<<<<<<< HEAD
   "modules-left": ["sway/workspaces", "wlr/workspaces", "cpu", "memory", "disk"],
   "modules-center": ["clock"],
   "modules-right": ["pulseaudio", "network", "battery", "tray"],
   "wlr/workspaces": {
-=======
-  "modules-left": ["sway/workspaces", "hyprland/workspaces", "cpu", "memory", "temperature", "disk"],
-  "modules-center": ["clock"],
-  "modules-right": ["pulseaudio", "network", "battery", "tray"],
-  "hyprland/workspaces": {
->>>>>>> 4cc42e05dd749cff971f48db095131c8aef30969
     "disable-scroll": true,
     "all-outputs": false,
     "format": "{name}"
@@ -23,25 +16,6 @@
     "all-outputs": false,
     "format": "{name}"
   },
-<<<<<<< HEAD
-  "mpd": {
-    "format": "<span color='#E06C75'></span> {stateIcon} {consumeIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}%",
-    "format-disconnected": "<span color='#E06C75'></span> Disconnected",
-    "format-stopped": "<span color='#E06C75'></span> {consumeIcon}Stopped",
-    "unknown-tag": "N/A",
-    "interval": 2,
-    "consume-icons": {
-      "on": " "
-    },
-    "state-icons": {
-      "paused": "",
-      "playing": ""
-    },
-    "tooltip-format": "MPD (connected)",
-    "tooltip-format-disconnected": "MPD (disconnected)"
-  },
-=======
->>>>>>> 4cc42e05dd749cff971f48db095131c8aef30969
   "tray": {
     "icon-size": 21,
     "spacing": 10
