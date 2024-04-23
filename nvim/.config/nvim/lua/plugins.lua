@@ -14,6 +14,29 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+    -- Colorscheme
+    {
+        "navarasu/onedark.nvim",
+        priority = 1000,
+        lazy = false,
+        opts = {
+            style = "darker",
+            code_style = {
+                keywords = "bold",
+            },
+            highlights = {
+                Todo = { fg = "$bg0" , bg = "$yellow" },
+                StatusLine = { bg = "$black" },
+                StatusLineMode = { fmt = "bold" },
+                ["@keyword.function"] = { fmt = "bold" },
+                ["@tag.delimiter"] = { fg = "$dark_purple" },
+            }
+        },
+        config = function(_, opts)
+            require('onedark').setup(opts)
+            require('onedark').load()
+        end
+    },
     -- Tresitter
     {
         "nvim-treesitter/nvim-treesitter",
