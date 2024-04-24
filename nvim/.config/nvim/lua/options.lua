@@ -1,6 +1,6 @@
 local opt = vim.opt
 
-vim.cmd("colorscheme muhdark")
+-- vim.cmd("colorscheme muhdark")
 
 opt.number = true
 opt.relativenumber = true
