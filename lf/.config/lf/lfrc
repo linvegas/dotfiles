@@ -18,7 +18,7 @@ cmd open ${{
         audio/*|video/x-ms-asf) mpv --audio-display=no $f;;
         video/*) mpv --fs --really-quiet $f;;
         image/*) nsxiv -fab --scale-mode f $f;;
-        application/pdf|application/vnd.djvu|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+        application/pdf|application/vnd.djvu|application/epub*) setsid -f mupdf $fx >/dev/null 2>&1 ;;
         *) for f in $fx; do xdg-open $f >/dev/null 2>&1; done;;
     esac
 }}
