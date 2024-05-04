@@ -8,5 +8,6 @@ case "$hdmi_monitor_width" in
 esac
 
 xrandr \
+    --dpi 123 \
     --output "HDMI-0" --mode "${width}x1080" --rate 75 --primary \
-    --output "eDP-1-1"  --right-of "HDMI-0"  --auto --dpi 123
+    --output "eDP-1-1" --auto --right-of "HDMI-0"
