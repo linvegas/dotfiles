@@ -1,43 +1,47 @@
 vim.cmd("hi clear")
-vim.g.colors_name = "term"
+vim.g.colors_name = "hacker"
 vim.opt.background = "dark"
 vim.opt.termguicolors = true
 
 local c = {
-    bg = "#242424",
-    fg = "#d6fff1",
-    grey = "#487370",
-    grey2 = "#333C3B",
-    green = "#00f2a1",
-    cyan = "#00F1F2",
-    orange = "#ffcd53",
+    black = "#101010",
+    bg = "#1e211f",
+    bg2 = "#313332",
+    bg3 = "#444745",
+    fg = "#c8dbdb",
+    grey = "#858786",
+    green = "#25cd92",
+    blue = "#62bee3",
+    cyan = "#73eeef",
+    orange = "#e8c771",
+    red = "#e29f7e",
+    magenta = "#d099e0",
 }
 
 local hl = {}
 
 hl.editor = {
     Normal = { fg = c.fg, bg = c.bg },
-    LineNr = { fg = c.grey },
-    Whitespace = { fg = c.grey },
-    CursorLine = { bg = c.grey2 },
-    StatusLine = { fg = c.fg, bg = c.grey },
+    Visual = { bg = c.bg2 },
+    LineNr = { fg = c.bg3 },
+    CursorLineNr = { fg = c.fg },
+    Whitespace = { fg = c.bg3 },
+    CursorLine = { bg = c.bg2 },
+    StatusLine = { fg = c.fg, bg = c.bg3 },
 }
 
 hl.syntax = {
     String = { fg = c.green },
     Comment = { fg = c.grey },
+    Constant = { fg = c.red },
     Statement = { fg = c.green, fmt = "bold" },
     Operator = { fg = c.fg },
-    Identifier = { fg = c.fg, fmt = "bold"},
-    Function = { fg = c.cyan},
+    Identifier = { fg = c.fg },
+    Function = { fg = c.fg, fmt = "bold"},
     PreProc = { fg = c.green },
     Type = { fg = c.orange },
     Macro = { fg = c.cyan, fmt = "bold" },
     Special = { fg = c.fg, fmt = "bold" },
-}
-
-hl.rust = {
-    rustModPath = { fg = c.orange }
 }
 
 local function set_highlights(groups)
@@ -52,4 +56,3 @@ end
 
 set_highlights(hl.editor)
 set_highlights(hl.syntax)
-set_highlights(hl.rust)
