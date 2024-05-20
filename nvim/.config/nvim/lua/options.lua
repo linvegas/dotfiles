@@ -2,6 +2,8 @@ local opt = vim.opt
 
 -- vim.cmd("colorscheme muhdark")
 
+vim.g.zig_fmt_autosave = 0
+
 opt.number = true
 opt.relativenumber = true
 opt.cursorline = true
