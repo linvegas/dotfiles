@@ -1,0 +1,56 @@
+# Fuzzy find into shell history
+hh() {
+    hist |
+        awk '{$1=""; print $0}' | sed -e 's/^[[:space:]]*//' |
+        fzf -e --tac --layout=reverse --height=20 --info=hidden |
+        xclip -r -selection clipboard
+}
+
+# Shorcut for config files
+v() {
+    case "$1" in
+        al)    $EDITOR "$XDG_CONFIG_HOME/shell/aliasrc";;
+        fn)    $EDITOR "$XDG_CONFIG_HOME/shell/fnrc";;
+        term)  $EDITOR "$XDG_CONFIG_HOME/alacritty/alacritty.toml";;
+        i3)    $EDITOR "$XDG_CONFIG_HOME/i3/config";;
+        tmux)  $EDITOR "$XDG_CONFIG_HOME/tmux/tmux.conf";;
+        v|vim) $EDITOR "$XDG_CONFIG_HOME/nvim/init.lua";;
+        xini)  $EDITOR "$XDG_CONFIG_HOME/X11/xinitrc";;
+        xres)  $EDITOR "$XDG_CONFIG_HOME/X11/xresources";;
+        z|zsh) $EDITOR "$XDG_CONFIG_HOME/zsh/.zshrc";;
+        zp)    $EDITOR "$HOME/.zprofile";;
+        *)     echo -e "v [zp|z|xini|term|...]\n\e[0;31mInvalid argument\e[0m";;
+    esac
+}
+
+# cd to specified path
+g() {
+    case "$@" in
+        vim)  cd ~/.config/nvim;;
+        dot)  cd ~/dotfiles;;
+        dow)  cd ~/docx/downloads;;
+        doc)  cd ~/docx;;
+        dev)  cd ~/dev;;
+        pic)  cd ~/media/pic;;
+        vid)  cd ~/media/vid;;
+        smp)  cd ~/media/samp;;
+        pro)  cd ~/media/proj;;
+        mus)  cd ~/media/mus;;
+        emu)  cd ~/media/emu;;
+        ani)  cd ~/media/ani;;
+        man)  cd ~/media/mang;;
+        bin)  cd ~/.local/bin;;
+        wp)   cd ~/.local/share/backgrounds;;
+        rep)  cd ~/repo;;
+        usb1) cd /mnt/usb1;;
+        usb2) cd /mnt/usb2;;
+        usb3) cd /mnt/usb3;;
+        ext)  cd /mnt/externo;;
+        shr)  cd /mnt/share;;
+        ssd)  cd /mnt/ssd;;
+        mor)  cd /mnt/ssd/morbus;;
+        *)    echo -e "g [rep|usb1|mus|dot|...]\n\e[0;31mInvalid argument\e[0m";;
+    esac
+}
+
+# vim:ft=sh
