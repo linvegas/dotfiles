@@ -48,7 +48,6 @@ g() {
         ext)  cd /mnt/externo;;
         shr)  cd /mnt/share;;
         ssd)  cd /mnt/ssd;;
-        mor)  cd /mnt/ssd/morbus;;
         *)    echo -e "g [rep|usb1|mus|dot|...]\n\e[0;31mInvalid argument\e[0m";;
     esac
 }
