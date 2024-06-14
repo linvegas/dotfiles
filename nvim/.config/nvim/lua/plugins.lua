@@ -64,7 +64,7 @@ require("lazy").setup({
                     group = vim.api.nvim_create_augroup(
                         "DisableTSFileType", { clear = true }
                     ),
-                    pattern = { "html", "css" },
+                    pattern = { "css" },
                     command = ":TSBufDisable highlight"
                 }
             )
