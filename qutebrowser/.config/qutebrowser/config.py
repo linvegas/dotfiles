@@ -16,8 +16,8 @@ c.colors.webpage.preferred_color_scheme = "dark"
 
 # Tabs
 c.colors.tabs.bar.bg = "#1f2329"
-c.colors.tabs.even.bg = "#323641"
-c.colors.tabs.odd.bg = "#323641"
+c.colors.tabs.even.bg = "#1f2329"
+c.colors.tabs.odd.bg = "#1f2329"
 c.colors.tabs.selected.even.bg = "#bf68d9"
 c.colors.tabs.selected.odd.bg = "#bf68d9"
 c.colors.tabs.selected.even.fg = "#1f2329"
@@ -28,8 +28,10 @@ c.tabs.padding = {"top": 3, "right": 3, "bottom": 3, "left": 3}
 # Statusbar
 c.colors.statusbar.normal.bg = "#0e1013"
 c.colors.statusbar.normal.fg = "#a0a8b7"
+c.colors.statusbar.progress.bg = "#a0a8b7"
 c.colors.statusbar.url.fg = "#8ebd6b"
-c.colors.statusbar.url.hover.fg = "#48b0bd"
+c.colors.statusbar.url.success.http.fg = "#8ebd6b"
+c.colors.statusbar.url.success.https.fg = "#8ebd6b"
 
 c.statusbar.show = "always"
 c.statusbar.padding = {"top": 3, "right": 3, "bottom": 3, "left": 3}
