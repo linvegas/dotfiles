@@ -30,6 +30,7 @@ export BUN_INSTALL="$XDG_DATA_HOME/bun"
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export OPAMROOT="$XDG_DATA_HOME/opam"
 export LESSHISTFILE="-"
 
 # Local scripts and configurations
