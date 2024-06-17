@@ -208,6 +208,14 @@ globalkeys = gears.table.join(
         }
     ),
     awful.key(
+        { modkey, "Shift" }, "w",
+        function () awful.spawn("qutebrowser") end,
+        {
+            description = "open secondary web browser",
+            group       = "launcher"
+        }
+    ),
+    awful.key(
         { modkey, "Shift" }, "e",
         function () awful.spawn("setemoji") end,
         {
