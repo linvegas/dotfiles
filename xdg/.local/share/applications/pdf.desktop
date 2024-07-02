@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
-Name=zathura
-Exec=/usr/bin/zathura %u
+Name=mupdf
+Exec=/usr/bin/mupdf %u
