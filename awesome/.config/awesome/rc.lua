@@ -165,21 +165,17 @@ awful.screen.connect_for_each_screen(function(s)
                             id     = "icon_role",
                             widget = wibox.widget.imagebox,
                         },
-                        -- margins = dpi(4),
                         left  = dpi(2),
-                        right = dpi(4),
+                        right = dpi(6),
                         widget  = wibox.container.margin,
                     },
                     {
                         id     = "text_role",
                         widget = wibox.widget.textbox,
                     },
-                    -- margins = dpi(4),
                     layout = wibox.layout.fixed.horizontal,
                 },
                 margins = dpi(5),
-                -- left  = 10,
-                -- right = 10,
                 widget = wibox.container.margin
             },
             id     = "background_role",
@@ -192,7 +188,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.muhwibox = awful.wibar({
         position = "top",
         screen = s,
-        bg = theme.bg_dark,
+        bg = theme.black,
     })
 
     s.muhwibox:setup {
@@ -282,7 +278,7 @@ end)
 -- Turn titlebar on when client is floating
 client.connect_signal("property::floating", function(c)
     if c.floating and not c.requests_no_titlebar then
-        c.shape = gears.shape.rounded_rect
+        c.border_width = beautiful.border_width
         awful.titlebar.show(c)
     else
         awful.titlebar.hide(c)
@@ -310,14 +306,17 @@ client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = false})
 end)
 
--- No borders when rearranging only 1 non-floating or maximized client
+-- No borders when rearranging only 1 non-floating client or on max layout
 screen.connect_signal("arrange", function (s)
-    local only_one = #s.tiled_clients == 1
+    local float_layout = s.selected_tag.layout.name == "floating"
+    local max_layout = s.selected_tag.layout.name == "max"
+
     for _, c in pairs(s.clients) do
-        if only_one and not c.floating or c.maximized then
+        if (#s.tiled_clients == 1 or max_layout) and not float_layout and not c.floating or c.maximized then
             c.border_width = 0
         else
             c.border_width = beautiful.border_width
+            if float_layout or c.floating then c.shape = gears.shape.rounded_rect end
         end
     end
 end)
