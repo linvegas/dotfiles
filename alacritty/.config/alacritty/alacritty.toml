@@ -3,7 +3,8 @@ cursor = "#4fa6ed"
 text = "CellBackground"
 
 [colors.normal]
-black   = "#0e1013"
+# black   = "#0e1013"
+black   = "#14171c"
 blue    = "#4fa6ed"
 cyan    = "#48b0bd"
 green   = "#8ebd6b"
@@ -23,7 +24,8 @@ cyan    = "#56b6c2"
 white   = "#ffffff"
 
 [colors.primary]
-background = "#1f2329"
+# background = "#1f2329"
+background = "#14171c"
 # foreground = "#a0a8b7"
 foreground = "#abb2bf"
 
