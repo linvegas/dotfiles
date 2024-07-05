@@ -7,34 +7,20 @@ local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 local theme_wallpaper = gfs.get_configuration_dir() .. "wallpaper.png"
 
-local colors = {
-    bg1    = "#1f2329",
-    bg2    = "#282c34",
-    bg3    = "#30363f",
-    bg4    = "#323641",
-    fg1    = "#ABB2BF",
-    fg2    = "#FFFFFF",
-    blue   = "#61AFEF",
-    green  = "#8ebd6b",
-    purple = "#bf68d9",
-    black  = "#000000",
-    grey   = "#535965",
-}
-
 local theme = {}
 
 theme.font               = "DroidSansM Nerd Font Mono 10"
 
-theme.fg_normal          = colors.fg1
-theme.bg_dark            = colors.bg1
-theme.bg_light           = colors.bg2
-theme.bg_lighter         = colors.bg3
-theme.bg_lighter2        = colors.bg3
-theme.black              = colors.black
-theme.blue               = colors.blue
-theme.green              = colors.green
-theme.purple             = colors.purple
-theme.grey               = colors.grey
+theme.bg                 = "#1f2329"
+theme.bg_light           = "#282c34"
+theme.bg_lighter         = "#30363f"
+theme.bg_lighter2        = "#323641"
+theme.fg_normal          = "#ABB2BF"
+theme.blue               = "#4fa6ed"
+theme.green              = "#8ebd6b"
+theme.purple             = "#bf68d9"
+theme.black              = "#0e1013"
+theme.grey               = "#535965"
 
 theme.useless_gap        = dpi(0)
 theme.border_width       = dpi(1)
@@ -44,18 +30,19 @@ theme.border_focus       = theme.grey
 
 theme.wallpaper          = theme_wallpaper
 
-theme.tasklist_bg_focus  = theme.bg_lighter
-theme.tasklist_bg_normal = theme.bg_dark
+theme.tasklist_bg_focus  = theme.bg_lighter2
+theme.tasklist_bg_normal = theme.bg
 
-theme.titlebar_bg_focus  = theme.bg_lighter
-theme.titlebar_bg_normal = theme.bg_dark
+theme.titlebar_bg_focus  = theme.bg_lighter2
+theme.titlebar_bg_normal = theme.bg
 
-theme.taglist_bg_focus   = theme.grey
+theme.taglist_bg_focus   = theme.purple
+theme.taglist_fg_focus   = theme.black
 
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    taglist_square_size, theme.fg_normal
+theme.taglist_squares_sel = theme_assets.taglist_squares_unsel(
+    taglist_square_size, theme.black
 )
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
     taglist_square_size, theme.fg_normal
@@ -105,8 +92,8 @@ theme.titlebar_maximized_button_focus_active    = themes_path .. "default/titleb
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_bg_focus = theme.blue
-theme.menu_fg_focus = theme.bg_dark
-theme.menu_bg_normal = theme.bg_dark
+theme.menu_fg_focus = theme.bg
+theme.menu_bg_normal = theme.bg
 theme.menu_submenu_icon = themes_path.."default/submenu.png"
 theme.menu_height = dpi(20)
 theme.menu_width  = dpi(110)
@@ -116,10 +103,12 @@ theme.tooltip_fg = theme.fg_normal
 theme.tooltip_gaps = dpi(4)
 theme.tooltip_shape = theme.rounded
 
-theme.hotkeys_bg = theme.bg_lighter2
+theme.hotkeys_bg = theme.black
 theme.hotkeys_modifiers_fg = theme.fg_normal
 theme.hotkeys_shape = theme.rounded
-theme.hotkeys_group_margin = dpi(20)
+-- theme.hotkeys_group_margin = dpi(10)
+theme.hotkeys_font = "DroidSansM Nerd Font Mono 8"
+
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(
@@ -127,6 +116,6 @@ theme.awesome_icon = theme_assets.awesome_icon(
 )
 
 theme.systray_icon_spacing = dpi(4)
-theme.bg_systray = theme.bg_dark
+theme.bg_systray = theme.bg
 
 return theme

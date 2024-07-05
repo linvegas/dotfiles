@@ -20,14 +20,19 @@ require("lazy").setup({
         priority = 1000,
         lazy = false,
         opts = {
-            style = "darker",
+            style = "warmer",
             code_style = {
                 keywords = "bold",
             },
+            colors = {
+                bg0 = "#14171c",
+                -- bg0 = "#191d22",
+                -- bg0 = "#0f1115",
+            },
             highlights = {
                 Todo = { fg = "$bg0" , bg = "$yellow" },
-                StatusLine = { bg = "$black" },
-                StatusLineMode = { fmt = "bold" },
+                StatusLine = { bg = "$bg1" },
+                StatusLineMode = { bg = "$bg1", fmt = "bold" },
                 ["@keyword.function"] = { fmt = "bold" },
                 ["@tag.delimiter"] = { fg = "$dark_purple" },
             }
@@ -37,6 +42,8 @@ require("lazy").setup({
             require('onedark').load()
         end
     },
+    { "rebelot/kanagawa.nvim" },
+
     -- Tresitter
     {
         "nvim-treesitter/nvim-treesitter",

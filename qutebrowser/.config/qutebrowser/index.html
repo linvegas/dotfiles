@@ -10,7 +10,7 @@
       html {color-scheme: dark;}
       body {
         font-family: system-ui;
-        font-size: 1.5rem;
+        font-size: 1.25rem;
       }
       main {
         height: 100vh;
@@ -26,8 +26,10 @@
         grid-template-columns: repeat(4, 1fr);
 
         & li {
+          --inline-size: 100px;
+
           background: rgba(255, 255, 255, 0.1);
-          width: 100px;
+          width: var(--inline-size);
           border-radius: 0.5rem;
           aspect-ratio: 1;
 
@@ -41,9 +43,16 @@
             background: rgba(255, 255, 255, 0.2);
           }
 
+          &:has(> a:active) {
+            background: rgba(255, 255, 255, 0.3);
+          }
+
           & > a {
             text-decoration: none;
             color: aqua;
+            text-align: center;
+            inline-size: var(--inline-size);
+            overflow-wrap: break-word;
 
             &:hover,
             &:focus-visible {
@@ -66,23 +75,23 @@
           <a href="https://github.com/linvegas">github</a>
         </li>
         <li>
-          <a href="#">#</a>
+          <a href="https://doc.rust-lang.org/std">doc.rust</a>
         </li>
         <li>
-          <a href="#">#</a>
+          <a href="https://doc.rust-lang.org/stable/rust-by-example">rust<br>by<br>example</a>
         </li>
         <li>
-          <a href="#">#</a>
+          <a href="https://docs.rs">docs.rs</a>
         </li>
 
         <li>
           <a href="https://4chan.org/g/catalog">/g/</a>
         </li>
         <li>
-          <a href="https://4chan.org/a/catalog">/a/</a>
+          <a href="#">#</a>
         </li>
         <li>
-          <a href="https://4chan.org/v/catalog">/v/</a>
+          <a href="#">#</a>
         </li>
         <li>
           <a href="#">#</a>

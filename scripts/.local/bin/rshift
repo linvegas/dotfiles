@@ -4,14 +4,14 @@
 # and automatic location based on gps
 
 lat_long=$(
-  curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" |
-  jq -r '"\(.location.lat):\(.location.lng)"'
+    curl -s "https://ipinfo.io/json" |
+        jq -r '.loc | split(",") | "\(.[0]):\(.[1])"'
 )
 
 if [ "$XDG_SESSION_TYPE" = "wayland" ];then
-  [ ! -x "$(command -v gammastep)" ] && exit
-  gammastep -l "$lat_long"
-  exit
+    [ ! -x "$(command -v gammastep)" ] && exit
+    gammastep -l "$lat_long"
+    exit
 fi
 
 [ ! -x "$(command -v redshift)" ] && exit

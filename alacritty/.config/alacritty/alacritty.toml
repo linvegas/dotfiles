@@ -3,18 +3,31 @@ cursor = "#4fa6ed"
 text = "CellBackground"
 
 [colors.normal]
-black = "#0e1013"
-blue = "#4fa6ed"
-cyan = "#48b0bd"
-green = "#8ebd6b"
+# black   = "#0e1013"
+black   = "#14171c"
+blue    = "#4fa6ed"
+cyan    = "#48b0bd"
+green   = "#8ebd6b"
 magenta = "#bf68d9"
-red = "#e55561"
-white = "#7a818e"
-yellow = "#e2b86b"
+red     = "#e55561"
+white   = "#7a818e"
+yellow  = "#e2b86b"
+
+[colors.bright]
+black   = "#5c6370"
+red     = "#e06c75"
+green   = "#98c379"
+yellow  = "#d19a66"
+blue    = "#61afef"
+magenta = "#c678dd"
+cyan    = "#56b6c2"
+white   = "#ffffff"
 
 [colors.primary]
-background = "#1f2329"
-foreground = "#a0a8b7"
+# background = "#1f2329"
+background = "#14171c"
+# foreground = "#a0a8b7"
+foreground = "#abb2bf"
 
 [colors.selection]
 background = "#3e4451"
