@@ -59,7 +59,7 @@ end
 
 local stats = {
     "%#StatusLineMode#",
-    "%{%v:lua.require'statusline'.mode()%} %#StatusLine#",
+    "%{%v:lua.require'statusline'.mode()%} %#StatusLine#ⵘ",
     "%<%f %{%v:lua.require'statusline'.icon()%} %m",
     "%=",
     "%{%v:lua.require'statusline'.lsp()%}",
