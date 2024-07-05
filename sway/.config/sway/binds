@@ -14,7 +14,7 @@ bindsym $mod+Shift+Return      exec $term --class float
 bindsym $mod+Shift+q           kill
 
 bindsym $mod+w                 exec $browser
-bindsym $mod+Shift+w           exec $browser -private-window
+bindsym $mod+Shift+w           exec qutebrowser
 
 bindsym $mod+e                 exec setemoji
 bindsym $mod+Shift+e           exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'

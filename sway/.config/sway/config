@@ -32,5 +32,6 @@ exec swayidle -w \
      before-sleep 'swaylock -f -c 000000'
 
 output * bg $HOME/.local/share/backgrounds/background.png fill
-workspace 1 output LVDS-1
-workspace 6 output HDMI-A-1
+
+# workspace 1 output HDMI-A-1
+# workspace 6 output LVDS-1
