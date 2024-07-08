@@ -1,9 +1,18 @@
 # Fuzzy find into shell history
 hh() {
-    hist |
+    local hist_cmd
+
+    hist_cmd=$(
+        hist |
         awk '{$1=""; print $0}' | sed -e 's/^[[:space:]]*//' |
-        fzf -e --tac --layout=reverse --height=20 --info=hidden |
-        xclip -r -selection clipboard
+        fzf -e --tac --layout=reverse --height=20 --info=hidden
+    )
+
+    if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+        wl-copy --trim-newline "$hist_cmd"
+    else
+        echo "$hist_cmd" | xclip -r -selection clipboard
+    fi
 }
 
 # Shorcut for config files
