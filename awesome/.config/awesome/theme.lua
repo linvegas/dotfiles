@@ -11,14 +11,17 @@ local theme = {}
 
 theme.font               = "DroidSansM Nerd Font Mono 10"
 
-theme.bg                 = "#1f2329"
-theme.bg_light           = "#282c34"
+-- theme.bg                 = "#1f2329"
+theme.bg                 = "#14171c"
+-- theme.bg_light           = "#282c34"
+theme.bg_light           = "#1f2329"
 theme.bg_lighter         = "#30363f"
 theme.bg_lighter2        = "#323641"
 theme.fg_normal          = "#ABB2BF"
 theme.blue               = "#4fa6ed"
 theme.green              = "#8ebd6b"
 theme.purple             = "#bf68d9"
+theme.purple_d           = "#7e3992"
 theme.black              = "#0e1013"
 theme.grey               = "#535965"
 
@@ -31,7 +34,7 @@ theme.border_focus       = theme.grey
 theme.wallpaper          = theme_wallpaper
 
 theme.tasklist_bg_focus  = theme.bg_lighter2
-theme.tasklist_bg_normal = theme.bg
+theme.tasklist_bg_normal = theme.bg_light
 
 theme.titlebar_bg_focus  = theme.bg_lighter2
 theme.titlebar_bg_normal = theme.bg
@@ -41,8 +44,8 @@ theme.taglist_fg_focus   = theme.black
 
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)
-theme.taglist_squares_sel = theme_assets.taglist_squares_unsel(
-    taglist_square_size, theme.black
+theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
+    taglist_square_size, theme.purple_d
 )
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
     taglist_square_size, theme.fg_normal
