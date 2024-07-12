@@ -29,11 +29,11 @@
       "loaded": 90,
       "normal": 5
     },
-    "format": "<span color='#E06C75'></span> {usage}%",
+    "format": "<span color='#E06C75'>󰍛</span> {usage}%",
     "tooltip": false
   },
   "memory": {
-    "format": "<span color='#98C379'>󰍛</span> {}%"
+    "format": "<span color='#98C379'></span> {used}G"
   },
   "temperature": {
     "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon1/temp1_input",
