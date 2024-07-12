@@ -3,17 +3,19 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
+(global-display-line-numbers-mode t)
 (setq frame-resize-pixelwise t)
 (set-default 'truncate-lines t)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (setq c-basic-offset 4)
 
-(global-display-line-numbers-mode t)
-
 ;; (load-theme 'modus-vivendi t)
 (add-to-list 'custom-theme-load-path "~/.config/emacs/atom-one-dark-theme.el")
 (load-theme 'atom-one-dark t)
+
+(set-face-attribute 'line-number nil :inherit 'default)
+(set-face-attribute 'line-number-current-line nil :inherit 'default)
 
 (set-frame-font "DroidSansM Nerd Font Mono 13" nil t)
 
@@ -27,6 +29,8 @@
 
 (unless (package-installed-p 'typescript-mode)
   (package-install 'typescript-mode))
+(unless (package-installed-p 'rust-mode)
+  (package-install 'rust-mode))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
