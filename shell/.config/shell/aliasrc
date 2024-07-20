@@ -2,7 +2,7 @@
 
 # Editor alias
 [ -x "$(command -v nvim)" ] && alias vim="nvim"
-[ -x "$(command -v emacs)" ] && alias emacs="emacsclient -nc -a emacs"
+# [ -x "$(command -v emacs)" ] && alias emacs="emacsclient -nc -a emacs"
 
 # Verbose commands
 alias \
