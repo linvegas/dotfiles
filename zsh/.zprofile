@@ -41,6 +41,7 @@ export PATH="$PATH:$BUN_INSTALL/bin"
 export PF_INFO="ascii title os kernel shell pkgs wm memory"
 export CALCURSE_PAGER="bat"
 export QT_QPA_PLATFORMTHEME="qt5ct"
+export GTK_THEME="Arc-Dark"
 
 # Starts xorg or wayland
 if [ ! $(pidof -s Xorg) ] && [ "$(tty)" = "/dev/tty1" ]; then
