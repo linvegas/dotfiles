@@ -47,7 +47,7 @@
       "good": 95,
       "critical": 15
     },
-    "format": "{icon}  {capacity}%",
+    "format": "{icon} {capacity}%",
     "format-charging": " {capacity}%",
     "format-plugged": " {capacity}%",
     "format-alt": "{time} {icon}",
@@ -57,7 +57,7 @@
     "bat": "BAT2"
   },
   "network": {
-    "format-wifi": "<span color='#C678DD'></span>  {ifname}",
+    "format-wifi": "<span color='#C678DD'></span> {ifname}",
     "format-ethernet": "<span color='#C678DD'>󰈁</span> {ifname}",
     "tooltip-format": "[{essid}] {signalStrength}% - {ipaddr}",
     "format-linked": "{ifname} (No IP) 󰈁",
