@@ -36,7 +36,7 @@ theme.border_focus       = theme.grey
 
 theme.wallpaper          = theme_wallpaper
 
-theme.tasklist_bg_focus  = theme.bg_lighter2
+theme.tasklist_bg_focus  = theme.bg_lighter
 theme.tasklist_bg_normal = theme.bg_light
 
 theme.titlebar_bg_focus  = theme.bg_lighter

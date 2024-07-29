@@ -216,7 +216,7 @@ awful.screen.connect_for_each_screen(function(s)
                     },
                     widget  = wibox.container.margin,
                 },
-                margins = dpi(2),
+                margins = dpi(6),
                 widget = wibox.container.margin,
             },
             id     = "background_role",
@@ -244,7 +244,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.muhwibox = awful.wibar({
         position = "bottom",
         screen = s,
-        height = dpi(30),
+        height = dpi(34),
         bg = theme.bg,
     })
 
