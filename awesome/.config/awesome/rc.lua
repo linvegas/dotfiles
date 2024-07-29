@@ -74,7 +74,23 @@ muhlauncher = awful.widget.launcher({
 -- Set the terminal for applications that require it
 menubar.utils.terminal = vars.terminal
 
-muhtextclock = wibox.widget.textclock(" %a %d/%m/%y %H:%M ")
+-- muhtextclock = wibox.widget.textclock("%a %d/%m/%y %H:%M")
+muhtextclock = wibox.widget {
+    {
+        {
+            format = "%a %d/%m/%y %H:%M",
+            widget = wibox.widget.textclock,
+        },
+        margins = dpi(6),
+        widget = wibox.container.margin,
+    },
+    shape = function(cr, w, h)
+        gears.shape.rounded_rect(cr, w, h, dpi(2))
+    end,
+    widget = wibox.container.background,
+    bg = theme.bg_light,
+}
+
 local clock_tooltip = awful.tooltip{delay_show = 0.5}
 clock_tooltip:add_to_object(muhtextclock)
 muhtextclock:connect_signal("mouse::enter", function()
@@ -148,62 +164,106 @@ awful.screen.connect_for_each_screen(function(s)
 
     s.muhtaglist = awful.widget.taglist {
         screen  = s,
-        filter  = awful.widget.taglist.filter.all,
+        filter  = awful.widget.taglist.filter.noempty,
         buttons = taglist_buttons,
-        layout = wibox.layout.fixed.horizontal,
+        style   = {
+            shape = function(cr, w, h)
+                gears.shape.rounded_rect(cr, w, h, dpi(2))
+            end,
+        },
+        layout = {
+            spacing = dpi(2),
+            layout = wibox.layout.fixed.horizontal,
+        },
+        widget_template = {
+            {
+                {
+                    id     = "text_role",
+                    widget = wibox.widget.textbox,
+                },
+                widget  = wibox.container.margin,
+                left = dpi(5),
+                right = dpi(5),
+            },
+            id     = "background_role",
+            widget = wibox.container.background,
+        },
     }
 
     s.muhtasklist = awful.widget.tasklist {
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags, -- focused
         buttons = tasklist_buttons,
+        style   = {
+            shape = function(cr, w, h)
+                gears.shape.rounded_rect(cr, w, h, dpi(2))
+            end,
+        },
+        layout   = {
+            spacing = dpi(2),
+            spacing_widget = {
+                valign = "center",
+                halign = "center",
+            },
+            layout = wibox.layout.fixed.horizontal,
+        },
         widget_template = {
             {
                 {
                     {
-                        {
-                            id     = "icon_role",
-                            widget = wibox.widget.imagebox,
-                        },
-                        left  = dpi(2),
-                        right = dpi(6),
-                        widget  = wibox.container.margin,
+                        id     = "icon_role",
+                        widget = wibox.widget.imagebox,
                     },
-                    {
-                        id     = "text_role",
-                        widget = wibox.widget.textbox,
-                    },
-                    layout = wibox.layout.fixed.horizontal,
+                    widget  = wibox.container.margin,
                 },
-                margins = dpi(5),
-                widget = wibox.container.margin
+                margins = dpi(6),
+                widget = wibox.container.margin,
             },
             id     = "background_role",
             widget = wibox.container.background,
         }
     }
 
-    s.muhsystray = wibox.widget.systray()
+    -- s.muhsystray = wibox.widget.systray()
+
+    s.muhsystray = wibox.widget {
+        {
+            {
+                widget = wibox.widget.systray(),
+            },
+            margins = dpi(4),
+            widget = wibox.container.margin,
+        },
+        shape = function(cr, w, h)
+            gears.shape.rounded_rect(cr, w, h, dpi(2))
+        end,
+        widget = wibox.container.background,
+        bg = theme.bg_light,
+    }
 
     s.muhwibox = awful.wibar({
-        position = "top",
+        position = "bottom",
         screen = s,
+        height = dpi(34),
         bg = theme.bg,
     })
 
     s.muhwibox:setup {
         layout = wibox.layout.align.horizontal,
+        expand = "none",
         { -- Left widgets
-            wibox.layout.margin(muhlauncher, dpi(5),dpi(5),dpi(5),dpi(5)),
-            s.muhtaglist,
+            wibox.layout.margin(muhlauncher, dpi(4),dpi(4),dpi(8),dpi(8)),
+            wibox.layout.margin(s.muhtaglist, dpi(4),dpi(4),dpi(4),dpi(4)),
+            -- s.muhtaglist,
             layout = wibox.layout.fixed.horizontal,
         },
           -- Middle widgets
-        s.muhtasklist,
+        -- s.muhtasklist,
+        wibox.layout.margin(s.muhtasklist, dpi(3),dpi(3),dpi(3),dpi(3)),
         { -- Right widgets
-            muhtextclock,
-            wibox.layout.margin(s.muhsystray, dpi(5),dpi(5),dpi(5),dpi(5)),
-            wibox.layout.margin(s.muhlayoutbox, dpi(5),dpi(5), dpi(5), dpi(5)),
+            wibox.layout.margin(muhtextclock, dpi(4),dpi(4),dpi(4),dpi(4)),
+            wibox.layout.margin(s.muhsystray, dpi(4),dpi(4),dpi(4),dpi(4)),
+            wibox.layout.margin(s.muhlayoutbox, dpi(4),dpi(4), dpi(8), dpi(8)),
             layout = wibox.layout.fixed.horizontal,
         },
     }
@@ -238,40 +298,38 @@ client.connect_signal("request::titlebars", function(c)
         end)
     )
 
-    awful.titlebar(c, {size = 24}) : setup {
+    awful.titlebar(c, {size = dpi(23)}) : setup {
         { -- Left
             {
-                awful.titlebar.widget.closebutton    (c),
-                awful.titlebar.widget.ontopbutton    (c),
-                awful.titlebar.widget.stickybutton   (c),
-                layout  = wibox.layout.fixed.horizontal,
-                spacing = dpi(4),
+                awful.titlebar.widget.iconwidget(c),
+                awful.titlebar.widget.titlewidget(c),
+                layout = wibox.layout.fixed.horizontal,
+                spacing = dpi(8),
             },
             left = dpi(8),
-            top = dpi(2),
-            bottom = dpi(2),
+            top = dpi(3),
+            bottom = dpi(3),
             widget = wibox.container.margin,
         },
         { -- Middle
-            {
-                align  = "center",
-                widget = awful.titlebar.widget.titlewidget(c),
-            },
             buttons = buttons,
-            layout  = wibox.layout.flex.horizontal,
+            layout  = wibox.layout.align.horizontal,
         },
         { -- Right
             {
-                awful.titlebar.widget.iconwidget(c),
-                layout = wibox.layout.fixed.horizontal
+                awful.titlebar.widget.stickybutton   (c),
+                awful.titlebar.widget.ontopbutton    (c),
+                awful.titlebar.widget.closebutton    (c),
+                layout  = wibox.layout.fixed.horizontal,
+                spacing = dpi(6),
             },
             right = dpi(8),
-            top = dpi(2),
-            bottom = dpi(2),
+            top = dpi(3),
+            bottom = dpi(3),
             widget = wibox.container.margin,
         },
         layout = wibox.layout.align.horizontal,
-        expand = "none"
+        expand = "inside"
     }
 end)
 

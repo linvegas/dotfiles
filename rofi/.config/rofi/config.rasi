@@ -17,15 +17,15 @@ configuration {
   padding: 0;
   spacing: 0;
 
-  bg:      #1E2127;
-  bg2:     #5C6370;
-  bg3:     #455a62;
-  fg:      #ABB2BF;
+  bg:      #14171c;
+  bg2:     #3b3e43;
+  bg3:     #676a6d;
+  fg:      #a0a8b7;
   fg2:     #FFFFFF;
   red:     #E06C75;
   green:   #98C379;
   yellow:  #D19A66;
-  blue:    #61AFEF;
+  blue:    #4fa6ed;
   magenta: #C678DD;
   cyan:    #56B6C2;
 
@@ -39,7 +39,7 @@ window {
   location: center;
   border-radius: 5px;
   border: 2px;
-  border-color: @bg2;
+  border-color: @bg3;
   background-color: @bg;
 }
 

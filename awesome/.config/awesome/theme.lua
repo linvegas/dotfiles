@@ -14,9 +14,12 @@ theme.font               = "DroidSansM Nerd Font Mono 10"
 -- theme.bg                 = "#1f2329"
 theme.bg                 = "#14171c"
 -- theme.bg_light           = "#282c34"
-theme.bg_light           = "#1f2329"
-theme.bg_lighter         = "#30363f"
-theme.bg_lighter2        = "#323641"
+-- theme.bg_light           = "#1f2329"
+theme.bg_light           = "#272a2f"
+-- theme.bg_lighter         = "#30363f"
+theme.bg_lighter         = "#3b3e43"
+-- theme.bg_lighter2        = "#323641"
+theme.bg_lighter2        = "#676a6d"
 theme.fg_normal          = "#ABB2BF"
 theme.blue               = "#4fa6ed"
 theme.green              = "#8ebd6b"
@@ -33,14 +36,16 @@ theme.border_focus       = theme.grey
 
 theme.wallpaper          = theme_wallpaper
 
-theme.tasklist_bg_focus  = theme.bg_lighter2
+theme.tasklist_bg_focus  = theme.bg_lighter
 theme.tasklist_bg_normal = theme.bg_light
 
-theme.titlebar_bg_focus  = theme.bg_lighter2
-theme.titlebar_bg_normal = theme.bg
+theme.titlebar_bg_focus  = theme.bg_lighter
+theme.titlebar_bg_normal = theme.bg_light
 
 theme.taglist_bg_focus   = theme.purple
 theme.taglist_fg_focus   = theme.black
+theme.taglist_bg_occupied = theme.bg_light
+theme.taglist_fg_occupied = theme.fg_normal
 
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)
@@ -118,7 +123,7 @@ theme.awesome_icon = theme_assets.awesome_icon(
     theme.menu_height, theme.fg_normal, theme.black
 )
 
-theme.systray_icon_spacing = dpi(4)
-theme.bg_systray = theme.bg
+theme.systray_icon_spacing = dpi(8)
+theme.bg_systray = theme.bg_light
 
 return theme
