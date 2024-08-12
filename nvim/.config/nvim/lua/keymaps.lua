@@ -24,6 +24,8 @@ keymap("n", "<leader>t", ":split term://zsh<CR>", { noremap = true })
 -- Open netrw
 keymap("n", "<F3>", ":Ex<CR>", { noremap = true })
 
+keymap("n", "<C-b>", ":Buffer <C-Z>", { noremap = true })
+
 -- Move selected block up or down
 keymap("v", "J", ":m '>+1<CR>gv=gv", { noremap = true })
 keymap("v", "K", ":m '<-2<CR>gv=gv", { noremap = true })

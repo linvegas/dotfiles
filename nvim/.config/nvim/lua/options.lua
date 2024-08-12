@@ -32,6 +32,7 @@ opt.titlestring = "%t%(%M%)"
 opt.pumheight = 10
 opt.completeopt = "menuone,noinsert,noselect"
 opt.wildoptions = "fuzzy,pum"
+opt.wildcharm = ('<C-Z>'):byte() -- Just for simulating <Tab> inside mappings
 
 opt.shortmess:append({c = true, W = true})
 opt.showmode = false
