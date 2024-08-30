@@ -5,7 +5,7 @@ input "type:keyboard" {
     xkb_options caps:escape
 
     repeat_rate  50
-    repeat_delay  300
+    repeat_delay  200
 }
 
 # vim:ft=swayconfig
