@@ -85,7 +85,8 @@ aucmd(
             "WebshitterStandards", { clear = true }
         ),
         pattern = {
-            "javascript", "typescript", "html", "css",
+            -- "javascript", "typescript",
+            "html", "css",
             "svelte", "vue", "javascriptreact", "typescriptreact",
             "json"
         },
@@ -131,3 +132,42 @@ usercmd(
     }
 )
 
+-- User command for listing last visited buffers
+usercmd(
+    "Buffer",
+    function(opts)
+        local selected_buf = opts.fargs[1]
+        if selected_buf ~= '' then
+            vim.api.nvim_command('buffer ' .. selected_buf)
+        end
+    end,
+    {
+        nargs = 1,
+        complete = function(ArgLead, CmdLine, CursorPos)
+            local buffers = vim.fn.getbufinfo({buflisted = 1})
+            table.sort(buffers, function(a, b) return a.lastused > b.lastused end)
+
+            buflist = {}
+
+            for _, buf in ipairs(buffers) do
+                local bufname = vim.fn.fnamemodify(buf.name, ':~:.')
+                table.insert(buflist, bufname)
+            end
+
+            local last_visited_buf = vim.fn.bufname(vim.fn.bufnr('#'))
+
+            if last_visited_buf ~= "" then
+                for i, buf in ipairs(buflist) do
+                    if buf == last_visited_buf then
+                        table.remove(buflist, i)
+                        break
+                    end
+                end
+
+                table.insert(buflist, 1, last_visited_buf)
+            end
+
+            return buflist
+        end,
+    }
+)
