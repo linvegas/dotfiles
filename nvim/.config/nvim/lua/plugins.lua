@@ -84,7 +84,8 @@ require("lazy").setup({
         config = function()
             local lspconfig = require('lspconfig')
 
-            lspconfig.tsserver.setup {}
+            lspconfig.tsserver.setup { single_file_support = true, }
+            lspconfig.denols.setup { single_file_support = false, }
             lspconfig.gopls.setup {}
             lspconfig.volar.setup {}
             lspconfig.svelte.setup {}
