@@ -244,7 +244,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.muhwibox = awful.wibar({
         position = "bottom",
         screen = s,
-        height = dpi(34),
+        height = dpi(32),
         bg = theme.bg,
     })
 
