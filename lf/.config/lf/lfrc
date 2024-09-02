@@ -49,6 +49,6 @@ cmd path ${{
 
 map C edit-config
 map R delete
-# map D push :mkdir<space>
+map D push :mkdir<space>
 map o open-sel-images
 map O open-sel-videos
