@@ -1,7 +1,12 @@
+(setq custom-file "~/.local/share/emacs/emacs.custom.el")
+
 (setq inhibit-startup-screen t)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
+
+(ido-mode 1)
+(ido-everywhere 1)
 
 (global-display-line-numbers-mode t)
 (setq frame-resize-pixelwise t)
@@ -17,7 +22,7 @@
 (set-face-attribute 'line-number nil :inherit 'default)
 (set-face-attribute 'line-number-current-line nil :inherit 'default)
 
-(set-frame-font "DroidSansM Nerd Font Mono 13" nil t)
+(set-frame-font "DroidSansM Nerd Font Mono 16" nil t)
 
 (setq backup-directory-alist '(("." . "~/.local/share/emacs/backups")))
 (setq auto-save-file-name-transforms `((".*" "~/.local/share/emacs/auto-save" t)))
@@ -31,15 +36,5 @@
   (package-install 'typescript-mode))
 (unless (package-installed-p 'rust-mode)
   (package-install 'rust-mode))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages '(typescript-mode)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+(load-file custom-file)
