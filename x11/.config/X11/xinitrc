@@ -14,7 +14,7 @@ xset r rate 200 50 &
 
 [ -f "$HOME/.config/X11/xmodmap" ] && xmodmap "$HOME/.config/X11/xmodmap"
 
-for p in numlockx rshift dunst mpd mpdscribble; do
+for p in numlockx rshift mpd mpdscribble; do
   pidof -s "$p" || "$p" &
 done
 
