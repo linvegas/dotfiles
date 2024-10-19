@@ -42,10 +42,10 @@ export PATH="$PATH:$CARGO_HOME/bin"
 export PF_INFO="ascii title os kernel shell pkgs wm memory"
 export CALCURSE_PAGER="bat"
 export QT_QPA_PLATFORMTHEME="qt5ct"
-export GTK_THEME="Arc-Dark"
+export GTK_THEME="adw-gtk3-dark"
 
 # Starts xorg or wayland
 if [ ! $(pidof -s Xorg) ] && [ "$(tty)" = "/dev/tty1" ]; then
-  # exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" i3 &> ~/.cache/startx.log
-  exec ssh-agent startwl sway &> ~/.cache/startw.log
+  exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" gnome &> ~/.cache/startx.log
+  # exec ssh-agent startwl hypr &> ~/.cache/startw.log
 fi

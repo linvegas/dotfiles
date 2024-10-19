@@ -77,6 +77,7 @@ require("lazy").setup({
             )
         end
     },
+
     -- LSP
     {
         "neovim/nvim-lspconfig",
@@ -120,5 +121,15 @@ require("lazy").setup({
                 }
             )
         end
+    },
+
+    -- Git
+    {
+        "NeogitOrg/neogit",
+        dependencies = {
+            "nvim-lua/plenary.nvim",  -- required
+            -- "sindrets/diffview.nvim", -- optional - Diff integration
+        },
+        config = true
     },
 })
