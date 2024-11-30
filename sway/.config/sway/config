@@ -11,9 +11,10 @@
 font pango:Noto Sans Mono      10
 default_border                 pixel 2
 default_floating_border        pixel 2
-smart_borders                  on
+hide_edge_borders --i3         smart
 gaps inner                     10
 smart_gaps                     on
+workspace_layout               tabbed
 
 include $HOME/.config/sway/colors
 include $HOME/.config/sway/binds
@@ -32,6 +33,3 @@ exec swayidle -w \
      before-sleep 'swaylock -f -c 000000'
 
 output * bg $HOME/.local/share/backgrounds/background.png fill
-
-# workspace 1 output HDMI-A-1
-# workspace 6 output LVDS-1

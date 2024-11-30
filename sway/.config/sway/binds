@@ -5,7 +5,7 @@ set $up                        k
 set $right                     l
 set $term                      alacritty
 set $browser                   firefox
-set $menu                      rofi -show drun | xargs swaymsg exec --
+set $menu                      wofi --show drun
 floating_modifier              $mod normal
 
 bindsym $mod+Return            exec $term
@@ -31,7 +31,7 @@ bindsym $mod+a                 focus parent
 
 bindsym $mod+Shift+s           sticky toggle
 
-bindsym $mod+d                 exec rofi -show drun
+bindsym $mod+d                 exec $menu
 
 bindsym $mod+f                 fullscreen toggle
 
@@ -55,7 +55,7 @@ bindsym $mod+Shift+l           move right 50 px
 bindsym $mod+Ctrl+l            resize shrink width 5 px or 5 ppt
 
 bindsym $mod+x                 layout toggle split
-bindsym $mod+Shift+x           layout toggle tabbed splith
+bindsym $mod+Shift+x           layout toggle tabbed stacking
 bindsym $mod+Ctrl+x            split toggle
 
 bindsym $mod+Shift+c           reload
