@@ -56,7 +56,7 @@ require("lazy").setup({
             },
             highlight = {
                 enable = true,
-                disable = { "markdown" },
+                disable = { "markdown", "c" },
             },
             auto_install = false,
             indent = { enable = true },
@@ -132,4 +132,15 @@ require("lazy").setup({
         },
         config = true
     },
+
+    -- Oil
+    {
+        'stevearc/oil.nvim',
+        opts = {
+            default_file_explorer = false,
+        },
+        -- Optional dependencies
+        -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
+        -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+    }
 })
