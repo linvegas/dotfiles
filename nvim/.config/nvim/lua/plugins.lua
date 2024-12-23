@@ -38,8 +38,8 @@ require("lazy").setup({
             }
         },
         config = function(_, opts)
-            require('onedark').setup(opts)
-            require('onedark').load()
+            -- require('onedark').setup(opts)
+            -- require('onedark').load()
         end
     },
     { "rebelot/kanagawa.nvim" },
@@ -55,7 +55,7 @@ require("lazy").setup({
                 "tsx", "svelte", "vue"
             },
             highlight = {
-                enable = true,
+                enable = false,
                 disable = { "markdown", "c" },
             },
             auto_install = false,
