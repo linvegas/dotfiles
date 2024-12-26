@@ -1,178 +1,104 @@
-# MisterConscio's i3 config (i3gaps)
+set $mod Mod4
 
-## Basics and variables
-set $mod                       Mod4
-font pango:Noto Sans Mono      10
-default_border                 pixel 2
-default_floating_border        pixel 2
-for_window [all] border        pixel 2
-smart_borders                  on
-gaps inner                     10
-gaps outer                     8
-smart_gaps                     on
-floating_modifier              $mod
-#border_radius                  0
-#hide_edge_borders              vertical
+# Start XDG autostart .desktop files using dex. See also
+# https://wiki.archlinux.org/index.php/XDG_Autostart
+exec --no-startup-id dex --autostart --environment i3
 
-set $term                      alacritty
-set $browser                   firefox
-set $mail                      thunderbird
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# onedark colorscheme
-set $black                     #1E2127
-set $black2                    #5C6370
-set $red                       #E06C75
-set $green                     #98C379
-set $yellow                    #D19A66
-set $blue                      #61AFEF
-set $magenta                   #C678DD
-set $cyan                      #56B6C2
-set $white                     #C8CCD4
-set $white2                    #ABB2BF
-set $shadow                    #333333
+exec --no-startup-id nm-applet
+exec --no-startup-id dunst
+exec --no-startup-id rshift
+exec --no-startup-id setmonitor
 
-# Colors                       border   backgr. text    indicator child_border
-client.focused                 $magenta $black  $white  $red      $magenta
-client.unfocused               $black   $black  $white  $magenta  $black
-client.focused_inactive        $shadow  $shadow $white  #484e50   $shadow
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:monospace 8
 
-## Startup
-exec --no-startup-id           setmonitor
-exec --no-startup-id           nm-applet
-exec --no-startup-id           picom
-exec --no-startup-id           xss-lock --transfer-sleep-lock -- i3lock --nofork
-exec_always --no-startup-id    $HOME/.config/polybar/launch.sh
+floating_modifier $mod
+tiling_drag modifier titlebar
+workspace_layout tabbed
+hide_edge_borders smart
+for_window [all] title_window_icon padding 4px
 
-## Keybinds
-bindsym $mod+Return            exec --no-startup-id $term
-bindsym $mod+Shift+Return      exec --no-startup-id $term --class float
+# Colorscheme
+set  $fg     #ebebeb
+set  $fg-d   #989898
+set  $blue   #4e5a7c
+set  $bg     #0a0a0a
+set  $bg-l   #1d1d1d
+set  $bg-ll  #323232
+set  $red    #e06c75
+set  $red-d  #a64e55
 
-bindsym $mod+q                 kill
-bindsym $mod+Shift+q           exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 $blue   $fg     #2e9ef4   $blue
+client.focused_inactive #333333 $bg-ll  $fg     #484e50   $bg-ll
+client.unfocused        #333333 $bg-l   $fg-d   #292d2e   $bg-l
+client.urgent           #333333 $red-d  $fg     #292d2e   $red-d
 
-bindsym $mod+w                 exec $browser
-bindsym $mod+Shift+w           exec $browser -private-window
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
 
-bindsym $mod+e                 exec --no-startup-id emul
-bindsym $mod+Shift+e           exec --no-startup-id setemoji
+# kill focused window
+bindsym $mod+Shift+q kill
 
-bindsym $mod+r                 exec --no-startup-id record
-bindsym $mod+Ctrl+r            exec --no-startup-id record stop
-bindsym $mod+Shift+r           restart
+# bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec "rofi -modi drun,run -show drun"
+# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
-bindsym $mod+t                 exec --no-startup-id $mail
+# change focus
+bindsym $mod+j focus right
+bindsym $mod+k focus left
+bindsym $mod+l focus right
+bindsym $mod+h focus left
 
-bindsym $mod+u                 exec --no-startup-id rofi-mount
-bindsym $mod+Shift+u           exec --no-startup-id rofi-mount -u
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
 
-bindsym $mod+p                 exec --no-startup-id rofi-pass
+# move focused window
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move left
 
-bindsym $mod+a                 focus parent
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 
-bindsym $mod+s                 exec --no-startup-id sfx
-bindsym $mod+Shift+s           sticky toggle
+# split in horizontal orientation
+bindsym $mod+Shift+v split h
 
-bindsym $mod+Shift+d           exec --no-startup-id dmenu_run
-bindsym $mod+d                 exec --no-startup-id rofi -show drun
+# split in vertical orientation
+bindsym $mod+v split v
 
-bindsym $mod+f                 fullscreen toggle
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
 
-bindsym $mod+g                 gaps inner current set 10; gaps outer current set 8
-bindsym $mod+Shift+g           gaps inner current set 0; gaps outer current set 0
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
 
-bindsym $mod+h                 focus left
-bindsym $mod+Shift+h           move left 50 px
-bindsym $mod+Ctrl+h            resize grow width 5 px or 5 ppt
-bindsym $mod+Mod1+h            exec --no-startup-id xmouse l
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
 
-bindsym $mod+j                 focus down
-bindsym $mod+Shift+j           move down 50 px
-bindsym $mod+Ctrl+j            resize shrink height 5 px or 5 ppt
-bindsym $mod+Mod1+j            exec --no-startup-id xmouse d
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
 
-bindsym $mod+k                 focus up
-bindsym $mod+Shift+k           move up 50 px
-bindsym $mod+Ctrl+k            resize grow height 5 px or 5 ppt
-bindsym $mod+Mod1+k            exec --no-startup-id xmouse u
+# focus the parent container
+bindsym $mod+a focus parent
 
-bindsym $mod+l                 focus right
-bindsym $mod+Shift+l           move right 50 px
-bindsym $mod+Ctrl+l            resize shrink width 5 px or 5 ppt
-bindsym $mod+Mod1+l            exec --no-startup-id xmouse r
+# focus the child container
+# bindsym $mod+Shift+a focus child
 
-bindsym $mod+z                 exec i3-input -F '[con_mark="%s"] focus' -l 3 -P 'Goto: '
-bindsym $mod+Shift+z           exec i3-input -F 'mark %s' -l 3 -P 'Mark: '
-
-bindsym $mod+x                 layout toggle split
-bindsym $mod+Shift+x           layout toggle tabbed splith
-bindsym $mod+Ctrl+x            split toggle
-
-bindsym $mod+c                 exec --no-startup-id $term --class float -e qalc
-bindsym --release $mod+Ctrl+c  exec --no-startup-id xcolor -s clipboard
-bindsym $mod+Shift+c           reload
-
-bindsym $mod+v                 exec --no-startup-id webcam
-
-bindsym $mod+b                 exec --no-startup-id setwallpaper
-bindsym $mod+Shift+b           exec --no-startup-id polybar-msg cmd toggle
-bindsym $mod+Ctrl+b            exec --no-startup-id polybar-msg cmd restart
-
-bindsym $mod+n                 exec --no-startup-id $term --class musicplayer -e ncmpcpp
-
-bindsym $mod+m                 exec --no-startup-id $term --class float -e pulsemixer
-
-bindsym $mod+Shift+space       floating toggle
-bindsym $mod+space             focus mode_toggle
-
-bindsym $mod+Shift+minus       move scratchpad
-bindsym $mod+minus             scratchpad show; move position center
-
-bindsym Print                  exec --no-startup-id shot
-
-bindsym $mod+Tab               workspace back_and_forth
-
-bindsym $mod+F1                exec --no-startup-id rofipower
-
-bindsym $mod+F8                exec --no-startup-id ddcutil --model "LG HDR WFHD" setvcp 10 - 10
-bindsym $mod+F9                exec --no-startup-id ddcutil --model "LG HDR WFHD" setvcp 10 + 10
-
-## XF86 Keybinds
-bindsym XF86AudioRaiseVolume    exec --no-startup-id audioctl up
-bindsym XF86AudioLowerVolume    exec --no-startup-id audioctl down
-bindsym XF86AudioMute           exec --no-startup-id audioctl toggle
-bindsym XF86AudioMicMute        exec --no-startup-id audioctl mute
-
-# Backlight script
-bindsym XF86MonBrightnessUp     exec --no-startup-id screen-bright inc 50
-bindsym XF86MonBrightnessDown   exec --no-startup-id screen-bright dec 50
-
-bindsym XF86AudioPlay           exec playerctl play-pause
-bindsym XF86AudioPause          exec playerctl pause-pause
-bindsym XF86AudioNext           exec playerctl next
-bindsym XF86AudioPrev           exec playerctl previous
-
-## Windows rules
-# specific windows on floating mode
-for_window [all]                          title_format "%class"
-for_window [all]                          title_window_icon padding 3px
-for_window [instance="^float$"]           floating enable
-for_window [title="webcam"]               floating enable sticky enable
-for_window [title="Bluetooth Devices"]    floating enable
-for_window [class="Nitrogen"]             floating enable
-for_window [class="Cadence"]              floating enable
-for_window [class="Nvidia-settings"]      floating enable
-for_window [class="PdWindow"]             floating enable
-for_window [class="purr-data"]            floating enable
-for_window [class="PatchWindow"]          floating enable
-for_window [class="HelpBrowser"]          floating enable
-for_window [class="PPSSPPQt"]             floating enable
-for_window [class="Gcolor3"]              floating enable
-for_window [class="Gpick"]                floating enable
-for_window [class="QjackCtl"]             floating enable
-for_window [class="TelegramDesktop"]      floating enable
-for_window [class="Nm-connection-editor"] floating enable
-
-## Workspaces
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -183,12 +109,6 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
-
-# Next/prev workspace
-bindsym $mod+Prior     workspace prev
-bindsym $mod+less      workspace prev
-bindsym $mod+Next      workspace next
-bindsym $mod+greater   workspace next
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -214,26 +134,56 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-workspace 6 output eDP-1-1
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-## i3 bar
-# bar {
-#   font pango: Font Awesome 6 10
-#   status_command i3blocks -c $HOME/.config/i3blocks/i3blocks.conf
-#
-#   position top
-#   output primary
-#   tray_output primary
-#   workspace_min_width 30px
-#   separator_symbol " "
-#
-#   colors {
-#     background $black
-#     statusline $white2
-#
-#     focused_workspace  $white2 $black  $yellow
-#     active_workspace   $black  $black  $white2
-#     inactive_workspace $black  $black  $shadow
-#     urgent_workspace   $red    $black  $white2
-#   }
-# }
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym h resize shrink width 5 px or 5 ppt
+        bindsym j resize grow height 5 px or 5 ppt
+        bindsym k resize shrink height 5 px or 5 ppt
+        bindsym l resize grow width 5 px or 5 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    status_command i3status --config ~/.config/i3/i3status.conf
+
+    font pango:monospace 8
+    separator_symbol "::"
+    tray_output primary
+    tray_padding 2px
+
+    colors {
+        background $bg
+        statusline $fg
+        # class            border  backgr. text
+        focused_workspace  #4c7899 $blue   $fg
+        inactive_workspace #333333 $bg-l   $fg-d
+    }
+}
