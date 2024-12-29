@@ -1,6 +1,6 @@
 local opt = vim.opt
 
--- vim.cmd("colorscheme muhdark")
+vim.cmd("colorscheme penumbra")
 
 vim.g.zig_fmt_autosave = 0
 
