@@ -1,45 +1,39 @@
-local opt = vim.opt
-
 vim.cmd("colorscheme penumbra")
 
-vim.g.zig_fmt_autosave = 0
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.cursorline = true
 
-opt.number = true
-opt.relativenumber = true
-opt.cursorline = true
+vim.opt.laststatus = 3
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
-opt.laststatus = 3
-opt.splitbelow = true
-opt.splitright = true
+vim.opt.shiftwidth  = 4
+vim.opt.softtabstop  = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
 
-opt.tabstop     = 4
-opt.softtabstop = 4
-opt.shiftwidth  = 4
-opt.smartindent = true
-opt.expandtab   = true
+vim.opt.hlsearch = false
+vim.opt.scrolloff = 4
+vim.opt.wrap = false
 
-opt.hlsearch = false
-opt.scrolloff = 8
-opt.wrap = false
+vim.opt.fillchars = { eob = " " }
+vim.opt.listchars = "tab:» ,trail:•,extends:>,precedes:<,leadmultispace:•···"
+vim.opt.list = true
 
-opt.fillchars = { eob = " " }
-opt.listchars = "tab:» ,trail:•,extends:>,leadmultispace:•···"
-opt.list = true
+vim.opt.title = true
+vim.opt.titlestring = "%t%(%M%)"
 
-opt.title = true
-opt.titlestring = "%t%(%M%)"
+vim.opt.pumheight = 10
+vim.opt.completeopt = "menuone,noinsert,noselect"
+vim.opt.wildoptions = "fuzzy,pum"
 
-opt.pumheight = 10
-opt.completeopt = "menuone,noinsert,noselect"
-opt.wildoptions = "fuzzy,pum"
-opt.wildcharm = ('<C-Z>'):byte() -- Just for simulating <Tab> inside mappings
+vim.opt.shortmess:append({c = true, W = true})
+vim.opt.showmode = false
 
-opt.shortmess:append({c = true, W = true})
-opt.showmode = false
+-- vim.opt.cmdheight = 0
 
-opt.cmdheight = 1
-
-opt.jumpoptions = "stack"
+-- vim.opt.jumpoptions = "stack"
 
 for _, provider in ipairs { "node", "perl", "python3", "ruby" } do
     vim.g["loaded_" .. provider .. "_provider"] = 0
