@@ -8,13 +8,13 @@
 # █▄▄▄▄▄▄▄█▄▄█ █▄▄█▄▄█ █▄▄█ █▄▄▄█   #
 #####################################
 
-font pango:Noto Sans Mono      10
-default_border                 pixel 2
-default_floating_border        pixel 2
-hide_edge_borders --i3         smart
-gaps inner                     10
-smart_gaps                     on
-workspace_layout               tabbed
+font                     pango:DroidSansM Nerd Font Mono 10
+default_border           pixel 2
+default_floating_border  pixel 2
+hide_edge_borders --i3   smart
+# gaps inner               10
+# smart_gaps               off
+workspace_layout         tabbed
 
 include $HOME/.config/sway/colors
 include $HOME/.config/sway/binds

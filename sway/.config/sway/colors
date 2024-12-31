@@ -1,20 +1,38 @@
 # vim:ft=swayconfig
 # onedark colorscheme
 
-set $black                     #1E2127
-set $black2                    #5C6370
-set $red                       #E06C75
-set $green                     #98C379
-set $yellow                    #D19A66
-set $blue                      #61AFEF
-set $magenta                   #C678DD
-set $cyan                      #56B6C2
-set $white                     #C8CCD4
-set $white2                    #ABB2BF
-set $shadow                    #333333
-
-# Colors                       border   backgr.  text    indicator child_border
-client.focused                 $magenta $black   $white  $red      $magenta
-client.unfocused               $black   $black   $white  $magenta  $black
-client.focused_inactive        $shadow  $shadow  $white  #484e50   #5f676a
+# set $black                     #1E2127
+# set $black2                    #5C6370
+# set $red                       #E06C75
+# set $green                     #98C379
+# set $yellow                    #D19A66
+# set $blue                      #61AFEF
+# set $magenta                   #C678DD
+# set $cyan                      #56B6C2
+# set $white                     #C8CCD4
+# set $white2                    #ABB2BF
+# set $shadow                    #333333
+#
+# # Colors                       border   backgr.  text    indicator child_border
+# client.focused                 $magenta $black   $white  $red      $magenta
+# client.unfocused               $black   $black   $white  $magenta  $black
+# client.focused_inactive        $shadow  $shadow  $white  #484e50   #5f676a
 # client.focused_tab_title       $magenta $black   $white
+
+
+# Colorscheme
+set  $fg      #ebebeb
+set  $fg-d    #989898
+set  $blue    #4e5a7c
+set  $bg      #0a0a0a
+set  $bg-l    #1d1d1d
+set  $bg-ll   #323232
+set  $red     #e06c75
+set  $red-d   #a64e55
+set  $pink    #db4a91
+
+# class                 border  backgr. text    indicator child_border
+client.focused          $pink   $bg     $fg     #2e9ef4   $pink
+client.focused_inactive #333333 $bg-ll  $fg     #484e50   $bg-ll
+client.unfocused        #333333 $bg     $fg-d   #292d2e   $bg-l
+client.urgent           #333333 $red-d  $fg     #292d2e   $red-d
