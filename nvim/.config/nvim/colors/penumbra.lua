@@ -7,13 +7,15 @@ local c = {
     bg        = "#0a0a0a", -- bg
     cocos     = "#1d1d1d", -- light bg
     charcoal  = "#323232", -- lighter bg
-    gray      = "#787878", -- grey
+    -- gray      = "#787878", -- grey
+    gray      = "#7f7f7f", -- grey
 
     fg        = "#cecece", -- fg
     web       = "#b4aeb1", -- dark fg
 
     grotesque = "#69e49c", -- green
     pistachio = "#8bbf70", -- dark green
+    neptune   = "#77c694", -- desaturate green
 
     peach     = "#fb7573", -- red
     easteregg = "#8195ca", -- blue
@@ -43,16 +45,16 @@ hl.editor = {
 
 hl.syntax = {
     Comment =    { fg = c.gray },
-    Constant =   { fg = c.fg },
+    Constant =   { fg = c.easteregg },
     String =     { fg = c.pistachio },
     Identifier = { fg = c.fg },
     Function =   { fg = c.fg, fmt = "bold" },
     Statement =  { fg = c.grotesque, fmt = "bold" },
     PreProc =    { fg = c.fg },
-    Type =       { fg = "#77c694" },
+    Type =       { fg = c.neptune },
     Structure =  { fg = c.grotesque, fmt = "bold" },
     Typedef =    { fg = c.grotesque, fmt = "bold" },
-    Special =    { fg = c.fg },
+    Special =    { fg = c.pistachio },
     Error =      { fg = c.bg, bg = c.peach },
     Todo =       { fg = c.bg, bg = c.fg },
 }

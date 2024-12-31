@@ -1,12 +1,8 @@
-local aucmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
-local usercmd = vim.api.nvim_create_user_command
-
 -- Deletes trailling whitespace on every save
-aucmd(
+vim.api.nvim_create_autocmd(
     "BufWritePre",
     {
-        group = augroup(
+        group = vim.api.nvim_create_augroup(
             "WhitespaceCleaner", { clear = true }
         ),
         pattern = "*",
@@ -15,10 +11,10 @@ aucmd(
 )
 
 -- Highlight yanked text
-aucmd(
+vim.api.nvim_create_autocmd(
     "TextYankPost",
     {
-        group = augroup(
+        group = vim.api.nvim_create_augroup(
             "YankHighlight", { clear = true }
         ),
         pattern = "*",
@@ -29,10 +25,10 @@ aucmd(
 )
 
 -- Remeber cursor last position
-aucmd(
+vim.api.nvim_create_autocmd(
     "BufReadPost",
     {
-        group = augroup(
+        group = vim.api.nvim_create_augroup(
             "RememberLastPosition", { clear = true }
         ),
         pattern = "*",
@@ -47,10 +43,10 @@ aucmd(
 )
 
 -- Remove line numbers and start in insert mode on terminal mode
-aucmd(
+vim.api.nvim_create_autocmd(
     "TermOpen",
     {
-        group = augroup(
+        group = vim.api.nvim_create_augroup(
             "CleanTerminal", { clear = true }
         ),
         pattern = "*",
@@ -60,59 +56,27 @@ aucmd(
 
 -- Set current directory on vim to file's current directory
 -- when openning vim on command line
-aucmd(
-    "VimEnter",
-    {
-        group = augroup(
-            "SetCurrentDirectory", { clear = true }
-        ),
-        pattern = "*",
-        callback = function(event)
-            local dir = event.file
-            if vim.fn.isdirectory(dir) == 0 then
-                dir = vim.fs.dirname(dir)
-            end
-            vim.cmd.cd(dir)
-        end,
-        once = true,
-    }
-)
-
-aucmd(
-    "FileType",
-    {
-        group = augroup(
-            "WebshitterStandards", { clear = true }
-        ),
-        pattern = {
-            -- "javascript", "typescript",
-            "html", "css",
-            "svelte", "vue", "javascriptreact", "typescriptreact",
-            "json"
-        },
-        callback = function()
-            vim.opt_local.tabstop = 2
-            vim.opt_local.softtabstop = 2
-            vim.opt_local.shiftwidth = 2
-            vim.opt_local.listchars = "tab:» ,trail:•,extends:>,leadmultispace:•·"
-            vim.opt_local.list = true
-        end,
-    }
-)
-
--- Load a shebang on every new shell file
-aucmd(
-    "BufNewFile",
-    {
-        group = augroup("ShellBoilerPlate", { clear = true }),
-        pattern = "*.sh",
-        command = "0r $HOME/.config/nvim/templates/shell.sh"
-    }
-)
+-- vim.api.nvim_create_autocmd(
+--     "VimEnter",
+--     {
+--         group = vim.api.nvim_create_augroup(
+--             "SetCurrentDirectory", { clear = true }
+--         ),
+--         pattern = "*",
+--         callback = function(event)
+--             local dir = event.file
+--             if vim.fn.isdirectory(dir) == 0 then
+--                 dir = vim.fs.dirname(dir)
+--             end
+--             vim.cmd.cd(dir)
+--         end,
+--         once = true,
+--     }
+-- )
 
 -- User command for loading personal templates
-usercmd(
-    "Loadtemp",
+vim.api.nvim_create_user_command(
+    "Template",
     function(opts)
         local path = vim.fn.stdpath "config" .. "/templates"
         local content = vim.fn.readfile(path .. "/" .. opts.fargs[1])
@@ -133,7 +97,7 @@ usercmd(
 )
 
 -- User command for listing last visited buffers
-usercmd(
+vim.api.nvim_create_user_command(
     "Buffer",
     function(opts)
         local selected_buf = opts.fargs[1]

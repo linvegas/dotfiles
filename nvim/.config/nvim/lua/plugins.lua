@@ -1,14 +1,17 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    if vim.v.shell_error ~= 0 then
+        vim.api.nvim_echo({
+            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+            { out, "WarningMsg" },
+            { "\nPress any key to exit..." },
+        }, true, {})
+        vim.fn.getchar()
+        os.exit(1)
+    end
 end
 
 vim.opt.rtp:prepend(lazypath)
@@ -26,8 +29,6 @@ require("lazy").setup({
             },
             colors = {
                 bg0 = "#14171c",
-                -- bg0 = "#191d22",
-                -- bg0 = "#0f1115",
             },
             highlights = {
                 Todo = { fg = "$bg0" , bg = "$yellow" },
@@ -42,18 +43,17 @@ require("lazy").setup({
             -- require('onedark').load()
         end
     },
-    { "rebelot/kanagawa.nvim" },
 
     -- Tresitter
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         opts = {
-            ensure_installed = {
-                "c", "go", "lua",
-                "html", "css", "javascript", "typescript",
-                "tsx", "svelte", "vue"
-            },
+            -- ensure_installed = {
+            --     "go",
+            --     "javascript", "typescript",
+            --     "tsx", "svelte", "vue"
+            -- },
             highlight = {
                 enable = false,
                 disable = { "markdown", "c" },
@@ -65,16 +65,17 @@ require("lazy").setup({
             local configs = require("nvim-treesitter.configs")
             configs.setup(opts)
 
-            vim.api.nvim_create_autocmd(
-                "FileType",
-                {
-                    group = vim.api.nvim_create_augroup(
-                        "DisableTSFileType", { clear = true }
-                    ),
-                    pattern = { "css" },
-                    command = ":TSBufDisable highlight"
-                }
-            )
+            -- Disable css highlight only on css files
+            -- vim.api.nvim_create_autocmd(
+            --     "FileType",
+            --     {
+            --         group = vim.api.nvim_create_augroup(
+            --             "DisableTSFileType", { clear = true }
+            --         ),
+            --         pattern = { "css" },
+            --         command = ":TSBufDisable highlight"
+            --     }
+            -- )
         end
     },
 
@@ -85,14 +86,10 @@ require("lazy").setup({
         config = function()
             local lspconfig = require('lspconfig')
 
-            lspconfig.tsserver.setup { single_file_support = false, }
-            lspconfig.denols.setup {
-                single_file_support = false,
-                root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-            }
-            lspconfig.gopls.setup {}
-            lspconfig.volar.setup {}
-            lspconfig.svelte.setup {}
+            -- lspconfig.ts_ls.setup {}
+            -- lspconfig.gopls.setup {}
+            -- lspconfig.volar.setup {}
+            -- lspconfig.svelte.setup {}
 
             vim.api.nvim_create_autocmd('LspAttach', {
                 group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -112,6 +109,7 @@ require("lazy").setup({
                 end
             })
 
+            -- Disable virtual text (brother, ewww)
             vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
                 vim.lsp.diagnostic.on_publish_diagnostics, {
                     underline = true,
@@ -126,10 +124,7 @@ require("lazy").setup({
     -- Git
     {
         "NeogitOrg/neogit",
-        dependencies = {
-            "nvim-lua/plenary.nvim",  -- required
-            -- "sindrets/diffview.nvim", -- optional - Diff integration
-        },
+        dependencies = { "nvim-lua/plenary.nvim" }, -- required
         config = true
     },
 
@@ -137,10 +132,10 @@ require("lazy").setup({
     {
         'stevearc/oil.nvim',
         opts = {
-            default_file_explorer = false,
+            default_file_explorer = true,
+            view_options = {
+                show_hidden = true,
+            }
         },
-        -- Optional dependencies
-        -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
-        -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
     }
 })

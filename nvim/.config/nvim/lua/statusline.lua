@@ -1,4 +1,4 @@
-local M = {}
+local M = {} -- Module
 
 M.mode = function()
     local current_mode = vim.fn.mode()
@@ -9,7 +9,7 @@ M.mode = function()
         ['V']  = "VIS",
         ['^V'] = "BLO",
         ['c']  = "CMD",
-        ['R']  = "REP",
+        ['R']  = "RPL",
         ['!']  = "SHE",
         ['t']  = "TER",
     }
@@ -21,6 +21,7 @@ M.icon = function()
     local map = {
         lua = "󰢱",
         netrw = "󰙅",
+        oil = "󰙅",
         vim = "",
         help = "󰋗",
         sh = "",
