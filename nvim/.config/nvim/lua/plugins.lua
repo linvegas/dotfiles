@@ -17,7 +17,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    -- Colorscheme
+    -- Colorschemes
     {
         "navarasu/onedark.nvim",
         priority = 1000,
@@ -28,7 +28,7 @@ require("lazy").setup({
                 keywords = "bold",
             },
             colors = {
-                bg0 = "#14171c",
+                bg0 = "#0f1115",
             },
             highlights = {
                 Todo = { fg = "$bg0" , bg = "$yellow" },
@@ -43,6 +43,7 @@ require("lazy").setup({
             -- require('onedark').load()
         end
     },
+    { "RRethy/base16-nvim", lazy = false, },
 
     -- Tresitter
     {
@@ -55,8 +56,8 @@ require("lazy").setup({
             --     "tsx", "svelte", "vue"
             -- },
             highlight = {
-                enable = false,
-                disable = { "markdown", "c" },
+                enable = true,
+                disable = { "markdown" },
             },
             auto_install = false,
             indent = { enable = true },
@@ -121,14 +122,14 @@ require("lazy").setup({
         end
     },
 
-    -- Git
+    -- Git client
     {
         "NeogitOrg/neogit",
         dependencies = { "nvim-lua/plenary.nvim" }, -- required
         config = true
     },
 
-    -- Oil
+    -- File manager
     {
         'stevearc/oil.nvim',
         opts = {
