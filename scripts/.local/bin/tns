@@ -4,6 +4,10 @@ if [ "$1" = "." ]; then
     current_dir_name="$(basename "$(pwd)")"
     tmux new-session -s "$current_dir_name" nvim .
     exit
+elif [ "$1" != "" ]; then
+    arg_dir_path="$(realpath "$1")"
+    tmux new-session -c "$arg_dir_path" -s "$(basename "$arg_dir_path")" nvim .
+    exit
 fi
 
 project_path=$(
