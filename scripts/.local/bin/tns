@@ -11,7 +11,7 @@ elif [ "$1" != "" ]; then
 fi
 
 project_path=$(
-find -L ~/rep ~/dev/* ~/.config -maxdepth 1 -mindepth 1 -type d |
+find -L ~/dev/* ~/.config -maxdepth 1 -mindepth 1 -type d |
     sed "s/^\/home\/$USER\///" |
     fzf --height=20 --layout=reverse --info=hidden --preview=''
 )
