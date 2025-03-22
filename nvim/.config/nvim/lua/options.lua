@@ -1,4 +1,4 @@
-vim.cmd("colorscheme penumbra")
+vim.cmd.colorscheme("moondark")
 
 vim.opt.number = true
 vim.opt.relativenumber = true

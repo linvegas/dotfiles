@@ -19,7 +19,9 @@ local c = {
 
     peach     = "#fb7573", -- red
     easteregg = "#8195ca", -- blue
-    spagheti  = "#ecce85", -- yellow
+    -- easteregg = "#6998e4", -- blue
+    spaghetti = "#ecce85", -- yellow
+    -- mille     = "#eec780", -- yellow 2
 
     -- Still in doubt
     -- green = "#d1d8a8",
@@ -39,14 +41,14 @@ hl.editor = {
     Title          = { fg = c.fg, fmt= "bold" },
     NormalFloat    = { bg = c.charcoal },
     Directory      = { fg = c.easteregg, fmt = "bold" },
-    IncSearch      = { bg = c.spagheti, fg = c.bg },
-    Substitute     = { bg = c.spagheti, fg = c.bg },
+    IncSearch      = { bg = c.spaghetti, fg = c.bg },
+    Substitute     = { bg = c.spaghetti, fg = c.bg },
 }
 
 hl.syntax = {
     Comment =    { fg = c.gray },
     Constant =   { fg = c.easteregg },
-    String =     { fg = c.pistachio },
+    String =     { fg = c.spaghetti },
     Identifier = { fg = c.fg },
     Function =   { fg = c.fg, fmt = "bold" },
     Statement =  { fg = c.grotesque, fmt = "bold" },
@@ -54,7 +56,7 @@ hl.syntax = {
     Type =       { fg = c.neptune },
     Structure =  { fg = c.grotesque, fmt = "bold" },
     Typedef =    { fg = c.grotesque, fmt = "bold" },
-    Special =    { fg = c.pistachio },
+    Special =    { fg = c.spaghetti },
     Error =      { fg = c.bg, bg = c.peach },
     Todo =       { fg = c.bg, bg = c.fg },
 }

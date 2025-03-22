@@ -1,9 +1,10 @@
 {
-  "lazy.nvim": { "branch": "main", "commit": "7e6c863bc7563efbdd757a310d17ebc95166cef3" },
-  "neogit": { "branch": "master", "commit": "9ea60f79e370d8f4847efc145e53afe4b0613fc1" },
-  "nvim-lspconfig": { "branch": "master", "commit": "8b15a1a597a59f4f5306fad9adfe99454feab743" },
-  "nvim-treesitter": { "branch": "master", "commit": "a295ba13d27684e8904e8e51876b84ee85135cf1" },
-  "oil.nvim": { "branch": "master", "commit": "ba858b662599eab8ef1cba9ab745afded99cb180" },
+  "base16-nvim": { "branch": "master", "commit": "2fdd4e53286dbb8978699b5e1cd09835362a70f3" },
+  "lazy.nvim": { "branch": "main", "commit": "f15a93907ddad3d9139aea465ae18336d87f5ce6" },
+  "neogit": { "branch": "master", "commit": "63124cf520ff24d09deb3b850e053908ab0fc66a" },
+  "nvim-lspconfig": { "branch": "master", "commit": "6c17f8656f667727b27f5f598463afedb7791b18" },
+  "nvim-treesitter": { "branch": "master", "commit": "e411cf2c8adea87acda6c3d634a375addbfff88e" },
+  "oil.nvim": { "branch": "master", "commit": "abbfbd0dbcaa78c3dcdada191ea23e50a41e5806" },
   "onedark.nvim": { "branch": "master", "commit": "67a74c275d1116d575ab25485d1bfa6b2a9c38a6" },
-  "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" }
+  "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" }
 }

@@ -19,9 +19,9 @@ vim.keymap.set("n", "<leader>cc", ":cclose<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>T", ":vsplit term://zsh<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>t", ":split term://zsh<CR>", { noremap = true })
 
--- Open netrw/oil
-vim.keymap.set("n", "<F2>", ":Oil<CR>", { noremap = true })
-vim.keymap.set("n", "<leader>O", ":Oil<CR>", { noremap = true })
+-- Open oil file manager
+vim.keymap.set("n", "<F3>", ":Oil<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>o", ":Oil<CR>", { noremap = true })
 
 -- Buffer command command shortcut
 vim.keymap.set("n", "<C-b>", ":Buffer <C-Z>", { noremap = true })
@@ -37,4 +37,3 @@ vim.keymap.set("v", "<C-r>", '"hy:%s/<C-r>h//gc<left><left><left>', { noremap = 
 
 -- Exit terminal mode with C-x
 vim.keymap.set("t", "<C-x>", "<C-\\><C-n>", { noremap = true })
-
