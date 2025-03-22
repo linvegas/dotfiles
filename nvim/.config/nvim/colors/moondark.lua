@@ -35,7 +35,7 @@ hl.editor = {
     StatusLineMode = { bg = c.bg_light1, fmt = "bold" },
     WinSeparator   = { fg = c.bg_light2 },
     Question       = { fg = c.fg },
-    Title          = { fg = c.magenta, fmt= "bold" },
+    Title          = { fg = c.fg, fmt= "bold" },
     NormalFloat    = { bg = c.bg },
     Directory      = { fg = c.blue, fmt = "bold" },
     IncSearch      = { bg = c.yellow, fg = c.bg_light1 },
@@ -70,6 +70,11 @@ hl.treesitter = {
     ["@function.call"] = { fg = c.blue },
 }
 
+hl.html = {
+    htmlTag    = { fg = c.gray_light },
+    htmlEndTag = { fg = c.gray_light },
+}
+
 local function set_highlights(groups)
     for group_name, group_opts in pairs(groups) do
         vim.api.nvim_command(string.format(
@@ -83,3 +88,4 @@ end
 set_highlights(hl.editor)
 set_highlights(hl.syntax)
 set_highlights(hl.treesitter)
+set_highlights(hl.html)
