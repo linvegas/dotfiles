@@ -1,15 +1,38 @@
-# Basic Variables
-export EDITOR="nvim"
-export BROWSER="firefox"
-export TERMINAL="alacritty"
-
-# Clean up ~/
+# Basic XDG stuff
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_STATE_HOME="$HOME/.local/state"
 
+# export XDG_DESKTOP_DIR="$HOME/docs/desktop"
+# export XDG_DOWNLOAD_DIR="$HOME/docs/downloads"
+# export XDG_TEMPLATES_DIR="$HOME/docs/templates"
+# export XDG_PUBLICSHARE_DIR="$HOME/docs/publico"
+# export XDG_DOCUMENTS_DIR="$HOME/docs"
+# export XDG_MUSIC_DIR="$HOME/mus"
+# export XDG_PICTURES_DIR="$HOME/pics"
+# export XDG_VIDEOS_DIR="$HOME/vids"
+
+# Local XDG stuff
+# export XDG_SAMPLES_DIR="$HOME/media/samp"
+# export XDG_PROJECTS_DIR="$HOME/media/proj"
+# export XDG_EMULATION_DIR="$HOME/media/emu"
+# export XDG_ANIME_DIR="$HOME/media/ani"
+# export XDG_MANGA_DIR="$HOME/media/mang"
+# export XDG_DOTFILES_DIR="$HOME/dotfiles"
+# export XDG_PROGRAMMING_DIR="$HOME/dev"
+
+# Zsh config dir
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+# Options
+export EDITOR="nvim"
+export PF_INFO="ascii title os kernel shell pkgs wm memory"
+export CALCURSE_PAGER="bat"
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export GTK_THEME="adw-gtk3-dark"
+
+# $HOME clean up
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
@@ -33,18 +56,7 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export OPAMROOT="$XDG_DATA_HOME/opam"
 export LESSHISTFILE="-"
 
-# Local scripts and configurations
-export PATH="$PATH:${$(find -L ~/.local/bin -type d -printf %p:)%%:}"
+# Setting PATH env
 export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
 export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:$BUN_INSTALL/bin"
-export PF_INFO="ascii title os kernel shell pkgs wm memory"
-export CALCURSE_PAGER="bat"
-export QT_QPA_PLATFORMTHEME="qt5ct"
-export GTK_THEME="adw-gtk3-dark"
-
-# Starts xorg or wayland
-if [ ! $(pidof -s Xorg) ] && [ "$(tty)" = "/dev/tty1" ]; then
-  exec ssh-agent startx "$XDG_CONFIG_HOME/X11/xinitrc" gnome &> ~/.cache/startx.log
-  # exec ssh-agent startwl hypr &> ~/.cache/startw.log
-fi
