@@ -11,9 +11,9 @@ elif [ "$1" != "" ]; then
 fi
 
 project_path=$(
-find -L ~/dev/* ~/.config -maxdepth 1 -mindepth 1 -type d |
-    sed "s/^\/home\/$USER\///" |
-    fzf --height=20 --layout=reverse --info=hidden --preview=''
+    find -L "$(xdg-user-dir PROGRAMMING)"/* "$XDG_CONFIG_HOME" -maxdepth 1 -mindepth 1 -type d |
+        sed "s/^\/home\/$USER\///" |
+        fzf --height=20 --layout=reverse --info=hidden --preview=''
 )
 
 [ -z "$project_path" ] && exit
