@@ -33,7 +33,7 @@ if [ -x "$(command -v dircolors)" ]; then
 fi
 
 # Completion
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu select=2

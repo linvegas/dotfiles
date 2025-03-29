@@ -26,8 +26,9 @@ v() {
         v|vim) $EDITOR "$XDG_CONFIG_HOME/nvim/init.lua";;
         xini)  $EDITOR "$XDG_CONFIG_HOME/X11/xinitrc";;
         xres)  $EDITOR "$XDG_CONFIG_HOME/X11/xresources";;
-        z|zsh) $EDITOR "$XDG_CONFIG_HOME/zsh/.zshrc";;
-        zp)    $EDITOR "$HOME/.zprofile";;
+        zr)    $EDITOR "$ZDOTDIR/.zshrc";;
+        zp)    $EDITOR "$ZDOTDIR/.zprofile";;
+        ze)    $EDITOR "$HOME/.zshenv";;
         *)     echo -e "v [zp|z|xini|term|...]\n\e[0;31mInvalid argument\e[0m";;
     esac
 }
@@ -35,29 +36,26 @@ v() {
 # cd to specified path
 g() {
     case "$@" in
-        vim)  cd ~/.config/nvim;;
-        dot)  cd ~/dotfiles;;
-        doc)  cd ~/docs;;
-        dow)  cd ~/docs/downloads;;
-        dev)  cd ~/dev;;
-        rep)  cd ~/dev/repos;;
-        pic)  cd ~/pics;;
-        vid)  cd ~/vids;;
-        mus)  cd ~/mus;;
-        smp)  cd ~/media/samp;;
-        pro)  cd ~/media/proj;;
-        emu)  cd ~/media/emu;;
-        ani)  cd ~/media/ani;;
-        man)  cd ~/media/mang;;
-        bin)  cd ~/.local/bin;;
-        wp)   cd ~/.local/share/backgrounds;;
+        dot)  cd "$(xdg-user-dir DOTFILES)";;
+        doc)  cd "$(xdg-user-dir DOCUMENTS)";;
+        dow)  cd "$(xdg-user-dir DOWNLOAD)";;
+        dev)  cd "$(xdg-user-dir PROGRAMMING)";;
+        rep)  cd "$(xdg-user-dir PROGRAMMING)";;
+        pic)  cd "$(xdg-user-dir PICTURES)";;
+        vid)  cd "$(xdg-user-dir VIDEOS)";;
+        mus)  cd "$(xdg-user-dir MUSIC)";;
+        smp)  cd "$(xdg-user-dir SAMPLES)";;
+        pro)  cd "$(xdg-user-dir PROJECTS)";;
+        emu)  cd "$(xdg-user-dir EMULATION)";;
+        ani)  cd "$(xdg-user-dir ANIME)";;
+        man)  cd "$(xdg-user-dir MANGA)";;
         usb1) cd /mnt/usb1;;
         usb2) cd /mnt/usb2;;
         usb3) cd /mnt/usb3;;
         ext)  cd /mnt/externo;;
         shr)  cd /mnt/share;;
         ssd)  cd /mnt/ssd;;
-        *)    echo -e "g [rep|usb1|mus|dot|...]\n\e[0;31mInvalid argument\e[0m";;
+        *)    echo -e "\e[0;31mInvalid argument\e[0m\ng [doc|pic|vid|...]";;
     esac
 }
 
