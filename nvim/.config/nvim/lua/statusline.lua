@@ -45,7 +45,7 @@ end
 
 M.lsp = function()
     local buf = vim.api.nvim_get_current_buf()
-    local clients = vim.lsp.get_active_clients({ bufnr = buf })
+    local clients = vim.lsp.get_clients({ bufnr = buf })
 
     if #clients == 0 then
         return ""
