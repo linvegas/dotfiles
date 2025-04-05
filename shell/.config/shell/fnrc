@@ -40,7 +40,7 @@ g() {
         doc)  cd "$(xdg-user-dir DOCUMENTS)";;
         dow)  cd "$(xdg-user-dir DOWNLOAD)";;
         dev)  cd "$(xdg-user-dir PROGRAMMING)";;
-        rep)  cd "$(xdg-user-dir PROGRAMMING)";;
+        rep)  cd "$(xdg-user-dir PROGRAMMING)/repos";;
         pic)  cd "$(xdg-user-dir PICTURES)";;
         vid)  cd "$(xdg-user-dir VIDEOS)";;
         mus)  cd "$(xdg-user-dir MUSIC)";;
