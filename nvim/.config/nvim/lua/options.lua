@@ -8,8 +8,9 @@ vim.opt.laststatus = 3
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
-vim.opt.shiftwidth  = 4
-vim.opt.softtabstop  = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.tabstop = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 
@@ -38,3 +39,5 @@ vim.opt.showmode = false
 for _, provider in ipairs { "node", "perl", "python3", "ruby" } do
     vim.g["loaded_" .. provider .. "_provider"] = 0
 end
+
+vim.g.go_recommended_style = 0
