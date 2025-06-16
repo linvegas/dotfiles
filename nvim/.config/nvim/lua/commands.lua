@@ -50,7 +50,7 @@ vim.api.nvim_create_autocmd(
             "CleanTerminal", { clear = true }
         ),
         pattern = "*",
-        command = "setlocal nonumber norelativenumber | startinsert"
+        command = "setlocal nonumber norelativenumber"
     }
 )
 
