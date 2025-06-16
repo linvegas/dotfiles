@@ -1,12 +1,13 @@
 -- pcall(require, "luarocks.loader")
-
--- Standard awesome library
-local gears = require("gears")
 local awful = require("awful")
 
 -- Autostart programs
-awful.spawn.with_shell("setmonitor")
-awful.spawn.with_shell("nm-applet")
+awful.spawn.once("nm-applet")
+awful.spawn.once("rshift")
+awful.spawn.once("alacritty -o font.size=13 -e btop", { screen = 2})
+
+-- Standard awesome library
+local gears = require("gears")
 
 require("awful.autofocus")
 
@@ -252,18 +253,18 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         expand = "none",
         { -- Left widgets
-            wibox.layout.margin(muhlauncher, dpi(4),dpi(4),dpi(8),dpi(8)),
-            wibox.layout.margin(s.muhtaglist, dpi(4),dpi(4),dpi(4),dpi(4)),
+            wibox.container.margin(muhlauncher, dpi(4),dpi(4),dpi(8),dpi(8)),
+            wibox.container.margin(s.muhtaglist, dpi(4),dpi(4),dpi(4),dpi(4)),
             -- s.muhtaglist,
             layout = wibox.layout.fixed.horizontal,
         },
           -- Middle widgets
         -- s.muhtasklist,
-        wibox.layout.margin(s.muhtasklist, dpi(3),dpi(3),dpi(3),dpi(3)),
+        wibox.container.margin(s.muhtasklist, dpi(3),dpi(3),dpi(3),dpi(3)),
         { -- Right widgets
-            wibox.layout.margin(muhtextclock, dpi(4),dpi(4),dpi(4),dpi(4)),
-            wibox.layout.margin(s.muhsystray, dpi(4),dpi(4),dpi(4),dpi(4)),
-            wibox.layout.margin(s.muhlayoutbox, dpi(4),dpi(4), dpi(8), dpi(8)),
+            wibox.container.margin(muhtextclock, dpi(4),dpi(4),dpi(4),dpi(4)),
+            wibox.container.margin(s.muhsystray, dpi(4),dpi(4),dpi(4),dpi(4)),
+            wibox.container.margin(s.muhlayoutbox, dpi(4),dpi(4), dpi(8), dpi(8)),
             layout = wibox.layout.fixed.horizontal,
         },
     }
