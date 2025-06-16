@@ -17,7 +17,7 @@ cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -Lb) in
         audio/*|video/x-ms-asf) mpv --audio-display=no $f;;
         video/*) mpv --fs --really-quiet $f;;
-        image/*) nsxiv -fab --scale-mode f $f;;
+        image/*) nsxiv -fa --scale-mode f $f;;
         application/pdf|application/vnd.djvu|application/epub*) setsid -f mupdf $fx >/dev/null 2>&1 ;;
         *) for f in $fx; do xdg-open $f >/dev/null 2>&1; done;;
     esac
@@ -35,20 +35,21 @@ cmd extract ${{
     esac
 }}
 
-cmd open-sel-images ${{
-    nsxiv -fab --scale-mode f $fx
+cmd open-all-images ${{
+    find . -name "*.jpg" -or -name "*.png" -or -name "*.jpeg" -or -name "*.JPG" | sort | nsxiv --stdin -fa --scale-mode f
 }}
 
-cmd open-sel-videos ${{
-    mpv --fs --really-quiet $fx
+cmd open-all-videos ${{
+    find . -name "*.mp4" -or -name "*.webm" | sort | mpv --fs --really-quiet --playlist=-
 }}
 
 cmd path ${{
     realpath $f | xclip -r -sel clip
 }}
 
+map <enter> open
+map D delete
+map M push :mkdir<space>
+map o open-all-images
+map O open-all-videos
 map C edit-config
-map R delete
-map D push :mkdir<space>
-map o open-sel-images
-map O open-sel-videos
