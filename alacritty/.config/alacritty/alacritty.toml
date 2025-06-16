@@ -23,7 +23,7 @@ cyan    = "#86c1b9"
 white   = "#f8f8f8"
 
 [colors.primary]
-background        = "#131313"
+background        = "#0f0f0f"
 foreground        = "#d8d8d8"
 dim_foreground    = "#a0a0a0"
 
@@ -59,14 +59,14 @@ key = "U"
 mods = "Control|Shift"
 
 [[keyboard.bindings]]
-action = "ScrollPageUp"
-key = "K"
-mods = "Control"
+action = "ScrollLineUp"
+key = "ArrowUp"
+mods = "Shift"
 
 [[keyboard.bindings]]
-action = "ScrollPageDown"
-key = "J"
-mods = "Control"
+action = "ScrollLineDown"
+key = "ArrowDown"
+mods = "Shift"
 
 [[keyboard.bindings]]
 chars = "\u001B[105;5u"

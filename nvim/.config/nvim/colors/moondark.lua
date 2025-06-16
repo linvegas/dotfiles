@@ -4,7 +4,8 @@ vim.opt.background = "dark"
 vim.opt.termguicolors = true
 
 local c = {
-    bg          = "#131313",
+    -- bg          = "#131313",
+    bg          = "#0f0f0f",
     fg          = "#d8d8d8",
 
     bg_light1   = "#282828",
@@ -68,11 +69,20 @@ hl.treesitter = {
     ["@variable"]      = { fg = c.fg },
     ["@type.builtin"]  = hl.syntax.Type,
     ["@function.call"] = { fg = c.blue },
+    ["@function.builtin"] = { fg = c.blue },
 }
 
 hl.html = {
     htmlTag    = { fg = c.gray_light },
     htmlEndTag = { fg = c.gray_light },
+}
+
+hl.rust = {
+    rustFuncCall = { fg = c.blue },
+}
+
+hl.js = {
+    javaScriptFunctionCall = { fg = c.blue },
 }
 
 local function set_highlights(groups)
@@ -89,3 +99,5 @@ set_highlights(hl.editor)
 set_highlights(hl.syntax)
 set_highlights(hl.treesitter)
 set_highlights(hl.html)
+set_highlights(hl.rust)
+set_highlights(hl.js)

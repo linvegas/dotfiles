@@ -6,7 +6,7 @@ export KEYTIMEOUT=1
 autoload -Uz vcs_info # Git setup
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
-zstyle ':vcs_info:git:*' formats '%F{magenta}[%b]%f '
+zstyle ':vcs_info:git:*' formats '%F{magenta}%f'
 zstyle ':vcs_info:*' enable git
 
 # Anom prompt icon
@@ -14,7 +14,7 @@ anom_mode() {
     test ${+HISTFILE} -eq 0 && echo " "
 }
 
-PROMPT='%F{red}$(anom_mode)%f${vcs_info_msg_0_}%f%B%1~%b %(!.#.$) '
+PROMPT='%F{red}$(anom_mode)%f%n@%F{green}%m ${vcs_info_msg_0_}%f[%B%1~%b] %(!.#.$) '
 
 # History
 setopt hist_ignore_space histignorealldups sharehistory

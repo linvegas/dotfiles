@@ -1,4 +1,4 @@
-directory: ~/media/mus
+directory: ~/mus
 library: ~/.config/beets/library.db
 plugins: ftintitle fetchart info
 
