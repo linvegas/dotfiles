@@ -39,3 +39,8 @@ export LESSHISTFILE="-"
 export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
 export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:$BUN_INSTALL/bin"
+
+# Local scripts
+if [ -d "$HOME/.local/scripts" ]; then
+    export PATH="$PATH:${$(find -L ~/.local/scripts -type d -printf %p:)%%:}"
+fi
