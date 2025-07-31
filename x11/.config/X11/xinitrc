@@ -8,27 +8,19 @@ export GDK_BACKEND=x11
 # For the nvidia cards
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 
-setxkbmap -option caps:escape &
+# setxkbmap -option caps:escape &
 # xset s off -dpms &
 # xset r rate 200 50 &
 
 [ -f "$HOME/.config/X11/xmodmap" ] && xmodmap "$HOME/.config/X11/xmodmap"
 
-# for p in numlockx mpd mpdscribble; do
-#   pidof -s "$p" || "$p" &
-# done
-
-# setmonitor
-
 session="${1:-i3}"
 
 case "$session" in
-  i3)       exec i3;;
-  bspwm)    exec bspwm;;
-  gnome)    exec gnome-session;;
-  kde)      exec startplasma-x11;;
-  xfce)     exec startxfce4;;
-  cinnamon) exec cinnamon-session;;
-  awesome)  exec awesome;;
-  *)        exec "$1";;
+    i3 | awesome) setmonitor; exec "$session";;
+    gnome)        exec gnome-session;;
+    kde)          exec startplasma-x11;;
+    xfce)         exec startxfce4;;
+    cinnamon)     exec cinnamon-session;;
+    *)            exec "$session";;
 esac
