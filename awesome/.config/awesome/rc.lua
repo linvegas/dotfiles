@@ -4,6 +4,7 @@ local awful = require("awful")
 -- Autostart programs
 awful.spawn.once("nm-applet")
 awful.spawn.once("rshift")
+awful.spawn.once("rkb")
 awful.spawn.once("alacritty -o font.size=13 -e btop", { screen = 2})
 
 -- Standard awesome library
