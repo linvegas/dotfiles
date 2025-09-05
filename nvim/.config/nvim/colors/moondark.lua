@@ -69,6 +69,7 @@ hl.treesitter = {
     ["@variable"]      = { fg = c.fg },
     ["@type.builtin"]  = hl.syntax.Type,
     ["@function.call"] = { fg = c.blue },
+    ["@function.method.call"] = { fg = c.blue },
     ["@function.builtin"] = { fg = c.blue },
 }
 
@@ -83,6 +84,16 @@ hl.rust = {
 
 hl.js = {
     javaScriptFunctionCall = { fg = c.blue },
+}
+
+hl.markdown = {
+    markdownH1 = { bg = c.blue, fg = c.bg, fmt = "bold" },
+    markdownH2 = { fg = c.blue, fmt = "bold" },
+    markdownH3 = { fg = c.yellow, fmt = "bold" },
+    markdownH1Delimiter = { bg = c.blue, fg = c.bg, fmt = "bold" },
+    markdownH2Delimiter = { fg = c.blue, fmt = "bold" },
+    markdownH3Delimiter = { fg = c.yellow, fmt = "bold" },
+    markdownBold = { fmt = "bold" },
 }
 
 local function set_highlights(groups)
@@ -101,3 +112,4 @@ set_highlights(hl.treesitter)
 set_highlights(hl.html)
 set_highlights(hl.rust)
 set_highlights(hl.js)
+set_highlights(hl.markdown)
