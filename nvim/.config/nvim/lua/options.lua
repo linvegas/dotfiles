@@ -1,8 +1,8 @@
 vim.cmd.colorscheme("moondark")
 
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.cursorline = true
+-- vim.opt.number = true
+-- vim.opt.relativenumber = true
+-- vim.opt.cursorline = true
 
 vim.opt.laststatus = 3
 vim.opt.splitbelow = true
