@@ -10,6 +10,9 @@ case "$1" in
     *.mp3|*.flac|*.wav|*.opus)
         file "${1##*/}" | tr '[:,,]' '\n'
         ;;
+    *.so)
+        file "${1##*/}"
+        ;;
     *)
         highlight -O ansi "$1"
         ;;
