@@ -23,6 +23,7 @@ tiling_drag modifier titlebar
 workspace_layout tabbed
 hide_edge_borders smart
 for_window [all] title_window_icon padding 4px
+focus_wrapping workspace
 
 # Colorscheme
 set  $fg     #ebebeb

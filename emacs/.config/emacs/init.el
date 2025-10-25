@@ -21,8 +21,7 @@
 
 (setq c-basic-offset 4)
 
-(add-to-list 'custom-theme-load-path "~/.config/emacs/atom-one-dark-theme.el")
-(load-theme 'atom-one-dark t)
+(load-theme 'wombat t)
 
 (set-face-attribute 'line-number nil :inherit 'default)
 (set-face-attribute 'line-number-current-line nil :inherit 'default)
@@ -33,9 +32,7 @@
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
 
-(unless (package-installed-p 'typescript-mode)
-  (package-install 'typescript-mode))
-(unless (package-installed-p 'rust-mode)
-  (package-install 'rust-mode))
+; (unless (package-installed-p 'rust-mode)
+;   (package-install 'rust-mode))
 
 (load-file custom-file)
