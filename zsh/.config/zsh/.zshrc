@@ -41,7 +41,6 @@ zstyle ':completion:*' menu select=2
 # Shell extension files
 [ -f "$HOME/.config/shell/aliasrc" ] && source "$HOME/.config/shell/aliasrc"
 [ -f "$HOME/.config/shell/fnrc" ] && source "$HOME/.config/shell/fnrc"
-[ -f "$HOME/.customrc" ] && source "$HOME/.customrc"
 
 # Zsh highlighting
 if [ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then

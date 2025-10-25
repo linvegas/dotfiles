@@ -35,6 +35,8 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export OPAMROOT="$XDG_DATA_HOME/opam"
 export LESSHISTFILE="-"
 
+[ -f "$HOME/.customrc" ] && source "$HOME/.customrc"
+
 # Setting PATH env
 export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
 export PATH="$PATH:$GOPATH/bin"
