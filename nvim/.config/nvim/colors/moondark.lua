@@ -19,7 +19,7 @@ local c = {
     gray_light  = "#777777",
 
     red         = "#c87e78",
-    orange      = "#dc9656",
+    orange      = "#e0a168",
     green       = "#b3c48a",
     blue        = "#7cafc2",
     cyan        = "#86c1b9",
@@ -54,6 +54,7 @@ hl.syntax = {
     Statement  = { fg = c.magenta, fmt = "bold" },
     Operator   = { fg = c.fg },
     PreProc    = { fg = c.fg, fmt = "bold" },
+    Include    = { fg = c.magenta },
     Type       = { fg = c.yellow },
     Structure  = { fg = c.magenta, fmt = "bold" },
     Typedef    = { fg = c.magenta, fmt = "bold" },
@@ -82,6 +83,7 @@ hl.html = {
 
 hl.rust = {
     rustFuncCall = { fg = c.blue },
+    rustModPath = { fg = c.yellow },
 }
 
 hl.js = {
