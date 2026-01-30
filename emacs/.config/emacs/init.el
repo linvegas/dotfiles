@@ -10,9 +10,10 @@
 (setq eshell-directory-name "~/.local/share/emacs/eshell")
 (setq ido-save-directory-list-file "~/.local/share/emacs/ido-last")
 (setq package-user-dir "~/.local/share/emacs/elpa")
+(startup-redirect-eln-cache "~/.cache")
 
+(setq ido-everywhere t)
 (ido-mode 1)
-(ido-everywhere 1)
 
 (global-display-line-numbers-mode t)
 (setq frame-resize-pixelwise t)
