@@ -1,6 +1,6 @@
 directory: ~/mus
 library: ~/.config/beets/library.db
-plugins: ftintitle fetchart info
+plugins: musicbrainz ftintitle fetchart info
 
 ftintitle:
     auto: yes

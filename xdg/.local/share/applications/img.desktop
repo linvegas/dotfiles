@@ -1,4 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=nsxiv
-Exec=/usr/bin/nsxiv -a -b %F
