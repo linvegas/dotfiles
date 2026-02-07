@@ -26,20 +26,26 @@ for_window [all] title_window_icon padding 4px
 focus_wrapping workspace
 
 # Colorscheme
-set  $fg     #ebebeb
-set  $fg-d   #989898
-set  $blue   #4e5a7c
-set  $bg     #0a0a0a
-set  $bg-l   #1d1d1d
-set  $bg-ll  #323232
-set  $red    #e06c75
-set  $red-d  #a64e55
+set  $fg         #d8d8d8
+set  $fg-d       #858585
+set  $blue       #4a6b77
+set  $blue-l     #6c8791
+set  $bg         #181818
+set  $bg-l       #282828
+set  $bg-ll      #383838
+set  $red        #e06c75
+set  $red-d      #ab4642
+set  $gray       #333333
+set  $gray-d     #484e50
+set  $magenta    #5c4356
+set  $magenta-l  #72546b
+set  $magenta-ll #9a8996
 
-# class                 border  backgr. text    indicator child_border
-client.focused          #4c7899 $blue   $fg     #2e9ef4   $blue
-client.focused_inactive #333333 $bg-ll  $fg     #484e50   $bg-ll
-client.unfocused        #333333 $bg-l   $fg-d   #292d2e   $bg-l
-client.urgent           #333333 $red-d  $fg     #292d2e   $red-d
+# class                 border     backgr.  text    indicator    child_border
+client.focused          $magenta-l $magenta $fg     $magenta-ll  $magenta
+client.focused_inactive $gray      $bg-ll   $fg     $gray-d      $bg-ll
+client.unfocused        $gray      $bg-l    $fg-d   $bg-l        $bg-l
+client.urgent           $gray      $red-d   $fg     $bg-l        $red-d
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -178,7 +184,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bar {
     status_command i3status --config ~/.config/i3/i3status.conf
 
-    font pango:monospace 8
+    font pango:monospace 10
     separator_symbol "::"
     tray_output primary
     tray_padding 2px
@@ -186,8 +192,8 @@ bar {
     colors {
         background $bg
         statusline $fg
-        # class            border  backgr. text
-        focused_workspace  #4c7899 $blue   $fg
-        inactive_workspace #333333 $bg-l   $fg-d
+        # class            border     backgr.  text
+        focused_workspace  $magenta-l $magenta $fg
+        inactive_workspace $gray      $bg-l    $fg-d
     }
 }
