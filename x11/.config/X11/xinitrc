@@ -16,8 +16,18 @@ xrandr --setprovideroutputsource modesetting NVIDIA-0
 
 session="${1:-i3}"
 
+checkdisplay() {
+    custom_file="$HOME/.customrc"
+    if [ -f "${custom_file}" ]; then
+        . "${custom_file}"
+        if command -v setdisplay; then
+            setdisplay
+        fi
+    fi
+}
+
 case "$session" in
-    i3 | awesome) setmonitor; exec "$session";;
+    i3 | awesome) checkdisplay; exec "$session";;
     gnome)        exec gnome-session;;
     kde)          exec startplasma-x11;;
     xfce)         exec startxfce4;;
