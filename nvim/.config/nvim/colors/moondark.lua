@@ -124,15 +124,15 @@ hl.syntax = {
 
 hl.neogit = {
     NeogitBranch               = { fg = c.magenta },
-    NeogitRemote               = { fg = c.blue },
+    NeogitRemote               = { fg = c.green },
     NeogitUnmergedInto         = { fg = c.magenta },
     NeogitUnpushedTo           = { fg = c.magenta },
     NeogitUnstagedchanges      = { fg = c.orange },
-    NeogitStagedchanges        = { fg = c.cyan, fmt = "bold" },
-    NeogitChangeModified       = { fg = c.orange, fmt = "bold" },
+    NeogitStagedchanges        = { fg = c.cyan, fmt = "bold,italic" },
+    NeogitChangeModified       = { fg = c.yellow, fmt = "bold,italic" },
 
     NeogitSectionHeader        = { fg = c.blue, fmt = "bold" },
-    NeogitPopupSectionTitle    = { fg = c.blue, fmt = "bold" },
+    NeogitPopupSectionTitle    = { fg = c.fg, fmt = "bold" },
     NeogitHunkHeader           = { bg = c.bg_light1, fg = c.fg },
     NeogitHunkHeaderHighlight  = { bg = c.bg_light2, fg = c.fg, fmt = "bold" },
 
@@ -185,10 +185,6 @@ hl.markdown = {
     markdownH2Delimiter = { fg = c.blue, fmt = "bold" },
     markdownH3Delimiter = { fg = c.yellow, fmt = "bold" },
     markdownBold = { fmt = "bold" },
-}
-
-hl.c = {
-    cFuncCall = { fg = c.blue },
 }
 
 local function set_highlights(groups)
