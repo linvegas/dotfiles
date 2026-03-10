@@ -32,8 +32,15 @@ local hl = {}
 hl.editor = {
     Normal         = { fg = c.fg, bg = c.bg },
     Visual         = { bg = c.bg_light2 },
+
     Cursor         = { fg = c.bg, bg = c.fg },
     CursorLine     = { bg = c.bg_light1 },
+    CursorColumn   = { bg = c.bg_light1 },
+    CursorLineNr   = { fg = c.fg, fmt = "bold" },
+    LineNr         = { fg = c.gray },
+    LineNrAbove    = { fg = c.gray },
+    LineNrBelow    = { fg = c.gray },
+
     StatusLine     = { bg = c.bg_light1, fg = c.fg_dark },
     StatusLineMode = { bg = c.bg_light1, fmt = "bold" },
     WinSeparator   = { fg = c.bg_light2 },
@@ -41,8 +48,46 @@ hl.editor = {
     Title          = { fg = c.fg, fmt= "bold" },
     NormalFloat    = { bg = c.bg },
     Directory      = { fg = c.blue, fmt = "bold" },
+
+    Search         = { bg = c.bg_light2, fg = c.fg },
+    CurSearch      = { bg = c.yellow, fg = c.bg },
     IncSearch      = { bg = c.yellow, fg = c.bg },
     Substitute     = { bg = c.yellow, fg = c.bg },
+
+    Pmenu          = { bg = c.bg_light1, fg = c.fg },
+    PmenuSel       = { bg = c.fg, fg = c.bg_light1 },
+    PmenuSbar      = { bg = c.bg_light2 },
+    PmenuThumb     = { bg = c.gray },
+
+    Folded         = { fg = c.gray_light, bg = c.bg_light1 },
+    FoldColumn     = { fg = c.gray },
+
+    MatchParen     = { fg = c.yellow, fmt = "bold" },
+    NonText        = { fg = c.gray },
+    SpecialKey     = { fg = c.gray },
+    Whitespace     = { fg = c.bg_light2 },
+    SignColumn     = { bg = c.bg },
+    ColorColumn    = { bg = c.bg_light1 },
+    ModeMsg        = { fg = c.fg, fmt = "bold" },
+    MoreMsg        = { fg = c.green },
+    WarningMsg     = { fg = c.yellow },
+    WildMenu       = { bg = c.bg_light2, fg = c.fg },
+
+    QuickFixLine   = { bg = c.bg_light2, fg = c.fg },
+    qfFileName     = { fg = c.blue },
+    qfLineNr       = { fg = c.gray_light },
+    qfError        = { fg = c.red },
+
+    DiagnosticError          = { fg = c.red },
+    DiagnosticWarn           = { fg = c.yellow },
+    DiagnosticInfo           = { fg = c.blue },
+    DiagnosticHint           = { fg = c.cyan },
+    DiagnosticUnnecessary    = { fg = c.gray },
+
+    DiagnosticUnderlineError = { fmt = "undercurl" },
+    DiagnosticUnderlineWarn  = { fmt = "undercurl" },
+    DiagnosticUnderlineInfo  = { fmt = "underline" },
+    DiagnosticUnderlineHint  = { fmt = "underline" },
 }
 
 hl.syntax = {
@@ -50,7 +95,7 @@ hl.syntax = {
     Constant   = { fg = c.red },
     String     = { fg = c.green },
     Identifier = { fg = c.fg },
-    Function   = { fg = c.fg },
+    Function   = { fg = c.blue },
     Statement  = { fg = c.magenta, fmt = "bold" },
     Operator   = { fg = c.fg },
     PreProc    = { fg = c.fg, fmt = "bold" },
@@ -66,6 +111,48 @@ hl.syntax = {
     Added      = { fg = c.green },
     Changed    = { fg = c.cyan },
     Removed    = { fg = c.red },
+    SpellBad   = { fg = c.red, fmt = "undercurl" },
+    SpellWarn  = { fg = c.yellow, fmt = "undercurl" },
+    Conceal    = { fg = c.gray_light },
+    Ignore     = { fg = c.gray_light },
+    DiffAdd    = { fg = c.green },
+    DiffChange = { fg = c.cyan },
+    DiffDelete = { fg = c.red },
+    DiffText   = { fg = c.yellow },
+    Debug      = { fg = c.yellow },
+}
+
+hl.neogit = {
+    NeogitBranch               = { fg = c.magenta },
+    NeogitRemote               = { fg = c.green },
+    NeogitUnmergedInto         = { fg = c.magenta },
+    NeogitUnpushedTo           = { fg = c.magenta },
+    NeogitUnstagedchanges      = { fg = c.orange },
+    NeogitStagedchanges        = { fg = c.cyan, fmt = "bold,italic" },
+    NeogitChangeModified       = { fg = c.yellow, fmt = "bold,italic" },
+
+    NeogitSectionHeader        = { fg = c.blue, fmt = "bold" },
+    NeogitPopupSectionTitle    = { fg = c.fg, fmt = "bold" },
+    NeogitHunkHeader           = { bg = c.bg_light1, fg = c.fg },
+    NeogitHunkHeaderHighlight  = { bg = c.bg_light2, fg = c.fg, fmt = "bold" },
+
+    NeogitDiffAdd              = { fg = c.green, bg = c.bg_light1 },
+    NeogitDiffDelete           = { fg = c.red,   bg = c.bg_light1 },
+    NeogitDiffContext          = { bg = c.bg },
+    NeogitDiffAddHighlight     = { fg = c.green, bg = c.bg_light2 },
+    NeogitDiffDeleteHighlight  = { fg = c.red,  bg = c.bg_light2 },
+    NeogitDiffContextHighlight = { bg = c.bg_light1 },
+
+    NeogitCommitViewHeader     = { bg = c.bg_light2, fg = c.fg },
+    NeogitFilePath             = { fg = c.blue },
+    NeogitUntrackedfiles       = { fg = c.fg, fmt = "bold" },
+    NeogitUnstagedchanges      = { fg = c.fg, fmt = "bold" },
+    NeogitStagedchanges        = { fg = c.fg, fmt = "bold" },
+    NeogitStashes              = { fg = c.fg, fmt = "bold" },
+
+    NeogitNotificationInfo     = { fg = c.blue },
+    NeogitNotificationWarning  = { fg = c.yellow },
+    NeogitNotificationError    = { fg = c.red },
 }
 
 hl.treesitter = {
@@ -76,10 +163,10 @@ hl.treesitter = {
     ["@function.builtin"] = { fg = c.blue },
 }
 
-hl.html = {
-    htmlTag    = { fg = c.gray_light },
-    htmlEndTag = { fg = c.gray_light },
-}
+-- hl.html = {
+--     htmlTag    = { fg = c.gray_light },
+--     htmlEndTag = { fg = c.gray_light },
+-- }
 
 hl.rust = {
     rustFuncCall = { fg = c.blue },

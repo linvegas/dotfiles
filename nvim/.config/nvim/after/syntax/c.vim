@@ -1,3 +1,3 @@
-syn match     cFuncCall    "\w\(\w\)*("he=e-1,me=e-1
-
-hi def link   cFuncCall    Function
+" syntax match cFunctionCall /\w\+\s*(/me=e-1
+syntax match cFunctionCall /\w\+(/me=e-1
+highlight link cFunctionCall Function
