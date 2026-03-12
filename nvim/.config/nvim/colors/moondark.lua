@@ -59,10 +59,14 @@ hl.editor = {
     PmenuSbar      = { bg = c.bg_light2 },
     PmenuThumb     = { bg = c.gray },
 
+    TabLine        = { bg = c.bg_light1, fg = c.gray },
+    TabLineSel     = { bg = c.gray, fg = c.fg, fmt = "bold" },
+    TabLineFill    = { bg = c.bg },
+
     Folded         = { fg = c.gray_light, bg = c.bg_light1 },
     FoldColumn     = { fg = c.gray },
 
-    MatchParen     = { fg = c.yellow, fmt = "bold" },
+    MatchParen     = { bg = c.gray },
     NonText        = { fg = c.gray },
     SpecialKey     = { fg = c.gray },
     Whitespace     = { fg = c.bg_light2 },
